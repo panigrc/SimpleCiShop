@@ -8,8 +8,8 @@
 	<meta name="description" content="<?php echo $this->lang->line('main_meta_description'); ?>" />
 	<meta name="keywords" content="<?php echo $this->lang->line('main_meta_keywords'); if(isset($meta_keywords)) echo ", ".$meta_keywords; ?>" />
 	<meta name="robots" content="index,follow" />
-	<link rel="stylesheet" href="<?php echo base_url(); ?>theme/images/style.css" type="text/css" />
-	<title><?php if($this->lang->line($pagename)) echo $this->lang->line($pagename). ' - '; if(!empty($title)) echo $title . ' - '; ?>Cool Clean Quiet</title>    
+	<link rel="stylesheet" href="<?php echo base_url(); ?>theme/default/style.css" type="text/css" />
+	<title><?php if($this->lang->line($pagename)) echo $this->lang->line($pagename). ' - '; if(!empty($title)) echo $title . ' - '; ?>SimpleCiShop</title>    
     <script src="<?php echo base_url() ?>javascript/prototype.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>javascript/effects.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>javascript/dragdrop.js" type="text/javascript"></script>
@@ -23,14 +23,14 @@
 		<div class="header">
             <?php /*<div id="select_language">
             <span><?php echo $this->lang->line('main_select_language'); ?>: &nbsp;</span>
-            <a href="<?php echo site_url(str_replace($lang, 'english', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/images/gb.gif" title="<?php echo $this->lang->line('main_english'); ?>" alt="<?php echo $this->lang->line('main_english'); ?>" /></a>
-            <a href="<?php echo site_url(str_replace($lang, 'greek', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/images/gr.gif" title="<?php echo $this->lang->line('main_greek'); ?>" alt="<?php echo $this->lang->line('main_greek'); ?>" /></a>
-            <a href="<?php echo site_url(str_replace($lang, 'german', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/images/de.gif" title="<?php echo $this->lang->line('main_german'); ?>" alt="<?php echo $this->lang->line('main_german'); ?>" /></a>
+            <a href="<?php echo site_url(str_replace($lang, 'english', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/gb.gif" title="<?php echo $this->lang->line('main_english'); ?>" alt="<?php echo $this->lang->line('main_english'); ?>" /></a>
+            <a href="<?php echo site_url(str_replace($lang, 'greek', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/gr.gif" title="<?php echo $this->lang->line('main_greek'); ?>" alt="<?php echo $this->lang->line('main_greek'); ?>" /></a>
+            <a href="<?php echo site_url(str_replace($lang, 'german', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/de.gif" title="<?php echo $this->lang->line('main_german'); ?>" alt="<?php echo $this->lang->line('main_german'); ?>" /></a>
             </div>
             */ ?>
 		    <div style="clear: both;"></div>
 			<div class="sf_right">
-                <a href="<?php echo site_url(); ?>"><img src="<?php echo base_url() ?>theme/images/logo.png" alt="logo" style="border: none;" /></a>
+                <a href="<?php echo site_url(); ?>"><img src="<?php echo base_url() ?>theme/default/images/logo.png" alt="logo" style="border: none;" /></a>
                 <?php /*<div id="nav">
     			    <ul>
 <?php foreach($navigation as $tab => $url):?>
@@ -52,11 +52,11 @@
                     </div>
                 </div>
                 <div id="right">
-                    <div style="text-align:center;">Αν θέλεις κάποιο προϊόν της Nexus το οποίο δεν έχουμε, μπορούμε να το παραγγείλουμε για σένα<br/><a href="http://www.nexustek.nl"><img src="<?php echo base_url() ?>theme/images/Nexus_badge.gif" alt="Nexus" style="border: none; float:none;" /></a></div>
+                    <div style="text-align:center;">Αν θέλεις κάποιο προϊόν της Nexus το οποίο δεν έχουμε, μπορούμε να το παραγγείλουμε για σένα<br/><a href="http://www.nexustek.nl"><img src="<?php echo base_url() ?>theme/default/images/Nexus_badge.gif" alt="Nexus" style="border: none; float:none;" /></a></div>
                     <?php $this->load->view('cart/cart_tpl'); ?>
 
                     <?php $this->load->view('blocks/random_product_tpl'); ?>
-                    <div style="text-align:center;"><a href="<?php echo site_url(); ?>blog/"><img src="<?php echo base_url() ?>theme/images/blog.png" alt="Cool Clean Quiet - Blog" style="border: none; float:none" /></a></div>
+                    <div style="text-align:center;"><a href="<?php echo site_url(); ?>blog/"><img src="<?php echo base_url() ?>theme/default/images/blog.png" alt="Cool Clean Quiet - Blog" style="border: none; float:none" /></a></div>
                 </div>
                 <div id="left">
                     <?php echo @$rblock; ?>
