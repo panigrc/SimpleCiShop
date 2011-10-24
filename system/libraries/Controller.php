@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -18,14 +18,14 @@
 /**
  * CodeIgniter Application Controller Class
  *
- * This class object is the super class the every library in
+ * This class object is the super class that every library in
  * CodeIgniter will be assigned to.
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Libraries
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/general/controllers.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/general/controllers.html
  */
 class Controller extends CI_Base {
 
@@ -66,7 +66,8 @@ class Controller extends CI_Base {
 							'benchmark'	=> 'Benchmark',
 							'uri'		=> 'URI',
 							'output'	=> 'Output',
-							'lang'		=> 'Language'
+							'lang'		=> 'Language',
+							'router'	=> 'Router'
 							);
 		
 		foreach ($classes as $var => $class)
@@ -84,6 +85,15 @@ class Controller extends CI_Base {
 		else
 		{
 			$this->_ci_autoloader();
+			
+			// sync up the objects since PHP4 was working from a copy
+			foreach (array_keys(get_object_vars($this)) as $attribute)
+			{
+				if (is_object($this->$attribute))
+				{
+					$this->load->$attribute =& $this->$attribute;
+				}
+			}
 		}
 	}
 	
@@ -112,4 +122,6 @@ class Controller extends CI_Base {
 
 }
 // END _Controller class
-?>
+
+/* End of file Controller.php */
+/* Location: ./system/libraries/Controller.php */

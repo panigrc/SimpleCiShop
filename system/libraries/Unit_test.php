@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.3.1
  * @filesource
  */
@@ -23,8 +23,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	UnitTesting
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/libraries/uri.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/libraries/uri.html
  */
 class CI_Unit_test {
 
@@ -55,8 +55,10 @@ class CI_Unit_test {
 	function run($test, $expected = TRUE, $test_name = 'undefined')
 	{
 		if ($this->active == FALSE)
+		{
 			return FALSE;
-			
+		}
+	
 		if (in_array($expected, array('is_string', 'is_bool', 'is_true', 'is_false', 'is_int', 'is_numeric', 'is_float', 'is_double', 'is_array', 'is_null'), TRUE))
 		{
 			$expected = str_replace('is_float', 'is_double', $expected);
@@ -100,39 +102,55 @@ class CI_Unit_test {
 	 * @return	string
 	 */
 	function report($result = array())
-	{	
+	{
 		if (count($result) == 0)
 		{
 			$result = $this->result();
 		}
-		
+
+		$CI =& get_instance();
+		$CI->load->language('unit_test');
+
 		$this->_parse_template();
-	
+
 		$r = '';
 		foreach ($result as $res)
 		{
 			$table = '';
-		
+
 			foreach ($res as $key => $val)
 			{
-				$temp = $this->_template_rows;			
+
+				if ($key == $CI->lang->line('ut_result'))
+				{
+					if ($val == $CI->lang->line('ut_passed'))
+					{
+						$val = '<span style="color: #0C0;">'.$val.'</span>';
+					}
+					elseif ($val == $CI->lang->line('ut_failed'))
+					{
+						$val = '<span style="color: #C00;">'.$val.'</span>';
+					}
+				}
+
+				$temp = $this->_template_rows;
 				$temp = str_replace('{item}', $key, $temp);
 				$temp = str_replace('{result}', $val, $temp);
 				$table .= $temp;
 			}
-			
+
 			$r .= str_replace('{rows}', $table, $this->_template);
 		}
-	
-		return $r;	
-	}	
+
+		return $r;
+	}
 	
 	// --------------------------------------------------------------------
 	
 	/**
 	 * Use strict comparison
 	 *
-	 * Causes the evaluation to use === rather then ==
+	 * Causes the evaluation to use === rather than ==
 	 *
 	 * @access	public
 	 * @param	bool
@@ -262,18 +280,14 @@ class CI_Unit_test {
 	 */
 	function _default_template()
 	{	
-		$this->_template = '	
-		<div style="margin:15px;background-color:#ccc;">
-		<table border="0" cellpadding="4" cellspacing="1" style="width:100%;">		
-		{rows}
-		</table></div>';
+		$this->_template = "\n".'<table style="width:100%; font-size:small; margin:10px 0; border-collapse:collapse; border:1px solid #CCC;">';
+		$this->_template .= '{rows}';
+		$this->_template .= "\n".'</table>';
 		
-		$this->_template_rows = '
-		<tr>
-		<td style="background-color:#fff;width:140px;font-size:12px;font-weight:bold;">{item}</td>
-		<td style="background-color:#fff;font-size:12px;">{result}</td>
-		</tr>
-		';	
+		$this->_template_rows = "\n\t".'<tr>';
+		$this->_template_rows .= "\n\t\t".'<th style="text-align: left; border-bottom:1px solid #CCC;">{item}</th>';
+		$this->_template_rows .= "\n\t\t".'<td style="border-bottom:1px solid #CCC;">{result}</td>';
+		$this->_template_rows .= "\n\t".'</tr>';	
 	}
 	
 	// --------------------------------------------------------------------
@@ -328,4 +342,6 @@ function is_false($test)
 	return (is_bool($test) AND $test === FALSE) ? TRUE : FALSE;
 }
 
-?>
+
+/* End of file Unit_test.php */
+/* Location: ./system/libraries/Unit_test.php */

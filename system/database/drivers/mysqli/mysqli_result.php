@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * This class extends the parent result class: CI_DB_result
  *
  * @category	Database
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/database/
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/database/
  */
 class CI_DB_mysqli_result extends CI_DB_result {
 	
@@ -71,12 +71,6 @@ class CI_DB_mysqli_result extends CI_DB_result {
 		return $field_names;
 	}
 
-	// Deprecated
-	function field_names()
-	{
-		return $this->list_fields();
-	}
-
 	// --------------------------------------------------------------------
 
 	/**
@@ -114,7 +108,7 @@ class CI_DB_mysqli_result extends CI_DB_result {
 	 */		
 	function free_result()
 	{
-		if (is_resource($this->result_id))
+		if (is_object($this->result_id))
 		{
 			mysqli_free_result($this->result_id);
 			$this->result_id = FALSE;
@@ -170,4 +164,6 @@ class CI_DB_mysqli_result extends CI_DB_result {
 	
 }
 
-?>
+
+/* End of file mysqli_result.php */
+/* Location: ./system/database/drivers/mysqli/mysqli_result.php */

@@ -11,7 +11,7 @@
 |	http://www.your-site.com/
 |
 */
-$config['base_url']	= "http://simplecishop.c-s-i.gr";
+$config['base_url']	= "http://simplecishop.csi";
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +68,16 @@ $config['url_suffix'] = "";
 */
 $config['language']	= "greek";
 
+/*
+|--------------------------------------------------------------------------
+| Default Character Set
+|--------------------------------------------------------------------------
+|
+| This determines which character set is used by default in various methods
+| that require a character set to be provided.
+|
+*/
+$config['charset'] = "UTF-8";
 
 /*
 |--------------------------------------------------------------------------
@@ -227,6 +237,7 @@ $config['sess_use_database']	= FALSE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= TRUE;
 $config['sess_match_useragent']	= TRUE;
+$config['sess_time_to_update'] = 300;
 
 /*
 |--------------------------------------------------------------------------

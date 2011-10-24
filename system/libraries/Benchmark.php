@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -24,8 +24,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Libraries
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/libraries/benchmark.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/libraries/benchmark.html
  */
 class CI_Benchmark {
 
@@ -47,7 +47,7 @@ class CI_Benchmark {
 	{
 		$this->marker[$name] = microtime();
 	}
-  	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -70,17 +70,17 @@ class CI_Benchmark {
 		{
 			return '{elapsed_time}';
 		}
-		
+
 		if ( ! isset($this->marker[$point1]))
 		{
 			return '';
 		}
-		
+
 		if ( ! isset($this->marker[$point2]))
 		{
 			$this->marker[$point2] = microtime();
 		}
-			
+	
 		list($sm, $ss) = explode(' ', $this->marker[$point1]);
 		list($em, $es) = explode(' ', $this->marker[$point2]);
 
@@ -108,4 +108,6 @@ class CI_Benchmark {
 }
 
 // END CI_Benchmark class
-?>
+
+/* End of file Benchmark.php */
+/* Location: ./system/libraries/Benchmark.php */

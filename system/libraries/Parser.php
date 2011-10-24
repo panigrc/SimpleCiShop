@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Parser
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/libraries/parser.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/libraries/parser.html
  */
 class CI_Parser {
 
@@ -54,19 +54,19 @@ class CI_Parser {
 		
 		foreach ($data as $key => $val)
 		{
-			if (is_string($val))
-			{
-				$template = $this->_parse_single($key, $val, $template);
-			}
-			elseif (is_array($val))
+			if (is_array($val))
 			{
 				$template = $this->_parse_pair($key, $val, $template);		
+			}
+			else
+			{
+				$template = $this->_parse_single($key, (string)$val, $template);
 			}
 		}
 		
 		if ($return == FALSE)
 		{
-			$CI->output->final_output = $template;
+			$CI->output->append_output($template);
 		}
 		
 		return $template;
@@ -158,7 +158,7 @@ class CI_Parser {
 	 */
 	function _match_pair($string, $variable)
 	{
-		if ( ! preg_match("|".$this->l_delim . $variable . $this->r_delim."(.+)".$this->l_delim . '/' . $variable . $this->r_delim."|s", $string, $match))
+		if ( ! preg_match("|".$this->l_delim . $variable . $this->r_delim."(.+?)".$this->l_delim . '/' . $variable . $this->r_delim."|s", $string, $match))
 		{
 			return FALSE;
 		}
@@ -168,4 +168,6 @@ class CI_Parser {
 
 }
 // END Parser Class
-?>
+
+/* End of file Parser.php */
+/* Location: ./system/libraries/Parser.php */

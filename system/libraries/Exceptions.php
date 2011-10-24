@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Exceptions
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/libraries/exceptions.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/libraries/exceptions.html
  */
 class CI_Exceptions {
 	var $action;
@@ -94,7 +94,7 @@ class CI_Exceptions {
 		$message = "The page you requested was not found.";
 
 		log_message('error', '404 Page Not Found --> '.$page);
-		echo $this->show_error($heading, $message, 'error_404');
+		echo $this->show_error($heading, $message, 'error_404', 404);
 		exit;
 	}
   	
@@ -113,8 +113,10 @@ class CI_Exceptions {
 	 * @param	string	the template name
 	 * @return	string
 	 */
-	function show_error($heading, $message, $template = 'error_general')
+	function show_error($heading, $message, $template = 'error_general', $status_code = 500)
 	{
+		set_status_header($status_code);
+		
 		$message = '<p>'.implode('</p><p>', ( ! is_array($message)) ? array($message) : $message).'</p>';
 
 		if (ob_get_level() > $this->ob_level + 1)
@@ -167,4 +169,6 @@ class CI_Exceptions {
 
 }
 // END Exceptions Class
-?>
+
+/* End of file Exceptions.php */
+/* Location: ./system/libraries/Exceptions.php */

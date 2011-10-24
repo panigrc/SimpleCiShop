@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Logging
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/general/errors.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/general/errors.html
  */
 class CI_Log {
 
@@ -36,9 +36,6 @@ class CI_Log {
 	 * Constructor
 	 *
 	 * @access	public
-	 * @param	string	the log file path
-	 * @param	string	the error threshold
-	 * @param	string	the date formatting codes
 	 */
 	function CI_Log()
 	{
@@ -46,7 +43,7 @@ class CI_Log {
 		
 		$this->log_path = ($config['log_path'] != '') ? $config['log_path'] : BASEPATH.'logs/';
 		
-		if ( ! is_dir($this->log_path) OR ! is_writable($this->log_path))
+		if ( ! is_dir($this->log_path) OR ! is_really_writable($this->log_path))
 		{
 			$this->_enabled = FALSE;
 		}
@@ -94,10 +91,10 @@ class CI_Log {
 		
 		if ( ! file_exists($filepath))
 		{
-			$message .= "<"."?php  if (!defined('BASEPATH')) exit('No direct script access allowed'); ?".">\n\n";
+			$message .= "<"."?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?".">\n\n";
 		}
 			
-		if ( ! $fp = @fopen($filepath, "a"))
+		if ( ! $fp = @fopen($filepath, FOPEN_WRITE_CREATE))
 		{
 			return FALSE;
 		}
@@ -109,10 +106,12 @@ class CI_Log {
 		flock($fp, LOCK_UN);
 		fclose($fp);
 	
-		@chmod($filepath, 0666); 		
+		@chmod($filepath, FILE_WRITE_MODE); 		
 		return TRUE;
 	}
 
 }
 // END Log Class
-?>
+
+/* End of file Log.php */
+/* Location: ./system/libraries/Log.php */

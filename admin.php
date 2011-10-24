@@ -58,11 +58,21 @@
 |
 | Let's attempt to determine the full-server path to the "system"
 | folder in order to reduce the possibility of path problems.
+| Note: We only attempt this if the user hasn't specified a 
+| full server path.
 |
 */
-if (function_exists('realpath') AND @realpath(dirname(__FILE__)) !== FALSE)
+if (strpos($system_folder, '/') === FALSE)
 {
-	$system_folder = str_replace("\\", "/", realpath(dirname(__FILE__))).'/'.$system_folder;
+	if (function_exists('realpath') AND @realpath(dirname(__FILE__)) !== FALSE)
+	{
+		$system_folder = realpath(dirname(__FILE__)).'/'.$system_folder;
+	}
+}
+else
+{
+	// Swap directory separators to Unix style for consistency
+	$system_folder = str_replace("\\", "/", $system_folder); 
 }
 
 /*
@@ -71,15 +81,15 @@ if (function_exists('realpath') AND @realpath(dirname(__FILE__)) !== FALSE)
 |---------------------------------------------------------------
 |
 | EXT		- The file extension.  Typically ".php"
+| SELF		- The name of THIS file (typically "index.php")
 | FCPATH	- The full server path to THIS file
-| SELF		- The name of THIS file (typically "index.php)
 | BASEPATH	- The full server path to the "system" folder
 | APPPATH	- The full server path to the "application" folder
 |
 */
-define('EXT', '.'.pathinfo(__FILE__, PATHINFO_EXTENSION));
-define('FCPATH', __FILE__);
+define('EXT', '.php');
 define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+define('FCPATH', str_replace(SELF, '', __FILE__));
 define('BASEPATH', $system_folder.'/');
 
 if (is_dir($application_folder))
@@ -98,21 +108,6 @@ else
 
 /*
 |---------------------------------------------------------------
-| DEFINE E_STRICT
-|---------------------------------------------------------------
-|
-| Some older versions of PHP don't support the E_STRICT constant
-| so we need to explicitly define it otherwise the Exception class 
-| will generate errors.
-|
-*/
-if ( ! defined('E_STRICT'))
-{
-	define('E_STRICT', 2048);
-}
-
-/*
-|---------------------------------------------------------------
 | LOAD THE FRONT CONTROLLER
 |---------------------------------------------------------------
 |
@@ -120,4 +115,6 @@ if ( ! defined('E_STRICT'))
 |
 */
 require_once BASEPATH.'codeigniter/CodeIgniter'.EXT;
-?>
+
+/* End of file index.php */
+/* Location: ./index.php */

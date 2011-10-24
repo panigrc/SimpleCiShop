@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -27,8 +27,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Libraries
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/general/profiling.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/general/profiling.html
  */
 class CI_Profiler {
 
@@ -102,40 +102,130 @@ class CI_Profiler {
 	 */	
 	function _compile_queries()
 	{
-		$output  = "\n\n";
-		$output .= '<fieldset style="border:1px solid #0000FF;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
-		$output .= "\n";
-		$output .= '<legend style="color:#0000FF;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_queries').'&nbsp;&nbsp;</legend>';
-		$output .= "\n";		
-		
-		if ( ! class_exists('CI_DB_driver'))
+		$dbs = array();
+
+		// Let's determine which databases are currently connected to
+		foreach (get_object_vars($this->CI) as $CI_object)
 		{
-			$output .= "<div style='color:#0000FF;font-weight:normal;padding:4px 0 0 0;'>".$this->CI->lang->line('profiler_no_db')."</div>";
-		}
-		else
-		{
-			if (count($this->CI->db->queries) == 0)
+			if (is_object($CI_object) && is_subclass_of(get_class($CI_object), 'CI_DB') )
 			{
-				$output .= "<div style='color:#0000FF;font-weight:normal;padding:4px 0 4px 0;'>".$this->CI->lang->line('profiler_no_queries')."</div>";
+				$dbs[] = $CI_object;
+			}
+		}
+					
+		if (count($dbs) == 0)
+		{
+			$output  = "\n\n";
+			$output .= '<fieldset style="border:1px solid #0000FF;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
+			$output .= "\n";
+			$output .= '<legend style="color:#0000FF;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_queries').'&nbsp;&nbsp;</legend>';
+			$output .= "\n";		
+			$output .= "\n\n<table cellpadding='4' cellspacing='1' border='0' width='100%'>\n";
+			$output .="<tr><td width='100%' style='color:#0000FF;font-weight:normal;background-color:#eee;'>".$this->CI->lang->line('profiler_no_db')."</td></tr>\n";
+			$output .= "</table>\n";
+			$output .= "</fieldset>";
+			
+			return $output;
+		}
+		
+		// Load the text helper so we can highlight the SQL
+		$this->CI->load->helper('text');
+
+		// Key words we want bolded
+		$highlight = array('SELECT', 'DISTINCT', 'FROM', 'WHERE', 'AND', 'LEFT&nbsp;JOIN', 'ORDER&nbsp;BY', 'GROUP&nbsp;BY', 'LIMIT', 'INSERT', 'INTO', 'VALUES', 'UPDATE', 'OR', 'HAVING', 'OFFSET', 'NOT&nbsp;IN', 'IN', 'LIKE', 'NOT&nbsp;LIKE', 'COUNT', 'MAX', 'MIN', 'ON', 'AS', 'AVG', 'SUM', '(', ')');
+
+		$output  = "\n\n";
+			
+		foreach ($dbs as $db)
+		{
+			$output .= '<fieldset style="border:1px solid #0000FF;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
+			$output .= "\n";
+			$output .= '<legend style="color:#0000FF;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_database').':&nbsp; '.$db->database.'&nbsp;&nbsp;&nbsp;'.$this->CI->lang->line('profiler_queries').': '.count($this->CI->db->queries).'&nbsp;&nbsp;&nbsp;</legend>';
+			$output .= "\n";		
+			$output .= "\n\n<table cellpadding='4' cellspacing='1' border='0' width='100%'>\n";
+		
+			if (count($db->queries) == 0)
+			{
+				$output .= "<tr><td width='100%' style='color:#0000FF;font-weight:normal;background-color:#eee;'>".$this->CI->lang->line('profiler_no_queries')."</td></tr>\n";
 			}
 			else
-			{
-				foreach ($this->CI->db->queries as $val)
-				{
-					$output .= '<div style="padding:3px;margin:12px 0 12px 0;background-color:#ddd;color:#000">';
-					$output .= $val;
-					$output .= "</div>\n";
-				}	
+			{				
+				foreach ($db->queries as $key => $val)
+				{					
+					$time = number_format($db->query_times[$key], 4);
+
+					$val = highlight_code($val, ENT_QUOTES);
+	
+					foreach ($highlight as $bold)
+					{
+						$val = str_replace($bold, '<strong>'.$bold.'</strong>', $val);	
+					}
+					
+					$output .= "<tr><td width='1%' valign='top' style='color:#990000;font-weight:normal;background-color:#ddd;'>".$time."&nbsp;&nbsp;</td><td style='color:#000;font-weight:normal;background-color:#ddd;'>".$val."</td></tr>\n";
+				}
 			}
+			
+			$output .= "</table>\n";
+			$output .= "</fieldset>";
+			
 		}
-		
-		$output .= "</fieldset>";		
 		
 		return $output;
 	}
+
 	
 	// --------------------------------------------------------------------
 
+	/**
+	 * Compile $_GET Data
+	 *
+	 * @access	private
+	 * @return	string
+	 */	
+	function _compile_get()
+	{	
+		$output  = "\n\n";
+		$output .= '<fieldset style="border:1px solid #cd6e00;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
+		$output .= "\n";
+		$output .= '<legend style="color:#cd6e00;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_get_data').'&nbsp;&nbsp;</legend>';
+		$output .= "\n";
+				
+		if (count($_GET) == 0)
+		{
+			$output .= "<div style='color:#cd6e00;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->lang->line('profiler_no_get')."</div>";
+		}
+		else
+		{
+			$output .= "\n\n<table cellpadding='4' cellspacing='1' border='0' width='100%'>\n";
+		
+			foreach ($_GET as $key => $val)
+			{
+				if ( ! is_numeric($key))
+				{
+					$key = "'".$key."'";
+				}
+			
+				$output .= "<tr><td width='50%' style='color:#000;background-color:#ddd;'>&#36;_GET[".$key."]&nbsp;&nbsp; </td><td width='50%' style='color:#cd6e00;font-weight:normal;background-color:#ddd;'>";
+				if (is_array($val))
+				{
+					$output .= "<pre>" . htmlspecialchars(stripslashes(print_r($val, true))) . "</pre>";
+				}
+				else
+				{
+					$output .= htmlspecialchars(stripslashes($val));
+				}
+				$output .= "</td></tr>\n";
+			}
+			
+			$output .= "</table>\n";
+		}
+		$output .= "</fieldset>";
+
+		return $output;	
+	}
+	
+	// --------------------------------------------------------------------
+	
 	/**
 	 * Compile $_POST Data
 	 *
@@ -165,8 +255,7 @@ class CI_Profiler {
 					$key = "'".$key."'";
 				}
 			
-//				$output .= "<tr><td width='50%' style='color:#000;background-color:#ddd;'>&#36;_POST[".$key."]&nbsp;&nbsp;</td><td width='50%' style='color:#009900;font-weight:normal;background-color:#ddd;'>".htmlspecialchars(stripslashes($val))."</td></tr>\n";
-				$output .= "<tr><td width='50%' style='color:#000;background-color:#ddd;'>$_POST[".$key."]  </td><td width='50%' style='color:#009900;font-weight:normal;background-color:#ddd;'>";
+				$output .= "<tr><td width='50%' style='color:#000;background-color:#ddd;'>&#36;_POST[".$key."]&nbsp;&nbsp; </td><td width='50%' style='color:#009900;font-weight:normal;background-color:#ddd;'>";
 				if (is_array($val))
 				{
 					$output .= "<pre>" . htmlspecialchars(stripslashes(print_r($val, true))) . "</pre>";
@@ -188,26 +277,116 @@ class CI_Profiler {
 	// --------------------------------------------------------------------
 	
 	/**
+	 * Show query string
+	 *
+	 * @access	private
+	 * @return	string
+	 */	
+	function _compile_uri_string()
+	{	
+		$output  = "\n\n";
+		$output .= '<fieldset style="border:1px solid #000;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
+		$output .= "\n";
+		$output .= '<legend style="color:#000;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_uri_string').'&nbsp;&nbsp;</legend>';
+		$output .= "\n";
+		
+		if ($this->CI->uri->uri_string == '')
+		{
+			$output .= "<div style='color:#000;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->lang->line('profiler_no_uri')."</div>";
+		}
+		else
+		{
+			$output .= "<div style='color:#000;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->uri->uri_string."</div>";				
+		}
+		
+		$output .= "</fieldset>";
+
+		return $output;	
+	}
+
+	// --------------------------------------------------------------------
+	
+	/**
+	 * Show the controller and function that were called
+	 *
+	 * @access	private
+	 * @return	string
+	 */	
+	function _compile_controller_info()
+	{	
+		$output  = "\n\n";
+		$output .= '<fieldset style="border:1px solid #995300;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
+		$output .= "\n";
+		$output .= '<legend style="color:#995300;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_controller_info').'&nbsp;&nbsp;</legend>';
+		$output .= "\n";
+		
+		$output .= "<div style='color:#995300;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->router->fetch_class()."/".$this->CI->router->fetch_method()."</div>";				
+
+		
+		$output .= "</fieldset>";
+
+		return $output;	
+	}
+	// --------------------------------------------------------------------
+	
+	/**
+	 * Compile memory usage
+	 *
+	 * Display total used memory
+	 *
+	 * @access	public
+	 * @return	string
+	 */
+	function _compile_memory_usage()
+	{
+		$output  = "\n\n";
+		$output .= '<fieldset style="border:1px solid #5a0099;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
+		$output .= "\n";
+		$output .= '<legend style="color:#5a0099;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_memory_usage').'&nbsp;&nbsp;</legend>';
+		$output .= "\n";
+		
+		if (function_exists('memory_get_usage') && ($usage = memory_get_usage()) != '')
+		{
+			$output .= "<div style='color:#5a0099;font-weight:normal;padding:4px 0 4px 0'>".number_format($usage).' bytes</div>';
+		}
+		else
+		{
+			$output .= "<div style='color:#5a0099;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->lang->line('profiler_no_memory_usage')."</div>";				
+		}
+		
+		$output .= "</fieldset>";
+
+		return $output;
+	}
+
+	// --------------------------------------------------------------------
+	
+	/**
 	 * Run the Profiler
 	 *
 	 * @access	private
 	 * @return	string
 	 */	
-	function run($output = '')
-	{		
-		$output = '<br clear="all" />';
-		$output .= "<div style='background-color:#fff;padding:10px;'>";
-	
+	function run()
+	{
+		$output = "<div id='codeigniter_profiler' style='clear:both;background-color:#fff;padding:10px;'>";
+
+		$output .= $this->_compile_uri_string();
+		$output .= $this->_compile_controller_info();
+		$output .= $this->_compile_memory_usage();
 		$output .= $this->_compile_benchmarks();
+		$output .= $this->_compile_get();
 		$output .= $this->_compile_post();
 		$output .= $this->_compile_queries();
-		
+
 		$output .= '</div>';
-		
+
 		return $output;
 	}
 
 }
 
 // END CI_Profiler class
-?>
+
+/* End of file Profiler.php */
+/* Location: ./system/libraries/Profiler.php */

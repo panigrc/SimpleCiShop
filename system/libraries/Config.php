@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -23,8 +23,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Libraries
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/libraries/config.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/libraries/config.html
  */
 class CI_Config {
 
@@ -46,7 +46,7 @@ class CI_Config {
 	{
 		$this->config =& get_config();
 		log_message('debug', "Config Class Initialized");
-	}  	
+	}
   	
 	// --------------------------------------------------------------------
 
@@ -82,10 +82,10 @@ class CI_Config {
 			if ($fail_gracefully === TRUE)
 			{
 				return FALSE;
-			}		
+			}
 			show_error('Your '.$file.EXT.' file does not appear to contain a valid configuration array.');
 		}
-		
+
 		if ($use_sections === TRUE)
 		{
 			if (isset($this->config[$file]))
@@ -120,16 +120,16 @@ class CI_Config {
 	 * @param	string	the index name
 	 * @param	bool
 	 * @return	string
-	 */		
+	 */
 	function item($item, $index = '')
-	{			
+	{	
 		if ($index == '')
 		{	
 			if ( ! isset($this->config[$item]))
 			{
 				return FALSE;
 			}
-		
+
 			$pref = $this->config[$item];
 		}
 		else
@@ -138,12 +138,12 @@ class CI_Config {
 			{
 				return FALSE;
 			}
-		
+
 			if ( ! isset($this->config[$index][$item]))
 			{
 				return FALSE;
 			}
-		
+
 			$pref = $this->config[$index][$item];
 		}
 
@@ -162,22 +162,19 @@ class CI_Config {
 	 * @param	string	the config item name
 	 * @param	bool
 	 * @return	string
-	 */		
+	 */
 	function slash_item($item)
 	{
 		if ( ! isset($this->config[$item]))
 		{
 			return FALSE;
 		}
-		
+
 		$pref = $this->config[$item];
-		
-		if ($pref != '')
-		{			
-			if (ereg("/$", $pref) === FALSE)
-			{
-				$pref .= '/';
-			}
+
+		if ($pref != '' && substr($pref, -1) != '/')
+		{	
+			$pref .= '/';
 		}
 
 		return $pref;
@@ -191,22 +188,22 @@ class CI_Config {
 	 * @access	public
 	 * @param	string	the URI string
 	 * @return	string
-	 */		
+	 */
 	function site_url($uri = '')
 	{
 		if (is_array($uri))
 		{
 			$uri = implode('/', $uri);
 		}
-		
+
 		if ($uri == '')
 		{
 			return $this->slash_item('base_url').$this->item('index_page');
 		}
 		else
 		{
-			$suffix = ($this->item('url_suffix') == FALSE) ? '' : $this->item('url_suffix');		
-			return $this->slash_item('base_url').$this->slash_item('index_page').preg_replace("|^/*(.+?)/*$|", "\\1", $uri).$suffix;
+			$suffix = ($this->item('url_suffix') == FALSE) ? '' : $this->item('url_suffix');
+			return $this->slash_item('base_url').$this->slash_item('index_page').trim($uri, '/').$suffix; 
 		}
 	}
 	
@@ -217,7 +214,7 @@ class CI_Config {
 	 *
 	 * @access	public
 	 * @return	string
-	 */		
+	 */
 	function system_url()
 	{
 		$x = explode("/", preg_replace("|/*(.+?)/*$|", "\\1", BASEPATH));
@@ -233,7 +230,7 @@ class CI_Config {
 	 * @param	string	the config item key
 	 * @param	string	the config item value
 	 * @return	void
-	 */		
+	 */
 	function set_item($item, $value)
 	{
 		$this->config[$item] = $value;
@@ -242,4 +239,6 @@ class CI_Config {
 }
 
 // END CI_Config class
-?>
+
+/* End of file Config.php */
+/* Location: ./system/libraries/Config.php */

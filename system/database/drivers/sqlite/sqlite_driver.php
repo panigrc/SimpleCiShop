@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2010, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -27,10 +27,27 @@
  * @package		CodeIgniter
  * @subpackage	Drivers
  * @category	Database
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/database/
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/database/
  */
 class CI_DB_sqlite_driver extends CI_DB {
+
+	var $dbdriver = 'sqlite';
+	
+	// The character used to escape with - not needed for SQLite
+	var $_escape_char = '';
+
+	// clause and character used for LIKE escape sequences
+ 	var $_like_escape_str = " ESCAPE '%s' ";
+	var $_like_escape_chr = '!';
+	
+	/**
+	 * The syntax to count rows is slightly different across different
+	 * database engines, so this string appears in each driver and is
+	 * used for the count_all() and count_all_results() functions.
+	 */
+	var $_count_string = "SELECT COUNT(*) AS ";
+	var $_random_keyword = ' Random()'; // database specific random keyword
 
 	/**
 	 * Non-persistent database connection
@@ -40,7 +57,7 @@ class CI_DB_sqlite_driver extends CI_DB {
 	 */	
 	function db_connect()
 	{
-		if ( ! $conn_id = @sqlite_open($this->database, 0666, $error))
+		if ( ! $conn_id = @sqlite_open($this->database, FILE_WRITE_MODE, $error))
 		{
 			log_message('error', $error);
 			
@@ -65,7 +82,7 @@ class CI_DB_sqlite_driver extends CI_DB {
 	 */	
 	function db_pconnect()
 	{
-		if ( ! $conn_id = @sqlite_popen($this->database, 0666, $error))
+		if ( ! $conn_id = @sqlite_popen($this->database, FILE_WRITE_MODE, $error))
 		{
 			log_message('error', $error);
 			
@@ -83,6 +100,22 @@ class CI_DB_sqlite_driver extends CI_DB {
 	// --------------------------------------------------------------------
 
 	/**
+	 * Reconnect
+	 *
+	 * Keep / reestablish the db connection if no queries have been
+	 * sent for a length of time exceeding the server's idle timeout
+	 *
+	 * @access	public
+	 * @return	void
+	 */
+	function reconnect()
+	{
+		// not implemented in SQLite
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
 	 * Select the database
 	 *
 	 * @access	private called by the base class
@@ -95,6 +128,22 @@ class CI_DB_sqlite_driver extends CI_DB {
 
 	// --------------------------------------------------------------------
 
+	/**
+	 * Set client character set
+	 *
+	 * @access	public
+	 * @param	string
+	 * @param	string
+	 * @return	resource
+	 */
+	function db_set_charset($charset, $collation)
+	{
+		// @todo - add support if needed
+		return TRUE;
+	}
+
+	// --------------------------------------------------------------------
+	
 	/**
 	 * Version number query string
 	 *
@@ -224,11 +273,32 @@ class CI_DB_sqlite_driver extends CI_DB {
 	 *
 	 * @access	public
 	 * @param	string
+	 * @param	bool	whether or not the string will be used in a LIKE condition
 	 * @return	string
 	 */
-	function escape_str($str)	
+	function escape_str($str, $like = FALSE)
 	{
-		return sqlite_escape_string($str);
+		if (is_array($str))
+		{
+			foreach($str as $key => $val)
+	   		{
+				$str[$key] = $this->escape_str($val, $like);
+	   		}
+   		
+	   		return $str;
+	   	}
+	
+		$str = sqlite_escape_string($str);
+		
+		// escape LIKE condition wildcards
+		if ($like === TRUE)
+		{
+			$str = str_replace(	array('%', '_', $this->_like_escape_chr),
+								array($this->_like_escape_chr.'%', $this->_like_escape_chr.'_', $this->_like_escape_chr.$this->_like_escape_chr),
+								$str);
+		}
+		
+		return $str;
 	}
 		
 	// --------------------------------------------------------------------
@@ -272,15 +342,19 @@ class CI_DB_sqlite_driver extends CI_DB {
 	function count_all($table = '')
 	{
 		if ($table == '')
-			return '0';
-	
-		$query = $this->query("SELECT COUNT(*) AS numrows FROM `".$this->dbprefix.$table."`");
+		{
+			return 0;
+		}
+
+		$query = $this->query($this->_count_string . $this->_protect_identifiers('numrows') . " FROM " . $this->_protect_identifiers($table, TRUE, NULL, FALSE));
 		
 		if ($query->num_rows() == 0)
-			return '0';
+		{
+			return 0;
+		}
 
 		$row = $query->row();
-		return $row->numrows;
+		return (int) $row->numrows;
 	}
 
 	// --------------------------------------------------------------------
@@ -291,11 +365,18 @@ class CI_DB_sqlite_driver extends CI_DB {
 	 * Generates a platform-specific query string so that the table names can be fetched
 	 *
 	 * @access	private
+	 * @param	boolean
 	 * @return	string
 	 */
-	function _list_tables()
+	function _list_tables($prefix_limit = FALSE)
 	{
-		return "SELECT name from sqlite_master WHERE type='table'";
+		$sql = "SELECT name from sqlite_master WHERE type='table'";
+
+		if ($prefix_limit !== FALSE AND $this->dbprefix != '')
+		{
+			$sql .= " AND 'name' LIKE '".$this->escape_like_str($this->dbprefix)."%' ".sprintf($this->_like_escape_str, $this->_like_escape_char);
+		}
+		return $sql;
 	}
 
 	// --------------------------------------------------------------------
@@ -328,7 +409,7 @@ class CI_DB_sqlite_driver extends CI_DB {
 	 */
 	function _field_data($table)
 	{
-		return "SELECT * FROM ".$this->_escape_table($table)." LIMIT 1";
+		return "SELECT * FROM ".$table." LIMIT 1";
 	}
 
 	// --------------------------------------------------------------------
@@ -356,31 +437,73 @@ class CI_DB_sqlite_driver extends CI_DB {
 	{
 		return sqlite_last_error($this->conn_id);
 	}
-		
+
 	// --------------------------------------------------------------------
 
 	/**
-	 * Escape Table Name
+	 * Escape the SQL Identifiers
 	 *
-	 * This function adds backticks if the table name has a period
-	 * in it. Some DBs will get cranky unless periods are escaped
+	 * This function escapes column and table names
 	 *
 	 * @access	private
-	 * @param	string	the table name
+	 * @param	string
 	 * @return	string
 	 */
-	function _escape_table($table)
+	function _escape_identifiers($item)
 	{
-		if (stristr($table, '.'))
+		if ($this->_escape_char == '')
 		{
-			$table = preg_replace("/\./", "`.`", $table);
+			return $item;
+		}
+
+		foreach ($this->_reserved_identifiers as $id)
+		{
+			if (strpos($item, '.'.$id) !== FALSE)
+			{
+				$str = $this->_escape_char. str_replace('.', $this->_escape_char.'.', $item);  
+				
+				// remove duplicates if the user already included the escape
+				return preg_replace('/['.$this->_escape_char.']+/', $this->_escape_char, $str);
+			}		
+		}
+	
+		if (strpos($item, '.') !== FALSE)
+		{
+			$str = $this->_escape_char.str_replace('.', $this->_escape_char.'.'.$this->_escape_char, $item).$this->_escape_char;			
+		}
+		else
+		{
+			$str = $this->_escape_char.$item.$this->_escape_char;
 		}
 		
-		return $table;
+		// remove duplicates if the user already included the escape
+		return preg_replace('/['.$this->_escape_char.']+/', $this->_escape_char, $str);
 	}
-		
+			
 	// --------------------------------------------------------------------
 
+	/**
+	 * From Tables
+	 *
+	 * This function implicitly groups FROM tables so there is no confusion
+	 * about operator precedence in harmony with SQL standards
+	 *
+	 * @access	public
+	 * @param	type
+	 * @return	type
+	 */
+	function _from_tables($tables)
+	{
+		if ( ! is_array($tables))
+		{
+			$tables = array($tables);
+		}
+		
+		return '('.implode(', ', $tables).')';
+	}
+
+	// --------------------------------------------------------------------
+	
 	/**
 	 * Insert statement
 	 *
@@ -394,7 +517,7 @@ class CI_DB_sqlite_driver extends CI_DB {
 	 */
 	function _insert($table, $keys, $values)
 	{	
-		return "INSERT INTO ".$this->_escape_table($table)." (".implode(', ', $keys).") VALUES (".implode(', ', $values).")";
+		return "INSERT INTO ".$table." (".implode(', ', $keys).") VALUES (".implode(', ', $values).")";
 	}
 	
 	// --------------------------------------------------------------------
@@ -408,16 +531,47 @@ class CI_DB_sqlite_driver extends CI_DB {
 	 * @param	string	the table name
 	 * @param	array	the update data
 	 * @param	array	the where clause
+	 * @param	array	the orderby clause
+	 * @param	array	the limit clause
 	 * @return	string
 	 */
-	function _update($table, $values, $where)
+	function _update($table, $values, $where, $orderby = array(), $limit = FALSE)
 	{
 		foreach($values as $key => $val)
 		{
 			$valstr[] = $key." = ".$val;
 		}
+		
+		$limit = ( ! $limit) ? '' : ' LIMIT '.$limit;
+		
+		$orderby = (count($orderby) >= 1)?' ORDER BY '.implode(", ", $orderby):'';
 	
-		return "UPDATE ".$this->_escape_table($table)." SET ".implode(', ', $valstr)." WHERE ".implode(" ", $where);
+		$sql = "UPDATE ".$table." SET ".implode(', ', $valstr);
+
+		$sql .= ($where != '' AND count($where) >=1) ? " WHERE ".implode(" ", $where) : '';
+
+		$sql .= $orderby.$limit;
+		
+		return $sql;
+	}
+
+	
+	// --------------------------------------------------------------------
+
+	/**
+	 * Truncate statement
+	 *
+	 * Generates a platform-specific truncate string from the supplied data
+	 * If the database does not support the truncate() command
+	 * This function maps to "DELETE FROM table"
+	 *
+	 * @access	public
+	 * @param	string	the table name
+	 * @return	string
+	 */	
+	function _truncate($table)
+	{
+		return $this->_delete($table);
 	}
 	
 	// --------------------------------------------------------------------
@@ -430,13 +584,30 @@ class CI_DB_sqlite_driver extends CI_DB {
 	 * @access	public
 	 * @param	string	the table name
 	 * @param	array	the where clause
+	 * @param	string	the limit clause
 	 * @return	string
 	 */	
-	function _delete($table, $where)
+	function _delete($table, $where = array(), $like = array(), $limit = FALSE)
 	{
-		return "DELETE FROM ".$this->_escape_table($table)." WHERE ".implode(" ", $where);
-	}
+		$conditions = '';
 
+		if (count($where) > 0 OR count($like) > 0)
+		{
+			$conditions = "\nWHERE ";
+			$conditions .= implode("\n", $this->ar_where);
+
+			if (count($where) > 0 && count($like) > 0)
+			{
+				$conditions .= " AND ";
+			}
+			$conditions .= implode("\n", $like);
+		}
+
+		$limit = ( ! $limit) ? '' : ' LIMIT '.$limit;
+	
+		return "DELETE FROM ".$table.$conditions.$limit;
+	}
+	
 	// --------------------------------------------------------------------
 
 	/**
@@ -481,4 +652,6 @@ class CI_DB_sqlite_driver extends CI_DB {
 
 }
 
-?>
+
+/* End of file sqlite_driver.php */
+/* Location: ./system/database/drivers/sqlite/sqlite_driver.php */
