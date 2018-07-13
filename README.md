@@ -23,10 +23,6 @@ The eshop is split into 2 sections (CodeIgniter applications)
 
 The directory structure is mainly the CodeIgniter structure. There are a few things that are outside of that.
 
-/_css - I don't remember what it does
-
-/_img - I don't remember what it does
-
 /assets - Contains some javascript plugins like Fckeditor
 
 /images - Contains the images of the products
