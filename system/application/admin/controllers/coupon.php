@@ -26,7 +26,7 @@ class Coupon extends Controller {
 		$data['heading'] = "Λίστα Κουπονιών";
 		
 		$coupons = $this->Coupon_model->getAllCoupon();
-		$data['contents'] = $this->load->view('coupon/list_tpl', array('coupons' => $coupons), true);
+		$data['contents'] = $this->load->view('coupon/list_tpl', array('coupons' => $coupons), TRUE);
 		
 		
 		$this->load->view('container_tpl',$data);
@@ -36,7 +36,7 @@ class Coupon extends Controller {
 	{
 		// displays a coupon form
 		$form_data['action'] = $this->uri->segment(3, "add_coupon");
-		$data['contents'] = $this->load->view('coupon/coupon_tpl', $form_data, true);
+		$data['contents'] = $this->load->view('coupon/coupon_tpl', $form_data, TRUE);
 
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Προσθήκη/Προβολή Κουπονιού";

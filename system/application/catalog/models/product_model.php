@@ -101,9 +101,9 @@ class Product_model extends Model {
 		return $query->result_array();
 	}
 	
-	function getProductMeta($productID, $meta=null)
+	function getProductMeta($productID, $meta=NULL)
 	{
-		if($meta == null) {
+		if($meta === NULL) {
 			$this->db->select('*');
 			$this->db->from('product_meta');
 			$this->db->where('productID', $productID);
@@ -122,9 +122,9 @@ class Product_model extends Model {
 			$this->db->where('meta_key', $meta);
 			
 			$query = $this->db->get();
-			$meta = null;
+			$meta = NULL;
 			$row = $query->row_array();
-			if($row !=null) $meta = $row['meta_value'];
+			if($row !=NULL) $meta = $row['meta_value'];
 			return $meta;
 		}
 	}

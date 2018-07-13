@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Code Igniter
  *
@@ -29,7 +29,7 @@
 
 class JavaScript {
 
-	function button_to_function($name,$function=null)
+	function button_to_function($name,$function=NULL)
 	{
 		return '<input type="button" value="'.$name.'" onclick="'.$function.'" />';
 	}
@@ -46,9 +46,9 @@ class JavaScript {
 		return '<script type="text/javascript">'.$content.'</script>';
 	}
 
-	function link_to_function($name,$function,$html_options=null)
+	function link_to_function($name,$function,$html_options=NULL)
 	{
-		return '<a href="'.((isset($html_options['href']))?$html_options['href']:'#').'" onclick="'.((isset($html_options['onclick']))?$html_options['onclick'].';':'').$function.'; return false;" />'.$name.'</a>';
+		return '<a href="'.((isset($html_options['href']))?$html_options['href']:'#').'" onclick="'.((isset($html_options['onclick']))?$html_options['onclick'].';':'').$function.'; return FALSE;" />'.$name.'</a>';
 	}
 
 	function _array_or_string_for_javascript($option)
@@ -59,7 +59,7 @@ class JavaScript {
 		{
 			foreach ($option as $value)
       {
-				if(!empty($return_val))$ret_val.=', ';
+				if( ! empty($return_val))$ret_val.=', ';
 				$return_val.=$value;
 			}
 
@@ -77,7 +77,7 @@ class JavaScript {
     {
   		foreach ($options as $var=>$val)
   		{
-  			if (!empty($return_val)) $return_val.=', ';
+  			if ( ! empty($return_val)) $return_val.=', ';
   			$return_val.="$var:$val";
   		}
 		}
@@ -124,16 +124,16 @@ class Prototype extends JavaScript {
 
 	function form_remote_tag($options)
 	{
-		$options['form'] = true;
-		return '<form action="'.$options['url'].'" onsubmit="'.$this->remote_function($options).'; return false;" method="'.(isset($options['method'])?$options['method']:'post').'"  >';
+		$options['form'] = TRUE;
+		return '<form action="'.$options['url'].'" onsubmit="'.$this->remote_function($options).'; return FALSE;" method="'.(isset($options['method'])?$options['method']:'post').'"  >';
 	}
 
-	function link_to_remote($name,$options=null,$html_options=null)
+	function link_to_remote($name,$options=NULL,$html_options=NULL)
 	{
 		return $this->link_to_function($name,$this->remote_function($options),$html_options);
 	}
 
-	function observe_field($field_id,$options=null)
+	function observe_field($field_id,$options=NULL)
 	{
 		if (isset($options['frequency']) && $options['frequency']> 0 ) {
 			return $this->_build_observer('Form.Element.Observer',$field_id,$options);
@@ -144,7 +144,7 @@ class Prototype extends JavaScript {
 		}
 	}
 
-	function observe_form($form_id,$options = null)
+	function observe_form($form_id,$options = NULL)
 	{
 		if (isset($options['frequency']))
     {
@@ -156,7 +156,7 @@ class Prototype extends JavaScript {
 		}
 	}
 
-	function periodically_call_remote($options=null)
+	function periodically_call_remote($options=NULL)
   {
 		$frequency=(isset($options['frequency']))?$options['frequency']:10;
 		$code = 'new PeriodicalExecuter(function() {'.$this->remote_function($options).'},'.$frequency.')';
@@ -202,7 +202,7 @@ class Prototype extends JavaScript {
 		return '<input type="button" onclick="'.$this->remote_function($options).'" name="'.$name.'" value ="'.$value.'" />';
 	}
 
-	function update_element_function($element_id,$options=null,$block)
+	function update_element_function($element_id,$options=NULL,$block)
 	{
 		$content=(isset($options['content']))?$options['content']:'';
 		$content=$this->escape($content);
@@ -233,7 +233,7 @@ class Prototype extends JavaScript {
 		return $callbacks;
 	}
 
-	function _build_observer($klass,$name,$options=null)
+	function _build_observer($klass,$name,$options=NULL)
 	{
 		if (isset($options['with']) && !strstr($options['with'],'='))
     {
@@ -265,11 +265,11 @@ class Prototype extends JavaScript {
 	{
 		$js_options=(is_array($options))?$this->_build_callbacks($options):array();
 
-		if (isset($options['type']) && $option['type']=='synchronous')	$js_options['asynchronous'] ='false';
+		if (isset($options['type']) && $option['type'] === 'synchronous')	$js_options['asynchronous'] ='FALSE';
 		if (isset($options['method'])) $js_options['method']    = $this->_method_option_to_s($options['method']);
 		if (isset($options['position'])) $js_options['insertion']    = 'Insertion.'.ucfirst($options['position']);
 
-		$js_options['evalScripts'] = isset($options['script'])?$options['script']:'true';
+		$js_options['evalScripts'] = isset($options['script'])?$options['script']:'TRUE';
 
 		if (isset($options['form']))
     {
@@ -292,9 +292,9 @@ class Prototype extends JavaScript {
 		echo $javascript;
 	}
 
-	function ID($id,$extend=null)
+	function ID($id,$extend=NULL)
 	{
-		return "$('$id')".(!empty($extend))?'.'.$extend.'()':'';
+		return "$('$id')".( ! empty($extend))?'.'.$extend.'()':'';
 	}
 
 	function alert($message)
@@ -307,14 +307,14 @@ class Prototype extends JavaScript {
 		return "$variable = $value;";
 	}
 
-	function call($function , $args = null)
+	function call($function , $args = NULL)
 	{
 		$arg_str='';
 		if (is_array($args))
     {
 			foreach ($args as $arg)
       {
-				if (!empty($arg_str))$arg_str.=', ';
+				if ( ! empty($arg_str))$arg_str.=', ';
 
 				if (is_string($arg))
         {
@@ -351,7 +351,7 @@ class Prototype extends JavaScript {
 		return $this->call('Element.hide',$id);
 	}
 
-	function insert_html($position,$id,$options_for_render=null)
+	function insert_html($position,$id,$options_for_render=NULL)
 	{
 		$args=array_merge(array($id),(is_array($options_for_render)?$options_for_render:array($options_for_render)));
 		return $this->call('new Insertion.'.ucfirst($position),$args);
@@ -369,7 +369,7 @@ class Prototype extends JavaScript {
 			$arr_str='';
 			foreach ($id as $obj)
       {
-				if(!empty($arg_str))$arg_str.=', ';
+				if( ! empty($arg_str))$arg_str.=', ';
 				$arg_str.="'$arg'";
 			}
 
@@ -393,9 +393,9 @@ class Prototype extends JavaScript {
 		return $this->call('Element.update',$args);
 	}
 
-	function select($pattern,$extend=null)
+	function select($pattern,$extend=NULL)
 	{
-		return "$$('$pattern')".(!empty($extend))?'.'.$extend:'';
+		return "$$('$pattern')".( ! empty($extend))?'.'.$extend:'';
 	}
 
 	function show($id)
@@ -418,17 +418,17 @@ class Scriptaculous extends Prototype {
   {
 	}
 
-	function dragable_element($element_id,$options=null)
+	function dragable_element($element_id,$options=NULL)
 	{
 		return $this->tag($this->_dragable_element_js($element_id,$options));
 	}
 
-	function drop_receiving_element($element_id,$options=null)
+	function drop_receiving_element($element_id,$options=NULL)
 	{
 		return $this->tag($this->_drop_receiving_element($element_id,$options));
 	}
 
-	function visual_effect($name,$element_id=false,$js_options=null)
+	function visual_effect($name,$element_id=FALSE,$js_options=NULL)
   {
 		$element=($element_id)?"'$element_id'":'element';
 
@@ -452,7 +452,7 @@ class Scriptaculous extends Prototype {
 		}
 	}
 
-	function sortabe_element($element_id,$options=null)
+	function sortabe_element($element_id,$options=NULL)
 	{
 		return $this->tag($this->_sortabe_element($element_id,$options));
 	}
@@ -530,7 +530,7 @@ class Scriptaculous extends Prototype {
 		return 'Droppables.add(\''.$element_id.'\','. $this->_options_for_javascript($options).')';
 	}
 
-  function in_place_editor($field_id,$options,$tag=true)
+  function in_place_editor($field_id,$options,$tag=TRUE)
   {
     $function  =  "new Ajax.InPlaceEditor(";
     $function .= "'$field_id', ";
@@ -555,7 +555,7 @@ class Scriptaculous extends Prototype {
     else return $function;
   }
 
-	function in_place_editor_field($object,$tag_options=null,$in_place_editor_options=null)
+	function in_place_editor_field($object,$tag_options=NULL,$in_place_editor_options=NULL)
 	{
 		$ret_val='';
 		$ret_val.='<span id="'.$object.'" class="in_place_editor_field">'.(isset($tag_options['value'])?$tag_options['value']:'').'</span>';
@@ -585,14 +585,14 @@ class Scriptaculous extends Prototype {
 		return $this->tag($function);
 	}
 
-	function auto_complete_results($entries,$field,$phrase=null)
+	function auto_complete_results($entries,$field,$phrase=NULL)
   {
-		if(!is_array($entries))return;
+		if( ! is_array($entries))return;
 		$ret_val='<ul>';
 	//	Complete this function
 	}
 
-	function text_field_with_auto_complete($object,$tag_options=null,$completion_options=null)
+	function text_field_with_auto_complete($object,$tag_options=NULL,$completion_options=NULL)
 	{
 		$ret_val=(isset($completion_options['skip_style']))?'':$this->_auto_complete_stylesheet();
 		$ret_val.='<input autocomplete="off" id="'.$object.'" name="'.$object.'" size="'.(isset($tag_options['size'])?$tag_options['size']:30).'" type="text" value="'.(isset($tag_options['size'])?$tag_options['value']:'').'" '.(isset($tag_options['class'])?'class = "'.$tag_options['class'].'" ':'').'/>';

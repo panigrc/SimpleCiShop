@@ -15,7 +15,7 @@
         $obj =& get_instance();
         foreach($arr as $item => $key){
 ?>
-    <option value="<?php echo $item;?>" <?php echo $item == $categoryID ? "selected" : ""; ?> style="font-weight: <?php echo $level==0 ? "bold" : "normal"; ?>;"><?php echo str_repeat("-", $level) ." ". $obj->Category_model->getCategoryName($item); ?></option>
+    <option value="<?php echo $item;?>" <?php echo $item === $categoryID ? "selected" : ""; ?> style="font-weight: <?php echo $level === 0 ? "bold" : "normal"; ?>;"><?php echo str_repeat("-", $level) ." ". $obj->Category_model->getCategoryName($item); ?></option>
 <?php
             printOptions($key, $categoryID, $level+1);
         }
@@ -27,7 +27,7 @@
 					<p class="search">
                         <label class="search" for="categoryID"><?php echo $this->lang->line('main_category'); ?>:</label>
                         <select name="categoryID" id="categoryID" class="search">
-                            <option value="0"<?php echo empty($categoryID) == true ? ' selected="selected"' : ""; ?>><?php echo $this->lang->line('all'); ?></option>
+                            <option value="0"<?php echo empty($categoryID) === TRUE ? ' selected="selected"' : ""; ?>><?php echo $this->lang->line('all'); ?></option>
 <?php
 printOptions($categories_arr, @$categoryID);
 ?>
@@ -38,7 +38,7 @@ printOptions($categories_arr, @$categoryID);
                         <?php echo $this->lang->line('main_product_type'); ?>:</label>
                         <select name="product_type" id="product_type" class="search">
 <?php for($i = 0; $this->Product_model->getProductTypeText($i) != -1; $i++): ?>
-                        <option value="<?php echo $i;?>"<?php echo $i == $product_type ? ' selected="selected"' : ""; ?>><?php echo $this->lang->line($this->Search_model->getProductTypeText($i)); ?></option>
+                        <option value="<?php echo $i;?>"<?php echo $i === $product_type ? ' selected="selected"' : ""; ?>><?php echo $this->lang->line($this->Search_model->getProductTypeText($i)); ?></option>
 <?php endfor; ?>
                         </select>
                     </p>

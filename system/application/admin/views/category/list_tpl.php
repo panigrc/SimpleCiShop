@@ -4,7 +4,7 @@
         $obj =& get_instance();
         foreach($arr as $item => $key){
 ?>
-    <tr class="<?php if(@$style=='odd'){ echo 'even'; $style='even';} else{ echo 'odd'; $style='odd'; } ?>">
+    <tr class="<?php if(@$style === 'odd'){ echo 'even'; $style='even';} else{ echo 'odd'; $style='odd'; } ?>">
         <td><?php echo str_repeat("-", $level) ." ". $obj->Category_model->getCategoryName($item); ?></td>
         <td><?php echo anchor("category/view_category/edit_category/".$item, '<img src="'. base_url() .'/theme/images/edit.png" alt="'.$obj->lang->line('main_edit').'">', $obj->lang->line('main_edit')); ?></td>
     </tr>

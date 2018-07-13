@@ -19,7 +19,7 @@ class News_model extends Model {
 		
 	}
 	
-	function getLastNews($limit_num=null, $limit_from=null)
+	function getLastNews($limit_num=NULL, $limit_from=NULL)
 	{
 		// returns an associative array with all news
 		
@@ -27,7 +27,7 @@ class News_model extends Model {
 		$this->db->select('*');
 		$this->db->from('news');
 		$this->db->orderby("published", "desc");
-		if(!is_null($limit_num) && !is_null($limit_from)) $this->db->limit($limit_num, $limit_from);
+		if( ! is_NULL($limit_num) && !is_NULL($limit_from)) $this->db->limit($limit_num, $limit_from);
 		
 		$query = $this->db->get();
 		return $query->result_array();

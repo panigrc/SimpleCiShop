@@ -9,7 +9,7 @@
 	<meta name="keywords" content="<?php echo $this->lang->line('main_meta_keywords'); if(isset($meta_keywords)) echo ", ".$meta_keywords; ?>" />
 	<meta name="robots" content="index,follow" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>theme/default/style.css" type="text/css" />
-	<title><?php if($this->lang->line($pagename)) echo $this->lang->line($pagename). ' - '; if(!empty($title)) echo $title . ' - '; ?>SimpleCiShop</title>    
+	<title><?php if($this->lang->line($pagename)) echo $this->lang->line($pagename). ' - '; if( ! empty($title)) echo $title . ' - '; ?>SimpleCiShop</title>    
     <script src="<?php echo base_url() ?>javascript/prototype.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>javascript/effects.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>javascript/dragdrop.js" type="text/javascript"></script>
@@ -34,14 +34,14 @@
                 <?php /*<div id="nav">
     			    <ul>
 <?php foreach($navigation as $tab => $url):?>
-                        <li <?php echo $tab == $pagename ? 'id="current"' : ''; ?>><?php echo anchor($url.'/'.$lang, $this->lang->line($tab)) ?></li>
+                        <li <?php echo $tab === $pagename ? 'id="current"' : ''; ?>><?php echo anchor($url.'/'.$lang, $this->lang->line($tab)) ?></li>
 <?php endforeach; ?>
 				    </ul>
                 </div>
                 */?>
                 <h1><?php echo $this->lang->line('main_slogan'); ?></h1>
 			</div>
-<?php //echo empty($tblock) == true ? $this->load->view('blocks/tblock_tpl') : $tblock; ?>
+<?php //echo empty($tblock) === TRUE ? $this->load->view('blocks/tblock_tpl') : $tblock; ?>
 		</div>
 		<div class="bottom">
 			<div style="clear: both;"></div>

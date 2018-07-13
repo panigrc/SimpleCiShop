@@ -15,7 +15,7 @@ class Contact extends Controller {
 		$this->db->query("SET NAMES 'utf8'");
 	}
 	
-	function index($lang=null, $status=null)
+	function index($lang=NULL, $status=NULL)
 	{
 		if($lang!="greek") redirect('catalog/index/greek');
 		
@@ -30,12 +30,12 @@ class Contact extends Controller {
 		$content_data['pagename'] = 'main_contact';
 		$content_data['lang'] = $lang;
 		$content_data['status'] = $status;
-		$data['contents'] = $this->load->view('contents/contact_tpl', $content_data, true);
+		$data['contents'] = $this->load->view('contents/contact_tpl', $content_data, TRUE);
 		
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), true);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 		$this->load->view('container', $data);
 	}
-	function submit($lang=null)
+	function submit($lang=NULL)
 	{
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
@@ -56,8 +56,8 @@ class Contact extends Controller {
 		//$message = str_replace('<br />',"\r\n",nl2br($message));
 		$this->email->message($message);
 		
-		if (!$this->email->send()) {
-			//if ($this->input->post('notspam')!="2" || !$this->email->send()) {
+		if ( ! $this->email->send()) {
+			//if ($this->input->post('notspam')!="2" OR !$this->email->send()) {
 			redirect('contact/index/'. $lang .'/nok');
 		}
 		//echo $this->email->print_debugger();

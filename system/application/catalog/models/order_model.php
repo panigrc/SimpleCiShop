@@ -48,7 +48,7 @@ class Order_model extends Model {
 		$this->db->update('`order`', array('status' => $status));
 		return $status;
 		}
-		return false;
+		return FALSE;
 	}
 	
 	function addOrder($userID)

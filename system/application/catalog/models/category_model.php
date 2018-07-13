@@ -52,7 +52,7 @@ class Category_model extends Model {
 				$ids[$row['regid1']] = array();
 			}
 			else {
-			if(!is_array(@$ids[$row['regid1']])) $ids[$row['regid1']] = array();
+			if( ! is_array(@$ids[$row['regid1']])) $ids[$row['regid1']] = array();
 			array_push($ids[$row['parregid2']], $row['regid2']);
 			}
 		}
@@ -102,10 +102,10 @@ class Category_model extends Model {
 		$ids = array();
 		foreach ($query->result_array() as $row) {
 		$temp = $this->getCategoryParents($row['parent_categoryID']);
-		if(!$this->categoryIsRoot($row['categoryID'])) $ids[$row['categoryID']] = $temp;
+		if( ! $this->categoryIsRoot($row['categoryID'])) $ids[$row['categoryID']] = $temp;
 		}
 		if(count($ids) > 0) return $ids;
-		return null;*/
+		return NULL;*/
 	}
 	
 	function categoryIsRoot($categoryID)
@@ -116,7 +116,7 @@ class Category_model extends Model {
 		$query = $this->db->get();
 		$ids = array();
 		$row = $query->row_array();
-		return empty($row['parent_categoryID']) == true ? true : false ;
+		return empty($row['parent_categoryID']) === TRUE ? TRUE : FALSE ;
 	}
 	
 	function getCategoryRoot($categoryID)
@@ -131,7 +131,7 @@ class Category_model extends Model {
 			else $rootID = $this->getCategoryRoot($row['parent_categoryID']);
 		}
 		if($rootID > 0) return $rootID;
-		return null;
+		return NULL;
 	}
 	
 	/*function getAllCategoryIDs() {
@@ -160,7 +160,7 @@ class Category_model extends Model {
 		$this->db->where('nicename', $nicename);
 		$query = $this->db->get();
 		$row = $query->row_array();
-		if($row!=null) return $row['categoryID'];
+		if($row!=NULL) return $row['categoryID'];
 		return 0;
 	}
 	
@@ -172,7 +172,7 @@ class Category_model extends Model {
 		$this->db->where('categoryID', $categoryID);
 		$query = $this->db->get();
 		$row = $query->row_array();
-		if($categoryID==0) return 0;
+		if($categoryID === 0) return 0;
 		return $row['nicename'];
 	}
 	

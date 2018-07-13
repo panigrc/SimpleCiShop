@@ -5,7 +5,7 @@
         $obj =& get_instance();
         foreach($arr as $item => $key){
 ?>
-    <option value="<?php echo $item;?>" <?php echo $item == $categoryID ? "selected" : ""; ?>><?php echo str_repeat("-", $level) ." ". $obj->Category_model->getCategoryName($item); ?></option>
+    <option value="<?php echo $item;?>" <?php echo $item === $categoryID ? "selected" : ""; ?>><?php echo str_repeat("-", $level) ." ". $obj->Category_model->getCategoryName($item); ?></option>
 <?php
             printOptions($key, $categoryID, $level+1);
         }

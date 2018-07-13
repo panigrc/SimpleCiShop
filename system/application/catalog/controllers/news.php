@@ -12,7 +12,7 @@ class News extends Controller {
 		$this->db->query("SET NAMES 'utf8'");
 	}
 	
-	function index($lang=null)
+	function index($lang=NULL)
 	{
 		if($lang!="greek") redirect('catalog/index/greek');
 		$this->config->set_item('language', $lang);
@@ -24,9 +24,9 @@ class News extends Controller {
 		$content_data['news'] = $this->_getNewsData();
 		$content_data['pagination'] = $this->_pagination();
 		
-		$data['contents'] = $this->load->view('contents/news_tpl', $content_data, true);
+		$data['contents'] = $this->load->view('contents/news_tpl', $content_data, TRUE);
 		
-		$data['rblock'] = $this->load->view('blocks/'.$lang.'/home_tpl', array(), true);
+		$data['rblock'] = $this->load->view('blocks/'.$lang.'/home_tpl', array(), TRUE);
 		
 		$data['title'] = '';
 		$data['pagename'] = 'main_news';
@@ -38,7 +38,7 @@ class News extends Controller {
 	function _getNewsData()
 	{
 		$current_page = $this->uri->segment(4);
-		$current_page = empty($current_page) == false ? $current_page : 0;
+		$current_page = empty($current_page) === FALSE ? $current_page : 0;
 		
 		$news = $this->News_model->getLastNews(5, $current_page);
 		foreach($news as $new => $value) {

@@ -25,11 +25,11 @@ class User extends Controller {
 		$form_data['userID'] = $userID;
 	
 		$form_data['action'] = $this->uri->segment(3, "add_user");
-		if($form_data['action'] == "edit_user") {
+		if($form_data['action'] === "edit_user") {
 			$form_data = array_merge($form_data, $this->User_model->getUser($userID));
 			$form_data['action'] = 'set_user';
 		}
-		$data['contents'] = $this->load->view('user/user_tpl', $form_data, true);
+		$data['contents'] = $this->load->view('user/user_tpl', $form_data, TRUE);
 	
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Επεξεργασία Χρήστη";
@@ -45,7 +45,7 @@ class User extends Controller {
 		$data['heading'] = "Λίστα Χρηστών";
 		
 		$list_data['users'] = $this->User_model->getAllUserIDs();
-		$data['contents'] = $this->load->view('user/list_tpl', $list_data, true);
+		$data['contents'] = $this->load->view('user/list_tpl', $list_data, TRUE);
 		
 		
 		$this->load->view('container_tpl',$data);

@@ -39,7 +39,7 @@ class Order_model extends Model {
 	
 	function setOrder()
 	{
-		if(!$this->input->post('order_code')) $order_code = $this->generatePassword();
+		if( ! $this->input->post('order_code')) $order_code = $this->generatePassword();
 		$order = array('order_code' => $order_code, 'order_name' => $this->input->post('order_name'),  'order_surname' => $this->input->post('order_surname'), 'order_email' => $this->input->post('order_email'), 'order_url' => $this->input->post('order_url'), 'order_birthdate' => $this->input->post('order_birthdate'), 'order_address' => $this->input->post('order_address'), 'order_zip' => $this->input->post('order_zip'), 'order_country' => $this->input->post('order_country'), 'order_phone' => $this->input->post('order_phone'), 'order_language' => $this->input->post('order_language'), 'order_stars' => $this->input->post('order_stars'));
 		$this->db->where('orderID', $this->input->post('orderID'));
 		$this->db->update('order', $order);
@@ -52,7 +52,7 @@ class Order_model extends Model {
 			$this->db->update('`order`', array('status' => $status));
 			return $status;
 		}
-		return false;
+		return FALSE;
 	}
 	
 	

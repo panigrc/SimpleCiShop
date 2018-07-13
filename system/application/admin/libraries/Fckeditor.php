@@ -1,6 +1,6 @@
 <?php 
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 /*
@@ -66,7 +66,7 @@ class Fckeditor
 		
 		if ( $this->IsCompatible() )
 		{
-			if ( isset( $_GET['fcksource'] ) && $_GET['fcksource'] == "true" )
+			if ( isset( $_GET['fcksource'] ) && $_GET['fcksource'] === "TRUE" )
 				$File = 'fckeditor.original.html' ;
 			else
 				$File = 'fckeditor.html' ;
@@ -87,12 +87,12 @@ class Fckeditor
 		}
 		else
 		{
-			if ( strpos( $this->Width, '%' ) === false )
+			if ( strpos( $this->Width, '%' ) === FALSE )
 				$WidthCSS = $this->Width . 'px' ;
 			else
 				$WidthCSS = $this->Width ;
 
-			if ( strpos( $this->Height, '%' ) === false )
+			if ( strpos( $this->Height, '%' ) === FALSE )
 				$HeightCSS = $this->Height . 'px' ;
 			else
 				$HeightCSS = $this->Height ;
@@ -114,36 +114,36 @@ class Fckeditor
 		else
 			$sAgent = $_SERVER['HTTP_USER_AGENT'] ;
 
-		if ( strpos($sAgent, 'MSIE') !== false && strpos($sAgent, 'mac') === false && strpos($sAgent, 'Opera') === false )
+		if ( strpos($sAgent, 'MSIE') !== FALSE && strpos($sAgent, 'mac') === FALSE && strpos($sAgent, 'Opera') === FALSE )
 		{
 			$iVersion = (float)substr($sAgent, strpos($sAgent, 'MSIE') + 5, 3) ;
 			return ($iVersion >= 5.5) ;
 		}
-		else if ( strpos($sAgent, 'Gecko/') !== false )
+		else if ( strpos($sAgent, 'Gecko/') !== FALSE )
 		{
 			$iVersion = (int)substr($sAgent, strpos($sAgent, 'Gecko/') + 6, 8) ;
 			return ($iVersion >= 20030210) ;
 		}
 		else
-			return false ;
+			return FALSE ;
 	}
 
 	function GetConfigFieldString()
 	{
 		$sParams = '' ;
-		$bFirst = true ;
+		$bFirst = TRUE ;
 
 		foreach ( $this->Config as $sKey => $sValue )
 		{
-			if ( $bFirst == false )
+			if ( $bFirst === FALSE )
 				$sParams .= '&amp;' ;
 			else
-				$bFirst = false ;
+				$bFirst = FALSE ;
 			
-			if ( $sValue === true )
-				$sParams .= $this->EncodeConfig( $sKey ) . '=true' ;
-			else if ( $sValue === false )
-				$sParams .= $this->EncodeConfig( $sKey ) . '=false' ;
+			if ( $sValue === TRUE )
+				$sParams .= $this->EncodeConfig( $sKey ) . '=TRUE' ;
+			else if ( $sValue === FALSE )
+				$sParams .= $this->EncodeConfig( $sKey ) . '=FALSE' ;
 			else
 				$sParams .= $this->EncodeConfig( $sKey ) . '=' . $this->EncodeConfig( $sValue ) ;
 		}

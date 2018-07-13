@@ -44,7 +44,7 @@ printOptions($categories_arr, $product_categories);
 <?php
         foreach($meta_values as $num => $value) :
 ?>
-        <option value="<?php echo $value; ?>" <?php echo $value == @$product_meta[$key] ? "selected" : ""; ?>><?php echo $value; ?></option>
+        <option value="<?php echo $value; ?>" <?php echo $value === @$product_meta[$key] ? "selected" : ""; ?>><?php echo $value; ?></option>
 <?php
         endforeach;
 ?>
@@ -120,7 +120,7 @@ printOptions($categories_arr, $product_categories);
 </tr>
 <?php
     $images="";
-    if(!empty($images_arr))
+    if( ! empty($images_arr))
         foreach($images_arr as $current) :
             $images .= $current['product_imageID'] . ",";
 ?>
@@ -132,7 +132,7 @@ printOptions($categories_arr, $product_categories);
     <input type="checkbox" name="delete_image<?php echo $current['product_imageID']; ?>" id="delete_image<?php echo $current['product_imageID']; ?>" value="1">
     <?php echo $this->lang->line('main_delete'); ?>;
     <br />
-    <input type="checkbox" name="main_image<?php echo $current['product_imageID']; ?>" id="main_image<?php echo $current['product_imageID']; ?>" <?php echo $current['main'] == 1 ? "checked" : "" ?> value="1">
+    <input type="checkbox" name="main_image<?php echo $current['product_imageID']; ?>" id="main_image<?php echo $current['product_imageID']; ?>" <?php echo $current['main'] === 1 ? "checked" : "" ?> value="1">
     <?php echo $this->lang->line('main_main_image'); ?>;
     </td>
 </tr>

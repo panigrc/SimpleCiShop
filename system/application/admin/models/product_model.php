@@ -244,7 +244,7 @@ class Product_model extends Model {
 		$this->load->library('image_lib');
 		
 		for($i=1; $i<6; $i++) {
-			if(!empty($_FILES['image_file'.$i]['name']) && $this->upload->do_upload('image_file'.$i)) {
+			if( ! empty($_FILES['image_file'.$i]['name']) && $this->upload->do_upload('image_file'.$i)) {
 				$upload_data = $this->upload->data();
 				
 				$config['source_image'] = './images/'.$upload_data['file_name'];
@@ -268,7 +268,7 @@ class Product_model extends Model {
 				$state = rename($path.'images/'.$upload_data['raw_name'].'_thumb'.$upload_data['file_ext'], $path.$thumb_name);
 				$state = rename($path.'images/'.$upload_data['file_name'], $path.$big_name);
 				
-				if($main_image['big'] == "" && $i == 1) $main = 1;
+				if($main_image['big'] === "" && $i === 1) $main = 1;
 				else $main = 0;
 				
 				$arr = array('productID' => $productID, 'title' => $upload_data['raw_name'], 'thumb' => $thumb_name, 'big' => $big_name, 'main' => $main);
@@ -329,7 +329,7 @@ class Product_model extends Model {
 			$product = $this->getProduct($productID);
 			return $product['stock'];
 		}
-		return false;
+		return FALSE;
 
 	}
 }

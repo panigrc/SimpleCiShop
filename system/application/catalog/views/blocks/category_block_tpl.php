@@ -43,7 +43,7 @@
         }
         
         foreach($arr as $item => $key){
-            if(count($parent) > 0 && $parent[0] == $item) {
+            if(count($parent) > 0 && $parent[0] === $item) {
                 foreach($parent as $cur_parent) {
                     $this_level .= "                    <ul>\n";
                     $this_level .= "                    <li><a href=\"".site_url('catalog/index/'. $lang .'/'. $obj->Category_model->getCategoryNicename($cur_parent));
@@ -56,7 +56,7 @@
                 $this_level .= printChilds($childs, 0, $vars);
                 $this_level .= "                    </li>\n";
             }
-            elseif($current == $item) {
+            elseif($current === $item) {
                 $this_level .= "                    <li><a href=\"".site_url('catalog/index/'. $lang .'/'. $obj->Category_model->getCategoryNicename($current));
                 $this_level .= " \">".$obj->Category_model->getCategoryName($current) . "</a>\n";
                 $this_level .= printChilds($childs, 0, $vars);

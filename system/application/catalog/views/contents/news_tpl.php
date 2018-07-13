@@ -7,5 +7,5 @@
 					</div>
                     <div style="clear:both;"></div>
 <?php endforeach; ?>
-                    <div style="text-align: center;"><?php if(!empty($pagination)) echo $this->lang->line('main_page') .': '. @$pagination; ?></div>
+                    <div style="text-align: center;"><?php if( ! empty($pagination)) echo $this->lang->line('main_page') .': '. @$pagination; ?></div>
 				</div>

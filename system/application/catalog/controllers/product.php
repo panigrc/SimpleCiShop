@@ -14,7 +14,7 @@ class Product extends Controller {
 		$this->db->query("SET NAMES 'utf8'");
 	}
 	
-	function index($lang=null, $productNicename=null)
+	function index($lang=NULL, $productNicename=NULL)
 	{
 		if($lang!="greek") redirect('catalog/index/greek');
 		
@@ -40,13 +40,13 @@ class Product extends Controller {
 			
 			$content_data['lang'] = $lang;
 			
-			$data['contents'] = $this->load->view('contents/product_tpl', $content_data, true);
+			$data['contents'] = $this->load->view('contents/product_tpl', $content_data, TRUE);
 			//$data['categoryID'] = $content_data['product']['categoryID'];
 			$data['title'] = $content_data['product']['title_'.$lang];
 			
-			//$data['rblock'] = $this->load->view('blocks/category_block_tpl', array("categoryID" => $content_data['product']['categoryID']), true);
-			$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), true);
-			//$data['rblock'] = $this->load->view('blocks/product_type_num_tpl', $rblock_data, true);
+			//$data['rblock'] = $this->load->view('blocks/category_block_tpl', array("categoryID" => $content_data['product']['categoryID']), TRUE);
+			$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+			//$data['rblock'] = $this->load->view('blocks/product_type_num_tpl', $rblock_data, TRUE);
 			$data['scripts'] = '<script type="text/javascript" src="'. base_url() .'theme/overlib.js"><!-- overLIB (c) Erik Bosrup --></script>';
 		}
 			

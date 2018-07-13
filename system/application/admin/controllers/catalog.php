@@ -34,7 +34,7 @@ class Catalog extends Controller {
 			$products[$product] = array_merge($products[$product], $this->Product_model->getProductText($products[$product]['productID']));
 			$products[$product]['category_text'] = $this->Category_model->getCategoryNames($this->Product_model->getProductCategories($products[$product]['productID']));
 		}
-		$data['contents'] = $this->load->view('catalog/list_tpl', array('products' => $products), true);
+		$data['contents'] = $this->load->view('catalog/list_tpl', array('products' => $products), TRUE);
 		$this->load->view('container_tpl',$data);
 	}
 	
@@ -50,7 +50,7 @@ class Catalog extends Controller {
 		$form_data['all_meta'] = $this->Meta_model->getAllMeta();
 		$form_data['product_meta'] = array();
 		
-		if ($form_data['action'] == "edit_product")
+		if ($form_data['action'] === "edit_product")
 		{
 			$form_data['productID'] = $this->uri->segment(4);
 			$form_data = array_merge($form_data, $this->Product_model->getProduct($form_data['productID']));
@@ -60,7 +60,7 @@ class Catalog extends Controller {
 			$form_data['images_arr'] = $this->Product_model->getProductImage($form_data['productID']);
 		}
 		
-		$data['contents'] = $this->load->view('catalog/product_tpl', $form_data, true);
+		$data['contents'] = $this->load->view('catalog/product_tpl', $form_data, TRUE);
 		
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Προσθήκη/Προβολή Προϊόντος";

@@ -28,12 +28,12 @@ class Category extends Controller {
 		//print_r($form_data['categories_arr']);
 		
 		$form_data['action'] = $this->uri->segment(3, "add_category");
-		if($form_data['action'] == "edit_category") {
+		if($form_data['action'] === "edit_category") {
 			$form_data = array_merge($form_data, $this->Category_model->getCategory($categoryID));
 			$form_data = array_merge($form_data, $this->Category_model->getCategoryText($categoryID));
 			$form_data['action'] = 'set_category';
 		}
-		$data['contents'] = $this->load->view('category/category_tpl', $form_data, true);
+		$data['contents'] = $this->load->view('category/category_tpl', $form_data, TRUE);
 		
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Επεξεργασία Κατηγορίας";
@@ -48,7 +48,7 @@ class Category extends Controller {
 		$data['heading'] = "Λίστα Κατηγοριών";
 		
 		$list_data['categories_arr'] = $this->Category_model->getAllCategoryIDs_rec();
-		$data['contents'] = $this->load->view('category/list_tpl', $list_data, true);
+		$data['contents'] = $this->load->view('category/list_tpl', $list_data, TRUE);
 		
 		
 		$this->load->view('container_tpl',$data);

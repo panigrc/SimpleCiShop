@@ -52,7 +52,7 @@ class Category_model extends Model {
 				$ids[$row['regid1']] = array();
 			}
 			else {
-				if(!is_array(@$ids[$row['regid1']])) $ids[$row['regid1']] = array();
+				if( ! is_array(@$ids[$row['regid1']])) $ids[$row['regid1']] = array();
 				array_push($ids[$row['parregid2']], $row['regid2']);
 			}
 		}
@@ -148,7 +148,7 @@ class Category_model extends Model {
 	{
 		$parent_categoryID = $this->input->post('parent_categoryID');
 		$nicename = $this->input->post('nicename');
-		if($parent_categoryID == null) $parent_categoryID=0;
+		if($parent_categoryID === NULL) $parent_categoryID=0;
 		$category = array('parent_categoryID' => $parent_categoryID, 'nicename' => $nicename);
 		$this->db->insert('category', $category);
 		$categoryID = $this->db->insert_id();

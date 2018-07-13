@@ -41,7 +41,7 @@ class Cart extends Controller {
 		$this->lang->load('main');
 		
 		// fortonei ta periexomena tou cart
-		$cart = $this->cart_library->getCart();
+		$cart = $this->cart_library->get_cart();
 		$products = array();
 		foreach($cart as $product => $value) {
 			$products[$product] = $this->Product_model->getProduct($product);

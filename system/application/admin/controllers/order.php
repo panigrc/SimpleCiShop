@@ -39,11 +39,11 @@ class Order extends Controller {
 		$form_data['orderID'] = $orderID;
 		
 		$form_data['action'] = $this->uri->segment(3, "add_order");
-		if($form_data['action'] == "edit_order") {
+		if($form_data['action'] === "edit_order") {
 			$form_data = array_merge($form_data, $this->Order_model->getOrder($orderID));
 			$form_data['action'] = 'set_order';
 		}
-		$data['contents'] = $this->load->view('order/print_tpl', $form_data, true);*/
+		$data['contents'] = $this->load->view('order/print_tpl', $form_data, TRUE);*/
 		
 		$data['user'] = $user;
 		$data['order'] = $order;
@@ -65,7 +65,7 @@ class Order extends Controller {
 		$data['heading'] = "Λίστα Παραγγελιών";
 		
 		$list_data['orders'] = $this->Order_model->getAllOrderIDs();
-		$data['contents'] = $this->load->view('order/list_tpl', $list_data, true);
+		$data['contents'] = $this->load->view('order/list_tpl', $list_data, TRUE);
 		
 		
 		$this->load->view('container_tpl',$data);

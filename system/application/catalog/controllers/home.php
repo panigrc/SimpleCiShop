@@ -16,7 +16,7 @@ class Home extends Controller {
 		$this->db->query("SET NAMES 'utf8'");
 	}
 	
-	function index($lang=null)
+	function index($lang=NULL)
 	{
         	redirect('catalog/index/greek');
 	}
@@ -33,12 +33,12 @@ class Home extends Controller {
 		$data['lang'] = $lang;
 		
 		$content_data = array();
-		$data['contents'] = $this->load->view('contents/'.$lang.'/guide_tpl', $content_data, true);
+		$data['contents'] = $this->load->view('contents/'.$lang.'/guide_tpl', $content_data, TRUE);
 		
 		$rblock_data = array();
 		$rblock_data['lang'] = $lang;
 		
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), true);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
 			
 		$this->load->view('container', $data);
 	
@@ -56,12 +56,12 @@ class Home extends Controller {
 		$data['lang'] = $lang;
 		
 		$content_data = array();
-		$data['contents'] = $this->load->view('contents/'.$lang.'/transactions_tpl', $content_data, true);
+		$data['contents'] = $this->load->view('contents/'.$lang.'/transactions_tpl', $content_data, TRUE);
 		
 		$rblock_data = array();
 		$rblock_data['lang'] = $lang;
 		
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), true);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
 		
 		$this->load->view('container', $data);
 	
@@ -79,12 +79,12 @@ class Home extends Controller {
 		$data['lang'] = $lang;
 		
 		$content_data = array();
-		$data['contents'] = $this->load->view('contents/'.$lang.'/secure_tpl', $content_data, true);
+		$data['contents'] = $this->load->view('contents/'.$lang.'/secure_tpl', $content_data, TRUE);
 		
 		$rblock_data = array();
 		$rblock_data['lang'] = $lang;
 		
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), true);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
 		
 		$this->load->view('container', $data);
 	

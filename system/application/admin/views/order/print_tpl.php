@@ -166,7 +166,7 @@ tfoot tr
 <div class="content">
 
 <?php $sum=0; ?>
-<?php if($lang=="greek"): ?>
+<?php if($lang === "greek"): ?>
 
 <h1>Η παραγγελία σου</h1>
 <p>
@@ -219,7 +219,7 @@ info@cool-clean-quiet.com
 
 
 
-<?php if($lang=="english"): ?>
+<?php if($lang === "english"): ?>
 <h1>Your order</h1>
 <p>
 http://www.cool-clean-quiet.com<br />
@@ -270,7 +270,7 @@ The number of your stars <strong><?php echo @$user['user_stars']; ?></strong>
 <?php endif; ?>
 
 
-<?php if($lang=="german"): ?>
+<?php if($lang === "german"): ?>
 <h1>Ihre Bestellung</h1>
 <p>
 http://www.cool-clean-quiet.com<br />

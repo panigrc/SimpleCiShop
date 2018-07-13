@@ -4,7 +4,7 @@
 <?php 
 foreach($categories_arr as $category => $sub_categories) {
     foreach($sub_categories as $sub_category => $val) {
-        if($val == $categoryID) $parent_categoryID = $category;
+        if($val === $categoryID) $parent_categoryID = $category;
     }
 }
 ?>

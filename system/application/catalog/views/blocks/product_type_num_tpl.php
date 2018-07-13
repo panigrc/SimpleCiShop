@@ -2,8 +2,8 @@
     extract($this->Search_model->getSearchData());
     if(empty($categoryID)) $categoryID = $countryID;
     $product_type_num = $this->Search_model->getOfferTypeNumOfRealties($categoryID);
-    if(!isset($method)) $method = $this->uri->segment(2);
-    if(!isset($controller)) $controller = $this->uri->segment(1);
+    if( ! isset($method)) $method = $this->uri->segment(2);
+    if( ! isset($controller)) $controller = $this->uri->segment(1);
 ?>
 				<div class="box_top">
 					<h2><?php echo $this->lang->line('main_product_type'); ?>:</h2>

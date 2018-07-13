@@ -19,14 +19,14 @@ class Checkout extends Controller {
 		$this->db->query("SET NAMES 'utf8'");
 	}
 	
-	function index($lang=null)
+	function index($lang=NULL)
 	{
 		if($lang!="greek") redirect('catalog/index/greek');
 		
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
 		
-		$cart = $this->cart_library->getCart();
+		$cart = $this->cart_library->get_cart();
 		
 		$content_data = array();
 		
@@ -34,9 +34,9 @@ class Checkout extends Controller {
 		$content_data['cart_costs'] = $this->_getPriceSum($cart, $lang);
 		$content_data['affiliate'] = $this->_getAffiliate();
 		
-		$data['contents'] = $this->load->view('contents/checkout_tpl', $content_data, true);
+		$data['contents'] = $this->load->view('contents/checkout_tpl', $content_data, TRUE);
 		
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), true);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 		
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
@@ -62,7 +62,7 @@ class Checkout extends Controller {
 		$this->load->view('container', $data);
 	}
 	
-	function get_user($lang=null)
+	function get_user($lang=NULL)
 	{
 	
 		$user = $this->User_model->searchUser($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
@@ -114,14 +114,14 @@ class Checkout extends Controller {
 		return "";
 	}
 	
-	function order($lang=null)
+	function order($lang=NULL)
 	{
 		if($lang!="greek") redirect('catalog/index/greek');
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
-		$orderID = null;
+		$orderID = NULL;
 		
-		$products = $this->cart_library->getCart();
+		$products = $this->cart_library->get_cart();
 		
 		if($this->input->post('userID')) {
 			$this->User_model->setUser($this->input->post('userID'));
@@ -137,7 +137,7 @@ class Checkout extends Controller {
 			
 		}
 		
-		if($this->input->post('shippment_cash_on_delivery')=="1" || $this->input->post('shippment_cash_on_delivery')=="3") redirect('checkout/thankyou/'.$lang);
+		if($this->input->post('shippment_cash_on_delivery') === "1" OR $this->input->post('shippment_cash_on_delivery') === "3") redirect('checkout/thankyou/'.$lang);
 		else {
 			
 			// if it's paid with paypal post with redirect
@@ -168,22 +168,22 @@ class Checkout extends Controller {
 		}
 	}
 	
-	function thankyou($lang=null)
+	function thankyou($lang=NULL)
 	{
 		if($lang!="greek") redirect('catalog/index/greek');
 		
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
 		
-		$cart = $this->cart_library->getCart();
+		$cart = $this->cart_library->get_cart();
 		
 		$content_data = array();
 		
 		$content_data['lang'] = $lang;
 		
-		$data['contents'] = $this->load->view('contents/'.$lang.'/thankyou_tpl', $content_data, true);
+		$data['contents'] = $this->load->view('contents/'.$lang.'/thankyou_tpl', $content_data, TRUE);
 		
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), true);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 		
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
