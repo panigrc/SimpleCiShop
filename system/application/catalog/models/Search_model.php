@@ -4,22 +4,22 @@ class Search_model extends Model {
 	{
 		parent::Model();
 	}
-	
+
 	function getCategories_rec($arr, $level=0) {
 		$temp_ids = NULL;
-		foreach($arr as $item => $key){ 
+		foreach($arr as $item => $key){
 			$temp_ids .= $this->getCategories_rec($key, $level+1);
 			$temp_ids .= $item . ", ";
 		}
 		return $temp_ids;
 	}
-	
+
 	function searchProducts($categoryID=NULL, $product_type=NULL, $price_from=NULL, $price_to=NULL, $order_by=NULL, $limit_num=NULL, $limit_from=NULL)
 	{
 		$lang = $this->config->item('language');
 		//if( ! empty($categoryID)) $category_childs = $this->Category_model->getCategoryChilds($categoryID);
 		if( ! empty($categoryID)) $category_childs = $this->Category_model->getAllCategoryIDs_rec($categoryID);
-		
+
 		$this->db->select('product.productID, product.nicename, product.published, product2category.categoryID');
 		$this->db->from('product, product_text, product2category');
 		if( ! empty($categoryID)) {
@@ -62,17 +62,17 @@ class Search_model extends Model {
 			break;
 		}
 		if( ! is_NULL($limit_num) && !is_NULL($limit_from)) $this->db->limit($limit_num, $limit_from);
-	
+
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	
+
 	function searchProductsByCategoryID($categoryID=NULL, $limit_num=NULL, $limit_from=NULL) {
 		$lang = $this->config->item('language');
 		//if( ! empty($categoryID)) $category_childs = $this->Category_model->getCategoryChilds($categoryID);
 		if( ! empty($categoryID)) $category_childs = $this->Category_model->getAllCategoryIDs_rec($categoryID);
-		
+
 		$this->db->select('product.productID, product.nicename, product.published, product2category.categoryID');
 		$this->db->from('product, product_text, product2category');
 		if( ! empty($categoryID)) {
@@ -100,18 +100,18 @@ class Search_model extends Model {
 		$this->db->groupby('product.productID');
 		$this->db->orderby('product.published','asc');
 		if( ! is_NULL($limit_num) && !is_NULL($limit_from)) $this->db->limit($limit_num, $limit_from);
-	
+
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	
+
 	function countSearchProducts($categoryID=NULL, $product_type=NULL, $price_from=NULL, $price_to=NULL)
 	{
 		$lang = $this->config->item('language');
 		//if( ! empty($categoryID)) $category_childs = $this->Category_model->getCategoryChilds($categoryID);
 		if( ! empty($categoryID)) $category_childs = $this->Category_model->getAllCategoryIDs_rec($categoryID);
-		
+
 		$this->db->select('count(product.productID) as count');
 		$this->db->from('product, product_text, product2category');
 		if( ! empty($categoryID)) {
@@ -135,19 +135,19 @@ class Search_model extends Model {
 		if( ! empty($price_to)) $this->db->where('product_text.price <', $price_to);
 		$this->db->where('product_text.language', $lang);
 		$this->db->where('product.productID = product_text.productID');
-	
+
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		$result = $query->row_array();
 		return $result['count'];
 	}
-	
+
 	function getRandomProduct($categoryID=NULL, $product_type=NULL, $price_from=NULL, $price_to=NULL)
 	{
 		$lang = $this->config->item('language');
 		//if( ! empty($categoryID)) $category_childs = $this->Category_model->getCategoryChilds($categoryID);
 		if( ! empty($categoryID)) $category_childs = $this->Category_model->getAllCategoryIDs_rec($categoryID);
-		
+
 		$this->db->select('*');
 		$this->db->from('product, product_text');
 		if( ! empty($categoryID)) {
@@ -172,13 +172,13 @@ class Search_model extends Model {
 		$this->db->where('product.productID = product_text.productID');
 		$this->db->orderby('rand()');
 		$this->db->limit(1);
-		
+
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		$result = $query->row_array();
 		return $result;
 	}
-	
+
 	function getSearchData2()
 	{
 		$searchString = $this->uri->segment(4);
@@ -200,10 +200,10 @@ class Search_model extends Model {
 			$data['order_by'] = $searchString[4];
 			$data['searchString'] = implode('_', $data);
 		}
-		
+
 		return $data;
 	}
-	
+
 	function getCategoriesWithProducts_rec($parent=0)
 	{
 		// wich categories exist from products recursive
@@ -222,10 +222,9 @@ class Search_model extends Model {
 			$this->db->groupby('product.categoryID');
 			$query2 = $this->db->get();
 			$row2 = $query2->row_array();
-			
+
 			if( ! empty($row2['categoryID']) OR !empty($temp_arr)) $ids[$row['categoryID']] = $temp_arr;
 		}
 		return $ids;
 	}
 }
-?>

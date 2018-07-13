@@ -5,7 +5,7 @@ class Category_model extends Model {
 	{
 		parent::Model();
 	}
-	
+
 	function getAllCategoryIDs_rec($parent=0)
 	{
 		// returns an assosiative array with all categoryIDs
@@ -21,7 +21,7 @@ class Category_model extends Model {
 		}
 		return $ids;
 	}
-	
+
 	function getAllCategoryIDs()
 	{
 		/** deprecated **/
@@ -36,7 +36,7 @@ class Category_model extends Model {
 		}
 		return $ids;
 	}
-	
+
 	function getAllCategoryIDs_byID($categoryID)
 	{
 		// deprecated
@@ -58,7 +58,7 @@ class Category_model extends Model {
 		}
 		return $ids;
 	}
-	
+
 	function getCategoryChilds($categoryID)
 	{
 		$this->db->select('*');
@@ -107,7 +107,7 @@ class Category_model extends Model {
 		if(count($ids) > 0) return $ids;
 		return NULL;*/
 	}
-	
+
 	function categoryIsRoot($categoryID)
 	{
 		$this->db->select('*');
@@ -118,7 +118,7 @@ class Category_model extends Model {
 		$row = $query->row_array();
 		return empty($row['parent_categoryID']) === TRUE ? TRUE : FALSE ;
 	}
-	
+
 	function getCategoryRoot($categoryID)
 	{
 		$this->db->select('*');
@@ -133,7 +133,7 @@ class Category_model extends Model {
 		if($rootID > 0) return $rootID;
 		return NULL;
 	}
-	
+
 	/*function getAllCategoryIDs() {
 		// returns an assosiative array with all categoryIDs
 		$this->db->select('*');
@@ -150,7 +150,7 @@ class Category_model extends Model {
 		}
 		return $ids;
 	} */
-	
+
 	function getCategoryID($nicename)
 	{
 		/** deprecated **/
@@ -163,7 +163,7 @@ class Category_model extends Model {
 		if($row!=NULL) return $row['categoryID'];
 		return 0;
 	}
-	
+
 	function getCategoryNicename($categoryID)
 	{
 		// returns an assosiative array with all categoryIDs without 1st level
@@ -175,13 +175,13 @@ class Category_model extends Model {
 		if($categoryID === 0) return 0;
 		return $row['nicename'];
 	}
-	
+
 	function getCategoryText($categoryID)
 	{
 		$this->db->select('*');
 		$this->db->from('category_text');
 		$this->db->where('category_text.categoryID', $categoryID);
-		
+
 		$query = $this->db->get();
 		$text = array();
 		foreach ($query->result_array() as $row) {
@@ -191,28 +191,28 @@ class Category_model extends Model {
 		}
 		return $text;
 	}
-	
+
 	function getCategoryName($categoryID)
 	{
 		// returns only name in the current language
-		
+
 		$lang = $this->config->item('language');
-		
+
 		$this->db->select('*');
 		$this->db->from('category_text');
 		$this->db->where('category_text.categoryID', $categoryID);
 		$this->db->where('category_text.language', $lang);
-		
+
 		$query = $this->db->get();
 		$row = $query->row_array();
 		if(isset($row['name'])) return $row['name'];
 		return "";
 	}
-	
+
 	function getCategoryNames($categoryIDs)
 	{
 		// returns only names in the current language seperated by commas
-		
+
 		$lang = $this->config->item('language');
 		$text ="";
 		foreach($categoryIDs as $categoryID) {
@@ -220,28 +220,27 @@ class Category_model extends Model {
 			$this->db->from('category_text');
 			$this->db->where('category_text.categoryID', $categoryID);
 			$this->db->where('category_text.language', $lang);
-			
+
 			$query = $this->db->get();
 			$row = $query->row_array();
 			$text .= $row['name'] . ', ';
 		}
 		return trim($text, ', ');
 	}
-	
+
 	function categoryHasInfo($categoryID)
 	{
 		$lang = $this->config->item('language');
-		
+
 		$this->db->select('COUNT(*) as count');
 		$this->db->from('category_text');
 		$this->db->where('category_text.categoryID', $categoryID);
 		$this->db->where('category_text.language', $lang);
 		$this->db->where('category_text.description NOT LIKE \'\'');
-		
+
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		$row = $query->row_array();
 		return $row['count'];
 	}
 }
-?>

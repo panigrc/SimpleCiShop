@@ -105,4 +105,3 @@ class Catalog extends Controller {
 		$this->session->set_userdata(array('cart' => $cart));
 	}
 }
-?>

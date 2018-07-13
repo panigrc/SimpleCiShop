@@ -34,4 +34,3 @@ class Cart_library {
 		return $cart;
 	}
 }
-?>

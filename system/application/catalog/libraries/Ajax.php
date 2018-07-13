@@ -633,5 +633,3 @@ class Scriptaculous extends Prototype {
 }
 
 class Ajax extends Scriptaculous { }
-
-?>

@@ -28,4 +28,3 @@ class Calendar_library {
 
 	}
 }
-?>

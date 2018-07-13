@@ -76,14 +76,14 @@ class User_model extends Model {
 		// add random characters to $password until $length is reached
 		while ($i < $length) {
 
-		// pick a random character from the possible ones
-		$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
+			// pick a random character from the possible ones
+			$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
 
-		// we don't want this character if it's already in the password
-		if ( ! strstr($password, $char)) {
-			$password .= $char;
-			$i++;
-		}
+			// we don't want this character if it's already in the password
+			if ( ! strstr($password, $char)) {
+				$password .= $char;
+				$i++;
+			}
 
 		}
 
@@ -111,4 +111,3 @@ class User_model extends Model {
 		return mktime(0, 0, 0, $month, $day, $year);
 	}
 }
-?>
