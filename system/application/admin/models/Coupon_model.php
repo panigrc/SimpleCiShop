@@ -83,4 +83,3 @@ class Coupon_model extends Model {
 	}
 
 }
-?>

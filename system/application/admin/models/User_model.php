@@ -85,4 +85,3 @@ class User_model extends Model {
 		return mktime(0, 0, 0, $month, $day, $year);
 	}
 }
-?>

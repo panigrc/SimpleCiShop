@@ -5,13 +5,13 @@ class Category_model extends Model {
 	{
 		parent::Model();
 	}
-	
+
 	function getAllCategoryIDs_rec($parent=0)
 	{
 		// returns an assosiative array with all categoryIDs
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('parent_categoryID', $parent); 
+		$this->db->where('parent_categoryID', $parent);
 		$query = $this->db->get();
 		$ids = array();
 		foreach ($query->result_array() as $row) {
@@ -21,7 +21,7 @@ class Category_model extends Model {
 		}
 		return $ids;
 	}
-	
+
 	function getAllCategoryIDs()
 	{
 		/** deprecated **/
@@ -36,7 +36,7 @@ class Category_model extends Model {
 		}
 		return $ids;
 	}
-	
+
 	function getAllCategoryIDs_byID($categoryID)
 	{
 		/** deprecated **/
@@ -58,24 +58,24 @@ class Category_model extends Model {
 		}
 		return $ids;
 	}
-	
+
 	function getCategory($categoryID)
 	{
 		$this->db->select('*');
 		$this->db->from('category');
 		$this->db->where('category.categoryID', $categoryID);
-		
+
 		$query = $this->db->get();
-		
+
 		return $query->row_array();
 	}
-	
+
 	function getCategoryText($categoryID)
 	{
 		$this->db->select('*');
 		$this->db->from('category_text');
 		$this->db->where('category_text.categoryID', $categoryID);
-		
+
 		$query = $this->db->get();
 		$text = array();
 		foreach ($query->result_array() as $row) {
@@ -85,27 +85,27 @@ class Category_model extends Model {
 		}
 		return $text;
 	}
-	
+
 	function getCategoryName($categoryID)
 	{
 		// returns only name in the current language
-		
+
 		$lang = $this->config->item('language');
-		
+
 		$this->db->select('*');
 		$this->db->from('category_text');
 		$this->db->where('category_text.categoryID', $categoryID);
 		$this->db->where('category_text.language', $lang);
-		
+
 		$query = $this->db->get();
 		$row = $query->row_array();
 		return $row['name'];
 	}
-	
+
 	function getCategoryNames($categoryIDs)
 	{
 		// returns only names in the current language seperated by commas
-		
+
 		$lang = $this->config->item('language');
 		$text ="";
 		foreach($categoryIDs as $categoryID) {
@@ -113,29 +113,29 @@ class Category_model extends Model {
 			$this->db->from('category_text');
 			$this->db->where('category_text.categoryID', $categoryID);
 			$this->db->where('category_text.language', $lang);
-			
+
 			$query = $this->db->get();
 			$row = $query->row_array();
 			$text .= $row['name'] . ', ';
 		}
 		return trim($text, ', ');
-	} 
-	
+	}
+
 	function setCategory()
 	{
 		$category = array('parent_categoryID' => $this->input->post('parent_categoryID'), 'nicename' => $this->input->post('nicename'));
 		$this->db->where('categoryID', $this->input->post('categoryID'));
 		$this->db->update('category', $category);
-		
+
 		$this->setCategoryText();
 	}
-	
+
 	function setCategoryText()
 	{
 		$text_greek = array('name' => $this->input->post('category_name_greek'), 'description' => $this->input->post('category_description_greek'));
 		$text_german = array('name' => $this->input->post('category_name_german'), 'description' => $this->input->post('category_description_german'));
 		$text_english = array('name' => $this->input->post('category_name_english'), 'description' => $this->input->post('category_description_english'));
-		
+
 		$this->db->where('category_textID', $this->input->post('category_textID_greek'));
 		$this->db->update('category_text', $text_greek);
 		$this->db->where('category_textID', $this->input->post('category_textID_german'));
@@ -143,7 +143,7 @@ class Category_model extends Model {
 		$this->db->where('category_textID', $this->input->post('category_textID_english'));
 		$this->db->update('category_text', $text_english);
 	}
-	
+
 	function addCategory()
 	{
 		$parent_categoryID = $this->input->post('parent_categoryID');
@@ -154,16 +154,15 @@ class Category_model extends Model {
 		$categoryID = $this->db->insert_id();
 		$this->addCategoryText($categoryID);
 	}
-	
+
 	function addCategoryText($categoryID)
 	{
 		$text_greek = array('categoryID' => $categoryID, 'language' => 'greek', 'name' => $this->input->post('category_name_greek'), 'description' => $this->input->post('category_description_greek'));
 		$text_german = array('categoryID' => $categoryID, 'language' => 'german', 'name' => $this->input->post('category_name_german'), 'description' => $this->input->post('category_description_german'));
 		$text_english = array('categoryID' => $categoryID, 'language' => 'english', 'name' => $this->input->post('category_name_english'), 'description' => $this->input->post('category_description_english'));
-		
+
 		$this->db->insert('category_text', $text_greek);
 		$this->db->insert('category_text', $text_german);
 		$this->db->insert('category_text', $text_english);
 	}
 }
-?>

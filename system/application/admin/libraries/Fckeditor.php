@@ -1,26 +1,25 @@
-<?php 
-
+<?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 /*
  * FCKeditor - The text editor for internet
  * Copyright (C) 2003-2006 Frederico Caldeira Knabben
- * 
+ *
  * Licensed under the terms of the GNU Lesser General Public License:
  * 		http://www.opensource.org/licenses/lgpl-license.php
- * 
+ *
  * For further information visit:
  * 		http://www.fckeditor.net/
- * 
+ *
  * "Support Open Source software. What about a donation today?"
- * 
+ *
  * File Name: fckeditor.php
  * 	This is the integration file for PHP.
- * 	
+ *
  * 	It defines the FCKeditor class that can be used to create editor
  * 	instances in PHP pages on server side.
- * 
+ *
  * File Authors:
  * 		Frederico Caldeira Knabben (fredck@fckeditor.net)
  */
@@ -46,7 +45,7 @@ class Fckeditor
 
 		$this->Config		= array() ;
 	}
-	
+
 	// PHP 4 Contructor
 	function Fckeditor( $instanceName )
 	{
@@ -57,13 +56,13 @@ class Fckeditor
 	{
 		echo $this->CreateHtml() ;
 	}
-	
+
 	function CreateHtml()
 	{
 		$HtmlValue = htmlspecialchars( $this->Value ) ;
 
 		$Html = '<div>' ;
-		
+
 		if ( $this->IsCompatible() )
 		{
 			if ( isset( $_GET['fcksource'] ) && $_GET['fcksource'] === "TRUE" )
@@ -72,7 +71,7 @@ class Fckeditor
 				$File = 'fckeditor.html' ;
 
 			$Link = "{$this->BasePath}editor/{$File}?InstanceName={$this->InstanceName}" ;
-			
+
 			if ( $this->ToolbarSet != '' )
 				$Link .= "&amp;Toolbar={$this->ToolbarSet}" ;
 
@@ -101,7 +100,7 @@ class Fckeditor
 		}
 
 		$Html .= '</div>' ;
-		
+
 		return $Html ;
 	}
 
@@ -139,7 +138,7 @@ class Fckeditor
 				$sParams .= '&amp;' ;
 			else
 				$bFirst = FALSE ;
-			
+
 			if ( $sValue === TRUE )
 				$sParams .= $this->EncodeConfig( $sKey ) . '=TRUE' ;
 			else if ( $sValue === FALSE )
@@ -147,19 +146,17 @@ class Fckeditor
 			else
 				$sParams .= $this->EncodeConfig( $sKey ) . '=' . $this->EncodeConfig( $sValue ) ;
 		}
-		
+
 		return $sParams ;
 	}
 
 	function EncodeConfig( $valueToEncode )
 	{
-		$chars = array( 
-			'&' => '%26', 
-			'=' => '%3D', 
+		$chars = array(
+			'&' => '%26',
+			'=' => '%3D',
 			'"' => '%22' ) ;
 
 		return strtr( $valueToEncode,  $chars ) ;
 	}
 }
-
-?>

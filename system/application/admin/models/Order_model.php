@@ -5,7 +5,7 @@ class Order_model extends Model {
 	{
 		parent::Model();
 	}
-	
+
 	function getAllOrderIDs()
 	{
 		// returns an assosiative array with all orderIDs
@@ -15,28 +15,28 @@ class Order_model extends Model {
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-	
+
 	function getOrder($orderID)
 	{
 		$this->db->select('*');
 		$this->db->from('`order`');
 		$this->db->where('order.orderID', $orderID);
-		
+
 		$query = $this->db->get();
-		
+
 		return $query->row_array();
 	}
-	
+
 	function getOrderProducts($orderID)
 	{
 		$this->db->select('*');
 		$this->db->from('order2product');
 		$this->db->where('orderID', $orderID);
-		
+
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-	
+
 	function setOrder()
 	{
 		if( ! $this->input->post('order_code')) $order_code = $this->generatePassword();
@@ -44,7 +44,7 @@ class Order_model extends Model {
 		$this->db->where('orderID', $this->input->post('orderID'));
 		$this->db->update('order', $order);
 	}
-	
+
 	function setOrderStatus($orderID, $status)
 	{
 		if($orderID) {
@@ -54,12 +54,11 @@ class Order_model extends Model {
 		}
 		return FALSE;
 	}
-	
-	
+
+
 	function deleteOrder($orderID)
 	{
 		$this->db->delete('`order`', array('orderID' => $orderID));
 		$this->db->delete('order2product', array('orderID' => $orderID));
 	}
 }
-?>
