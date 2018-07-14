@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://simplecishop.csi/";
+$config['base_url']	= "http://simplecishop.loc/";
 
 /*
 |--------------------------------------------------------------------------

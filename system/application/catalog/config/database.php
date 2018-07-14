@@ -34,7 +34,7 @@
 $active_group = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = "localhost";
+$db['default']['hostname'] = "172.16.238.12";
 $db['default']['username'] = "root";
 $db['default']['password'] = "root";
 $db['default']['database'] = "simplecishop";
