@@ -2,7 +2,8 @@
 
 /**
  * Class Home
- * TODO: rename this controller to index
+ *
+ * @todo	rename this controller to index
  */
 class Home extends CI_Controller {
 

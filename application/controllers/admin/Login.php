@@ -2,7 +2,8 @@
 
 /**
  * Class Login
- * TODO: rename this controller to index
+ *
+ * @todo	rename this controller to index
  */
 class Login extends CI_Controller {
 
