@@ -414,10 +414,6 @@ class Scriptaculous extends Prototype {
 
 	var $TOGGLE_EFFECTS = array('toggle_appear', 'toggle_slide','toggle_blind');
 
-	function Scriptaculous()
-  {
-	}
-
 	function dragable_element($element_id,$options=NULL)
 	{
 		return $this->tag($this->_dragable_element_js($element_id,$options));
