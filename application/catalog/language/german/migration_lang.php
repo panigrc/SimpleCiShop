@@ -32,27 +32,16 @@
  * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
- * @since	Version 1.0.0
+ * @since	Version 3.0.0
  * @filesource
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['ut_test_name'] = 'Test Name';
-$lang['ut_test_datatype'] = 'Test Datatype';
-$lang['ut_res_datatype'] = 'Expected Datatype';
-$lang['ut_result'] = 'Result';
-$lang['ut_undefined'] = 'Undefined Test Name';
-$lang['ut_file'] = 'File Name';
-$lang['ut_line'] = 'Line Number';
-$lang['ut_passed'] = 'Passed';
-$lang['ut_failed'] = 'Failed';
-$lang['ut_boolean'] = 'Boolean';
-$lang['ut_integer'] = 'Integer';
-$lang['ut_float'] = 'Float';
-$lang['ut_double'] = 'Float'; // can be the same as float
-$lang['ut_string'] = 'String';
-$lang['ut_array'] = 'Array';
-$lang['ut_object'] = 'Object';
-$lang['ut_resource'] = 'Resource';
-$lang['ut_null'] = 'Null';
-$lang['ut_notes'] = 'Notes';
+$lang['migration_none_found'] = 'No migrations were found.';
+$lang['migration_not_found'] = 'No migration could be found with the version number: %s.';
+$lang['migration_sequence_gap'] = 'There is a gap in the migration sequence near version number: %s.';
+$lang['migration_multiple_version'] = 'There are multiple migrations with the same version number: %s.';
+$lang['migration_class_doesnt_exist'] = 'The migration class "%s" could not be found.';
+$lang['migration_missing_up_method'] = 'The migration class "%s" is missing an "up" method.';
+$lang['migration_missing_down_method'] = 'The migration class "%s" is missing a "down" method.';
+$lang['migration_invalid_filename'] = 'Migration "%s" has an invalid filename.';
