@@ -40,9 +40,9 @@ class News extends CI_Controller {
 		$current_page = $this->uri->segment(4);
 		$current_page = empty($current_page) === FALSE ? $current_page : 0;
 
-		$news = $this->News_model->getLastNews(5, $current_page);
+		$news = $this->News_model->get_last_news(5, $current_page);
 		foreach($news as $new => $value) {
-			$news[$new] = array_merge($news[$new], $this->News_model->getNewsText($news[$new]['newsID']));
+			$news[$new] = array_merge($news[$new], $this->News_model->get_news_text($news[$new]['newsID']));
 		}
 		return $news;
 	}
@@ -53,7 +53,7 @@ class News extends CI_Controller {
 		$this->load->library('pagination');
 
 		$config['base_url'] = site_url('news/index/'.$lang.'/');
-		$config['total_rows'] = count($this->News_model->getAllNews());
+		$config['total_rows'] = count($this->News_model->get_all_news());
 		$config['per_page'] = $per_page;
 		$config['uri_segment'] = 4;
 		$config['num_links'] = 50;

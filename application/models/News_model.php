@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Class	News_model
+ */
 class News_model extends CI_Model {
 
 	function __construct()
@@ -7,68 +11,80 @@ class News_model extends CI_Model {
 	}
 
 	/**
-	 * @return mixed
-	 * TODO: order by as parameter
+	 * Returns an associative array with all news
+	 *
+	 * @return	mixed
+	 * @todo	order by as parameter
 	 */
-	function getAllNews()
+	function get_all_news()
 	{
-		// returns an associative array with all news
-
-
 		$this->db->select('*');
 		$this->db->from('news');
 		$this->db->order_by("published", "desc");
 
 		$query = $this->db->get();
-		return $query->result_array();
 
+		return $query->result_array();
 	}
 
-
-	function getLastNews($limit_num=NULL, $limit_from=NULL)
+	/**
+	 * Returns an associative array with all news
+	 *
+	 * @param	null|int	$limit_num
+	 * @param	null|int	$limit_from
+	 * @return	mixed
+	 */
+	function get_last_news($limit_num = NULL, $limit_from = NULL)
 	{
-		// returns an associative array with all news
-
-
 		$this->db->select('*');
 		$this->db->from('news');
 		$this->db->order_by("published", "desc");
 		if( ! is_NULL($limit_num) && !is_NULL($limit_from)) $this->db->limit($limit_num, $limit_from);
 
 		$query = $this->db->get();
-		return $query->result_array();
 
+		return $query->result_array();
 	}
 
-	function getRecentNews()
+	/**
+	 * Returns recent news
+	 *
+	 * @return	mixed
+	 */
+	function get_recent_news()
 	{
-		// returns recent news
-
 		$this->db->select('*');
 		$this->db->from('news');
 		$this->db->order_by("published", "desc");
 		$this->db->limit(1);
 
 		$query = $this->db->get();
-		return $query->row_array();
 
+		return $query->row_array();
 	}
 
-	function getNews($newsID)
+	/**
+	 * Returns an associative array with a news item
+	 *
+	 * @param	$newsID
+	 * @return	mixed
+	 */
+	function get_news($newsID)
 	{
-		// returns an associative array with a news (one)
-
-
 		$this->db->select('*');
 		$this->db->from('news');
 		$this->db->where('news.newsID', $newsID);
 
 		$query = $this->db->get();
-		return $query->row_array();
 
+		return $query->row_array();
 	}
 
-	function getNewsText($newsID)
+	/**
+	 * @param	$newsID
+	 * @return	array
+	 */
+	function get_news_text($newsID)
 	{
 		$this->db->select('*');
 		$this->db->from('news_text');
@@ -81,42 +97,38 @@ class News_model extends CI_Model {
 			$text['title_'.$row['language']] = $row['title'];
 			$text['description_'.$row['language']] = $row['description'];
 		}
+
 		return $text;
 	}
 
-	function addNews()
+	function add_news()
 	{
-
-		// insert to news
 		$arr = array('published' => time());
-
 		$this->db->insert('news', $arr);
 		$newsID = $this->db->insert_id();
-
-		// insert to news_text
-		$this->addNewsText($newsID);
-
+		$this->add_news_text($newsID);
 	}
 
-	function setNews()
+	function set_news()
 	{
-
 		$newsID = $this->input->post('newsID');
-
-		// update to news
-
-		// update to news_text
-		$this->setNewsText($newsID);
+		$this->set_news_text($newsID);
 	}
 
-	function deleteNews($newsID)
+	/**
+	 * @param	$newsID
+	 */
+	function delete_news($newsID)
 	{
 		$this->db->delete('news', array('newsID' => $newsID));
 		$this->db->delete('news_text', array('newsID' => $newsID));
 	}
 
-
-	function addNewsText($newsID)
+	/**
+	 * @param	$newsID
+	 * @todo	loop through languages
+	 */
+	function add_news_text($newsID)
 	{
 		$text_greek = array('newsID' => $newsID, 'language' => 'greek', 'title' => $this->input->post('title_greek'), 'description' => $this->input->post('description_greek'));
 		$text_german = array('newsID' => $newsID, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'));
@@ -127,7 +139,11 @@ class News_model extends CI_Model {
 		$this->db->insert('news_text', $text_english);
 	}
 
-	function setNewsText($newsID)
+	/**
+	 * @param	$newsID
+	 * @todo	loop through languages
+	 */
+	function set_news_text($newsID)
 	{
 		$text_greek = array('newsID' => $newsID, 'language' => 'greek', 'title' => $this->input->post('title_greek'), 'description' => $this->input->post('description_greek'));
 		$text_german = array('newsID' => $newsID, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'));
