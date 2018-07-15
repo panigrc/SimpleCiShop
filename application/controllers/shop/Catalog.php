@@ -68,9 +68,9 @@ class Catalog extends CI_Controller {
 		$products = $this->Search_model->searchProductsByCategoryID($categoryID, $products_per_page, $current_page);
 
 		foreach($products as $product => $value) {
-			$products[$product] += $this->Product_model->getProductText($products[$product]['productID']);
+			$products[$product] += $this->Product_model->get_product_text($products[$product]['productID']);
 			$products[$product] += $this->Category_model->get_category_text($products[$product]['categoryID']);
-			$products[$product] += $this->Product_model->getProductMainImage($products[$product]['productID']);
+			$products[$product] += $this->Product_model->get_product_main_image($products[$product]['productID']);
 		}
 
 		//print_r($products);

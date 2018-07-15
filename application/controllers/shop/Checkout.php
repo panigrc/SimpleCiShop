@@ -200,8 +200,8 @@ class Checkout extends CI_Controller {
 		$products = array();
 		$sum=0;
 		foreach($cart as $product => $value) {
-			$products[$product] = $this->Product_model->getProduct($product);
-			$products[$product] += $this->Product_model->getProductText($product);
+			$products[$product] = $this->Product_model->get_product($product);
+			$products[$product] += $this->Product_model->get_product_text($product);
 			$products[$product]['quantity'] = $value;
 			for($i=0;$i<$products[$product]['quantity'];$i++) {
 				$sum += $products[$product]['price_'.$lang];

@@ -28,7 +28,7 @@ class Order extends CI_Controller {
 		$order = $this->Order_model->get_order($orderID);
 		$products = $this->Order_model->get_order_products($orderID);
 		foreach($products as $product => $value) {
-			$products[$product] = array_merge($products[$product], $this->Product_model->getProductText($products[$product]['productID']));
+			$products[$product] = array_merge($products[$product], $this->Product_model->get_product_text($products[$product]['productID']));
 		}
 
 		$this->config->set_item('language', $user['user_language']);
@@ -97,7 +97,7 @@ class Order extends CI_Controller {
 		$products = $this->Order_model->get_order_products($orderID);
 
 		foreach($products as $product => $value) {
-			$products[$product] = array_merge($products[$product], $this->Product_model->getProductText($products[$product]['productID']));
+			$products[$product] = array_merge($products[$product], $this->Product_model->get_product_text($products[$product]['productID']));
 		}
 		$this->load->view('order/products_tpl', array('products' => $products, 'user' => $user));
 	}

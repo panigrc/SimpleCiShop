@@ -29,10 +29,10 @@ class Catalog extends CI_Controller {
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Λίστα Προϊόντων";
 
-		$products = $this->Product_model->getAllProducts();
+		$products = $this->Product_model->get_all_products();
 		foreach($products as $product => $value) {
-			$products[$product] = array_merge($products[$product], $this->Product_model->getProductText($products[$product]['productID']));
-			$products[$product]['category_text'] = $this->Category_model->get_category_names($this->Product_model->getProductCategories($products[$product]['productID']));
+			$products[$product] = array_merge($products[$product], $this->Product_model->get_product_text($products[$product]['productID']));
+			$products[$product]['category_text'] = $this->Category_model->get_category_names($this->Product_model->get_product_categories($products[$product]['productID']));
 		}
 		$data['contents'] = $this->load->view('catalog/list_tpl', array('products' => $products), TRUE);
 		$this->load->view('container_tpl',$data);
@@ -53,11 +53,11 @@ class Catalog extends CI_Controller {
 		if ($form_data['action'] === "edit_product")
 		{
 			$form_data['productID'] = $this->uri->segment(4);
-			$form_data = array_merge($form_data, $this->Product_model->getProduct($form_data['productID']));
-			$form_data = array_merge($form_data, $this->Product_model->getProductText($form_data['productID']));
-			$form_data['product_categories'] = $this->Product_model->getProductCategories($form_data['productID']);
-			$form_data['product_meta'] = $this->Product_model->getProductMeta($form_data['productID']);
-			$form_data['images_arr'] = $this->Product_model->getProductImage($form_data['productID']);
+			$form_data = array_merge($form_data, $this->Product_model->get_product($form_data['productID']));
+			$form_data = array_merge($form_data, $this->Product_model->get_product_text($form_data['productID']));
+			$form_data['product_categories'] = $this->Product_model->get_product_categories($form_data['productID']);
+			$form_data['product_meta'] = $this->Product_model->get_product_meta($form_data['productID']);
+			$form_data['images_arr'] = $this->Product_model->get_product_image($form_data['productID']);
 		}
 
 		$data['contents'] = $this->load->view('catalog/product_tpl', $form_data, TRUE);
@@ -72,7 +72,7 @@ class Catalog extends CI_Controller {
 	{
 		// adds a product
 
-        	$this->Product_model->addProduct();
+        	$this->Product_model->add_product();
 		redirect('catalog');
 	}
 
@@ -80,7 +80,7 @@ class Catalog extends CI_Controller {
 	{
 		// updates a product
 
-        	$this->Product_model->setProduct();
+        	$this->Product_model->set_product();
 		redirect('catalog');
 	}
 
@@ -88,11 +88,11 @@ class Catalog extends CI_Controller {
 	{
 		// deletes a product
 
-        	$this->Product_model->deleteProduct($this->uri->segment(3));
+        	$this->Product_model->delete_product($this->uri->segment(3));
 		redirect('catalog');
 	}
 
 	function ajaxset_stock($productID, $stock) {
-		echo $this->Product_model->setProductStock($productID, $stock);
+		echo $this->Product_model->set_product_stock($productID, $stock);
 	}
 }

@@ -30,13 +30,13 @@ class Product extends CI_Controller {
 		}
 		else {
 			$content_data['nicename'] = $productNicename;
-			$content_data['product'] = $this->Product_model->getProductByNicename($content_data['nicename']);
-			$content_data['product'] = $content_data['product'] + $this->Product_model->getProductText($content_data['product']['productID']);
+			$content_data['product'] = $this->Product_model->get_product_by_nicename($content_data['nicename']);
+			$content_data['product'] = $content_data['product'] + $this->Product_model->get_product_text($content_data['product']['productID']);
 			//$content_data['product'] = $content_data['product'] + $this->Category_model->get_category_text($content_data['product']['categoryID']);
-			$content_data['images_arr'] = $this->Product_model->getProductImage($content_data['product']['productID']);
-			$content_data['meta'] = $this->Product_model->getProductMeta($content_data['product']['productID']);
-			$content_data['product']['category_text'] = $this->Category_model->get_category_names($this->Product_model->getProductCategories($content_data['product']['productID']));
-			$content_data['product'] += $this->Product_model->getProductMainImage($content_data['product']['productID']);
+			$content_data['images_arr'] = $this->Product_model->get_product_image($content_data['product']['productID']);
+			$content_data['meta'] = $this->Product_model->get_product_meta($content_data['product']['productID']);
+			$content_data['product']['category_text'] = $this->Category_model->get_category_names($this->Product_model->get_product_categories($content_data['product']['productID']));
+			$content_data['product'] += $this->Product_model->get_product_main_image($content_data['product']['productID']);
 
 			$content_data['lang'] = $lang;
 
