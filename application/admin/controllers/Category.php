@@ -1,9 +1,9 @@
 <?php
-class Category extends Controller {
+class Category extends CI_Controller {
 
-	function Category()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('Product_model');

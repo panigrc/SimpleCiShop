@@ -1,10 +1,10 @@
 <?php
 
-class Coupon extends Controller {
+class Coupon extends CI_Controller {
 
-	function Coupon()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('Coupon_model');

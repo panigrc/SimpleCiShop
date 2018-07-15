@@ -1,10 +1,10 @@
 <?php
 
-class News extends Controller {
+class News extends CI_Controller {
 
-	function News()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('News_model');
