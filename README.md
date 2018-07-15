@@ -3,13 +3,13 @@ SimpleCiShop
 
 The SimpleCiShop is an ecommerce web application based on the famous CodeIgniter framework.
 
-It is build with CodeIgniter version 1.5.3 back at 2006. Since then few changes happened.
+It's being currently refactored to run with PHP 7.2 and CodeIgniter 3.1.9
 
 The shop was fully functional since I have used it to sell myself products; actually the products you see in the demo site are real and I use to sell them.
 
 I wasn't satisfied with the other open source ecommerce systems that were in the market that time - neither am I now - so I decided to build my own simple shopping cart.
 
-There is a lot of stuff to be done and a lot of stuff-junk to be removed. But __Everything that has a Beginning..... has an end__.
+There is a lot of stuff to be done and a lot of stuff-junk to be removed. But ~~__Everything that has a Beginning..... has an end__~~ apparently not always :smile:.
 
 Structure
 ---------
@@ -59,6 +59,7 @@ What it needs to be done
 
 * Merge the two applications - frontend/backend - into one so we can reuse the various functions of Models and Libraries
 * Cleaning and rebuilding the multilanguage system, so anything can be translated into any language.
-* Creating a block system so without any interuption of the MVC system we can call and embedd any block we need in the website
-* Building a more themable website; all the images/styles and output should be themable.
+* Creating a block system so without any interruption of the MVC system we can call and embedd any block we need in the website
+* Building a more themeable website; all the images/styles and output should be themeable. Thinking about using a UI framework like Twitter Bootstrap.
+* Better admin interface.
 * Translating the interface and the whole website into english
