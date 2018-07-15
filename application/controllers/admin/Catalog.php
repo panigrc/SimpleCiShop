@@ -47,7 +47,7 @@ class Catalog extends CI_Controller {
 		$form_data['action'] = $this->uri->segment(3, "add_product");
 		$form_data['categories_arr'] = $this->Category_model->get_all_category_ids_recursive();
 		$form_data['product_categories'] = array();
-		$form_data['all_meta'] = $this->Meta_model->getAllMeta();
+		$form_data['all_meta'] = $this->Meta_model->get_all_meta();
 		$form_data['product_meta'] = array();
 
 		if ($form_data['action'] === "edit_product")

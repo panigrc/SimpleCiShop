@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Class	Meta_model
+ */
 class Meta_model extends CI_Model {
 
 	function __construct()
@@ -6,7 +10,10 @@ class Meta_model extends CI_Model {
 		parent::__construct();
 	}
 
-	function getAllMeta()
+	/**
+	 * @return	array
+	 */
+	function get_all_meta()
 	{
 		$this->db->select('*');
 		$this->db->from('product_meta');
@@ -19,6 +26,7 @@ class Meta_model extends CI_Model {
 			if( ! in_array($row['meta_value'], $meta[$row['meta_key']]))
 				array_push($meta[$row['meta_key']], $row['meta_value']);
 		}
+
 		return $meta;
 	}
 }
