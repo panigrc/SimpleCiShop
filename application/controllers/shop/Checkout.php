@@ -95,11 +95,11 @@ class Checkout extends CI_Controller {
 
 	}
 
-	function _getCoupon()
+	function _get_coupon()
 	{
 		// loads the given coupon if exists
 
-		$coupon = $this->Coupon_model->getCoupon($this->input->post('coupon'));
+		$coupon = $this->Coupon_model->get_coupon($this->input->post('coupon'));
 
 		if(count($coupon)>0) {
 

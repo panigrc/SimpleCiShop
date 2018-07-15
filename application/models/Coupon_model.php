@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Class Coupon_model
+ */
 class Coupon_model extends CI_Model {
 
 	function __construct()
@@ -6,80 +10,86 @@ class Coupon_model extends CI_Model {
 		parent::__construct();
 	}
 
-	function getAllCoupon()
+	/**
+	 * Returns an associative array with all coupons
+	 *
+	 * @return	mixed
+	 */
+	function get_all_coupon()
 	{
-		// returns an associative array with all news
-
-
 		$this->db->select('*');
 		$this->db->from('coupon');
 
 		$query = $this->db->get();
-		return $query->result_array();
 
+		return $query->result_array();
 	}
 
-	function getCoupon($couponID)
+	/**
+	 * @param	$couponID
+	 * @return	mixed
+	 */
+	function get_coupon($couponID)
 	{
-
-
 		$this->db->select('*');
 		$this->db->from('coupon');
 		$this->db->where('coupon.couponID', $couponID);
 
 		$query = $this->db->get();
-		return $query->row_array();
 
+		return $query->row_array();
 	}
 
-	function addCoupon()
+	/**
+	 *
+	 */
+	function add_coupon()
 	{
-
-
-		$coupon_number = $this->generateCouponNumber();
+		$coupon_number = $this->generate_coupon_number();
 		if($this->input->post('type') === 1) $coupon_number = $this->input->post('one_time_string') . $coupon_number;
 
 		$arr = array('coupon_number' => $coupon_number, 'expires' => $this->input->post('expires'), 'used' => 0, 'discount' => $this->input->post('discount'), 'type' => $this->input->post('type'));
 
 		$this->db->insert('coupon', $arr);
 		$newsID = $this->db->insert_id();
-
 	}
 
-	function generateCouponNumber($length = 4)
+	/**
+	 * Start with a blank password
+	 *
+	 * @param	int	$length
+	 * @return	string
+	 */
+	function generate_coupon_number($length = 4)
 	{
-
-		// start with a blank password
 		$coupon_number = "";
 
-		// define possible characters
+		/** @var	string	$possible define possible characters*/
 		$possible = "0123456789";
 
-		// set up a counter
 		$i = 0;
 
-		// add random characters to $password until $length is reached
+		/** add random characters to $password until $length is reached */
 		while ($i < $length) {
 
-			// pick a random character from the possible ones
+			/** @var	string	$char	pick a random character from the possible ones */
 			$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
 
-			// we don't want this character if it's already in the password
+			/** we don't want this character if it's already in the password */
 			if ( ! strstr($coupon_number, $char)) {
 				$coupon_number .= $char;
 				$i++;
 			}
-
 		}
 
-		// done!
 		return $coupon_number;
-
 	}
 
-	function deleteCoupon($couponID)
+	/**
+	 * @param	$couponID
+	 */
+	function delete_coupon($couponID)
 	{
 		$this->db->delete('coupon', array('couponID' => $couponID));
 	}
-
 }

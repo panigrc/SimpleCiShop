@@ -25,7 +25,7 @@ class Coupon extends CI_Controller {
 		$data['title'] = "Διαχείριση Συστήματος Ακινήτων";
 		$data['heading'] = "Λίστα Κουπονιών";
 
-		$coupons = $this->Coupon_model->getAllCoupon();
+		$coupons = $this->Coupon_model->get_all_coupon();
 		$data['contents'] = $this->load->view('coupon/list_tpl', array('coupons' => $coupons), TRUE);
 
 
@@ -47,7 +47,7 @@ class Coupon extends CI_Controller {
 	{
 		// adds a coupon
 		for($i=0; $i<$this->input->post('generation_number'); $i++)
-			$this->Coupon_model->addCoupon();
+			$this->Coupon_model->add_coupon();
 		redirect('coupon');
 	}
 
@@ -55,7 +55,7 @@ class Coupon extends CI_Controller {
 	{
 		// deletes a coupon
 
-		$this->Coupon_model->deleteCoupon($this->uri->segment(3));
+		$this->Coupon_model->delete_coupon($this->uri->segment(3));
 		redirect('coupon');
 	}
 }
