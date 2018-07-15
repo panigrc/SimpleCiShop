@@ -1,10 +1,10 @@
 <?php
 
-class Checkout extends Controller {
+class Checkout extends CI_Controller {
 	var $lang;
-	function Checkout()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('User_model');

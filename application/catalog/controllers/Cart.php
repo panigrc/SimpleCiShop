@@ -1,9 +1,9 @@
 <?php
-class Cart extends Controller {
+class Cart extends CI_Controller {
 	var $lang;
-	function Cart()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('Product_model');
 		$this->db->query("SET NAMES 'utf8'");

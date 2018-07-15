@@ -1,11 +1,11 @@
 <?php
 
-class Contact extends Controller {
+class Contact extends CI_Controller {
 	var $lang;
-	function Contact()
+	function __construct()
 	{
-		parent::Controller();
-        	$this->load->helper('url');
+		parent::__construct();
+		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('Product_model');
 		$this->load->model('Category_model');

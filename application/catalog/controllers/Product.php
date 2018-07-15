@@ -1,9 +1,9 @@
 <?php
-class Product extends Controller {
+class Product extends CI_Controller {
 	var $lang;
-	function Product()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('Product_model');
