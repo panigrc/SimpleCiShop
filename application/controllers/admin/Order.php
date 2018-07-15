@@ -25,8 +25,8 @@ class Order extends CI_Controller {
 
 
 		$user = $this->User_model->getUser($userID);
-		$order = $this->Order_model->getOrder($orderID);
-		$products = $this->Order_model->getOrderProducts($orderID);
+		$order = $this->Order_model->get_order($orderID);
+		$products = $this->Order_model->get_order_products($orderID);
 		foreach($products as $product => $value) {
 			$products[$product] = array_merge($products[$product], $this->Product_model->getProductText($products[$product]['productID']));
 		}
@@ -40,7 +40,7 @@ class Order extends CI_Controller {
 
 		$form_data['action'] = $this->uri->segment(3, "add_order");
 		if($form_data['action'] === "edit_order") {
-			$form_data = array_merge($form_data, $this->Order_model->getOrder($orderID));
+			$form_data = array_merge($form_data, $this->Order_model->get_order($orderID));
 			$form_data['action'] = 'set_order';
 		}
 		$data['contents'] = $this->load->view('order/print_tpl', $form_data, TRUE);*/
@@ -64,7 +64,7 @@ class Order extends CI_Controller {
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Λίστα Παραγγελιών";
 
-		$list_data['orders'] = $this->Order_model->getAllOrderIDs();
+		$list_data['orders'] = $this->Order_model->get_all_order_ids();
 		$data['contents'] = $this->load->view('order/list_tpl', $list_data, TRUE);
 
 
@@ -72,18 +72,18 @@ class Order extends CI_Controller {
 	}
 
 	function set_order() {
-		$this->Order_model->setOrder();
+		$this->Order_model->set_order();
 		redirect('order');
 	}
 
 	function add_order() {
-		$this->Order_model->addOrder();
+		$this->Order_model->add_order();
 		redirect('order');
 	}
 
 	function delete_order()
 	{
-		$this->Order_model->deleteOrder($this->uri->segment(3));
+		$this->Order_model->delete_order($this->uri->segment(3));
 		redirect('order');
 	}
 
@@ -94,7 +94,7 @@ class Order extends CI_Controller {
 
 	function ajaxget_products($orderID, $userID) {
 		$user = $this->User_model->getUser($userID);
-		$products = $this->Order_model->getOrderProducts($orderID);
+		$products = $this->Order_model->get_order_products($orderID);
 
 		foreach($products as $product => $value) {
 			$products[$product] = array_merge($products[$product], $this->Product_model->getProductText($products[$product]['productID']));
@@ -103,6 +103,6 @@ class Order extends CI_Controller {
 	}
 
 	function ajaxset_status($orderID, $status) {
-		echo $this->Order_model->setOrderStatus($orderID, $status);
+		echo $this->Order_model->set_order_status($orderID, $status);
 	}
 }

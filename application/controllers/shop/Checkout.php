@@ -125,15 +125,15 @@ class Checkout extends CI_Controller {
 
 		if($this->input->post('userID')) {
 			$this->User_model->setUser($this->input->post('userID'));
-			$orderID = $this->Order_model->addOrder($this->input->post('userID'));
-			$this->Order_model->addOrderProducts($orderID, $products);
+			$orderID = $this->Order_model->add_order($this->input->post('userID'));
+			$this->Order_model->add_order_products($orderID, $products);
 
 		}
 		else {
 
 			$userID = $this->User_model->addUser();
-			$orderID = $this->Order_model->addOrder($userID);
-			$this->Order_model->addOrderProducts($orderID, $products);
+			$orderID = $this->Order_model->add_order($userID);
+			$this->Order_model->add_order_products($orderID, $products);
 
 		}
 
