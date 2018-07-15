@@ -1,8 +1,9 @@
 <?php
-class Search_model extends Model {
-	function Search_model()
+class Search_model extends CI_Model {
+
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getCategories_rec($arr, $level=0) {

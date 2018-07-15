@@ -1,8 +1,9 @@
 <?php
-class Product_model extends Model {
-	function Product_model()
+class Product_model extends CI_Model {
+
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getAllProducts()

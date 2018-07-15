@@ -1,9 +1,9 @@
 <?php
-class News_model extends Model {
+class News_model extends CI_Model {
 
-	function News_model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getAllNews()
