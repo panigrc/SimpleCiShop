@@ -26,7 +26,7 @@ class News_model extends CI_Model {
 
 		$this->db->select('*');
 		$this->db->from('news');
-		$this->db->orderby("published", "desc");
+		$this->db->order_by("published", "desc");
 		if( ! is_NULL($limit_num) && !is_NULL($limit_from)) $this->db->limit($limit_num, $limit_from);
 
 		$query = $this->db->get();
@@ -40,7 +40,7 @@ class News_model extends CI_Model {
 
 		$this->db->select('*');
 		$this->db->from('news');
-		$this->db->orderby("published", "desc");
+		$this->db->order_by("published", "desc");
 		$this->db->limit(1);
 
 		$query = $this->db->get();

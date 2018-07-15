@@ -47,19 +47,19 @@ class Search_model extends CI_Model {
 		$this->db->where('product.productID = product_text.productID');
 		switch ($order_by) {
 			case "priceasc":
-			$this->db->orderby('product_text.price','asc');
+			$this->db->order_by('product_text.price','asc');
 			break;
 			case "pricedesc":
-			$this->db->orderby('product_text.price','desc');
+			$this->db->order_by('product_text.price','desc');
 			break;
 			case "dateasc":
-			$this->db->orderby('product.published','asc');
+			$this->db->order_by('product.published','asc');
 			break;
 			case "datedesc":
-			$this->db->orderby('product.published','desc');
+			$this->db->order_by('product.published','desc');
 			break;
 			case 0:
-			$this->db->orderby('product.published','desc');
+			$this->db->order_by('product.published','desc');
 			break;
 		}
 		if( ! is_NULL($limit_num) && !is_NULL($limit_from)) $this->db->limit($limit_num, $limit_from);
@@ -98,8 +98,8 @@ class Search_model extends CI_Model {
 		$this->db->where('product.stock >', 0);
 		$this->db->where('product_text.language', $lang);
 		$this->db->where('product.productID = product_text.productID');
-		$this->db->groupby('product.productID');
-		$this->db->orderby('product.published','asc');
+		$this->db->group_by('product.productID');
+		$this->db->order_by('product.published','asc');
 		if( ! is_NULL($limit_num) && !is_NULL($limit_from)) $this->db->limit($limit_num, $limit_from);
 
 		$query = $this->db->get();
@@ -171,7 +171,7 @@ class Search_model extends CI_Model {
 		if( ! empty($price_to)) $this->db->where('product_text.price <', $price_to);
 		$this->db->where('product_text.language', $lang);
 		$this->db->where('product.productID = product_text.productID');
-		$this->db->orderby('rand()');
+		$this->db->order_by('rand()');
 		$this->db->limit(1);
 
 		$query = $this->db->get();
@@ -220,7 +220,7 @@ class Search_model extends CI_Model {
 			$this->db->from('category, product');
 			$this->db->where('category.categoryID = product.categoryID');
 			$this->db->where('product.categoryID', $row['categoryID']);
-			$this->db->groupby('product.categoryID');
+			$this->db->group_by('product.categoryID');
 			$query2 = $this->db->get();
 			$row2 = $query2->row_array();
 

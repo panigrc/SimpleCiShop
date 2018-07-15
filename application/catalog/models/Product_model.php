@@ -13,7 +13,7 @@ class Product_model extends CI_Model {
 
 		$this->db->select('*');
 		$this->db->from('product');
-		$this->db->orderby('product.productID', "desc");
+		$this->db->order_by('product.productID', "desc");
 
 		$query = $this->db->get();
 		return $query->result_array();

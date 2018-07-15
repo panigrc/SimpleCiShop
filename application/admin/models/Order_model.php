@@ -11,7 +11,7 @@ class Order_model extends CI_Model {
 		// returns an assosiative array with all orderIDs
 		$this->db->select('*');
 		$this->db->from('`order`');
-		$this->db->orderby('date_created','desc');
+		$this->db->order_by('date_created','desc');
 		$query = $this->db->get();
 		return $query->result_array();
 	}
