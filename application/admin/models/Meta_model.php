@@ -1,9 +1,9 @@
 <?php
-class Meta_model extends Model {
+class Meta_model extends CI_Model {
 
-	function Meta_model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getAllMeta()

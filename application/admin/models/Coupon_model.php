@@ -1,9 +1,9 @@
 <?php
-class Coupon_model extends Model {
+class Coupon_model extends CI_Model {
 
-	function Coupon_model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getAllCoupon()

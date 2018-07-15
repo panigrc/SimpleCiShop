@@ -1,9 +1,9 @@
 <?php
-class Category_model extends Model {
+class Category_model extends CI_Model {
 
-	function Category_model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getAllCategoryIDs_rec($parent=0)

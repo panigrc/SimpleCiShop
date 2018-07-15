@@ -1,9 +1,9 @@
 <?php
-class Order_model extends Model {
+class Order_model extends CI_Model {
 
-	function Order_model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getAllOrderIDs()

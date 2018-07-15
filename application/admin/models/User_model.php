@@ -1,8 +1,9 @@
 <?php
-class User_model extends Model {
-	function User_model()
+class User_model extends CI_Model {
+
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getAllUserIDs()
