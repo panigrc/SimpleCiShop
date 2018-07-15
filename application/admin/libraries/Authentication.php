@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Authentication {
 
-	function Authentication($params=NULL) {
+	function __construct($params=NULL) {
 		$obj =& get_instance();
 		$obj->load->helper('url');
 

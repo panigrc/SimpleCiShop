@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Myfckeditor {
 
-	function Myfckeditor($params=NULL)
+	function __construct($params=NULL)
 	{
 		// Do something with $params
 
