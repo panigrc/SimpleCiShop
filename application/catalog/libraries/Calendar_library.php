@@ -3,9 +3,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Calendar_library {
 
-	function Calendar_library($params=NULL)
+	function __construct($params=NULL)
 	{
-
 	}
 
 	function createHTML($input_field, $css_class=NULL, $image_title=NULL)
