@@ -32,7 +32,7 @@ class Catalog extends CI_Controller {
 		$products = $this->Product_model->getAllProducts();
 		foreach($products as $product => $value) {
 			$products[$product] = array_merge($products[$product], $this->Product_model->getProductText($products[$product]['productID']));
-			$products[$product]['category_text'] = $this->Category_model->getCategoryNames($this->Product_model->getProductCategories($products[$product]['productID']));
+			$products[$product]['category_text'] = $this->Category_model->get_category_names($this->Product_model->getProductCategories($products[$product]['productID']));
 		}
 		$data['contents'] = $this->load->view('catalog/list_tpl', array('products' => $products), TRUE);
 		$this->load->view('container_tpl',$data);
@@ -45,7 +45,7 @@ class Catalog extends CI_Controller {
 		$form_data['nicename'] = "";
 		$form_data['published'] = "";
 		$form_data['action'] = $this->uri->segment(3, "add_product");
-		$form_data['categories_arr'] = $this->Category_model->getAllCategoryIDs_rec();
+		$form_data['categories_arr'] = $this->Category_model->get_all_category_ids_recursive();
 		$form_data['product_categories'] = array();
 		$form_data['all_meta'] = $this->Meta_model->getAllMeta();
 		$form_data['product_meta'] = array();

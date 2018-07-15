@@ -11,18 +11,18 @@ foreach($categories_arr as $category => $sub_categories) {
                         <h2>
 <?php 
     if(isset($parent_categoryID)) {
-        echo $this->Category_model->getCategoryName($parent_categoryID)."&nbsp;>>&nbsp;";
-        if($this->Category_model->categoryHasInfo($parent_categoryID)>0) { ?>
+        echo $this->Category_model->get_category_name($parent_categoryID)."&nbsp;>>&nbsp;";
+        if($this->Category_model->category_has_info($parent_categoryID)>0) { ?>
                             <a href="<?php echo site_url('category/view_category/'.$lang.'/'.$parent_categoryID) ?>"><img src="<?php echo base_url(); ?>/theme/images/about.png" alt="<?php echo $this->lang->line('main_information'); ?>" title="<?php echo $this->lang->line('main_information'); ?>" /></a>
 <?php
         }
     }
-    echo $this->Category_model->getCategoryName($categoryID);
+    echo $this->Category_model->get_category_name($categoryID);
 ?>
                         </h2>
 					</div>
                     <div class="item">
-<?php $category_text = $this->Category_model->getCategoryText($categoryID); ?>
+<?php $category_text = $this->Category_model->get_category_text($categoryID); ?>
                     <?php echo $category_text['category_description_'.$lang]; ?>
                     </div>
                     <div style="clear:both;"></div>

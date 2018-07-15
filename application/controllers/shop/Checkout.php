@@ -36,7 +36,7 @@ class Checkout extends CI_Controller {
 
 		$data['contents'] = $this->load->view('contents/checkout_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
@@ -183,7 +183,7 @@ class Checkout extends CI_Controller {
 
 		$data['contents'] = $this->load->view('contents/'.$lang.'/thankyou_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';

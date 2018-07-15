@@ -28,14 +28,14 @@ class Catalog extends CI_Controller {
 
 		$nicename = $this->uri->segment(4,"");
 		$categoryID = 0;
-		if($nicename != "") $categoryID = $this->Category_model->getCategoryID($nicename);
+		if($nicename != "") $categoryID = $this->Category_model->get_category_id($nicename);
 
 		$content_data = array();
 
 		$content_data['lang'] = $lang;
 		$content_data['products'] = $this->_getProductData($categoryID);
 		$content_data['pagination'] = $this->_pagination($categoryID);
-		$content_data['category_text'] = $this->Category_model->getCategoryText($categoryID);
+		$content_data['category_text'] = $this->Category_model->get_category_text($categoryID);
 
 		$data['contents'] = '';
 
@@ -43,7 +43,7 @@ class Catalog extends CI_Controller {
 
 		$data['contents'] .= $this->load->view('contents/catalog_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), 'parent' => ($this->Category_model->getCategoryParents($categoryID)), 'childs' => ($this->Category_model->getCategoryChilds($categoryID)) , 'current' => $categoryID), TRUE);
+		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), 'parent' => ($this->Category_model->get_category_parents($categoryID)), 'childs' => ($this->Category_model->get_category_children($categoryID)) , 'current' => $categoryID), TRUE);
 		//$data['rblock'] = $this->load->view('blocks/product_type_num_tpl', array('countryID' => NULL), TRUE);
 		//$data['tblock'] = $this->load->view('blocks/search_tpl', array('countryID' => NULL), TRUE);
 
@@ -52,7 +52,7 @@ class Catalog extends CI_Controller {
 		//$data['categoryID'] = $this->Search_model->getSearchData();
 		//$data['categoryID'] = $searchData['categoryID'];
 		$data['categoryID'] = $categoryID;
-		$data['title'] = $this->Category_model->getCategoryName($categoryID);
+		$data['title'] = $this->Category_model->get_category_name($categoryID);
 
 		$this->load->view('container', $data);
 	}
@@ -69,7 +69,7 @@ class Catalog extends CI_Controller {
 
 		foreach($products as $product => $value) {
 			$products[$product] += $this->Product_model->getProductText($products[$product]['productID']);
-			$products[$product] += $this->Category_model->getCategoryText($products[$product]['categoryID']);
+			$products[$product] += $this->Category_model->get_category_text($products[$product]['categoryID']);
 			$products[$product] += $this->Product_model->getProductMainImage($products[$product]['productID']);
 		}
 
@@ -85,7 +85,7 @@ class Catalog extends CI_Controller {
 
 		$this->load->library('pagination');
 
-		$config['base_url'] = site_url('catalog/'.$method.'/'.$lang.'/'.$this->Category_model->getCategoryNicename($categoryID).'/');
+		$config['base_url'] = site_url('catalog/'.$method.'/'.$lang.'/'.$this->Category_model->get_category_nicename($categoryID).'/');
 		$config['total_rows'] = count($this->Search_model->searchProductsByCategoryID($categoryID));
 		$config['per_page'] = $products_per_page;
 		$config['uri_segment'] = 5;

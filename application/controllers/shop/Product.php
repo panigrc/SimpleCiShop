@@ -32,10 +32,10 @@ class Product extends CI_Controller {
 			$content_data['nicename'] = $productNicename;
 			$content_data['product'] = $this->Product_model->getProductByNicename($content_data['nicename']);
 			$content_data['product'] = $content_data['product'] + $this->Product_model->getProductText($content_data['product']['productID']);
-			//$content_data['product'] = $content_data['product'] + $this->Category_model->getCategoryText($content_data['product']['categoryID']);
+			//$content_data['product'] = $content_data['product'] + $this->Category_model->get_category_text($content_data['product']['categoryID']);
 			$content_data['images_arr'] = $this->Product_model->getProductImage($content_data['product']['productID']);
 			$content_data['meta'] = $this->Product_model->getProductMeta($content_data['product']['productID']);
-			$content_data['product']['category_text'] = $this->Category_model->getCategoryNames($this->Product_model->getProductCategories($content_data['product']['productID']));
+			$content_data['product']['category_text'] = $this->Category_model->get_category_names($this->Product_model->getProductCategories($content_data['product']['productID']));
 			$content_data['product'] += $this->Product_model->getProductMainImage($content_data['product']['productID']);
 
 			$content_data['lang'] = $lang;
@@ -45,7 +45,7 @@ class Product extends CI_Controller {
 			$data['title'] = $content_data['product']['title_'.$lang];
 
 			//$data['rblock'] = $this->load->view('blocks/category_block_tpl', array("categoryID" => $content_data['product']['categoryID']), TRUE);
-			$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+			$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 			//$data['rblock'] = $this->load->view('blocks/product_type_num_tpl', $rblock_data, TRUE);
 			$data['scripts'] = '<script type="text/javascript" src="'. base_url() .'theme/overlib.js"><!-- overLIB (c) Erik Bosrup --></script>';
 		}

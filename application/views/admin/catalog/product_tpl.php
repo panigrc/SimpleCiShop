@@ -9,7 +9,7 @@
         $obj =& get_instance();
         foreach($arr as $item => $key){
 ?>
-    <span style="padding-left:<?php echo $level+5; ?>px;"><label for="category-<?php echo $item;?>"><input type="checkbox" value="<?php echo $item;?>" <?php echo in_array($item, $product_categories) ? " checked='checked'" : ""; ?> name="product_categories[]" id="category-<?php echo $item;?>"/><?php echo $obj->Category_model->getCategoryName($item); ?></label></span><br />
+    <span style="padding-left:<?php echo $level+5; ?>px;"><label for="category-<?php echo $item;?>"><input type="checkbox" value="<?php echo $item;?>" <?php echo in_array($item, $product_categories) ? " checked='checked'" : ""; ?> name="product_categories[]" id="category-<?php echo $item;?>"/><?php echo $obj->Category_model->get_category_name($item); ?></label></span><br />
 <?php
             printOptions($key, $product_categories, $level+1);
         }

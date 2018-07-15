@@ -1,6 +1,6 @@
 <?php
     $product = $this->Search_model->getRandomProduct();
-    $product['category_text'] = $this->Category_model->getCategoryNames($this->Product_model->getProductCategories($product['productID']));
+    $product['category_text'] = $this->Category_model->get_category_names($this->Product_model->getProductCategories($product['productID']));
     $product += $this->Product_model->getProductMainImage($product['productID']);
 ?>
 				<div class="box_top">
