@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Class	Search_model
+ */
 class Search_model extends CI_Model {
 
 	function __construct()
@@ -6,16 +10,32 @@ class Search_model extends CI_Model {
 		parent::__construct();
 	}
 
-	function getCategories_rec($arr, $level=0) {
+	/**
+	 * @param	$arr
+	 * @param	int	$level
+	 * @return	null|string
+	 */
+	function get_categories_recursive($arr, $level = 0) {
 		$temp_ids = NULL;
 		foreach($arr as $item => $key){
-			$temp_ids .= $this->getCategories_rec($key, $level+1);
+			$temp_ids .= $this->get_categories_recursive($key, $level+1);
 			$temp_ids .= $item . ", ";
 		}
+
 		return $temp_ids;
 	}
 
-	function searchProducts($categoryID=NULL, $product_type=NULL, $price_from=NULL, $price_to=NULL, $order_by=NULL, $limit_num=NULL, $limit_from=NULL)
+	/**
+	 * @param	null|int	$categoryID
+	 * @param	null|string	$product_type
+	 * @param	null|int	$price_from
+	 * @param	null|int	$price_to
+	 * @param	null|int	$order_by
+	 * @param	null|int	$limit_num
+	 * @param	null|int	$limit_from
+	 * @return	mixed
+	 */
+	function search_products($categoryID = NULL, $product_type = NULL, $price_from = NULL, $price_to = NULL, $order_by = NULL, $limit_num = NULL, $limit_from = NULL)
 	{
 		$lang = $this->config->item('language');
 		//if( ! empty($categoryID)) $category_childs = $this->Category_model->get_category_children($categoryID);
@@ -33,7 +53,7 @@ class Search_model extends CI_Model {
 				}
 			}
 			$categories .= ") ";*/
-			$category_childs = trim($this->getCategories_rec($category_childs), ", ");
+			$category_childs = trim($this->get_categories_recursive($category_childs), ", ");
 			if( ! empty($category_childs)) $category_childs = ", " . $category_childs;
 			$categories = "(product2category.categoryID IN ($categoryID".$category_childs."))";
 			$this->db->where($categories);
@@ -66,10 +86,17 @@ class Search_model extends CI_Model {
 
 		$query = $this->db->get();
 		//echo $this->db->last_query();
+
 		return $query->result_array();
 	}
 
-	function searchProductsByCategoryID($categoryID=NULL, $limit_num=NULL, $limit_from=NULL) {
+	/**
+	 * @param	null|int	$categoryID
+	 * @param	null|int	$limit_num
+	 * @param	null|int	$limit_from
+	 * @return	mixed
+	 */
+	function search_products_by_category_id($categoryID = NULL, $limit_num = NULL, $limit_from = NULL) {
 		$lang = $this->config->item('language');
 		//if( ! empty($categoryID)) $category_childs = $this->Category_model->get_category_children($categoryID);
 		if( ! empty($categoryID)) $category_childs = $this->Category_model->get_all_category_ids_recursive($categoryID);
@@ -86,7 +113,7 @@ class Search_model extends CI_Model {
 				}
 			}
 			$categories .= ") ";*/
-			$category_childs = trim($this->getCategories_rec($category_childs), ", ");
+			$category_childs = trim($this->get_categories_recursive($category_childs), ", ");
 			if( ! empty($category_childs)) $category_childs = ", " . $category_childs;
 			$categories = "(product2category.categoryID IN ($categoryID".$category_childs."))";
 			$this->db->where($categories);
@@ -104,10 +131,18 @@ class Search_model extends CI_Model {
 
 		$query = $this->db->get();
 		//echo $this->db->last_query();
+
 		return $query->result_array();
 	}
 
-	function countSearchProducts($categoryID=NULL, $product_type=NULL, $price_from=NULL, $price_to=NULL)
+	/**
+	 * @param	null|int	$categoryID
+	 * @param	null|string	$product_type
+	 * @param	null|int	$price_from
+	 * @param	null|int	$price_to
+	 * @return	mixed
+	 */
+	function count_search_products($categoryID = NULL, $product_type = NULL, $price_from = NULL, $price_to = NULL)
 	{
 		$lang = $this->config->item('language');
 		//if( ! empty($categoryID)) $category_childs = $this->Category_model->get_category_children($categoryID);
@@ -125,7 +160,7 @@ class Search_model extends CI_Model {
 				}
 			}
 			$categories .= ") ";*/
-			$category_childs = trim($this->getCategories_rec($category_childs), ", ");
+			$category_childs = trim($this->get_categories_recursive($category_childs), ", ");
 			if( ! empty($category_childs)) $category_childs = ", " . $category_childs;
 			$categories = "(product2category.categoryID IN ($categoryID".$category_childs."))";
 			$this->db->where($categories);
@@ -140,10 +175,18 @@ class Search_model extends CI_Model {
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		$result = $query->row_array();
+
 		return $result['count'];
 	}
 
-	function getRandomProduct($categoryID=NULL, $product_type=NULL, $price_from=NULL, $price_to=NULL)
+	/**
+	 * @param	null|int	$categoryID
+	 * @param	null|string	$product_type
+	 * @param	null|int	$price_from
+	 * @param	null|int	$price_to
+	 * @return	mixed
+	 */
+	function get_random_product($categoryID = NULL, $product_type = NULL, $price_from = NULL, $price_to = NULL)
 	{
 		$lang = $this->config->item('language');
 		//if( ! empty($categoryID)) $category_childs = $this->Category_model->get_category_children($categoryID);
@@ -161,7 +204,7 @@ class Search_model extends CI_Model {
 				}
 			}
 			$categories .= ") ";*/
-			$category_childs = trim($this->getCategories_rec($category_childs), ", ");
+			$category_childs = trim($this->get_categories_recursive($category_childs), ", ");
 			if( ! empty($category_childs)) $category_childs = ", " . $category_childs;
 			$categories = "(product.categoryID IN ($categoryID".$category_childs."))";
 			$this->db->where($categories);
@@ -177,10 +220,15 @@ class Search_model extends CI_Model {
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		$result = $query->row_array();
+
 		return $result;
 	}
 
-	function getSearchData2()
+	/**
+	 * @return	mixed
+	 * @todo	Remove in future versions
+	 */
+	function get_search_data2()
 	{
 		$searchString = $this->uri->segment(4);
 		if(empty($searchString)) {
@@ -205,7 +253,11 @@ class Search_model extends CI_Model {
 		return $data;
 	}
 
-	function getCategoriesWithProducts_rec($parent=0)
+	/**
+	 * @param	int	$parent
+	 * @return	array
+	 */
+	function get_categories_with_products_recursive($parent = 0)
 	{
 		// wich categories exist from products recursive
 		$this->db->select('*');
@@ -226,6 +278,7 @@ class Search_model extends CI_Model {
 
 			if( ! empty($row2['categoryID']) OR !empty($temp_arr)) $ids[$row['categoryID']] = $temp_arr;
 		}
+
 		return $ids;
 	}
 }

@@ -65,7 +65,7 @@ class Catalog extends CI_Controller {
 		$current_page = $this->uri->segment(5);
 		$current_page = empty($current_page) === FALSE ? $current_page : 0;
 
-		$products = $this->Search_model->searchProductsByCategoryID($categoryID, $products_per_page, $current_page);
+		$products = $this->Search_model->search_products_by_category_id($categoryID, $products_per_page, $current_page);
 
 		foreach($products as $product => $value) {
 			$products[$product] += $this->Product_model->get_product_text($products[$product]['productID']);
@@ -86,7 +86,7 @@ class Catalog extends CI_Controller {
 		$this->load->library('pagination');
 
 		$config['base_url'] = site_url('catalog/'.$method.'/'.$lang.'/'.$this->Category_model->get_category_nicename($categoryID).'/');
-		$config['total_rows'] = count($this->Search_model->searchProductsByCategoryID($categoryID));
+		$config['total_rows'] = count($this->Search_model->search_products_by_category_id($categoryID));
 		$config['per_page'] = $products_per_page;
 		$config['uri_segment'] = 5;
 		$config['num_links'] = 50;
