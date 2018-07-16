@@ -24,7 +24,7 @@ class Order extends CI_Controller {
 	function view_order($orderID, $userID) {
 
 
-		$user = $this->User_model->getUser($userID);
+		$user = $this->User_model->get_user($userID);
 		$order = $this->Order_model->get_order($orderID);
 		$products = $this->Order_model->get_order_products($orderID);
 		foreach($products as $product => $value) {
@@ -88,12 +88,12 @@ class Order extends CI_Controller {
 	}
 
 	function ajaxget_user($userID) {
-		$data = $this->User_model->getUser($userID);
+		$data = $this->User_model->get_user($userID);
 		$this->load->view('order/user_tpl', $data);
 	}
 
 	function ajaxget_products($orderID, $userID) {
-		$user = $this->User_model->getUser($userID);
+		$user = $this->User_model->get_user($userID);
 		$products = $this->Order_model->get_order_products($orderID);
 
 		foreach($products as $product => $value) {

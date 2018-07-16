@@ -26,7 +26,7 @@ class User extends CI_Controller {
 
 		$form_data['action'] = $this->uri->segment(3, "add_user");
 		if($form_data['action'] === "edit_user") {
-			$form_data = array_merge($form_data, $this->User_model->getUser($userID));
+			$form_data = array_merge($form_data, $this->User_model->get_user($userID));
 			$form_data['action'] = 'set_user';
 		}
 		$data['contents'] = $this->load->view('user/user_tpl', $form_data, TRUE);
@@ -44,7 +44,7 @@ class User extends CI_Controller {
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Λίστα Χρηστών";
 
-		$list_data['users'] = $this->User_model->getAllUserIDs();
+		$list_data['users'] = $this->User_model->get_all_user_ids();
 		$data['contents'] = $this->load->view('user/list_tpl', $list_data, TRUE);
 
 
@@ -52,18 +52,18 @@ class User extends CI_Controller {
 	}
 
 	function set_user() {
-		$this->User_model->setUser();
+		$this->User_model->set_user();
 		redirect('user');
 	}
 
 	function add_user() {
-		$this->User_model->addUser();
+		$this->User_model->add_user();
 		redirect('user');
 	}
 
 	function delete_user()
 	{
-		$this->User_model->deleteUser($this->uri->segment(3));
+		$this->User_model->delete_user($this->uri->segment(3));
 		redirect('user');
 	}
 }

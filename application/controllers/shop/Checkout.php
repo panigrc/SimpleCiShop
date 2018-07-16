@@ -65,7 +65,7 @@ class Checkout extends CI_Controller {
 	function get_user($lang=NULL)
 	{
 
-		$user = $this->User_model->searchUser($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
+		$user = $this->User_model->search_user($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
 
 		echo "<script type='text/javascript'>";
 		if($user) {
@@ -124,14 +124,14 @@ class Checkout extends CI_Controller {
 		$products = $this->cart_library->get_cart();
 
 		if($this->input->post('userID')) {
-			$this->User_model->setUser($this->input->post('userID'));
+			$this->User_model->set_user($this->input->post('userID'));
 			$orderID = $this->Order_model->add_order($this->input->post('userID'));
 			$this->Order_model->add_order_products($orderID, $products);
 
 		}
 		else {
 
-			$userID = $this->User_model->addUser();
+			$userID = $this->User_model->add_user();
 			$orderID = $this->Order_model->add_order($userID);
 			$this->Order_model->add_order_products($orderID, $products);
 
