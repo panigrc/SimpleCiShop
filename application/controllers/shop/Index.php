@@ -1,11 +1,9 @@
 <?php
 
 /**
- * Class Home
- *
- * @todo	rename this controller to index
+ * Class	Index
  */
-class Home extends CI_Controller {
+class Index extends CI_Controller {
 
 	function __construct()
 	{
@@ -21,14 +19,14 @@ class Home extends CI_Controller {
 		$this->db->query("SET NAMES 'utf8'");
 	}
 
-	function index($lang=NULL)
+	function index($lang = NULL)
 	{
-        	redirect('catalog/index/greek');
+		redirect('shop/index/greek');
 	}
 
 	function guide($lang)
 	{
-		if($lang!="greek") redirect('catalog/index/greek');
+		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
@@ -51,7 +49,7 @@ class Home extends CI_Controller {
 
 	function transactions($lang)
 	{
-		if($lang!="greek") redirect('catalog/index/greek');
+		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
@@ -74,7 +72,7 @@ class Home extends CI_Controller {
 
 	function secure($lang)
 	{
-		if($lang!="greek") redirect('catalog/index/greek');
+		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');

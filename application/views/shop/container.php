@@ -1,5 +1,5 @@
 <?php
-    $navigation = array('main_home' => 'home/index', 'main_catalog' => 'catalog/index', 'main_news' => 'news/index', 'main_contact' => 'contact/index');
+    $navigation = array('main_home' => 'home/index', 'main_catalog' => 'shop/index', 'main_news' => 'news/index', 'main_contact' => 'contact/index');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">

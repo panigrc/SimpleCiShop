@@ -23,7 +23,7 @@
 ?>
             <div class="sf_left">
 				<img src="<?php echo base_url(); ?>/theme/images/house.jpg" style="float:right; margin: 0 9px 3px 0;" alt="house - tselis.com" />			
-<?php echo form_open('catalog/'.$this->uri->segment(2).'/'.$lang.'/0'); ?>
+<?php echo form_open('shop/'.$this->uri->segment(2).'/'.$lang.'/0'); ?>
 					<p class="search">
                         <label class="search" for="categoryID"><?php echo $this->lang->line('main_category'); ?>:</label>
                         <select name="categoryID" id="categoryID" class="search">

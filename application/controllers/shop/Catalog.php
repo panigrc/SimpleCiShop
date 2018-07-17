@@ -16,7 +16,7 @@ class Catalog extends CI_Controller {
 
 	function index($lang=NULL)
 	{
-		if($lang!="greek") redirect('catalog/index/greek');
+		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
@@ -85,7 +85,7 @@ class Catalog extends CI_Controller {
 
 		$this->load->library('pagination');
 
-		$config['base_url'] = site_url('catalog/'.$method.'/'.$lang.'/'.$this->Category_model->get_category_nicename($categoryID).'/');
+		$config['base_url'] = site_url('shop/'.$method.'/'.$lang.'/'.$this->Category_model->get_category_nicename($categoryID).'/');
 		$config['total_rows'] = count($this->Search_model->search_products_by_category_id($categoryID));
 		$config['per_page'] = $products_per_page;
 		$config['uri_segment'] = 5;

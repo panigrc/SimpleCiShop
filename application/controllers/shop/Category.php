@@ -16,7 +16,7 @@ class Category extends CI_Controller {
 
 	function index($lang=NULL, $countryID=1)
 	{
-		if($lang!="greek") redirect('catalog/index/greek');
+		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
@@ -38,7 +38,7 @@ class Category extends CI_Controller {
 
 	function view_category($lang=NULL, $categoryID=NULL)
 	{
-		if($lang!="greek") redirect('catalog/index/greek');
+		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
