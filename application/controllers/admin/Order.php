@@ -4,16 +4,6 @@ class Order extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
-		$this->load->helper('form');
-		$this->load->model('Order_model');
-		$this->load->model('User_model');
-		$this->load->model('Product_model');
-		$this->load->library('ajax');
-		$this->lang->load('main');
-		$this->db->query("SET NAMES 'utf8'");
-		$this->db->query("SET CHARACTER SET utf8");
-		$this->db->query("SET NAMES 'utf8'");
 	}
 
 	function index() {
@@ -32,7 +22,7 @@ class Order extends CI_Controller {
 		}
 
 		$this->config->set_item('language', $user['user_language']);
-		$this->lang->load('main');
+
 		$data['lang'] = $user['user_language'];
 
 		/*$form_data = array();

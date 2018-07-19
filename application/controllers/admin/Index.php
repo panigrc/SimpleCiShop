@@ -8,12 +8,6 @@ class Index extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
-		$this->load->helper('form');
-		$this->lang->load('main');
-		$this->db->query("SET NAMES 'utf8'");
-		$this->db->query("SET CHARACTER SET utf8");
-		$this->db->query("SET NAMES 'utf8'");
 	}
 
 	function index()

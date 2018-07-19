@@ -329,9 +329,6 @@ class Product_model extends CI_Model {
 	{
 		$main_image = $this->get_product_main_image($productID);
 
-		$this->load->library('upload');
-		$this->load->library('image_lib');
-
 		for($i=1; $i<6; $i++) {
 			if( ! empty($_FILES['image_file'.$i]['name']) && $this->upload->do_upload('image_file'.$i)) {
 				$upload_data = $this->upload->data();

@@ -58,7 +58,19 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'myfckeditor', 'session', 'authentication', 'cart_library', 'ajax');
+$autoload['libraries'] = array(
+	'database',
+	'email',
+	'image_lib',
+	'pagination',
+	'session',
+	'upload',
+	'ajax',
+	'authentication',
+	'calendar_library',
+	'cart_library',
+	'myfckeditor',
+);
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +101,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array();
+$autoload['helper'] = array('form', 'url');
 
 /*
 | -------------------------------------------------------------------
@@ -117,7 +129,7 @@ $autoload['config'] = array('upload');
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array();
+$autoload['language'] = array('main');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +144,13 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = array(
+	'Category_model',
+	'Coupon_model',
+	'Meta_model',
+	'News_model',
+	'Order_model',
+	'Product_model',
+	'Search_model',
+	'User_model',
+);

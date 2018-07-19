@@ -5,14 +5,6 @@ class Contact extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
-		$this->load->helper('form');
-		$this->load->model('Product_model');
-		$this->load->model('Category_model');
-		$this->load->model('Search_model');
-		$this->db->query("SET NAMES 'utf8'");
-		$this->db->query("SET CHARACTER SET utf8");
-		$this->db->query("SET NAMES 'utf8'");
 	}
 
 	function index($lang=NULL, $status=NULL)
@@ -20,7 +12,7 @@ class Contact extends CI_Controller {
 		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
-		$this->lang->load('main');
+
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_contact';
@@ -30,17 +22,14 @@ class Contact extends CI_Controller {
 		$content_data['pagename'] = 'main_contact';
 		$content_data['lang'] = $lang;
 		$content_data['status'] = $status;
-		$data['contents'] = $this->load->view('contents/contact_tpl', $content_data, TRUE);
+		$data['contents'] = $this->load->view('shop/contents/contact_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
-		$this->load->view('container', $data);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$this->load->view('shop/container', $data);
 	}
 	function submit($lang=NULL)
 	{
 		$this->config->set_item('language', $lang);
-		$this->lang->load('main');
-
-		$this->load->library('email');
 
 		$this->email->from('info@cool-clean-quiet.com', 'Επικοινωνία');
 		$this->email->to('info@cool-clean-quiet.com');

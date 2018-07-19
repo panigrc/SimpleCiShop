@@ -5,18 +5,6 @@ class Checkout extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
-		$this->load->helper('form');
-		$this->load->model('User_model');
-		$this->load->model('Product_model');
-		$this->load->model('Search_model');
-		$this->load->model('Order_model');
-		$this->load->model('Category_model');
-		$this->load->model('Coupon_model');
-		$this->load->library('Calendar_library');
-		$this->db->query("SET NAMES 'utf8'");
-		$this->db->query("SET CHARACTER SET utf8");
-		$this->db->query("SET NAMES 'utf8'");
 	}
 
 	function index($lang=NULL)
@@ -24,7 +12,7 @@ class Checkout extends CI_Controller {
 		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
-		$this->lang->load('main');
+
 
 		$cart = $this->cart_library->get_cart();
 
@@ -34,9 +22,9 @@ class Checkout extends CI_Controller {
 		$content_data['cart_costs'] = $this->_getPriceSum($cart, $lang);
 		$content_data['affiliate'] = $this->_getAffiliate();
 
-		$data['contents'] = $this->load->view('contents/checkout_tpl', $content_data, TRUE);
+		$data['contents'] = $this->load->view('shop/contents/checkout_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
@@ -59,7 +47,7 @@ class Checkout extends CI_Controller {
 					$("price").value = (cart_costs + sum);
 					}
 					</script>';
-		$this->load->view('container', $data);
+		$this->load->view('shop/container', $data);
 	}
 
 	function get_user($lang=NULL)
@@ -118,7 +106,7 @@ class Checkout extends CI_Controller {
 	{
 		if($lang!="greek") redirect('shop/index/greek');
 		$this->config->set_item('language', $lang);
-		$this->lang->load('main');
+
 		$orderID = NULL;
 
 		$products = $this->cart_library->get_cart();
@@ -173,7 +161,7 @@ class Checkout extends CI_Controller {
 		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
-		$this->lang->load('main');
+
 
 		$cart = $this->cart_library->get_cart();
 
@@ -181,16 +169,16 @@ class Checkout extends CI_Controller {
 
 		$content_data['lang'] = $lang;
 
-		$data['contents'] = $this->load->view('contents/'.$lang.'/thankyou_tpl', $content_data, TRUE);
+		$data['contents'] = $this->load->view('shop/contents/'.$lang.'/thankyou_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
 		$data['lang'] = $lang;
 
 		$data['scripts'] = '';
-		$this->load->view('container', $data);
+		$this->load->view('shop/container', $data);
 	}
 
 

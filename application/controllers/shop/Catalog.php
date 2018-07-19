@@ -4,14 +4,6 @@ class Catalog extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
-		$this->load->helper('form');
-		$this->load->model('Product_model');
-		$this->load->model('Category_model');
-		$this->load->model('Search_model');
-		$this->db->query("SET NAMES 'utf8'");
-		$this->db->query("SET CHARACTER SET utf8");
-		$this->db->query("SET NAMES 'utf8'");
 	}
 
 	function index($lang=NULL)
@@ -19,7 +11,7 @@ class Catalog extends CI_Controller {
 		if($lang!="greek") redirect('shop/index/greek');
 
 		$this->config->set_item('language', $lang);
-		$this->lang->load('main');
+
 
 		$affiliate = $this->uri->segment(6,"");
 		if($affiliate) $this->_setAffiliate($affiliate);
@@ -39,13 +31,13 @@ class Catalog extends CI_Controller {
 
 		$data['contents'] = '';
 
-		if($categoryID === 0) $data['contents'] = $this->load->view('contents/'.$lang.'/home_tpl', $content_data, TRUE);
+		if($categoryID === 0) $data['contents'] = $this->load->view('shop/contents/'.$lang.'/home_tpl', $content_data, TRUE);
 
-		$data['contents'] .= $this->load->view('contents/catalog_tpl', $content_data, TRUE);
+		$data['contents'] .= $this->load->view('shop/contents/catalog_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), 'parent' => ($this->Category_model->get_category_parents($categoryID)), 'childs' => ($this->Category_model->get_category_children($categoryID)) , 'current' => $categoryID), TRUE);
-		//$data['rblock'] = $this->load->view('blocks/product_type_num_tpl', array('countryID' => NULL), TRUE);
-		//$data['tblock'] = $this->load->view('blocks/search_tpl', array('countryID' => NULL), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), 'parent' => ($this->Category_model->get_category_parents($categoryID)), 'childs' => ($this->Category_model->get_category_children($categoryID)) , 'current' => $categoryID), TRUE);
+		//$data['rblock'] = $this->load->view('shop/blocks/product_type_num_tpl', array('countryID' => NULL), TRUE);
+		//$data['tblock'] = $this->load->view('shop/blocks/search_tpl', array('countryID' => NULL), TRUE);
 
 		$data['pagename'] = 'main_catalog';
 		$data['lang'] = $lang;
@@ -54,7 +46,7 @@ class Catalog extends CI_Controller {
 		$data['categoryID'] = $categoryID;
 		$data['title'] = $this->Category_model->get_category_name($categoryID);
 
-		$this->load->view('container', $data);
+		$this->load->view('shop/container', $data);
 	}
 
 	function _getProductData($categoryID, $products_per_page=6)
@@ -82,8 +74,6 @@ class Catalog extends CI_Controller {
 	{
 		$lang = $this->config->item('language');
 		//extract($this->Search_model->getSearchData());
-
-		$this->load->library('pagination');
 
 		$config['base_url'] = site_url('shop/'.$method.'/'.$lang.'/'.$this->Category_model->get_category_nicename($categoryID).'/');
 		$config['total_rows'] = count($this->Search_model->search_products_by_category_id($categoryID));

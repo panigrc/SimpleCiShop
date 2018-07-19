@@ -4,11 +4,6 @@ class Cart extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
-		$this->load->model('Product_model');
-		$this->db->query("SET NAMES 'utf8'");
-		$this->db->query("SET CHARACTER SET utf8");
-		$this->db->query("SET NAMES 'utf8'");
 	}
 
 	function index()
@@ -37,7 +32,7 @@ class Cart extends CI_Controller {
 	{
 
 		$this->config->set_item('language', $lang);
-		$this->lang->load('main');
+
 
 		// fortonei ta periexomena tou cart
 		$cart = $this->cart_library->get_cart();
@@ -50,7 +45,7 @@ class Cart extends CI_Controller {
 		}
 
 
-		$this->load->view('cart/cart_items_tpl', array('cart' => $products, 'lang' => $lang));
+		$this->load->view('shop/cart/cart_items_tpl', array('cart' => $products, 'lang' => $lang));
 
 
 	}
