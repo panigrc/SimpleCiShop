@@ -1,6 +1,8 @@
 SimpleCiShop
 ============
 
+__Currently under development in the [CodeIgniter-3.1.9-dev](../../tree/CodeIgniter-3.1.9-dev) branch.__
+
 The SimpleCiShop is an ecommerce web application based on the famous CodeIgniter framework.
 
 It is build with CodeIgniter version 1.5.3 back at 2006. Since then few changes happened.
