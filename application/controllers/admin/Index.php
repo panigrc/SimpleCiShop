@@ -1,11 +1,9 @@
 <?php
 
 /**
- * Class Login
- *
- * @todo	rename this controller to index
+ * Class Index
  */
-class Login extends CI_Controller {
+class Index extends CI_Controller {
 
 	function __construct()
 	{
