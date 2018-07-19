@@ -1,6 +1,10 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Class	Authentication
+ * @todo	implement ion_auth2 as Authentication Library
+ */
 class Authentication {
 
 	function __construct($params=NULL) {
@@ -10,7 +14,7 @@ class Authentication {
 		$logged_in = $obj->session->userdata('logged_in');
 		if($logged_in === 1) { }
 		elseif($obj->uri->segment(1,0) != "login") {
-			redirect('login');
+			//redirect('login');
 		}
 	}
 
