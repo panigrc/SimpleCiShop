@@ -24,7 +24,7 @@ class Checkout extends CI_Controller {
 
 		$data['contents'] = $this->load->view('shop/contents/checkout_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
@@ -53,7 +53,7 @@ class Checkout extends CI_Controller {
 	function get_user($lang=NULL)
 	{
 
-		$user = $this->User_model->search_user($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
+		$user = $this->user_model->search_user($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
 
 		echo "<script type='text/javascript'>";
 		if($user) {
@@ -87,7 +87,7 @@ class Checkout extends CI_Controller {
 	{
 		// loads the given coupon if exists
 
-		$coupon = $this->Coupon_model->get_coupon($this->input->post('coupon'));
+		$coupon = $this->coupon_model->get_coupon($this->input->post('coupon'));
 
 		if(count($coupon)>0) {
 
@@ -112,16 +112,16 @@ class Checkout extends CI_Controller {
 		$products = $this->cart_library->get_cart();
 
 		if($this->input->post('userID')) {
-			$this->User_model->set_user($this->input->post('userID'));
-			$orderID = $this->Order_model->add_order($this->input->post('userID'));
-			$this->Order_model->add_order_products($orderID, $products);
+			$this->user_model->set_user($this->input->post('userID'));
+			$orderID = $this->order_model->add_order($this->input->post('userID'));
+			$this->order_model->add_order_products($orderID, $products);
 
 		}
 		else {
 
-			$userID = $this->User_model->add_user();
-			$orderID = $this->Order_model->add_order($userID);
-			$this->Order_model->add_order_products($orderID, $products);
+			$userID = $this->user_model->add_user();
+			$orderID = $this->order_model->add_order($userID);
+			$this->order_model->add_order_products($orderID, $products);
 
 		}
 
@@ -171,7 +171,7 @@ class Checkout extends CI_Controller {
 
 		$data['contents'] = $this->load->view('shop/contents/'.$lang.'/thankyou_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
@@ -188,8 +188,8 @@ class Checkout extends CI_Controller {
 		$products = array();
 		$sum=0;
 		foreach($cart as $product => $value) {
-			$products[$product] = $this->Product_model->get_product($product);
-			$products[$product] += $this->Product_model->get_product_text($product);
+			$products[$product] = $this->product_model->get_product($product);
+			$products[$product] += $this->product_model->get_product_text($product);
 			$products[$product]['quantity'] = $value;
 			for($i=0;$i<$products[$product]['quantity'];$i++) {
 				$sum += $products[$product]['price_'.$lang];

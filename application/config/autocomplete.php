@@ -88,14 +88,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  load the model with Capital letter $this->load->model('People') ;
  *  $this->People-> will show all the methods in the People model
  *
- * @property Category_model $Category_model
- * @property Coupon_model $Coupon_model
- * @property Meta_model $Meta_model
- * @property News_model $News_model
- * @property Order_model $Order_model
- * @property Product_model $Product_model
- * @property Search_model $Search_model
- * @property User_model $User_model
+ * @property Ajax $Ajax
+ * @property Authentication $authentication
+ * @property Calendar_library $calendar_library
+ * @property Cart_library $cart_library
+ * @property Fckeditor $fckeditor
+ * @property Myfckeditor $myfckeditor
+ *
+ * @property Category_model $category_model
+ * @property Coupon_model $coupon_model
+ * @property Meta_model $meta_model
+ * @property News_model $news_model
+ * @property Order_model $order_model
+ * @property Product_model $product_model
+ * @property Search_model $search_model
+ * @property User_model $user_model
  *
  */
 class CI_Controller
@@ -178,14 +185,21 @@ class CI_Controller
  *  load the model with Capital letter $this->load->model('People') ;
  *  $this->People-> will show all the methods in the People model
  *
- * @property Category_model $Category_model
- * @property Coupon_model $Coupon_model
- * @property Meta_model $Meta_model
- * @property News_model $News_model
- * @property Order_model $Order_model
- * @property Product_model $Product_model
- * @property Search_model $Search_model
- * @property User_model $User_model
+ * @property Ajax $Ajax
+ * @property Authentication $authentication
+ * @property Calendar_library $calendar_library
+ * @property Cart_library $cart_library
+ * @property Fckeditor $fckeditor
+ * @property Myfckeditor $myfckeditor
+ *
+ * @property Category_model $category_model
+ * @property Coupon_model $coupon_model
+ * @property Meta_model $meta_model
+ * @property News_model $news_model
+ * @property Order_model $order_model
+ * @property Product_model $product_model
+ * @property Search_model $search_model
+ * @property User_model $user_model
  *
  */
 class CI_Model

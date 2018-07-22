@@ -1,13 +1,13 @@
 <?php
     if(isset($countryID)) {
-        $categories_arr = ($this->Search_model->getCategoriesWithRealties_rec($countryID));
+        $categories_arr = ($this->search_model->getCategoriesWithRealties_rec($countryID));
     }
     else {
-        $categories_arr = ($this->Search_model->getCategoriesWithRealties_rec());
+        $categories_arr = ($this->search_model->getCategoriesWithRealties_rec());
     }
     //print_r($categories_arr);
     
-    extract($this->Search_model->getSearchData());
+    extract($this->search_model->getSearchData());
     
     $order_by_arr = array('priceasc', 'pricedesc', 'dateasc', 'datedesc');
     
@@ -15,15 +15,15 @@
         $obj =& get_instance();
         foreach($arr as $item => $key){
 ?>
-    <option value="<?php echo $item;?>" <?php echo $item === $categoryID ? "selected" : ""; ?> style="font-weight: <?php echo $level === 0 ? "bold" : "normal"; ?>;"><?php echo str_repeat("-", $level) ." ". $obj->Category_model->get_category_name($item); ?></option>
+    <option value="<?php echo $item;?>" <?php echo $item === $categoryID ? "selected" : ""; ?> style="font-weight: <?php echo $level === 0 ? "bold" : "normal"; ?>;"><?php echo str_repeat("-", $level) ." ". $obj->category_model->get_category_name($item); ?></option>
 <?php
             printOptions($key, $categoryID, $level+1);
         }
     }
 ?>
             <div class="sf_left">
-				<img src="<?php echo base_url(); ?>/theme/images/house.jpg" style="float:right; margin: 0 9px 3px 0;" alt="house - tselis.com" />			
-<?php echo form_open('shop/'.$this->uri->segment(2).'/'.$lang.'/0'); ?>
+				<img src="<?php echo base_url(); ?>/theme/images/house.jpg" style="float:right; margin: 0 9px 3px 0;" />
+<?php echo form_open('shop/catalog/'.$this->uri->segment(2).'/'.$lang.'/0'); ?>
 					<p class="search">
                         <label class="search" for="categoryID"><?php echo $this->lang->line('main_category'); ?>:</label>
                         <select name="categoryID" id="categoryID" class="search">
@@ -37,8 +37,8 @@ printOptions($categories_arr, @$categoryID);
 					<p class="search"><label class="search" for="product_type">
                         <?php echo $this->lang->line('main_product_type'); ?>:</label>
                         <select name="product_type" id="product_type" class="search">
-<?php for($i = 0; $this->Product_model->getProductTypeText($i) != -1; $i++): ?>
-                        <option value="<?php echo $i;?>"<?php echo $i === $product_type ? ' selected="selected"' : ""; ?>><?php echo $this->lang->line($this->Search_model->getProductTypeText($i)); ?></option>
+<?php for($i = 0; $this->product_model->getProductTypeText($i) != -1; $i++): ?>
+                        <option value="<?php echo $i;?>"<?php echo $i === $product_type ? ' selected="selected"' : ""; ?>><?php echo $this->lang->line($this->search_model->getProductTypeText($i)); ?></option>
 <?php endfor; ?>
                         </select>
                     </p>

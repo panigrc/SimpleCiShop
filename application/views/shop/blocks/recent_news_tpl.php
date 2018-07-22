@@ -1,6 +1,6 @@
 <?php
-    $recent_news = $this->News_model->get_recent_news();
-    $recent_news_text = $this->News_model->get_news_text(@$recent_news['newsID']);
+    $recent_news = $this->news_model->get_recent_news();
+    $recent_news_text = $this->news_model->get_news_text(@$recent_news['newsID']);
 ?>
 				<div class="box_top">
 					<h2><?php echo $this->lang->line('main_news'); ?></h2>

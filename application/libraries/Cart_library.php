@@ -4,8 +4,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Cart_library {
 
 	function __construct($params=NULL)
-	{
-	}
+	{}
 
 	function cart_add($productID)
 	{

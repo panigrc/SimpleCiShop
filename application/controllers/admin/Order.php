@@ -14,11 +14,11 @@ class Order extends CI_Controller {
 	function view_order($orderID, $userID) {
 
 
-		$user = $this->User_model->get_user($userID);
-		$order = $this->Order_model->get_order($orderID);
-		$products = $this->Order_model->get_order_products($orderID);
+		$user = $this->user_model->get_user($userID);
+		$order = $this->order_model->get_order($orderID);
+		$products = $this->order_model->get_order_products($orderID);
 		foreach($products as $product => $value) {
-			$products[$product] = array_merge($products[$product], $this->Product_model->get_product_text($products[$product]['productID']));
+			$products[$product] = array_merge($products[$product], $this->product_model->get_product_text($products[$product]['productID']));
 		}
 
 		$this->config->set_item('language', $user['user_language']);
@@ -30,7 +30,7 @@ class Order extends CI_Controller {
 
 		$form_data['action'] = $this->uri->segment(3, "add_order");
 		if($form_data['action'] === "edit_order") {
-			$form_data = array_merge($form_data, $this->Order_model->get_order($orderID));
+			$form_data = array_merge($form_data, $this->order_model->get_order($orderID));
 			$form_data['action'] = 'set_order';
 		}
 		$data['contents'] = $this->load->view('order/print_tpl', $form_data, TRUE);*/
@@ -54,7 +54,7 @@ class Order extends CI_Controller {
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Λίστα Παραγγελιών";
 
-		$list_data['orders'] = $this->Order_model->get_all_order_ids();
+		$list_data['orders'] = $this->order_model->get_all_order_ids();
 		$data['contents'] = $this->load->view('order/list_tpl', $list_data, TRUE);
 
 
@@ -62,37 +62,37 @@ class Order extends CI_Controller {
 	}
 
 	function set_order() {
-		$this->Order_model->set_order();
+		$this->order_model->set_order();
 		redirect('order');
 	}
 
 	function add_order() {
-		$this->Order_model->add_order();
+		$this->order_model->add_order();
 		redirect('order');
 	}
 
 	function delete_order()
 	{
-		$this->Order_model->delete_order($this->uri->segment(3));
+		$this->order_model->delete_order($this->uri->segment(3));
 		redirect('order');
 	}
 
 	function ajaxget_user($userID) {
-		$data = $this->User_model->get_user($userID);
+		$data = $this->user_model->get_user($userID);
 		$this->load->view('order/user_tpl', $data);
 	}
 
 	function ajaxget_products($orderID, $userID) {
-		$user = $this->User_model->get_user($userID);
-		$products = $this->Order_model->get_order_products($orderID);
+		$user = $this->user_model->get_user($userID);
+		$products = $this->order_model->get_order_products($orderID);
 
 		foreach($products as $product => $value) {
-			$products[$product] = array_merge($products[$product], $this->Product_model->get_product_text($products[$product]['productID']));
+			$products[$product] = array_merge($products[$product], $this->product_model->get_product_text($products[$product]['productID']));
 		}
 		$this->load->view('order/products_tpl', array('products' => $products, 'user' => $user));
 	}
 
 	function ajaxset_status($orderID, $status) {
-		echo $this->Order_model->set_order_status($orderID, $status);
+		echo $this->order_model->set_order_status($orderID, $status);
 	}
 }

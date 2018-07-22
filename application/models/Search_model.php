@@ -38,8 +38,8 @@ class Search_model extends CI_Model {
 	function search_products($categoryID = NULL, $product_type = NULL, $price_from = NULL, $price_to = NULL, $order_by = NULL, $limit_num = NULL, $limit_from = NULL)
 	{
 		$lang = $this->config->item('language');
-		//if( ! empty($categoryID)) $category_childs = $this->Category_model->get_category_children($categoryID);
-		if( ! empty($categoryID)) $category_childs = $this->Category_model->get_all_category_ids_recursive($categoryID);
+		//if( ! empty($categoryID)) $category_childs = $this->category_model->get_category_children($categoryID);
+		if( ! empty($categoryID)) $category_childs = $this->category_model->get_all_category_ids_recursive($categoryID);
 
 		$this->db->select('product.productID, product.nicename, product.published, product2category.categoryID');
 		$this->db->from('product, product_text, product2category');
@@ -98,8 +98,8 @@ class Search_model extends CI_Model {
 	 */
 	function search_products_by_category_id($categoryID = NULL, $limit_num = NULL, $limit_from = NULL) {
 		$lang = $this->config->item('language');
-		//if( ! empty($categoryID)) $category_childs = $this->Category_model->get_category_children($categoryID);
-		if( ! empty($categoryID)) $category_childs = $this->Category_model->get_all_category_ids_recursive($categoryID);
+		//if( ! empty($categoryID)) $category_childs = $this->category_model->get_category_children($categoryID);
+		if( ! empty($categoryID)) $category_childs = $this->category_model->get_all_category_ids_recursive($categoryID);
 
 		$this->db->select('product.productID, product.nicename, product.published, product2category.categoryID');
 		$this->db->from('product, product_text, product2category');
@@ -145,8 +145,8 @@ class Search_model extends CI_Model {
 	function count_search_products($categoryID = NULL, $product_type = NULL, $price_from = NULL, $price_to = NULL)
 	{
 		$lang = $this->config->item('language');
-		//if( ! empty($categoryID)) $category_childs = $this->Category_model->get_category_children($categoryID);
-		if( ! empty($categoryID)) $category_childs = $this->Category_model->get_all_category_ids_recursive($categoryID);
+		//if( ! empty($categoryID)) $category_childs = $this->category_model->get_category_children($categoryID);
+		if( ! empty($categoryID)) $category_childs = $this->category_model->get_all_category_ids_recursive($categoryID);
 
 		$this->db->select('count(product.productID) as count');
 		$this->db->from('product, product_text, product2category');
@@ -189,8 +189,8 @@ class Search_model extends CI_Model {
 	function get_random_product($categoryID = NULL, $product_type = NULL, $price_from = NULL, $price_to = NULL)
 	{
 		$lang = $this->config->item('language');
-		//if( ! empty($categoryID)) $category_childs = $this->Category_model->get_category_children($categoryID);
-		if( ! empty($categoryID)) $category_childs = $this->Category_model->get_all_category_ids_recursive($categoryID);
+		//if( ! empty($categoryID)) $category_childs = $this->category_model->get_category_children($categoryID);
+		if( ! empty($categoryID)) $category_childs = $this->category_model->get_all_category_ids_recursive($categoryID);
 
 		$this->db->select('*');
 		$this->db->from('product, product_text');

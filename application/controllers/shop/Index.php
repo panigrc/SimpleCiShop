@@ -32,7 +32,7 @@ class Index extends CI_Controller {
 		$rblock_data = array();
 		$rblock_data['lang'] = $lang;
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
 
 		$this->load->view('shop/container', $data);
 
@@ -55,7 +55,7 @@ class Index extends CI_Controller {
 		$rblock_data = array();
 		$rblock_data['lang'] = $lang;
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
 
 		$this->load->view('shop/container', $data);
 
@@ -78,7 +78,7 @@ class Index extends CI_Controller {
 		$rblock_data = array();
 		$rblock_data['lang'] = $lang;
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0, "lang" => $lang), TRUE);
 
 		$this->load->view('shop/container', $data);
 

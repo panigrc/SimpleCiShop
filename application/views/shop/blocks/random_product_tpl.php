@@ -1,7 +1,7 @@
 <?php
-    $product = $this->Search_model->get_random_product();
-    $product['category_text'] = $this->Category_model->get_category_names($this->Product_model->get_product_categories($product['productID']));
-    $product += $this->Product_model->get_product_main_image($product['productID']);
+    $product = $this->search_model->get_random_product();
+    $product['category_text'] = $this->category_model->get_category_names($this->product_model->get_product_categories($product['productID']));
+    $product += $this->product_model->get_product_main_image($product['productID']);
 ?>
 				<div class="box_top">
 					<h2><?php echo $this->lang->line('main_random_product'); ?></h2>

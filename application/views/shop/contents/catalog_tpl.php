@@ -14,8 +14,8 @@
                             <?php echo $product['category_name_'.$lang]; ?></h3> */?>
                             <a href="<?php echo site_url('/product/index/'.$lang.'/'.$product['nicename']) ?>"><img src="<?php echo empty($product['thumb']) === FALSE ? base_url().$product['thumb'] : base_url().'images/noimage.jpg' ; ?>" class="cart_product" id="product_<?php echo $product['productID']; ?>" alt="<?php echo $product['title_'.$lang]; ?>" /></a>
                             <div class="item_title"><?php echo $product['title_'.$lang]; ?></div>
-                            <?php if($this->Product_model->get_product_meta($product['productID'], "Size")) : ?><div class="item_size"><?php echo $this->Product_model->get_product_meta($product['productID'], "Size"); ?></div><?php endif; ?>
-                            <?php if($this->Product_model->get_product_meta($product['productID'], "Artist")) : ?><div class="item_artist"><?php echo $this->Product_model->get_product_meta($product['productID'], "Artist"); ?></div><?php endif; ?>
+                            <?php if($this->product_model->get_product_meta($product['productID'], "Size")) : ?><div class="item_size"><?php echo $this->product_model->get_product_meta($product['productID'], "Size"); ?></div><?php endif; ?>
+                            <?php if($this->product_model->get_product_meta($product['productID'], "Artist")) : ?><div class="item_artist"><?php echo $this->product_model->get_product_meta($product['productID'], "Artist"); ?></div><?php endif; ?>
                             <?php //echo $this->ajax->dragable_element('product_'.$product['productID'], array('revert'=>'TRUE')); ?>
                             <?php //echo $this->lang->line('main_description'); ?>
                             <?php //echo mb_substr(strip_tags($product['description_'.$lang]), 0, 350, 'UTF-8').'...'; ?>

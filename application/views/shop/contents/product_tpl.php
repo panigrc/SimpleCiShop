@@ -15,14 +15,14 @@
                             <p class="highlight"><span class="label"><?php echo $this->lang->line('main_stock'); ?>:&nbsp;</span> <?php echo $product['stock'] === 0 ? "<span style='color:red;'>".$this->lang->line('main_out_of_stock')."</span>" : $product['stock']; ?></p>
                             <?php if($product['price_old_'.$lang]!=0): ?><p class="highlight"><span class="label"><?php echo $this->lang->line('main_price_old'); ?>:&nbsp;</span> <span style="text-decoration: line-through;"><?php echo number_format($product['price_old_'.$lang], 0, ",", ".").' '.$this->lang->line('main_currency'); ?></span></p><?php endif; ?>
                             <?php if( ! empty($product['price_'.$lang])): ?><p class="highlight"><span class="label"><?php echo $this->lang->line('main_price'); ?>:&nbsp;</span> <?php echo $product['price_'.$lang].' '.$this->lang->line('main_currency'); ?></p><?php endif; ?>
-                            <?php if($this->Product_model->get_product_meta($product['productID'], "Size")) : ?><p class="highlight"><?php echo $this->Product_model->get_product_meta($product['productID'], "Size"); ?></p><?php endif; ?>
-                            <?php if($this->Product_model->get_product_meta($product['productID'], "Artist")) : ?><p class="highlight"><?php echo $this->Product_model->get_product_meta($product['productID'], "Artist"); ?></p><?php endif; ?>
+                            <?php if($this->product_model->get_product_meta($product['productID'], "Size")) : ?><p class="highlight"><?php echo $this->product_model->get_product_meta($product['productID'], "Size"); ?></p><?php endif; ?>
+                            <?php if($this->product_model->get_product_meta($product['productID'], "Artist")) : ?><p class="highlight"><?php echo $this->product_model->get_product_meta($product['productID'], "Artist"); ?></p><?php endif; ?>
                         </div>
                         <p>
                             <?php echo $this->lang->line('main_cart_add'); ?> <a href="#" onclick="javascript:<?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('cart/cart_add/'.$lang), 'hoverclass' => 'cart-active', 'loading' => "Element.show('indicator')", 'complete' => "Element.hide('indicator')", 'method' => 'post', 'with' => "'id="."product".$product['productID']."_".$product['productID']."'")); ?>; return FALSE;"><span class="cart_put"></span></a>
                         </p>
                         
-                        <?php if($this->Product_model->get_product_meta($product['productID'], "Τύπος")) echo $this->Product_model->get_product_meta($product['productID'], "Τύπος"); ?>
+                        <?php if($this->product_model->get_product_meta($product['productID'], "Τύπος")) echo $this->product_model->get_product_meta($product['productID'], "Τύπος"); ?>
                         <div class="product">
 <?php
     $images="";

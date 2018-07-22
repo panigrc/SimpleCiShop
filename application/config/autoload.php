@@ -145,12 +145,12 @@ $autoload['language'] = array('main');
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array(
-	'Category_model',
-	'Coupon_model',
-	'Meta_model',
-	'News_model',
-	'Order_model',
-	'Product_model',
-	'Search_model',
-	'User_model',
+	'category_model',
+	'coupon_model',
+	'meta_model',
+	'news_model',
+	'order_model',
+	'product_model',
+	'search_model',
+	'user_model',
 );

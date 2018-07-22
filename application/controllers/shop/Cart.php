@@ -7,12 +7,7 @@ class Cart extends CI_Controller {
 	}
 
 	function index()
-	{
-
-		// fortonei ta periexomena olou tou cart (den xreiazetai tora)
-
-
-	}
+	{}
 
 	function cart_add($lang)
 	{
@@ -38,9 +33,9 @@ class Cart extends CI_Controller {
 		$cart = $this->cart_library->get_cart();
 		$products = array();
 		foreach($cart as $product => $value) {
-			$products[$product] = $this->Product_model->get_product($product);
-			$products[$product] += $this->Product_model->get_product_text($product);
-			$products[$product] += $this->Product_model->get_product_main_image($product);
+			$products[$product] = $this->product_model->get_product($product);
+			$products[$product] += $this->product_model->get_product_text($product);
+			$products[$product] += $this->product_model->get_product_main_image($product);
 			$products[$product]['quantity'] = $value;
 		}
 

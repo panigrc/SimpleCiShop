@@ -24,7 +24,7 @@ class Contact extends CI_Controller {
 		$content_data['status'] = $status;
 		$data['contents'] = $this->load->view('shop/contents/contact_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
 		$this->load->view('shop/container', $data);
 	}
 	function submit($lang=NULL)

@@ -16,18 +16,18 @@ class Catalog extends CI_Controller {
 		$affiliate = $this->uri->segment(6,"");
 		if($affiliate) $this->_setAffiliate($affiliate);
 
-		//$searchData = $this->Search_model->getSearchData();
+		//$searchData = $this->search_model->getSearchData();
 
 		$nicename = $this->uri->segment(4,"");
 		$categoryID = 0;
-		if($nicename != "") $categoryID = $this->Category_model->get_category_id($nicename);
+		if($nicename != "") $categoryID = $this->category_model->get_category_id($nicename);
 
 		$content_data = array();
 
 		$content_data['lang'] = $lang;
 		$content_data['products'] = $this->_getProductData($categoryID);
 		$content_data['pagination'] = $this->_pagination($categoryID);
-		$content_data['category_text'] = $this->Category_model->get_category_text($categoryID);
+		$content_data['category_text'] = $this->category_model->get_category_text($categoryID);
 
 		$data['contents'] = '';
 
@@ -35,34 +35,34 @@ class Catalog extends CI_Controller {
 
 		$data['contents'] .= $this->load->view('shop/contents/catalog_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->get_all_category_ids_recursive()), 'parent' => ($this->Category_model->get_category_parents($categoryID)), 'childs' => ($this->Category_model->get_category_children($categoryID)) , 'current' => $categoryID), TRUE);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), 'parent' => ($this->category_model->get_category_parents($categoryID)), 'childs' => ($this->category_model->get_category_children($categoryID)) , 'current' => $categoryID), TRUE);
 		//$data['rblock'] = $this->load->view('shop/blocks/product_type_num_tpl', array('countryID' => NULL), TRUE);
 		//$data['tblock'] = $this->load->view('shop/blocks/search_tpl', array('countryID' => NULL), TRUE);
 
 		$data['pagename'] = 'main_catalog';
 		$data['lang'] = $lang;
-		//$data['categoryID'] = $this->Search_model->getSearchData();
+		//$data['categoryID'] = $this->search_model->getSearchData();
 		//$data['categoryID'] = $searchData['categoryID'];
 		$data['categoryID'] = $categoryID;
-		$data['title'] = $this->Category_model->get_category_name($categoryID);
+		$data['title'] = $this->category_model->get_category_name($categoryID);
 
 		$this->load->view('shop/container', $data);
 	}
 
 	function _getProductData($categoryID, $products_per_page=6)
 	{
-		//extract($this->Search_model->getSearchData());
+		//extract($this->search_model->getSearchData());
 
 		//$current_page = empty($this->uri->segment(5)) === FALSE ? $this->uri->segment(5) : 0;
 		$current_page = $this->uri->segment(5);
 		$current_page = empty($current_page) === FALSE ? $current_page : 0;
 
-		$products = $this->Search_model->search_products_by_category_id($categoryID, $products_per_page, $current_page);
+		$products = $this->search_model->search_products_by_category_id($categoryID, $products_per_page, $current_page);
 
 		foreach($products as $product => $value) {
-			$products[$product] += $this->Product_model->get_product_text($products[$product]['productID']);
-			$products[$product] += $this->Category_model->get_category_text($products[$product]['categoryID']);
-			$products[$product] += $this->Product_model->get_product_main_image($products[$product]['productID']);
+			$products[$product] += $this->product_model->get_product_text($products[$product]['productID']);
+			$products[$product] += $this->category_model->get_category_text($products[$product]['categoryID']);
+			$products[$product] += $this->product_model->get_product_main_image($products[$product]['productID']);
 		}
 
 		//print_r($products);
@@ -73,10 +73,10 @@ class Catalog extends CI_Controller {
 	function _pagination($categoryID, $method='index', $products_per_page=6)
 	{
 		$lang = $this->config->item('language');
-		//extract($this->Search_model->getSearchData());
+		//extract($this->search_model->getSearchData());
 
-		$config['base_url'] = site_url('shop/'.$method.'/'.$lang.'/'.$this->Category_model->get_category_nicename($categoryID).'/');
-		$config['total_rows'] = count($this->Search_model->search_products_by_category_id($categoryID));
+		$config['base_url'] = site_url('shop/'.$method.'/'.$lang.'/'.$this->category_model->get_category_nicename($categoryID).'/');
+		$config['total_rows'] = count($this->search_model->search_products_by_category_id($categoryID));
 		$config['per_page'] = $products_per_page;
 		$config['uri_segment'] = 5;
 		$config['num_links'] = 50;

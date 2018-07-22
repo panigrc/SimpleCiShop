@@ -18,9 +18,9 @@ class News extends CI_Controller {
 		$data['title'] = "Διαχείριση Συστήματος Ακινήτων";
 		$data['heading'] = "Λίστα Νέων";
 
-		$news = $this->News_model->get_all_news();
+		$news = $this->news_model->get_all_news();
 		foreach($news as $new => $value) {
-			$news[$new] = array_merge($news[$new], $this->News_model->get_news_text($news[$new]['newsID']));
+			$news[$new] = array_merge($news[$new], $this->news_model->get_news_text($news[$new]['newsID']));
 		}
 		$data['contents'] = $this->load->view('news/list_tpl', array('news' => $news), TRUE);
 		$this->load->view('container_tpl',$data);
@@ -35,8 +35,8 @@ class News extends CI_Controller {
 		if ($form_data['action'] === "edit_news")
 		{
 			$form_data['newsID'] = $this->uri->segment(4);
-			$form_data = array_merge($form_data, $this->News_model->get_news($form_data['newsID']));
-			$form_data = array_merge($form_data, $this->News_model->get_news_text($form_data['newsID']));
+			$form_data = array_merge($form_data, $this->news_model->get_news($form_data['newsID']));
+			$form_data = array_merge($form_data, $this->news_model->get_news_text($form_data['newsID']));
 		}
 
 		$data['contents'] = $this->load->view('news/news_tpl', $form_data, TRUE);
@@ -51,7 +51,7 @@ class News extends CI_Controller {
 	{
 		// adds a product
 
-        	$this->News_model->add_news();
+        	$this->news_model->add_news();
 		redirect('news');
 	}
 
@@ -59,7 +59,7 @@ class News extends CI_Controller {
 	{
 		// updates a product
 
-        	$this->News_model->set_news();
+        	$this->news_model->set_news();
 		redirect('news');
 	}
 
@@ -67,7 +67,7 @@ class News extends CI_Controller {
 	{
 		// deletes a product
 
-        	$this->News_model->delete_news($this->uri->segment(3));
+        	$this->news_model->delete_news($this->uri->segment(3));
 		redirect('news');
 	}
 }
