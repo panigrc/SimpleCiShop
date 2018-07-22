@@ -93,6 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property Meta_model $Meta_model
  * @property News_model $News_model
  * @property Order_model $Order_model
+ * @property Product_model $Product_model
  * @property Search_model $Search_model
  * @property User_model $User_model
  *
@@ -182,6 +183,7 @@ class CI_Controller
  * @property Meta_model $Meta_model
  * @property News_model $News_model
  * @property Order_model $Order_model
+ * @property Product_model $Product_model
  * @property Search_model $Search_model
  * @property User_model $User_model
  *
