@@ -10,6 +10,6 @@
 						<p>
                             <?php echo mb_substr(strip_tags(@$recent_news_text['description_'.$lang]), 0, 250, 'UTF-8').'...'; ?><br />
                         </p>
-                        <p style="text-align:right;"><a href="<?php echo site_url('/news/index/'.$lang); ?>" title="<?php echo $this->lang->line('main_news'); ?>"><?php echo $this->lang->line('main_news'); ?></a></p>
+                        <p style="text-align:right;"><a href="<?php echo site_url('/shop/news/index/'.$lang); ?>" title="<?php echo $this->lang->line('main_news'); ?>"><?php echo $this->lang->line('main_news'); ?></a></p>
 					</div>
 				<div class="box_bottom"></div>

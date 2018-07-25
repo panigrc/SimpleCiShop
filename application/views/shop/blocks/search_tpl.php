@@ -32,7 +32,7 @@
 printOptions($categories_arr, @$categoryID);
 ?>
                         </select>
-                        <a href="<?php echo site_url('category/index/'.$lang.'/'.@$countryID) ?>"><?php echo $this->lang->line('main_map'); ?></a>
+                        <a href="<?php echo site_url('/shop/category/index/'.$lang.'/'.@$countryID) ?>"><?php echo $this->lang->line('main_map'); ?></a>
                     </p>
 					<p class="search"><label class="search" for="product_type">
                         <?php echo $this->lang->line('main_product_type'); ?>:</label>
@@ -60,7 +60,7 @@ printOptions($categories_arr, @$categoryID);
                     <p>
                          <label class="search" for="code"><?php echo $this->lang->line('main_code'); ?>:</label>
                          <input type="text" name="code" id="code" class="price" value="" />
-                         <input type="button" value="<?php echo $this->lang->line('main_search'); ?>" class="submit" onclick="window.location='<?php echo site_url('/product/index/'.$lang); ?>/' + document.getElementById('code').value; "/>
+                         <input type="button" value="<?php echo $this->lang->line('main_search'); ?>" class="submit" onclick="window.location='<?php echo site_url('/shop/product/index/'.$lang); ?>/' + document.getElementById('code').value; "/>
                     </p>
 <?php echo form_close(); ?>
 				<div style="clear: both"></div>

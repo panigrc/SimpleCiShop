@@ -1,5 +1,5 @@
 <?php
-    $navigation = array('main_home' => 'home/index', 'main_catalog' => 'shop/index', 'main_news' => 'news/index', 'main_contact' => 'contact/index');
+    $navigation = array('main_home' => 'shop/index', 'main_catalog' => 'shop/catalog', 'main_news' => 'shop/news', 'main_contact' => 'shop/contact');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -41,7 +41,7 @@
                 */?>
                 <h1><?php echo $this->lang->line('main_slogan'); ?></h1>
 			</div>
-<?php //echo empty($tblock) === TRUE ? $this->load->view('blocks/tblock_tpl') : $tblock; ?>
+<?php //echo empty($tblock) === TRUE ? $this->load->view('shop/blocks/tblock_tpl') : $tblock; ?>
 		</div>
 		<div class="bottom">
 			<div style="clear: both;"></div>
@@ -53,14 +53,14 @@
                 </div>
                 <div id="right">
                     <div style="text-align:center;">Αν θέλεις κάποιο προϊόν της Nexus το οποίο δεν έχουμε, μπορούμε να το παραγγείλουμε για σένα<br/><a href="http://www.nexustek.nl"><img src="<?php echo base_url() ?>theme/default/images/Nexus_badge.gif" alt="Nexus" style="border: none; float:none;" /></a></div>
-                    <?php $this->load->view('cart/cart_tpl'); ?>
+                    <?php $this->load->view('shop/cart/cart_tpl'); ?>
 
-                    <?php $this->load->view('blocks/random_product_tpl'); ?>
+                    <?php $this->load->view('shop/blocks/random_product_tpl'); ?>
                     <div style="text-align:center;"><a href="<?php echo site_url(); ?>blog/"><img src="<?php echo base_url() ?>theme/default/images/blog.png" alt="Cool Clean Quiet - Blog" style="border: none; float:none" /></a></div>
                 </div>
                 <div id="left">
                     <?php echo @$rblock; ?>
-                    <?php $this->load->view('blocks/'.$lang.'/home_tpl'); ?>
+                    <?php $this->load->view('shop/blocks/'.$lang.'/home_tpl'); ?>
                 </div>
 			</div>
             <div style="clear: both;"></div>
