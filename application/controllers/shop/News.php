@@ -8,7 +8,7 @@ class News extends CI_Controller {
 
 	function index($lang=NULL)
 	{
-		if($lang!="greek") redirect('shop/index/greek');
+		if($lang!="greek") redirect('shop/home/greek');
 		$this->config->set_item('language', $lang);
 
 

@@ -9,7 +9,7 @@ class Checkout extends CI_Controller {
 
 	function index($lang=NULL)
 	{
-		if($lang!="greek") redirect('shop/index/greek');
+		if($lang!="greek") redirect('shop/home/greek');
 
 		$this->config->set_item('language', $lang);
 
@@ -104,7 +104,7 @@ class Checkout extends CI_Controller {
 
 	function order($lang=NULL)
 	{
-		if($lang!="greek") redirect('shop/index/greek');
+		if($lang!="greek") redirect('shop/home/greek');
 		$this->config->set_item('language', $lang);
 
 		$orderID = NULL;
@@ -137,7 +137,7 @@ class Checkout extends CI_Controller {
 				<input type="hidden" name="item_name" value="Item Name">
 				<input type="hidden" name="currency_code" value="EUR">
 				<input type="hidden" name="amount" value="'.$this->input->post('price').'">
-				<input type="hidden" name="cancel_return" value="'.site_url('shop/index/'.$lang).'">
+				<input type="hidden" name="cancel_return" value="'.site_url('shop/home/'.$lang).'">
 				<input type="hidden" name="cancel_return" value="'.site_url('checkout/thankyou/'.$lang).'">
 				<input type="hidden" name="invoice" value="'. $orderID .'">
 				<input type="hidden" name="email" value="'.$this->input->post('user_email').'">
@@ -158,7 +158,7 @@ class Checkout extends CI_Controller {
 
 	function thankyou($lang=NULL)
 	{
-		if($lang!="greek") redirect('shop/index/greek');
+		if($lang!="greek") redirect('shop/home/greek');
 
 		$this->config->set_item('language', $lang);
 

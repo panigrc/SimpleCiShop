@@ -3,7 +3,7 @@
 /**
  * Class	Index
  */
-class Index extends CI_Controller {
+class Home extends CI_Controller {
 
 	function __construct()
 	{
@@ -12,12 +12,12 @@ class Index extends CI_Controller {
 
 	function index($lang = NULL)
 	{
-		redirect('shop/index/greek');
+		redirect('shop/catalog/index/greek');
 	}
 
 	function guide($lang)
 	{
-		if($lang!="greek") redirect('shop/index/greek');
+		if($lang!="greek") redirect('shop/home/greek');
 
 		$this->config->set_item('language', $lang);
 
@@ -40,7 +40,7 @@ class Index extends CI_Controller {
 
 	function transactions($lang)
 	{
-		if($lang!="greek") redirect('shop/index/greek');
+		if($lang!="greek") redirect('shop/home/greek');
 
 		$this->config->set_item('language', $lang);
 
@@ -63,7 +63,7 @@ class Index extends CI_Controller {
 
 	function secure($lang)
 	{
-		if($lang!="greek") redirect('shop/index/greek');
+		if($lang!="greek") redirect('shop/home/greek');
 
 		$this->config->set_item('language', $lang);
 
