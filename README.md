@@ -57,9 +57,10 @@ TODOs
 
 - [x] Merge the two applications - frontend/backend - into one so we can reuse the various functions of Models and Libraries
 - [ ] Separation between data and models. Models should not contain any $_REQUEST input.
+- [ ] Language setting should move into session and not in every URL.
 - [ ] Cleaning and rebuilding the multilingual system, so anything can be translated into any language.
 - [ ] Creating a block system (event listeners).
-- [ ] Use a template engine. (either Twig or the Embedded one)
+- [ ] Use a template engine (either Twig or the Embedded one). And clean up views so they don't use any more Controller/Model functions. 
 - [ ] Building a more themeable website; all the images/styles and output should be themeable. Thinking about using a UI framework like Twitter Bootstrap.
 - [ ] Better admin interface.
 - [ ] Translating the interface and the whole website into english
