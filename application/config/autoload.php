@@ -69,6 +69,7 @@ $autoload['libraries'] = array(
 	'authentication',
 	'calendar_library',
 	'cart_library',
+	'language_library',
 	'myfckeditor',
 );
 
