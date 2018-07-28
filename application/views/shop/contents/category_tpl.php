@@ -1,6 +1,6 @@
 				<div class="right_side">
 					<div class="categories">
-                        <p><a href="<?php echo site_url('category/index/'.$lang.'/1') ?>"><?php echo $this->lang->line('main_map_greek'); ?></a> | <a href="<?php echo site_url('category/index/'.$lang.'/2') ?>"><?php echo $this->lang->line('main_map_german'); ?></a></p>
+                        <p><a href="<?php echo site_url('category/index/1') ?>"><?php echo $this->lang->line('main_map_greek'); ?></a> | <a href="<?php echo site_url('category/index/2') ?>"><?php echo $this->lang->line('main_map_german'); ?></a></p>
 <?php 
 foreach($categories_arr as $category => $sub_categories) {
     foreach($sub_categories as $sub_category => $val) {
@@ -13,7 +13,7 @@ foreach($categories_arr as $category => $sub_categories) {
     if(isset($parent_categoryID)) {
         echo $this->category_model->get_category_name($parent_categoryID)."&nbsp;>>&nbsp;";
         if($this->category_model->category_has_info($parent_categoryID)>0) { ?>
-                            <a href="<?php echo site_url('category/view_category/'.$lang.'/'.$parent_categoryID) ?>"><img src="<?php echo base_url(); ?>/theme/images/about.png" alt="<?php echo $this->lang->line('main_information'); ?>" title="<?php echo $this->lang->line('main_information'); ?>" /></a>
+                            <a href="<?php echo site_url('category/view_category/'.$parent_categoryID) ?>"><img src="<?php echo base_url(); ?>/theme/images/about.png" alt="<?php echo $this->lang->line('main_information'); ?>" title="<?php echo $this->lang->line('main_information'); ?>" /></a>
 <?php
         }
     }

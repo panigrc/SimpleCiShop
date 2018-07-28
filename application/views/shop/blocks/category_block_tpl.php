@@ -1,7 +1,7 @@
 <?php
-    //global $lang, $method, $controller, $product_type, $price_from, $price_to, $order_by;
+    //global $method, $controller, $product_type, $price_from, $price_to, $order_by;
     
-    function printChilds($arr, $level=0, $vars=array()) {
+    function printChildren($arr, $level=0, $vars=array()) {
         
         $obj = &get_instance();
         extract($vars);
@@ -15,9 +15,9 @@
         }
         
         foreach($arr as $item => $key){
-            $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $lang .'/'. $obj->category_model->get_category_nicename($item));
+            $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($item));
             $this_level .= "\" >". $obj->category_model->get_category_name($item) . "</a>\n";
-            //$this_level .= printChilds($key, $level+1, $vars);
+            //$this_level .= printChildren($key, $level+1, $vars);
         }
         
         if(count($arr) >0 && $level > 0) {
@@ -30,7 +30,7 @@
     
     
     function printOptions($arr, $categoryID, $level=0, $vars=array()) {
-        //global $method, $controller, $lang, $product_type, $price_from, $price_to, $order_by;
+        //global $method, $controller, $product_type, $price_from, $price_to, $order_by;
         $obj = &get_instance();
         extract($vars);
         
@@ -46,24 +46,24 @@
             if(count($parent) > 0 && $parent[0] === $item) {
                 foreach($parent as $cur_parent) {
                     $this_level .= "                    <ul>\n";
-                    $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $lang .'/'. $obj->category_model->get_category_nicename($cur_parent));
+                    $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($cur_parent));
                     $this_level .= " \">".$obj->category_model->get_category_name($cur_parent) . "</a>\n";
                     $this_level .= "                    </li>\n";
                     $this_level .= "                    </ul>\n";
                 }
-                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $lang .'/'. $obj->category_model->get_category_nicename($current));
+                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($current));
                 $this_level .= " \">".$obj->category_model->get_category_name($current) . "</a>\n";
-                $this_level .= printChilds($childs, 0, $vars);
+                $this_level .= printChildren($children, 0, $vars);
                 $this_level .= "                    </li>\n";
             }
             elseif($current === $item) {
-                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $lang .'/'. $obj->category_model->get_category_nicename($current));
+                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($current));
                 $this_level .= " \">".$obj->category_model->get_category_name($current) . "</a>\n";
-                $this_level .= printChilds($childs, 0, $vars);
+                $this_level .= printChildren($children, 0, $vars);
                 $this_level .= "                    </li>\n";
             }
             else {
-                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $lang .'/'. $obj->category_model->get_category_nicename($item));
+                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($item));
                 $this_level .= "\" >".$obj->category_model->get_category_name($item) . "</a>\n";
                 //$this_level .= printOptions($key, $item, $level+1, $vars);
             }
@@ -85,10 +85,10 @@
                 <div class="box">
                     <div class="menu">
                         <ul>
-                            <li><a href="<?php echo site_url('shop/catalog/index/'.$lang.'/'); ?>"><?php echo $this->lang->line('main_all'); ?></a></li>
+                            <li><a href="<?php echo site_url('shop/catalog/'); ?>"><?php echo $this->lang->line('main_all'); ?></a></li>
                     
 <?php
-    echo printOptions($categories_arr, 0, 0, compact("lang", "current", "parent", "childs"));
+    echo printOptions($categories_arr, 0, 0, compact("current", "parent", "children"));
 ?>
                         </ul>
                     </div>

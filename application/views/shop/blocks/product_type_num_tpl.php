@@ -13,7 +13,7 @@
     for($i = 0; $this->product_model->getProductTypeText($i) != -1; $i++):
         $searchString = implode('_', array($categoryID, $i, $price_from, $price_to, $order_by));
 ?>
-                    <p><a href="<?php echo site_url($controller.'/'. $method.'/'.$lang.'/'.$searchString); ?>"><?php echo $this->lang->line($this->search_model->getProductTypeText($i)); ?></a>&nbsp;&nbsp;<?php echo '['. $product_type_num[$i] .']'; ?></p>
+                    <p><a href="<?php echo site_url($controller.'/'. $method.'/'.$searchString); ?>"><?php echo $this->lang->line($this->search_model->getProductTypeText($i)); ?></a>&nbsp;&nbsp;<?php echo '['. $product_type_num[$i] .']'; ?></p>
 <?php endfor; ?>
 				</div>
 				<div class="box_bottom"></div>

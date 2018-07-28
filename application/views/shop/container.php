@@ -34,7 +34,7 @@
                 <?php /*<div id="nav">
     			    <ul>
 <?php foreach($navigation as $tab => $url):?>
-                        <li <?php echo $tab === $pagename ? 'id="current"' : ''; ?>><?php echo anchor($url.'/'.$lang, $this->lang->line($tab)) ?></li>
+                        <li <?php echo $tab === $pagename ? 'id="current"' : ''; ?>><?php echo anchor($url, $this->lang->line($tab)) ?></li>
 <?php endforeach; ?>
 				    </ul>
                 </div>

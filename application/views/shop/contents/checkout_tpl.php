@@ -3,12 +3,11 @@
                         <h2><?php echo @$this->lang->line($pagename);?></h2>
                         <p style="display:none;"><span id="stars"></span></p>
 <?php 
-    echo form_open('checkout/order/'.$lang, array('id'=>'checkout_form')); 
+    echo form_open('checkout/order', array('id'=>'checkout_form'));
 ?>
 					    <input type="hidden" name="userID" id="userID" value="" />
 					    <input type="hidden" name="affiliate" id="affiliate" value="<?php echo $affiliate; ?>" />
                         <input type="hidden" name="user_stars" id="user_stars" value="" />
-                        <input type="hidden" name="user_language" id="user_language" value="<?php echo $lang; ?>" />
                         <h2>
                             <?php echo $this->lang->line('main_receipt'); ?>
                         </h2>
