@@ -1,46 +1,50 @@
 <?php
 class Product extends CI_Controller {
-	var $lang;
-	function __construct()
+
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index($lang=NULL, $productNicename=NULL)
+	public function index($product_nicename = NULL)
 	{
-		if($lang!="greek") redirect('shop/home/greek');
-
-		$this->config->set_item('language', $lang);
-
+		if (empty($product_nicename))
+		{
+			show_404($page = $_SERVER['PHP_SELF']);
+		}
 
 		$data['pagename'] = 'main_slogan';
-		$data['lang'] = $lang;
+		$data['lang'] = $this->language_library->get_language();
 
-		$content_data = array();
-		if(empty($productNicename)) {
-			$data['contents'] = "Nothing to display";
-		}
-		else {
-			$content_data['nicename'] = $productNicename;
-			$content_data['product'] = $this->product_model->get_product_by_nicename($content_data['nicename']);
-			$content_data['product'] = $content_data['product'] + $this->product_model->get_product_text($content_data['product']['productID']);
-			//$content_data['product'] = $content_data['product'] + $this->category_model->get_category_text($content_data['product']['categoryID']);
-			$content_data['images_arr'] = $this->product_model->get_product_image($content_data['product']['productID']);
-			$content_data['meta'] = $this->product_model->get_product_meta($content_data['product']['productID']);
-			$content_data['product']['category_text'] = $this->category_model->get_category_names($this->product_model->get_product_categories($content_data['product']['productID']));
-			$content_data['product'] += $this->product_model->get_product_main_image($content_data['product']['productID']);
+		/**
+		 * @todo	create a Product class that handles the following
+		 */
+		$product = $this->product_model->get_product_by_nicename($product_nicename);
+		$product += $this->product_model->get_product_text($product['productID']);
+		$product['category_text'] = $this->category_model->get_category_names($this->product_model->get_product_categories($product['productID']));
+		$product += $this->product_model->get_product_main_image($product['productID']);
 
-			$content_data['lang'] = $lang;
+		$content_data = array(
+			'nicename' => $product_nicename,
+			'product' => $product,
+			'images_arr' => $this->product_model->get_product_image($product['productID']),
+			'meta' => $this->product_model->get_product_meta($product['productID']),
+			'lang' => $this->language_library->get_language(),
+		);
 
-			$data['contents'] = $this->load->view('shop/contents/product_tpl', $content_data, TRUE);
-			//$data['categoryID'] = $content_data['product']['categoryID'];
-			$data['title'] = $content_data['product']['title_'.$lang];
+		$rblock_data = array(
+			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
+			"parent" => array(),
+			"children" => array(),
+			"current" => 0,
+		);
 
-			//$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array("categoryID" => $content_data['product']['categoryID']), TRUE);
-			$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
-			//$data['rblock'] = $this->load->view('shop/blocks/product_type_num_tpl', $rblock_data, TRUE);
-			$data['scripts'] = '<script type="text/javascript" src="'. base_url() .'theme/overlib.js"><!-- overLIB (c) Erik Bosrup --></script>';
-		}
+		$data = array(
+			'contents' => $this->load->view('shop/contents/product_tpl', $content_data, TRUE),
+			'title' => $product['title_'.$this->language_library->get_language()],
+			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
+			'scripts' => '<script type="text/javascript" src="'. base_url() .'theme/overlib.js"><!-- overLIB (c) Erik Bosrup --></script>'
+		);
 
 		$this->load->view('shop/container', $data);
 	}

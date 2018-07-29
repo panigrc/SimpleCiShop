@@ -152,37 +152,52 @@ class Category_model extends CI_Model {
 
 	/**
 	 * Returns an associative array with all categoryIDs without 1st level
+	 * if $nicename is null or not found 0 is returned.
 	 *
-	 * @deprecated
-	 * @param	$nicename
+	 * @param	string|null	$nicename
 	 * @return	int
 	 */
 	function get_category_id($nicename)
 	{
+		if (!$nicename) {
+			return 0;
+		}
+
 		$this->db->select('*');
 		$this->db->from('category');
 		$this->db->where('nicename', $nicename);
 		$query = $this->db->get();
 		$row = $query->row_array();
-		if($row!=NULL) return $row['categoryID'];
+		if ($row != NULL)
+		{
+			return $row['categoryID'];
+		}
+
 		return 0;
 	}
 
 	/**
 	 * Returns an associative array with all categoryIDs without 1st level
+	 * If $category_id is 0 then return 'all' for all categories
 	 *
 	 * @todo	Rename nicename into slug
-	 * @param	$categoryID
-	 * @return	int
+	 * @todo	make 'all' a constant in global scope
+	 * @param	int $categoryID
+	 * @return	string
 	 */
 	function get_category_nicename($categoryID)
 	{
+		if ($categoryID === 0)
+		{
+			return 'all';
+		}
+
 		$this->db->select('*');
 		$this->db->from('category');
 		$this->db->where('categoryID', $categoryID);
 		$query = $this->db->get();
 		$row = $query->row_array();
-		if($categoryID === 0) return 0;
+
 		return $row['nicename'];
 	}
 

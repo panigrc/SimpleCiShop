@@ -136,3 +136,5 @@ $lang['main_costs_sum']		= 'Summe';
 $lang['main_questionnaire']		= 'Fragezeichen';
 $lang['main_question1']		= 'Τί άλλο να φέρουμε';
 $lang['main_question2']		= 'Απο που μας βρήκατε';
+
+$lang['main_contact_subject']		= 'Webseite Kontakt';

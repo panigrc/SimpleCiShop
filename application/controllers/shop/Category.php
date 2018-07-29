@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Class Category
+ * @deprecated wll be removed in the future
+ */
 class Category extends CI_Controller {
 
 	function __construct()

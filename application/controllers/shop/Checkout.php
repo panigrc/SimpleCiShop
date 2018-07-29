@@ -1,39 +1,43 @@
 <?php
 
 class Checkout extends CI_Controller {
-	var $lang;
-	function __construct()
+
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index($lang=NULL)
+	public function index()
 	{
-		if($lang!="greek") redirect('shop/home/greek');
-
-		$this->config->set_item('language', $lang);
-
-
 		$cart = $this->cart_library->get_cart();
 
 		$content_data = array();
 
-		$content_data['lang'] = $lang;
-		$content_data['cart_costs'] = $this->_getPriceSum($cart, $lang);
-		$content_data['affiliate'] = $this->_getAffiliate();
+		$content_data['lang'] = $this->language_library->get_language();
+		$content_data['cart_costs'] = $this->_get_price_sum($cart, $this->language_library->get_language());
+		$content_data['affiliate'] = $this->_get_affiliate();
 
 		$data['contents'] = $this->load->view('shop/contents/checkout_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$rblock_data = array(
+			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
+			'parent' => array(),
+			'children' => array(),
+			'current' => 0
+		);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
-		$data['lang'] = $lang;
+		$data['lang'] = $this->language_library->get_language();
+
+		/** @todo	create a template for this */
 		$data['scripts'] = '<style type="text/css">@import url('.base_url().'assets/jscalendar/calendar-win2k-1.css);</style>
 					<script type="text/javascript" src="'.base_url().'assets/jscalendar/calendar.js"></script>
 					<script type="text/javascript" src="'.base_url().'assets/jscalendar/lang/calendar-en.js"></script>
 					<script type="text/javascript" src="'.base_url().'assets/jscalendar/calendar-setup.js"></script>';
 
+		/** @todo	create a template for this */
 		$data['scripts'] .= '<script type="text/javascript">function shippment_sum(){
 					var text="";
 					var cart_costs = parseFloat($("cart_costs").innerHTML);
@@ -47,16 +51,18 @@ class Checkout extends CI_Controller {
 					$("price").value = (cart_costs + sum);
 					}
 					</script>';
+
 		$this->load->view('shop/container', $data);
 	}
 
-	function get_user($lang=NULL)
+	public function get_user()
 	{
-
 		$user = $this->user_model->search_user($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
 
+		/** @todo	create a template for this */
 		echo "<script type='text/javascript'>";
-		if($user) {
+		if ($user)
+		{
 			extract($user);
 
 			echo "\$('user_name').value='".$user_name."';";
@@ -74,27 +80,16 @@ class Checkout extends CI_Controller {
 			echo "\$('stars').innerHTML='".$user_stars."';";
 			echo "\$('user_language').value='".$lang."';";
 		}
-		else {
+		else
+		{
 			//echo "Form.reset('checkout_form')";
 			//echo "alert('dffdfd+".$this->input->post('user_email')."');";
 		}
 
 		echo "</script>";
-
 	}
 
-	function _get_coupon()
-	{
-		// loads the given coupon if exists
-
-		$coupon = $this->coupon_model->get_coupon($this->input->post('coupon'));
-
-		if(count($coupon)>0) {
-
-		}
-	}
-
-	function _getAffiliate()
+	private function _get_affiliate()
 	{
 		$cart = $this->session->userdata('cart');
 
@@ -102,33 +97,36 @@ class Checkout extends CI_Controller {
 		return "";
 	}
 
-	function order($lang=NULL)
+	public function order()
 	{
-		if($lang!="greek") redirect('shop/home/greek');
-		$this->config->set_item('language', $lang);
-
-		$orderID = NULL;
+		$order_id = NULL;
 
 		$products = $this->cart_library->get_cart();
 
-		if($this->input->post('userID')) {
+		if($this->input->post('userID'))
+		{
 			$this->user_model->set_user($this->input->post('userID'));
-			$orderID = $this->order_model->add_order($this->input->post('userID'));
-			$this->order_model->add_order_products($orderID, $products);
-
+			$order_id = $this->order_model->add_order($this->input->post('userID'));
+			$this->order_model->add_order_products($order_id, $products);
 		}
-		else {
-
-			$userID = $this->user_model->add_user();
-			$orderID = $this->order_model->add_order($userID);
-			$this->order_model->add_order_products($orderID, $products);
-
+		else
+		{
+			$user_id = $this->user_model->add_user();
+			$order_id = $this->order_model->add_order($user_id);
+			$this->order_model->add_order_products($order_id, $products);
 		}
 
-		if($this->input->post('shippment_cash_on_delivery') === "1" OR $this->input->post('shippment_cash_on_delivery') === "3") redirect('checkout/thankyou/'.$lang);
-		else {
-
-			// if it's paid with paypal post with redirect
+		if ($this->input->post('shippment_cash_on_delivery') === "1"
+			OR $this->input->post('shippment_cash_on_delivery') === "3")
+		{
+			redirect('checkout/thankyou');
+		}
+		else
+		{
+			/**
+			 * @var	string $form if it's paid with paypal post with redirect
+			 * @todo	create a template for this and remove hardcoded info
+			 */
 
 			$form = '<form action="https://www.paypal.com/row/cgi-bin/webscr" method="post" name="paypal_form">
 				<input type="hidden" name="cmd" value="_xclick">
@@ -137,9 +135,9 @@ class Checkout extends CI_Controller {
 				<input type="hidden" name="item_name" value="Item Name">
 				<input type="hidden" name="currency_code" value="EUR">
 				<input type="hidden" name="amount" value="'.$this->input->post('price').'">
-				<input type="hidden" name="cancel_return" value="'.site_url('shop/home/'.$lang).'">
-				<input type="hidden" name="cancel_return" value="'.site_url('checkout/thankyou/'.$lang).'">
-				<input type="hidden" name="invoice" value="'. $orderID .'">
+				<input type="hidden" name="cancel_return" value="'.site_url('shop/home').'">
+				<input type="hidden" name="cancel_return" value="'.site_url('checkout/thankyou').'">
+				<input type="hidden" name="invoice" value="'. $order_id .'">
 				<input type="hidden" name="email" value="'.$this->input->post('user_email').'">
 				<input type="hidden" name="first_name" value="'.$this->input->post('user_name').'">
 				<input type="hidden" name="last_name" value="'.$this->input->post('user_surname').'">
@@ -156,35 +154,34 @@ class Checkout extends CI_Controller {
 		}
 	}
 
-	function thankyou($lang=NULL)
+	public function thankyou()
 	{
-		if($lang!="greek") redirect('shop/home/greek');
-
-		$this->config->set_item('language', $lang);
-
-
 		$cart = $this->cart_library->get_cart();
 
 		$content_data = array();
 
-		$content_data['lang'] = $lang;
+		$content_data['lang'] = $this->language_library->get_language();
 
-		$data['contents'] = $this->load->view('shop/contents/'.$lang.'/thankyou_tpl', $content_data, TRUE);
+		$data['contents'] = $this->load->view('shop/contents/'.$this->language_library->get_language().'/thankyou_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$rblock_data = array(
+			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
+			'parent' => array(),
+			'children' => array(),
+			'current' => 0
+		);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
 
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
-		$data['lang'] = $lang;
+		$data['lang'] = $this->language_library->get_language();
 
 		$data['scripts'] = '';
 		$this->load->view('shop/container', $data);
 	}
 
-
-	function _getPriceSum($cart, $lang)
+	private function _get_price_sum($cart)
 	{
-
 		$products = array();
 		$sum=0;
 		foreach($cart as $product => $value) {
@@ -192,7 +189,7 @@ class Checkout extends CI_Controller {
 			$products[$product] += $this->product_model->get_product_text($product);
 			$products[$product]['quantity'] = $value;
 			for($i=0;$i<$products[$product]['quantity'];$i++) {
-				$sum += $products[$product]['price_'.$lang];
+				$sum += $products[$product]['price_'.$this->language_library->get_language()];
 			}
 		}
 

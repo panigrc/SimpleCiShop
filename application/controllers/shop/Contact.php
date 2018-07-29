@@ -1,40 +1,43 @@
 <?php
 
 class Contact extends CI_Controller {
-	var $lang;
-	function __construct()
+
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index($lang=NULL, $status=NULL)
+	public function index($status = NULL)
 	{
-		if($lang!="greek") redirect('shop/home/greek');
-
-		$this->config->set_item('language', $lang);
-
-
 		$data['title'] = '';
 		$data['pagename'] = 'main_contact';
-		$data['lang'] = $lang;
+		$data['lang'] = $this->language_library->get_language();
 
 		$content_data = array();
 		$content_data['pagename'] = 'main_contact';
-		$content_data['lang'] = $lang;
+		$content_data['lang'] = $this->language_library->get_language();
 		$content_data['status'] = $status;
 		$data['contents'] = $this->load->view('shop/contents/contact_tpl', $content_data, TRUE);
 
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', array('categories_arr' => ($this->category_model->get_all_category_ids_recursive()), "parent" => array(), "childs" => array(), "current" => 0), TRUE);
+		$rblock_data = array(
+			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
+			"parent" => array(),
+			"children" => array(),
+			"current" => 0
+		);
+		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
 		$this->load->view('shop/container', $data);
 	}
-	function submit($lang=NULL)
-	{
-		$this->config->set_item('language', $lang);
 
-		$this->email->from('info@cool-clean-quiet.com', 'Επικοινωνία');
+	/**
+	 * @todo	remove hardcoded info
+	 */
+	public function submit()
+	{
+		$this->email->from('info@cool-clean-quiet.com', $this->lang->line('main_contact'));
 		$this->email->to('info@cool-clean-quiet.com');
 
-		$this->email->subject('Επικοινωνία από το site');
+		$this->email->subject($this->lang->line('main_contact_subject'));
 		$message = $this->lang->line('main_full_name') . ': ' .$this->input->post('full_name') ."\n";
 		$message .= $this->lang->line('main_email') . ': ' .$this->input->post('email') ."\n";
 		$message .= $this->lang->line('main_phone') . ': ' .$this->input->post('phone') ."\n";
@@ -45,12 +48,13 @@ class Contact extends CI_Controller {
 		//$message = str_replace('<br />',"\r\n",nl2br($message));
 		$this->email->message($message);
 
-		if ( ! $this->email->send()) {
+		if ( ! $this->email->send())
+		{
 			//if ($this->input->post('notspam')!="2" OR !$this->email->send()) {
-			redirect('contact/index/'. $lang .'/nok');
+			redirect('contact/index/nok');
 		}
 		//echo $this->email->print_debugger();
 
-		redirect('contact/index/'. $lang .'/ok');
+		redirect('contact/index/ok');
 	}
 }

@@ -150,3 +150,5 @@ $lang['main_costs_sum']		= 'Σύνολο';
 $lang['main_questionnaire']		= 'Ερωτηματολόγιο';
 $lang['main_question1']		= 'Σχόλια';
 $lang['main_question2']		= 'Απο που μας βρήκες';
+
+$lang['main_contact_subject']		= 'Επικοινωνία από τον Ιστότοπο';
