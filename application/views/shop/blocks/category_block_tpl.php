@@ -11,7 +11,7 @@
         
         if(count($arr) >0 && $level > 0) {
         
-            $this_level .= "           K         <ul>\n";
+            $this_level .= "                    <ul>\n";
         }
         
         foreach($arr as $item => $key){
