@@ -56,6 +56,8 @@ TODOs
 -----
 
 - [x] Merge the two applications - frontend/backend - into one so we can reuse the various functions of Models and Libraries
+- [ ] Rename all camelCase variables in templates & database to snake_case
+- [ ] Build an Affiliate controller; which will redirect to the page intended plus saving the affiliate id to session.
 - [ ] Separation between data and models. Models should not contain any $_REQUEST input.
 - [ ] Language setting should move into session and not in every URL.
 - [ ] Cleaning and rebuilding the multilingual system, so anything can be translated into any language.
