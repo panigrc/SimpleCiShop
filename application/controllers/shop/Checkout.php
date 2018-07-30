@@ -11,13 +11,11 @@ class Checkout extends CI_Controller {
 	{
 		$cart = $this->cart_library->get_cart();
 
-		$content_data = array();
-
-		$content_data['lang'] = $this->language_library->get_language();
-		$content_data['cart_costs'] = $this->_get_price_sum($cart, $this->language_library->get_language());
-		$content_data['affiliate'] = $this->_get_affiliate();
-
-		$data['contents'] = $this->load->view('shop/contents/checkout_tpl', $content_data, TRUE);
+		$content_data = array(
+			'lang' => $this->language_library->get_language(),
+			'cart_costs' => $this->_get_price_sum($cart, $this->language_library->get_language()),
+			'affiliate' => $this->_get_affiliate(),
+		);
 
 		$rblock_data = array(
 			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
@@ -25,11 +23,14 @@ class Checkout extends CI_Controller {
 			'children' => array(),
 			'current' => 0
 		);
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
 
-		$data['title'] = '';
-		$data['pagename'] = 'main_checkout';
-		$data['lang'] = $this->language_library->get_language();
+		$data = array(
+			'contents' => $this->load->view('shop/contents/checkout_tpl', $content_data, TRUE),
+			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
+			'title' => '',
+			'pagename' => 'main_checkout',
+			'lang' => $this->language_library->get_language(),
+		);
 
 		/** @todo	create a template for this */
 		$data['scripts'] = '<style type="text/css">@import url('.base_url().'assets/jscalendar/calendar-win2k-1.css);</style>
@@ -157,26 +158,27 @@ class Checkout extends CI_Controller {
 	public function thankyou()
 	{
 		$cart = $this->cart_library->get_cart();
-
-		$content_data = array();
-
-		$content_data['lang'] = $this->language_library->get_language();
-
-		$data['contents'] = $this->load->view('shop/contents/'.$this->language_library->get_language().'/thankyou_tpl', $content_data, TRUE);
-
+		
 		$rblock_data = array(
 			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
 			'parent' => array(),
 			'children' => array(),
 			'current' => 0
 		);
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
 
-		$data['title'] = '';
-		$data['pagename'] = 'main_checkout';
-		$data['lang'] = $this->language_library->get_language();
+		$content_data = array(
+			'lang' => $this->language_library->get_language(),
+		);
 
-		$data['scripts'] = '';
+		$data = array(
+			'contents' => $this->load->view('shop/contents/'.$this->language_library->get_language().'/thankyou_tpl', $content_data, TRUE),
+			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
+			'title' => '',
+			'pagename' => 'main_checkout',
+			'lang' => $this->language_library->get_language(),
+			'scripts' => '',
+		);
+
 		$this->load->view('shop/container', $data);
 	}
 
@@ -185,9 +187,10 @@ class Checkout extends CI_Controller {
 		$products = array();
 		$sum=0;
 		foreach($cart as $product => $value) {
-			$products[$product] = $this->product_model->get_product($product);
-			$products[$product] += $this->product_model->get_product_text($product);
+			$products[$product] = $this->product_model->get_product($product)
+								+ $this->product_model->get_product_text($product);
 			$products[$product]['quantity'] = $value;
+
 			for($i=0;$i<$products[$product]['quantity'];$i++) {
 				$sum += $products[$product]['price_'.$this->language_library->get_language()];
 			}
