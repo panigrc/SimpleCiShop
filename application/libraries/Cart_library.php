@@ -3,10 +3,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Cart_library {
 
-	function __construct($params=NULL)
+	public function __construct($params = NULL)
 	{}
 
-	function cart_add($productID)
+	public function cart_add($productID)
 	{
 		$obj =& get_instance();
 		$cart = $obj->session->userdata('cart');
@@ -15,7 +15,7 @@ class Cart_library {
 		$obj->session->set_userdata(array('cart' => $cart));
 	}
 
-	function cart_remove($productID)
+	public function cart_remove($productID)
 	{
 		$obj =& get_instance();
 		$cart = $obj->session->userdata('cart');
@@ -24,12 +24,19 @@ class Cart_library {
 		$obj->session->set_userdata(array('cart' => $cart));
 	}
 
-	function get_cart()
+	public function get_cart()
 	{
 		$obj =& get_instance();
 		$cart = $obj->session->userdata('cart');
-		if(empty($cart)) return array();
-		if(isset($cart['affiliate'])) unset($cart['affiliate']);
+		if (empty($cart))
+		{
+			return array();
+		}
+		if (isset($cart['affiliate']))
+		{
+			unset($cart['affiliate']);
+		}
+
 		return $cart;
 	}
 }

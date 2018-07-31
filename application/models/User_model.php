@@ -6,7 +6,7 @@
  */
 class User_model extends CI_Model {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
@@ -16,7 +16,7 @@ class User_model extends CI_Model {
 	 *
 	 * @return mixed
 	 */
-	function get_all_user_ids()
+	public function get_all_user_ids()
 	{
 		$this->db->select('*');
 		$this->db->from('user');
@@ -29,7 +29,7 @@ class User_model extends CI_Model {
 	 * @param	null|int	$userID
 	 * @return	mixed
 	 */
-	function get_user($userID = NULL)
+	public function get_user($userID = NULL)
 	{
 		$this->db->select('*');
 		$this->db->from('user');
@@ -45,9 +45,10 @@ class User_model extends CI_Model {
 	 * @param	mixed	$user_phone_or_email
 	 * @return array
 	 */
-	function search_user($user_code, $user_phone_or_email = NULL)
+	public function search_user($user_code, $user_phone_or_email = NULL)
 	{
-		if($user_code && $user_phone_or_email) {
+		if ($user_code && $user_phone_or_email)
+		{
 			$this->db->select('*');
 			$this->db->from('user');
 
@@ -62,23 +63,24 @@ class User_model extends CI_Model {
 		return array();
 	}
 
-	function set_user()
+	public function set_user()
 	{
-		if( ! $this->input->post('user_code')) $user_code = $this->generate_password();
+		if ( ! $this->input->post('user_code')) $user_code = $this->generate_password();
 		else $user_code = $this->input->post('user_code');
-		$user = array('user_code' => $user_code,
-									'user_name' => $this->input->post('user_name'),
-									'user_surname' => $this->input->post('user_surname'),
-									'user_email' => $this->input->post('user_email'),
-									'user_url' => $this->input->post('user_url'),
-									'user_birthdate' => $this->get_timestamp($this->input->post('user_birthdate')),
-									'user_address' => $this->input->post('user_address'),
-									'user_city' => $this->input->post('user_city'),
-									'user_zip' => $this->input->post('user_zip'),
-									'user_country' => $this->input->post('user_country'),
-									'user_phone' => $this->input->post('user_phone'),
-									'user_language' => $this->input->post('user_language'),
-									'user_stars' => $this->input->post('user_stars')
+		$user = array(
+			'user_code'			=> $user_code,
+			'user_name'			=> $this->input->post('user_name'),
+			'user_surname'		=> $this->input->post('user_surname'),
+			'user_email'		=> $this->input->post('user_email'),
+			'user_url'			=> $this->input->post('user_url'),
+			'user_birthdate'	=> $this->get_timestamp($this->input->post('user_birthdate')),
+			'user_address' 		=> $this->input->post('user_address'),
+			'user_city' 		=> $this->input->post('user_city'),
+			'user_zip' 			=> $this->input->post('user_zip'),
+			'user_country' 		=> $this->input->post('user_country'),
+			'user_phone' 		=> $this->input->post('user_phone'),
+			'user_language'		=> $this->input->post('user_language'),
+			'user_stars'		=> $this->input->post('user_stars')
 		);
 		$this->db->where('userID', $this->input->post('userID'));
 		$this->db->update('user', $user);
@@ -87,31 +89,32 @@ class User_model extends CI_Model {
 	/**
 	 * @return	mixed
 	 */
-	function add_user()
+	public function add_user()
 	{
-		if( ! $this->input->post('user_code')) $user_code = $this->generate_password();
+		if ( ! $this->input->post('user_code')) $user_code = $this->generate_password();
 		else $user_code = $this->input->post('user_code');
-		$user = array('user_code' => $user_code,
-									'user_name' => $this->input->post('user_name'),
-									'user_surname' => $this->input->post('user_surname'),
-									'user_email' => $this->input->post('user_email'),
-									'user_url' => $this->input->post('user_url'),
-									'user_birthdate' => $this->get_timestamp($this->input->post('user_birthdate')),
-									'user_address' => $this->input->post('user_address'),
-									'user_city' => $this->input->post('user_city'),
-									'user_zip' => $this->input->post('user_zip'),
-									'user_country' => $this->input->post('user_country'),
-									'user_phone' => $this->input->post('user_phone'),
-									'user_language' => $this->input->post('user_language'),
-									'user_registered' => time(),
-									'user_stars' => $this->input->post('user_stars')
+		$user = array(
+			'user_code'			=> $user_code,
+			'user_name'			=> $this->input->post('user_name'),
+			'user_surname'		=> $this->input->post('user_surname'),
+			'user_email'		=> $this->input->post('user_email'),
+			'user_url'			=> $this->input->post('user_url'),
+			'user_birthdate'	=> $this->get_timestamp($this->input->post('user_birthdate')),
+			'user_address'		=> $this->input->post('user_address'),
+			'user_city'			=> $this->input->post('user_city'),
+			'user_zip'			=> $this->input->post('user_zip'),
+			'user_country'		=> $this->input->post('user_country'),
+			'user_phone'		=> $this->input->post('user_phone'),
+			'user_language'		=> $this->input->post('user_language'),
+			'user_registered'	=> time(),
+			'user_stars'		=> $this->input->post('user_stars')
 		);
 		$this->db->insert('user', $user);
 
 		return $this->db->insert_id();
 	}
 
-	function delete_user($userID)
+	public function delete_user($userID)
 	{
 		$this->db->delete('user', array('userID' => $userID));
 	}
@@ -120,7 +123,7 @@ class User_model extends CI_Model {
 	 * @param	int	$length
 	 * @return	string
 	 */
-	function generate_password($length = 5)
+	public function generate_password($length = 5)
 	{
 		$password = '';
 		$possible = "0123456789bcdfghjkmnpqrstvwxyz";
@@ -128,19 +131,20 @@ class User_model extends CI_Model {
 		$i = 0;
 
 		// add random characters to $password until $length is reached
-		while ($i < $length) {
-
+		while ($i < $length)
+		{
 			// pick a random character from the possible ones
 			$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
 
 			// we don't want this character if it's already in the password
-			if ( ! strstr($password, $char)) {
+			if ( ! strstr($password, $char))
+			{
 				$password .= $char;
 				$i++;
 			}
 		}
 
-		if($this->password_exists($password)) $password = $this->generate_password();
+		if ($this->password_exists($password)) $password = $this->generate_password();
 
 		return $password;
 	}
@@ -149,7 +153,8 @@ class User_model extends CI_Model {
 	 * @param	string	$password
 	 * @return	bool
 	 */
-	function password_exists($password) {
+	public function password_exists($password)
+	{
 		$this->db->select('*');
 		$this->db->from('user');
 		$this->db->where('user.user_code', $password);
@@ -157,7 +162,7 @@ class User_model extends CI_Model {
 		$query = $this->db->get();
 		$row = $query->row_array();
 
-		if(count($row) > 0) return TRUE;
+		if (count($row) > 0) return TRUE;
 
 		return FALSE;
 	}
@@ -168,8 +173,13 @@ class User_model extends CI_Model {
 	 * @param string $date Date format DD/MM/YYYY
 	 * @return false|int
 	 */
-	function get_timestamp($date) {
-		if( ! $date) return time();
+	public function get_timestamp($date)
+	{
+		if (!$date) 
+		{
+			return time();
+		}
+
 		list($day, $month, $year) = explode('/', $date);
 
 		return mktime(0, 0, 0, $month, $day, $year);

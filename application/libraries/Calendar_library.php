@@ -3,11 +3,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Calendar_library {
 
-	function __construct($params=NULL)
+	public function __construct($params = NULL)
 	{
 	}
 
-	function createHTML($input_field, $css_class=NULL, $image_title=NULL)
+	/**
+	 * @todo	create template from this
+	 */
+	public function createHTML($input_field, $css_class = NULL, $image_title = NULL)
 	{
 
 		$html = '<img src="'.base_url().'assets/jscalendar/img.gif" id="f_trigger_c" title="'.$image_title.'" class="'.$css_class.'" />';
@@ -24,6 +27,5 @@ class Calendar_library {
 		$html .= '';
 
 		return $html;
-
 	}
 }

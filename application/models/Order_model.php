@@ -5,7 +5,7 @@
  */
 class Order_model extends CI_Model {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
@@ -16,7 +16,7 @@ class Order_model extends CI_Model {
 	 * @return	mixed
 	 * @todo	order by as parameter
 	 */
-	function get_all_order_ids()
+	public function get_all_order_ids()
 	{
 		$this->db->select('*');
 		$this->db->from('`order`');
@@ -30,7 +30,7 @@ class Order_model extends CI_Model {
 	 * @param	$orderID
 	 * @return	mixed
 	 */
-	function get_order($orderID)
+	public function get_order($orderID)
 	{
 		$this->db->select('*');
 		$this->db->from('`order`');
@@ -45,7 +45,7 @@ class Order_model extends CI_Model {
 	 * @param	$orderID
 	 * @return	mixed
 	 */
-	function get_order_products($orderID)
+	public function get_order_products($orderID)
 	{
 		$this->db->select('*');
 		$this->db->from('order2product');
@@ -55,9 +55,9 @@ class Order_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	function set_order()
+	public function set_order()
 	{
-		if( ! $this->input->post('order_code')) $order_code = $this->generate_password();
+		if ( ! $this->input->post('order_code')) $order_code = $this->generate_password();
 		$order = array('order_code' => $order_code, 'order_name' => $this->input->post('order_name'),  'order_surname' => $this->input->post('order_surname'), 'order_email' => $this->input->post('order_email'), 'order_url' => $this->input->post('order_url'), 'order_birthdate' => $this->input->post('order_birthdate'), 'order_address' => $this->input->post('order_address'), 'order_zip' => $this->input->post('order_zip'), 'order_country' => $this->input->post('order_country'), 'order_phone' => $this->input->post('order_phone'), 'order_language' => $this->input->post('order_language'), 'order_stars' => $this->input->post('order_stars'));
 		$this->db->where('orderID', $this->input->post('orderID'));
 		$this->db->update('order', $order);
@@ -68,9 +68,10 @@ class Order_model extends CI_Model {
 	 * @param	$status
 	 * @return	bool
 	 */
-	function set_order_status($orderID, $status)
+	public function set_order_status($orderID, $status)
 	{
-		if($orderID) {
+		if ($orderID)
+		{
 			$this->db->where('orderID', $orderID);
 			$this->db->update('`order`', array('status' => $status));
 
@@ -84,7 +85,7 @@ class Order_model extends CI_Model {
 	 * @param	$userID
 	 * @return	mixed
 	 */
-	function add_order($userID)
+	public function add_order($userID)
 	{
 		$shippment_express = 0 + @$this->input->post('shippment_express');
 		$shippment_to_door = 0 + @$this->input->post('shippment_to_door');
@@ -108,9 +109,10 @@ class Order_model extends CI_Model {
 	 * @param	$orderID
 	 * @param	$products
 	 */
-	function add_order_products($orderID, $products)
+	public function add_order_products($orderID, $products)
 	{
-		foreach($products as $product => $value) {
+		foreach ($products as $product => $value)
+		{
 			$relation = array('orderID' => $orderID, 'productID' => $product, 'quantity' => $value);
 			$this->db->insert('order2product', $relation);
 		}
@@ -121,11 +123,12 @@ class Order_model extends CI_Model {
 	 * @return	string
 	 * @todo	do not direct include html
 	 */
-	function get_questionnaire($data)
+	public function get_questionnaire($data)
 	{
 		$questionnaire= "";
 
-		foreach($data as $key => $answer) {
+		foreach ($data as $key => $answer)
+		{
 			$questionnaire.= $this->lang->line('main_question'.($key+1));
 			$questionnaire.= "<br />\n";
 			$questionnaire.= $answer;
@@ -139,7 +142,7 @@ class Order_model extends CI_Model {
 	/**
 	 * @param	$orderID
 	 */
-	function delete_order($orderID)
+	public function delete_order($orderID)
 	{
 		$this->db->delete('`order`', array('orderID' => $orderID));
 		$this->db->delete('order2product', array('orderID' => $orderID));

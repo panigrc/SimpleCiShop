@@ -45,7 +45,7 @@ class Checkout extends CI_Controller {
 					var sum = parseFloat($("shippment_costs").innerHTML);
 
 
-					if($("shippment_cash_on_delivery").checked) { text+=" + "; text+='.$this->lang->line('main_shippment_cash_on_delivery_costs').'; sum+=parseFloat('.$this->lang->line('main_shippment_cash_on_delivery_costs').');}
+					if ($("shippment_cash_on_delivery").checked) { text+=" + "; text+='.$this->lang->line('main_shippment_cash_on_delivery_costs').'; sum+=parseFloat('.$this->lang->line('main_shippment_cash_on_delivery_costs').');}
 					text+=" = " + sum;
 					$("shippment_sum").innerHTML = text;
 					$("costs_sum").innerHTML = sum + " = " + (cart_costs + sum);
@@ -94,7 +94,7 @@ class Checkout extends CI_Controller {
 	{
 		$cart = $this->session->userdata('cart');
 
-		if(isset($cart['affiliate'])) return $cart['affiliate'];
+		if (isset($cart['affiliate'])) return $cart['affiliate'];
 		return "";
 	}
 
@@ -104,7 +104,7 @@ class Checkout extends CI_Controller {
 
 		$products = $this->cart_library->get_cart();
 
-		if($this->input->post('userID'))
+		if ($this->input->post('userID'))
 		{
 			$this->user_model->set_user($this->input->post('userID'));
 			$order_id = $this->order_model->add_order($this->input->post('userID'));
@@ -186,12 +186,14 @@ class Checkout extends CI_Controller {
 	{
 		$products = array();
 		$sum=0;
-		foreach($cart as $product => $value) {
+		foreach ($cart as $product => $value)
+		{
 			$products[$product] = $this->product_model->get_product($product)
 								+ $this->product_model->get_product_text($product);
 			$products[$product]['quantity'] = $value;
 
-			for($i=0;$i<$products[$product]['quantity'];$i++) {
+			for ($i=0;$i<$products[$product]['quantity'];$i++)
+			{
 				$sum += $products[$product]['price_'.$this->language_library->get_language()];
 			}
 		}
