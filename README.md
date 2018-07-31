@@ -59,7 +59,7 @@ TODOs
 - [ ] Rename all camelCase variables in templates & database to snake_case
 - [ ] Build an Affiliate controller; which will redirect to the page intended plus saving the affiliate id to session.
 - [ ] Separation between data and models. Models should not contain any $_REQUEST input.
-- [ ] Language setting should move into session and not in every URL.
+- [x] Language setting should move into session and not in every URL.
 - [ ] Cleaning and rebuilding the multilingual system, so anything can be translated into any language.
 - [ ] Creating a block system (event listeners).
 - [ ] Use a template engine (either Twig or the Embedded one). And clean up views so they don't use any more Controller/Model functions. 
