@@ -1,9 +1,8 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Greek Language Translation
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
-
 $lang['main_username']								= 'Όνομα Χρήστη';
 $lang['main_password']								= 'Κωδικός Πρόσβασης';
 
@@ -32,7 +31,7 @@ $lang['main_stock_short']							= 'Τελειώνει';
 $lang['main_out_of_stock']							= 'Εξαντλήθηκε';
 $lang['main_main_image']							= 'Κύρια εικόνα';
 $lang['main_price_old']								= 'Προηγούμενη Τιμή';
-$lang['main_product_news']							= 'Δείτε πρόσφατα Νέα και Παρουσιάσεις του προϊόντος στο Blog του Cool Clean Quiet';
+$lang['main_product_news']							= 'Δείτε πρόσφατα Νέα και Παρουσιάσεις του προϊόντος';
 
 // admin
 
@@ -78,7 +77,7 @@ $lang['main_select_language']						= 'Επέλεξε Γλώσσα';
 $lang['main_random_product']						= 'Tip';
 $lang['main_information']							= 'Πληροφορίες';
 $lang['main_friendly_sites']						= 'Συνεργατες';
-$lang['main_suggest']								= 'Προτάσεις';
+$lang['main_suggestions']							= 'Προτάσεις';
 
 $lang['main_price']									= 'Τιμή';
 $lang['main_currency']								= '€';
@@ -104,7 +103,6 @@ $lang['main_receipt']								= 'Στοιχεία Παραλήπτη';
 
 // contact and user information
 
-$lang['main_receipt']								= 'Στοιχεία Παραλήπτη';
 $lang['main_full_name']								= 'Ονοματεπώνυμο';
 $lang['main_name']									= 'Όνομα';
 $lang['main_surname']								= 'Επώνυμο';

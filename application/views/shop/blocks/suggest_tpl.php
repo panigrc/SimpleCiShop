@@ -1,4 +1,4 @@
-				<div class="box_top"><h2><?php echo $this->lang->line('main_suggest'); ?></h2>
+				<div class="box_top"><h2><?php echo $this->lang->line('main_suggestions'); ?></h2>
 				</div>	
 				<div class="box">
                     <div class="menu">

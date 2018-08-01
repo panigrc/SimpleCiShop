@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * English Language Translation
  */
@@ -15,6 +16,8 @@ $lang['main_greek']									= 'Greek';
 $lang['main_german']								= 'German';
 $lang['main_english']								= 'English';
 
+$lang['main_greece']								= 'Greece';
+
 // product
 
 $lang['main_title']									= 'Title';
@@ -25,8 +28,10 @@ $lang['main_url']									= 'url';
 $lang['main_stock']									= 'Stock';
 $lang['main_stock_available']						= 'Available';
 $lang['main_stock_short']							= 'Runs out';
+$lang['main_out_of_stock']							= 'Out of stock';
 $lang['main_main_image']							= 'Main image';
 $lang['main_price_old']								= 'Price before';
+$lang['main_product_news']							= 'Find out recent News and Reviews of this product';
 
 // admin
 
@@ -68,11 +73,11 @@ $lang['main_page']									= 'Page';
 $lang['main_page_first']							= 'First';
 $lang['main_page_last']								= 'Last';
 $lang['main_go_back']								= 'Go Back';
-
 $lang['main_select_language']						= 'Select Language';
 $lang['main_random_product']						= 'Tip';
 $lang['main_information']							= 'Information';
 $lang['main_friendly_sites']						= 'Friendly Sites';
+$lang['main_suggestions']							= 'Suggestions';
 
 $lang['main_price']									= 'Price';
 $lang['main_currency']								= '€';
@@ -88,11 +93,13 @@ $lang['main_cart_add']								= 'Add to cart';
 
 // checkout
 
+$lang['main_more_data']								= 'Additional Information';
 $lang['main_optional_data']							= 'Optional';
 $lang['main_required_field']						= 'This field is required to continue your order';
 $lang['main_load_data']								= 'If you have ordered in the past from us you can fill this form to load your personal data';
 $lang['main_first_time_user']						= 'If you order for the first time please fill the following form';
 $lang['main_phone_or_email']						= 'Phone or e-mail';
+$lang['main_receipt']								= 'Recipient information';
 
 // contact and user information
 
@@ -123,6 +130,11 @@ $lang['main_shippment_sum']							= 'Shippment costs summary';
 $lang['main_shippment_express']						= 'Express';
 $lang['main_shippment_to_door']						= 'At your door';
 $lang['main_shippment_cash_on_delivery']			= 'Cash on delivery';
+$lang['main_shippment_cash_on_delivery_details']	= '(+4 € extra charge, we will contact you before shipping your order for confirmation)';
+$lang['main_shippment_paypal']						= 'E-Payment with Paypal';
+$lang['main_shippment_paypal_details']				= '(pay with credit or debit card)';
+$lang['main_shippment_bank_transfer']				= 'Bank Transfer';
+$lang['main_shippment_bank_transfer_details']		= '(please fill out your email address in order to send you the shipment details)';
 
 $lang['main_shippment_costs']						= '45';
 $lang['main_shippment_express_costs']				= '23';
@@ -136,7 +148,7 @@ $lang['main_costs_sum']								= 'Sum';
 // questionnaire
 
 $lang['main_questionnaire']							= 'Questionnaire';
-$lang['main_question1']								= 'Τί άλλο να φέρουμε';
-$lang['main_question2']								= 'Απο που μας βρήκατε';
+$lang['main_question1']								= 'What products would you like to see in our shop?';
+$lang['main_question2']								= 'Where did you hear of us?';
 
 $lang['main_contact_subject']						= 'Site contact';
