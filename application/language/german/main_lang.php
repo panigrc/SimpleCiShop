@@ -123,23 +123,23 @@ $lang['main_spam_protection']						= 'Das Zweite Wählen';
 $lang['main_spam']									= 'Das ist Spam';
 $lang['main_not_spam']								= 'Das ist kein Spam';
 
-// shippment
+// shipment
 
-$lang['main_shippment']								= 'Versand';
-$lang['main_shippment_sum']							= 'Versandkosten Summe';
-$lang['main_shippment_express']						= 'Express';
-$lang['main_shippment_to_door']						= 'An ihrer Tür';
-$lang['main_shippment_cash_on_delivery']			= 'Nachname Lieferung';
-$lang['main_shippment_cash_on_delivery_details']	= '(+4 € extra Gebühr, wir werden bevor den Versand mit Ihnen Kontakt aufnehmen, um den Auftrag zu bestätigen)';
-$lang['main_shippment_paypal']						= 'Elektronische Überweisung durch Paypal';
-$lang['main_shippment_paypal_details']				= '(mit Karte zahlen)';
-$lang['main_shippment_bank_transfer']				= 'Überweisung';
-$lang['main_shippment_bank_transfer_details']		= '(bitte fügen Sie ihre E-mail Adresse ein, um die Versand Informationen Ihnen zu schicken)';
+$lang['main_shipment']								= 'Versand';
+$lang['main_shipment_sum']							= 'Versandkosten Summe';
+$lang['main_shipment_express']						= 'Express';
+$lang['main_shipment_to_door']						= 'An ihrer Tür';
+$lang['main_shipment_cash_on_delivery']			= 'Nachname Lieferung';
+$lang['main_shipment_cash_on_delivery_details']	= '(+4 € extra Gebühr, wir werden bevor den Versand mit Ihnen Kontakt aufnehmen, um den Auftrag zu bestätigen)';
+$lang['main_shipment_paypal']						= 'Elektronische Überweisung durch Paypal';
+$lang['main_shipment_paypal_details']				= '(mit Karte zahlen)';
+$lang['main_shipment_bank_transfer']				= 'Überweisung';
+$lang['main_shipment_bank_transfer_details']		= '(bitte fügen Sie ihre E-mail Adresse ein, um die Versand Informationen Ihnen zu schicken)';
 
-$lang['main_shippment_costs']						= '25';
-$lang['main_shippment_express_costs']				= '13';
-$lang['main_shippment_to_door_costs']				= '13';
-$lang['main_shippment_cash_on_delivery_costs']		= '13';
+$lang['main_shipment_costs']						= '25';
+$lang['main_shipment_express_costs']				= '13';
+$lang['main_shipment_to_door_costs']				= '13';
+$lang['main_shipment_cash_on_delivery_costs']		= '13';
 
 // costs
 

@@ -24,9 +24,9 @@
         <td><div style="display: none;" id="products<?php echo $order['orderID']; ?>"></td>
         <td><?php echo date("H:i d/m/y", $order['date_created']); ?></td>
         <td><span id="status<?php echo $order['orderID']; ?>"><?php echo $order['status']; ?></span> <a href="#" onclick="<?php echo $this->ajax->remote_function(array('update'=>'status'.$order['orderID'], 'url'=>site_url("order/ajaxset_status/" . $order['orderID'] . "/". 2 ))); ?>; return FALSE;">Αλλαγή</a> <a href="#" onclick="<?php echo $this->ajax->remote_function(array('update'=>'status'.$order['orderID'], 'url'=>site_url("order/ajaxset_status/" . $order['orderID'] . "/". 1 ))); ?>; return FALSE;">Αλλαγή</a></td>
-        <td><?php echo $order['shippment_express']; ?></td>
-        <td><?php echo $order['shippment_to_door']; ?></td>
-        <td><?php echo $order_type[$order['shippment_cash_on_delivery']]; ?></td>
+        <td><?php echo $order['shipment_express']; ?></td>
+        <td><?php echo $order['shipment_to_door']; ?></td>
+        <td><?php echo $order_type[$order['shipment_cash_on_delivery']]; ?></td>
         <td><?php echo $order['price']; ?></td>
         <td><?php echo nl2br($order['questionnaire']); ?></td>
         <td><?php echo anchor("order/view_order/".$order['orderID']."/".$order['userID'], '<img src="'. base_url() .'/theme/images/print.png" alt="">', "Εκτύπωση"); ?></td>

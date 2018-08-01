@@ -160,9 +160,9 @@ CREATE TABLE IF NOT EXISTS `order` (
   `userID` bigint(20) NOT NULL default '0',
   `date_created` int(11) NOT NULL default '0',
   `status` int(11) NOT NULL default '0',
-  `shippment_express` int(1) NOT NULL default '0',
-  `shippment_to_door` int(1) NOT NULL default '0',
-  `shippment_cash_on_delivery` int(1) NOT NULL default '0',
+  `shipment_express` int(1) NOT NULL default '0',
+  `shipment_to_door` int(1) NOT NULL default '0',
+  `shipment_cash_on_delivery` int(1) NOT NULL default '0',
   `price` decimal(11,2) NOT NULL default '0.00',
   `couponID` int(11) NOT NULL default '0',
   `questionnaire` text,
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `order` (
 -- Dumping data for table `order`
 --
 
-INSERT INTO `order` (`orderID`, `userID`, `date_created`, `status`, `shippment_express`, `shippment_to_door`, `shippment_cash_on_delivery`, `price`, `couponID`, `questionnaire`) VALUES
+INSERT INTO `order` (`orderID`, `userID`, `date_created`, `status`, `shipment_express`, `shipment_to_door`, `shipment_cash_on_delivery`, `price`, `couponID`, `questionnaire`) VALUES
 (7, 7, 1181491136, 2, 0, 0, 1, 14.00, 0, 'Σχόλια<br />\nΑπο που μας βρήκες<br />\n<br />\n');
 
 -- --------------------------------------------------------

@@ -21,4 +21,4 @@
                         <?php echo $this->lang->line('main_cart_cost'); ?>:
                         <?php echo $sum.' '.$this->lang->line('main_currency'); ?>
                     </p>
-                    <script type="text/javascript">if(document.getElementById("cart_costs")!=NULL){ $("cart_costs").innerHTML=<?php echo $sum; ?>; shippment_sum();}</script>
+                    <script type="text/javascript">if(document.getElementById("cart_costs")!=NULL){ $("cart_costs").innerHTML=<?php echo $sum; ?>; shipment_sum();}</script>

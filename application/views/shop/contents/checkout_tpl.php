@@ -65,29 +65,29 @@
                             <input type="text" name="questionnaire[]" id="question2" class="contact" value="" />
                         </div>
                         <h2>
-                            <?php echo $this->lang->line('main_shippment'); ?>
+                            <?php echo $this->lang->line('main_shipment'); ?>
                         </h2>
                         <div class="search">
-                            <label class="search" for="shippment_cash_on_delivery"><?php echo $this->lang->line('main_shippment_cash_on_delivery'); ?>:</label> 
-                            <input type="radio" class="check" name="shippment_cash_on_delivery" id="shippment_cash_on_delivery" value="1" onclick="javascript:shippment_sum();"/>
+                            <label class="search" for="shipment_cash_on_delivery"><?php echo $this->lang->line('main_shipment_cash_on_delivery'); ?>:</label>
+                            <input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_cash_on_delivery" value="1" onclick="javascript:shipment_sum();"/>
                         </div>
-                        <div class="small"><?php echo $this->lang->line('main_shippment_cash_on_delivery_details'); ?></div>
+                        <div class="small"><?php echo $this->lang->line('main_shipment_cash_on_delivery_details'); ?></div>
                         <div class="search">
-                            <label class="search" for="shippment_paypal"><?php echo $this->lang->line('main_shippment_paypal'); ?>:</label> 
-                            <input type="radio" class="check" name="shippment_cash_on_delivery" id="shippment_paypal" value="2" onclick="javascript:shippment_sum();"/>
+                            <label class="search" for="shipment_paypal"><?php echo $this->lang->line('main_shipment_paypal'); ?>:</label>
+                            <input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_paypal" value="2" onclick="javascript:shipment_sum();"/>
                         </div>
-                        <div class="small"><?php echo $this->lang->line('main_shippment_paypal_details'); ?></div>
+                        <div class="small"><?php echo $this->lang->line('main_shipment_paypal_details'); ?></div>
                         <div class="search">
-                            <label class="search" for="shippment_bank_transfer"><?php echo $this->lang->line('main_shippment_bank_transfer'); ?>:</label> 
-                            <input type="radio" class="check" name="shippment_cash_on_delivery" id="shippment_bank_transfer" value="3" onclick="javascript:shippment_sum();"/>
+                            <label class="search" for="shipment_bank_transfer"><?php echo $this->lang->line('main_shipment_bank_transfer'); ?>:</label>
+                            <input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_bank_transfer" value="3" onclick="javascript:shipment_sum();"/>
                         </div>
-                        <div class="small"><?php echo $this->lang->line('main_shippment_bank_transfer_details'); ?></div>
+                        <div class="small"><?php echo $this->lang->line('main_shipment_bank_transfer_details'); ?></div>
                         <div class="search">
-                            <?php echo $this->lang->line('main_shippment_sum'); ?> : <span id="shippment_costs"><?php echo $this->lang->line('main_shippment_costs'); ?></span> <span id="shippment_sum"></span> <?php echo $this->lang->line('main_currency'); ?>
+                            <?php echo $this->lang->line('main_shipment_sum'); ?> : <span id="shipment_costs"><?php echo $this->lang->line('main_shipment_costs'); ?></span> <span id="shipment_sum"></span> <?php echo $this->lang->line('main_currency'); ?>
                         </div>
                         <div class="search">
-                            <?php echo $this->lang->line('main_costs_sum'); ?> : <span id="cart_costs"><?php echo $cart_costs; ?></span> + <span id="costs_sum"><?php echo $this->lang->line('main_shippment_costs'); ?> = <?php echo floatval($cart_costs)+floatval($this->lang->line('main_shippment_costs')); ?></span> <?php echo $this->lang->line('main_currency'); ?>
-                            <input type="hidden" name="price" id="price" value="<?php echo $cart_costs+$this->lang->line('main_shippment_costs'); ?>" />
+                            <?php echo $this->lang->line('main_costs_sum'); ?> : <span id="cart_costs"><?php echo $cart_costs; ?></span> + <span id="costs_sum"><?php echo $this->lang->line('main_shipment_costs'); ?> = <?php echo floatval($cart_costs)+floatval($this->lang->line('main_shipment_costs')); ?></span> <?php echo $this->lang->line('main_currency'); ?>
+                            <input type="hidden" name="price" id="price" value="<?php echo $cart_costs+$this->lang->line('main_shipment_costs'); ?>" />
                         </div>
                         <div>
                             <input type="submit" value="<?php echo $this->lang->line('main_submit'); ?>" class="submit" /> 

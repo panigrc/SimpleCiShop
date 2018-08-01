@@ -123,23 +123,23 @@ $lang['main_spam_protection']						= 'Select the second';
 $lang['main_spam']									= 'This is spam';
 $lang['main_not_spam']								= 'This is not spam';
 
-// shippment
+// shipment
 
-$lang['main_shippment']								= 'Shippment';
-$lang['main_shippment_sum']							= 'Shippment costs summary';
-$lang['main_shippment_express']						= 'Express';
-$lang['main_shippment_to_door']						= 'At your door';
-$lang['main_shippment_cash_on_delivery']			= 'Cash on delivery';
-$lang['main_shippment_cash_on_delivery_details']	= '(+4 € extra charge, we will contact you before shipping your order for confirmation)';
-$lang['main_shippment_paypal']						= 'E-Payment with Paypal';
-$lang['main_shippment_paypal_details']				= '(pay with credit or debit card)';
-$lang['main_shippment_bank_transfer']				= 'Bank Transfer';
-$lang['main_shippment_bank_transfer_details']		= '(please fill out your email address in order to send you the shipment details)';
+$lang['main_shipment']								= 'Shipment';
+$lang['main_shipment_sum']							= 'Shipment costs summary';
+$lang['main_shipment_express']						= 'Express';
+$lang['main_shipment_to_door']						= 'At your door';
+$lang['main_shipment_cash_on_delivery']			= 'Cash on delivery';
+$lang['main_shipment_cash_on_delivery_details']	= '(+4 € extra charge, we will contact you before shipping your order for confirmation)';
+$lang['main_shipment_paypal']						= 'E-Payment with Paypal';
+$lang['main_shipment_paypal_details']				= '(pay with credit or debit card)';
+$lang['main_shipment_bank_transfer']				= 'Bank Transfer';
+$lang['main_shipment_bank_transfer_details']		= '(please fill out your email address in order to send you the shipment details)';
 
-$lang['main_shippment_costs']						= '45';
-$lang['main_shippment_express_costs']				= '23';
-$lang['main_shippment_to_door_costs']				= '23';
-$lang['main_shippment_cash_on_delivery_costs']		= '23';
+$lang['main_shipment_costs']						= '45';
+$lang['main_shipment_express_costs']				= '23';
+$lang['main_shipment_to_door_costs']				= '23';
+$lang['main_shipment_cash_on_delivery_costs']		= '23';
 
 // costs
 

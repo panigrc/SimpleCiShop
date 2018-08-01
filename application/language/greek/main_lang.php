@@ -123,23 +123,23 @@ $lang['main_spam_protection']						= 'Επέλεξε το δεύτερο';
 $lang['main_spam']									= 'Ενοχλητική Αλληλογραφία';
 $lang['main_not_spam']								= 'Mη ενοχλητική αλληλογραφία';
 
-// shippment
+// shipment
 
-$lang['main_shippment']								= 'Τρόπος Πληρωμής';
-$lang['main_shippment_sum']							= 'Σύνολο εξόδων αποστολής';
-$lang['main_shippment_express']						= 'Εξπρες';
-$lang['main_shippment_to_door']						= 'Στην πόρτα σας';
-$lang['main_shippment_cash_on_delivery']			= 'Αντικαταβολή';
-$lang['main_shippment_cash_on_delivery_details']	= '(+4 € επιπλέον χρέωση, θα επικοινωνήσουμε πριν την εκτέλεση της παραγγελίας για επιβεβαίωση)';
-$lang['main_shippment_paypal']						= 'Ηλεκτρονική συναλλαγή μέσω Paypal';
-$lang['main_shippment_paypal_details']				= '(πληρωμη με πιστωτική, χρεωστική ή προπληρωμένη κάρτα)';
-$lang['main_shippment_bank_transfer']				= 'Κατάθεση σε τραπεζικό λογαριασμό';
-$lang['main_shippment_bank_transfer_details']		= '(συμπλήρωσε το email σου για να σου στείλουμε τα στοιχεία)';
+$lang['main_shipment']								= 'Τρόπος Πληρωμής';
+$lang['main_shipment_sum']							= 'Σύνολο εξόδων αποστολής';
+$lang['main_shipment_express']						= 'Εξπρες';
+$lang['main_shipment_to_door']						= 'Στην πόρτα σας';
+$lang['main_shipment_cash_on_delivery']			= 'Αντικαταβολή';
+$lang['main_shipment_cash_on_delivery_details']	= '(+4 € επιπλέον χρέωση, θα επικοινωνήσουμε πριν την εκτέλεση της παραγγελίας για επιβεβαίωση)';
+$lang['main_shipment_paypal']						= 'Ηλεκτρονική συναλλαγή μέσω Paypal';
+$lang['main_shipment_paypal_details']				= '(πληρωμη με πιστωτική, χρεωστική ή προπληρωμένη κάρτα)';
+$lang['main_shipment_bank_transfer']				= 'Κατάθεση σε τραπεζικό λογαριασμό';
+$lang['main_shipment_bank_transfer_details']		= '(συμπλήρωσε το email σου για να σου στείλουμε τα στοιχεία)';
 
-$lang['main_shippment_costs']						= '4';
-$lang['main_shippment_express_costs']				= '3';
-$lang['main_shippment_to_door_costs']				= '3';
-$lang['main_shippment_cash_on_delivery_costs']		= '4';
+$lang['main_shipment_costs']						= '4';
+$lang['main_shipment_express_costs']				= '3';
+$lang['main_shipment_to_door_costs']				= '3';
+$lang['main_shipment_cash_on_delivery_costs']		= '4';
 
 // costs
 

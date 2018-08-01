@@ -87,15 +87,15 @@ class Order_model extends CI_Model {
 	 */
 	public function add_order($userID)
 	{
-		$shippment_express = 0 + @$this->input->post('shippment_express');
-		$shippment_to_door = 0 + @$this->input->post('shippment_to_door');
-		$shippment_cash_on_delivery = @$this->input->post('shippment_cash_on_delivery');
+		$shipment_express = 0 + @$this->input->post('shipment_express');
+		$shipment_to_door = 0 + @$this->input->post('shipment_to_door');
+		$shipment_cash_on_delivery = @$this->input->post('shipment_cash_on_delivery');
 
 		$order = array('userID' => $userID,
 									 'date_created' => time(),
-									 'shippment_express' => $shippment_express,
-									 'shippment_to_door' => $shippment_to_door,
-									 'shippment_cash_on_delivery' => $shippment_cash_on_delivery,
+									 'shipment_express' => $shipment_express,
+									 'shipment_to_door' => $shipment_to_door,
+									 'shipment_cash_on_delivery' => $shipment_cash_on_delivery,
 									 'status' => 0,
 									 'price' => $this->input->post('price'),
 									 'questionnaire' => $this->get_questionnaire($this->input->post('questionnaire'))

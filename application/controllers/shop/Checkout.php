@@ -39,15 +39,15 @@ class Checkout extends CI_Controller {
 					<script type="text/javascript" src="'.base_url().'assets/jscalendar/calendar-setup.js"></script>';
 
 		/** @todo	create a template for this */
-		$data['scripts'] .= '<script type="text/javascript">function shippment_sum(){
+		$data['scripts'] .= '<script type="text/javascript">function shipment_sum(){
 					var text="";
 					var cart_costs = parseFloat($("cart_costs").innerHTML);
-					var sum = parseFloat($("shippment_costs").innerHTML);
+					var sum = parseFloat($("shipment_costs").innerHTML);
 
 
-					if ($("shippment_cash_on_delivery").checked) { text+=" + "; text+='.$this->lang->line('main_shippment_cash_on_delivery_costs').'; sum+=parseFloat('.$this->lang->line('main_shippment_cash_on_delivery_costs').');}
+					if ($("shipment_cash_on_delivery").checked) { text+=" + "; text+='.$this->lang->line('main_shipment_cash_on_delivery_costs').'; sum+=parseFloat('.$this->lang->line('main_shipment_cash_on_delivery_costs').');}
 					text+=" = " + sum;
-					$("shippment_sum").innerHTML = text;
+					$("shipment_sum").innerHTML = text;
 					$("costs_sum").innerHTML = sum + " = " + (cart_costs + sum);
 					$("price").value = (cart_costs + sum);
 					}
@@ -117,8 +117,8 @@ class Checkout extends CI_Controller {
 			$this->order_model->add_order_products($order_id, $products);
 		}
 
-		if ($this->input->post('shippment_cash_on_delivery') === "1"
-			OR $this->input->post('shippment_cash_on_delivery') === "3")
+		if ($this->input->post('shipment_cash_on_delivery') === "1"
+			OR $this->input->post('shipment_cash_on_delivery') === "3")
 		{
 			redirect('checkout/thankyou');
 		}
