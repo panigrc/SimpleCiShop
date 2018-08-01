@@ -13,9 +13,6 @@ class Product extends CI_Controller {
 			show_404($page = $_SERVER['PHP_SELF']);
 		}
 
-		$data['pagename'] = 'main_slogan';
-		$data['lang'] = $this->language_library->get_language();
-
 		/**
 		 * @todo	create a Product class that handles the following
 		 */
@@ -40,6 +37,8 @@ class Product extends CI_Controller {
 		);
 
 		$data = array(
+			'pagename' => 'main_slogan',
+			'lang' => $this->language_library->get_language(),
 			'contents' => $this->load->view('shop/contents/product_tpl', $content_data, TRUE),
 			'title' => $product['title_'.$this->language_library->get_language()],
 			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
