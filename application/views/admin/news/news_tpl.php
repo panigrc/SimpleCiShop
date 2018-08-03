@@ -1,9 +1,9 @@
 <?php
     echo form_open("news/".$action);
-    echo form_hidden('newsID',$newsID);
-    echo form_hidden('news_textID_greek', @$news_textID_greek);
-    echo form_hidden('news_textID_german', @$news_textID_german);
-    echo form_hidden('news_textID_english', @$news_textID_english);
+    echo form_hidden('news_id',$news_id);
+    echo form_hidden('news_text_id_greek', @$news_text_id_greek);
+    echo form_hidden('news_text_id_german', @$news_text_id_german);
+    echo form_hidden('news_text_id_english', @$news_text_id_english);
 ?>
 <table cellspacing=1 cellpadding=0>
 <tr>

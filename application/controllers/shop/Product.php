@@ -17,15 +17,15 @@ class Product extends CI_Controller {
 		 * @todo	create a Product class that handles the following
 		 */
 		$product = $this->product_model->get_product_by_nicename($product_nicename);
-		$product += $this->product_model->get_product_text($product['productID']);
-		$product['category_text'] = $this->category_model->get_category_names($this->product_model->get_product_categories($product['productID']));
-		$product += $this->product_model->get_product_main_image($product['productID']);
+		$product += $this->product_model->get_product_text($product['product_id']);
+		$product['category_text'] = $this->category_model->get_category_names($this->product_model->get_product_categories($product['product_id']));
+		$product += $this->product_model->get_product_main_image($product['product_id']);
 
 		$content_data = array(
 			'nicename' => $product_nicename,
 			'product' => $product,
-			'images_arr' => $this->product_model->get_product_image($product['productID']),
-			'meta' => $this->product_model->get_product_meta($product['productID']),
+			'images_arr' => $this->product_model->get_product_image($product['product_id']),
+			'meta' => $this->product_model->get_product_meta($product['product_id']),
 			'lang' => $this->language_library->get_language(),
 		);
 

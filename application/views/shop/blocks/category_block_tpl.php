@@ -29,7 +29,7 @@
     }
     
     
-    function printOptions($arr, $categoryID, $level=0, $vars=array()) {
+    function printOptions($arr, $category_id, $level=0, $vars=array()) {
         //global $method, $controller, $product_type, $price_from, $price_to, $order_by;
         $obj = &get_instance();
         extract($vars);
@@ -39,7 +39,7 @@
         
         if(count($arr) >0 && $level > 0) {
         
-            $this_level .= "                    <ul id='ul$level$categoryID'>\n";
+            $this_level .= "                    <ul id='ul$level$category_id'>\n";
         }
         
         foreach($arr as $item => $key){

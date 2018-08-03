@@ -20,7 +20,7 @@ class News extends CI_Controller {
 
 		$news = $this->news_model->get_all_news();
 		foreach($news as $new => $value) {
-			$news[$new] = array_merge($news[$new], $this->news_model->get_news_text($news[$new]['newsID']));
+			$news[$new] = array_merge($news[$new], $this->news_model->get_news_text($news[$new]['news_id']));
 		}
 		$data['contents'] = $this->load->view('news/list_tpl', array('news' => $news), TRUE);
 		$this->load->view('container_tpl',$data);
@@ -29,14 +29,14 @@ class News extends CI_Controller {
 	function view_news()
 	{
 		// displays a product form
-		$form_data['newsID'] = "";
+		$form_data['news_id'] = "";
 		$form_data['published'] = "";
 		$form_data['action'] = $this->uri->segment(3, "add_news");
 		if ($form_data['action'] === "edit_news")
 		{
-			$form_data['newsID'] = $this->uri->segment(4);
-			$form_data = array_merge($form_data, $this->news_model->get_news($form_data['newsID']));
-			$form_data = array_merge($form_data, $this->news_model->get_news_text($form_data['newsID']));
+			$form_data['news_id'] = $this->uri->segment(4);
+			$form_data = array_merge($form_data, $this->news_model->get_news($form_data['news_id']));
+			$form_data = array_merge($form_data, $this->news_model->get_news_text($form_data['news_id']));
 		}
 
 		$data['contents'] = $this->load->view('news/news_tpl', $form_data, TRUE);

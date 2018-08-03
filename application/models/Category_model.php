@@ -13,7 +13,7 @@ class Category_model extends CI_Model {
 	}
 
 	/**
-	 * Get all categoryIDs
+	 * Get all category_ids
 	 *
 	 * @param	int	$parent
 	 * @return	array
@@ -22,29 +22,29 @@ class Category_model extends CI_Model {
 	{
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('parent_categoryID', $parent);
+		$this->db->where('parent_category_id', $parent);
 		$query = $this->db->get();
 		$ids = array();
 		foreach ($query->result_array() as $row)
 		{
-			$temp_arr = $this->get_all_category_ids_recursive($row['categoryID']);
-			$ids[$row['categoryID']] = $temp_arr;
-			//$ids = $ids + $this->getAllCategoryIDs_byID($row['categoryID']);
+			$temp_arr = $this->get_all_category_ids_recursive($row['category_id']);
+			$ids[$row['category_id']] = $temp_arr;
+			//$ids = $ids + $this->getAllcategory_ids_byID($row['category_id']);
 		}
 		return $ids;
 	}
 
 	/**
-	 * Get all children categories of $categoryID
+	 * Get all children categories of $category_id
 	 *
-	 * @param	$categoryID
+	 * @param	$category_id
 	 * @return	array
 	 */
-	public function get_category_children($categoryID)
+	public function get_category_children($category_id)
 	{
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('parent_categoryID', $categoryID);
+		$this->db->where('parent_category_id', $category_id);
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		$ids = array();
@@ -52,24 +52,24 @@ class Category_model extends CI_Model {
 		//echo("<br><br>" . time() . "<br><br>");
 		foreach ($query->result_array() as $row)
 		{
-			$temp = $this->get_category_children($row['categoryID']);
+			$temp = $this->get_category_children($row['category_id']);
 			//$temp = 0;
-			$ids[$row['categoryID']] = $temp;
+			$ids[$row['category_id']] = $temp;
 		}
 		return $ids;
 	}
 
 	/**
-	 * Gets all parent categories of $categoryID
+	 * Gets all parent categories of $category_id
 	 *
-	 * @param	$categoryID
+	 * @param	$category_id
 	 * @return	array
 	 */
-	public function get_category_parents($categoryID)
+	public function get_category_parents($category_id)
 	{
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('categoryID', $categoryID);
+		$this->db->where('category_id', $category_id);
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		$ids = array();
@@ -77,57 +77,57 @@ class Category_model extends CI_Model {
 		//echo("<br><br>" . time() . "<br><br>");
 		foreach ($query->result_array() as $row)
 		{
-			if ($row['parent_categoryID'] != 0)
+			if ($row['parent_category_id'] != 0)
 			{
-				$temp = $this->get_category_parents($row['parent_categoryID']);
+				$temp = $this->get_category_parents($row['parent_category_id']);
 				//$temp = 0;
-				array_push($temp, $row['parent_categoryID']);
+				array_push($temp, $row['parent_category_id']);
 				$ids = $temp;
 			}
 		}
 		return $ids;
 		/*$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('categoryID', $categoryID);
+		$this->db->where('category_id', $category_id);
 		$query = $this->db->get();
 		$ids = array();
 		foreach ($query->result_array() as $row)
 		{
-		$temp = $this->get_category_parents($row['parent_categoryID']);
-		if ( ! $this->category_is_root($row['categoryID'])) $ids[$row['categoryID']] = $temp;
+		$temp = $this->get_category_parents($row['parent_category_id']);
+		if ( ! $this->category_is_root($row['category_id'])) $ids[$row['category_id']] = $temp;
 		}
 		if (count($ids) > 0) return $ids;
 		return NULL;*/
 	}
 
 	/**
-	 * Checks if $categoryID is a root category
+	 * Checks if $category_id is a root category
 	 *
-	 * @param	$categoryID
+	 * @param	$category_id
 	 * @return	bool
 	 */
-	public function category_is_root($categoryID)
+	public function category_is_root($category_id)
 	{
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('categoryID', $categoryID);
+		$this->db->where('category_id', $category_id);
 		$query = $this->db->get();
 		$ids = array();
 		$row = $query->row_array();
-		return empty($row['parent_categoryID']) === TRUE ? TRUE : FALSE ;
+		return empty($row['parent_category_id']) === TRUE ? TRUE : FALSE ;
 	}
 
 	/**
-	 * Returns the category with $categoryID
+	 * Returns the category with $category_id
 	 *
-	 * @param	$categoryID
+	 * @param	$category_id
 	 * @return	mixed
 	 */
-	public function get_category($categoryID)
+	public function get_category($category_id)
 	{
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('category.categoryID', $categoryID);
+		$this->db->where('category.category_id', $category_id);
 
 		$query = $this->db->get();
 
@@ -135,29 +135,29 @@ class Category_model extends CI_Model {
 	}
 
 	/**
-	 * Get root category ID of $categoryID
+	 * Get root category ID of $category_id
 	 *
-	 * @param	$categoryID
+	 * @param	$category_id
 	 * @return	int|null
 	 */
-	public function get_category_root($categoryID)
+	public function get_category_root($category_id)
 	{
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('categoryID', $categoryID);
+		$this->db->where('category_id', $category_id);
 		$query = $this->db->get();
-		$rootID = 0;
+		$root_id = 0;
 		foreach ($query->result_array() as $row)
 		{
-			if ($this->category_is_root($row['categoryID'])) $rootID = $row['categoryID'];
-			else $rootID = $this->get_category_root($row['parent_categoryID']);
+			if ($this->category_is_root($row['category_id'])) $root_id = $row['category_id'];
+			else $root_id = $this->get_category_root($row['parent_category_id']);
 		}
-		if ($rootID > 0) return $rootID;
+		if ($root_id > 0) return $root_id;
 		return NULL;
 	}
 
 	/**
-	 * Returns an associative array with all categoryIDs without 1st level
+	 * Returns an associative array with all category_ids without 1st level
 	 * if $nicename is null or not found 0 is returned.
 	 *
 	 * @param	string|null	$nicename
@@ -177,31 +177,31 @@ class Category_model extends CI_Model {
 		$row = $query->row_array();
 		if ($row != NULL)
 		{
-			return $row['categoryID'];
+			return $row['category_id'];
 		}
 
 		return 0;
 	}
 
 	/**
-	 * Returns an associative array with all categoryIDs without 1st level
+	 * Returns an associative array with all category_ids without 1st level
 	 * If $category_id is 0 then return 'all' for all categories
 	 *
 	 * @todo	Rename nicename into slug
 	 * @todo	make 'all' a constant in global scope
-	 * @param	int $categoryID
+	 * @param	int $category_id
 	 * @return	string
 	 */
-	public function get_category_nicename($categoryID)
+	public function get_category_nicename($category_id)
 	{
-		if ($categoryID === 0)
+		if ($category_id === 0)
 		{
 			return 'all';
 		}
 
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('categoryID', $categoryID);
+		$this->db->where('category_id', $category_id);
 		$query = $this->db->get();
 		$row = $query->row_array();
 
@@ -209,20 +209,20 @@ class Category_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$categoryID
+	 * @param	$category_id
 	 * @return	array
 	 */
-	public function get_category_text($categoryID)
+	public function get_category_text($category_id)
 	{
 		$this->db->select('*');
 		$this->db->from('category_text');
-		$this->db->where('category_text.categoryID', $categoryID);
+		$this->db->where('category_text.category_id', $category_id);
 
 		$query = $this->db->get();
 		$text = array();
 		foreach ($query->result_array() as $row)
 		{
-			$text['category_textID_'.$row['language']] = $row['category_textID'];
+			$text['category_text_id_'.$row['language']] = $row['category_text_id'];
 			$text['category_name_'.$row['language']] = $row['name'];
 			$text['category_description_'.$row['language']] = $row['description'];
 		}
@@ -232,16 +232,16 @@ class Category_model extends CI_Model {
 	/**
 	 * Returns only name in the current language
 	 *
-	 * @param	$categoryID
+	 * @param	$category_id
 	 * @return	string
 	 */
-	public function get_category_name($categoryID)
+	public function get_category_name($category_id)
 	{
 		$lang = $this->config->item('language');
 
 		$this->db->select('*');
 		$this->db->from('category_text');
-		$this->db->where('category_text.categoryID', $categoryID);
+		$this->db->where('category_text.category_id', $category_id);
 		$this->db->where('category_text.language', $lang);
 
 		$query = $this->db->get();
@@ -253,18 +253,18 @@ class Category_model extends CI_Model {
 	/**
 	 * Returns only names in the current language separated by commas
 	 *
-	 * @param	$categoryIDs
+	 * @param	$category_ids
 	 * @return	string
 	 */
-	public function get_category_names($categoryIDs)
+	public function get_category_names($category_ids)
 	{
 		$lang = $this->config->item('language');
 		$text ="";
-		foreach ($categoryIDs as $categoryID)
+		foreach ($category_ids as $category_id)
 		{
 			$this->db->select('*');
 			$this->db->from('category_text');
-			$this->db->where('category_text.categoryID', $categoryID);
+			$this->db->where('category_text.category_id', $category_id);
 			$this->db->where('category_text.language', $lang);
 
 			$query = $this->db->get();
@@ -275,16 +275,16 @@ class Category_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$categoryID
+	 * @param	$category_id
 	 * @return	mixed
 	 */
-	public function category_has_info($categoryID)
+	public function category_has_info($category_id)
 	{
 		$lang = $this->config->item('language');
 
 		$this->db->select('COUNT(*) as count');
 		$this->db->from('category_text');
-		$this->db->where('category_text.categoryID', $categoryID);
+		$this->db->where('category_text.category_id', $category_id);
 		$this->db->where('category_text.language', $lang);
 		$this->db->where('category_text.description NOT LIKE \'\'');
 
@@ -299,8 +299,8 @@ class Category_model extends CI_Model {
 	 */
 	public function set_category()
 	{
-		$category = array('parent_categoryID' => $this->input->post('parent_categoryID'), 'nicename' => $this->input->post('nicename'));
-		$this->db->where('categoryID', $this->input->post('categoryID'));
+		$category = array('parent_category_id' => $this->input->post('parent_category_id'), 'nicename' => $this->input->post('nicename'));
+		$this->db->where('category_id', $this->input->post('category_id'));
 		$this->db->update('category', $category);
 
 		$this->set_category_text();
@@ -315,11 +315,11 @@ class Category_model extends CI_Model {
 		$text_german = array('name' => $this->input->post('category_name_german'), 'description' => $this->input->post('category_description_german'));
 		$text_english = array('name' => $this->input->post('category_name_english'), 'description' => $this->input->post('category_description_english'));
 
-		$this->db->where('category_textID', $this->input->post('category_textID_greek'));
+		$this->db->where('category_text_id', $this->input->post('category_text_id_greek'));
 		$this->db->update('category_text', $text_greek);
-		$this->db->where('category_textID', $this->input->post('category_textID_german'));
+		$this->db->where('category_text_id', $this->input->post('category_text_id_german'));
 		$this->db->update('category_text', $text_german);
-		$this->db->where('category_textID', $this->input->post('category_textID_english'));
+		$this->db->where('category_text_id', $this->input->post('category_text_id_english'));
 		$this->db->update('category_text', $text_english);
 	}
 
@@ -328,23 +328,23 @@ class Category_model extends CI_Model {
 	 */
 	public function add_category()
 	{
-		$parent_categoryID = $this->input->post('parent_categoryID');
+		$parent_category_id = $this->input->post('parent_category_id');
 		$nicename = $this->input->post('nicename');
-		if ($parent_categoryID === NULL) $parent_categoryID=0;
-		$category = array('parent_categoryID' => $parent_categoryID, 'nicename' => $nicename);
+		if ($parent_category_id === NULL) $parent_category_id=0;
+		$category = array('parent_category_id' => $parent_category_id, 'nicename' => $nicename);
 		$this->db->insert('category', $category);
-		$categoryID = $this->db->insert_id();
-		$this->add_category_text($categoryID);
+		$category_id = $this->db->insert_id();
+		$this->add_category_text($category_id);
 	}
 
 	/**
-	 * @param	$categoryID
+	 * @param	$category_id
 	 */
-	public function add_category_text($categoryID)
+	public function add_category_text($category_id)
 	{
-		$text_greek = array('categoryID' => $categoryID, 'language' => 'greek', 'name' => $this->input->post('category_name_greek'), 'description' => $this->input->post('category_description_greek'));
-		$text_german = array('categoryID' => $categoryID, 'language' => 'german', 'name' => $this->input->post('category_name_german'), 'description' => $this->input->post('category_description_german'));
-		$text_english = array('categoryID' => $categoryID, 'language' => 'english', 'name' => $this->input->post('category_name_english'), 'description' => $this->input->post('category_description_english'));
+		$text_greek = array('category_id' => $category_id, 'language' => 'greek', 'name' => $this->input->post('category_name_greek'), 'description' => $this->input->post('category_description_greek'));
+		$text_german = array('category_id' => $category_id, 'language' => 'german', 'name' => $this->input->post('category_name_german'), 'description' => $this->input->post('category_description_german'));
+		$text_english = array('category_id' => $category_id, 'language' => 'english', 'name' => $this->input->post('category_name_english'), 'description' => $this->input->post('category_description_english'));
 
 		$this->db->insert('category_text', $text_greek);
 		$this->db->insert('category_text', $text_german);

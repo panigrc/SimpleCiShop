@@ -12,14 +12,14 @@ class User extends CI_Controller {
 	}
 
 	function view_user() {
-		$userID = $this->uri->segment(4);
+		$user_id = $this->uri->segment(4);
 
 		$form_data = array();
-		$form_data['userID'] = $userID;
+		$form_data['user_id'] = $user_id;
 
 		$form_data['action'] = $this->uri->segment(3, "add_user");
 		if($form_data['action'] === "edit_user") {
-			$form_data = array_merge($form_data, $this->user_model->get_user($userID));
+			$form_data = array_merge($form_data, $this->user_model->get_user($user_id));
 			$form_data['action'] = 'set_user';
 		}
 		$data['contents'] = $this->load->view('user/user_tpl', $form_data, TRUE);

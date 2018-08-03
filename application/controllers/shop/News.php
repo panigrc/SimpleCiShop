@@ -38,7 +38,7 @@ class News extends CI_Controller {
 		$news = $this->news_model->get_last_news(5, $current_page);
 		foreach ($news as $new => $value)
 		{
-			$news[$new] = array_merge($news[$new], $this->news_model->get_news_text($news[$new]['newsID']));
+			$news[$new] = array_merge($news[$new], $this->news_model->get_news_text($news[$new]['news_id']));
 		}
 		return $news;
 	}

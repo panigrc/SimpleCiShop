@@ -66,14 +66,14 @@ class News_model extends CI_Model {
 	/**
 	 * Returns an associative array with a news item
 	 *
-	 * @param	$newsID
+	 * @param	$news_id
 	 * @return	mixed
 	 */
-	public function get_news($newsID)
+	public function get_news($news_id)
 	{
 		$this->db->select('*');
 		$this->db->from('news');
-		$this->db->where('news.newsID', $newsID);
+		$this->db->where('news.news_id', $news_id);
 
 		$query = $this->db->get();
 
@@ -81,20 +81,20 @@ class News_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$newsID
+	 * @param	$news_id
 	 * @return	array
 	 */
-	public function get_news_text($newsID)
+	public function get_news_text($news_id)
 	{
 		$this->db->select('*');
 		$this->db->from('news_text');
-		$this->db->where('news_text.newsID', $newsID);
+		$this->db->where('news_text.news_id', $news_id);
 
 		$query = $this->db->get();
 		$text = array();
 		foreach ($query->result_array() as $row)
 		{
-			$text['news_textID_'.$row['language']] = $row['news_textID'];
+			$text['news_text_id_'.$row['language']] = $row['news_text_id'];
 			$text['title_'.$row['language']] = $row['title'];
 			$text['description_'.$row['language']] = $row['description'];
 		}
@@ -106,34 +106,34 @@ class News_model extends CI_Model {
 	{
 		$arr = array('published' => time());
 		$this->db->insert('news', $arr);
-		$newsID = $this->db->insert_id();
-		$this->add_news_text($newsID);
+		$news_id = $this->db->insert_id();
+		$this->add_news_text($news_id);
 	}
 
 	public function set_news()
 	{
-		$newsID = $this->input->post('newsID');
-		$this->set_news_text($newsID);
+		$news_id = $this->input->post('news_id');
+		$this->set_news_text($news_id);
 	}
 
 	/**
-	 * @param	$newsID
+	 * @param	$news_id
 	 */
-	public function delete_news($newsID)
+	public function delete_news($news_id)
 	{
-		$this->db->delete('news', array('newsID' => $newsID));
-		$this->db->delete('news_text', array('newsID' => $newsID));
+		$this->db->delete('news', array('news_id' => $news_id));
+		$this->db->delete('news_text', array('news_id' => $news_id));
 	}
 
 	/**
-	 * @param	$newsID
+	 * @param	$news_id
 	 * @todo	loop through languages
 	 */
-	public function add_news_text($newsID)
+	public function add_news_text($news_id)
 	{
-		$text_greek = array('newsID' => $newsID, 'language' => 'greek', 'title' => $this->input->post('title_greek'), 'description' => $this->input->post('description_greek'));
-		$text_german = array('newsID' => $newsID, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'));
-		$text_english = array('newsID' => $newsID, 'language' => 'english', 'title' => $this->input->post('title_english'), 'description' => $this->input->post('description_english'));
+		$text_greek = array('news_id' => $news_id, 'language' => 'greek', 'title' => $this->input->post('title_greek'), 'description' => $this->input->post('description_greek'));
+		$text_german = array('news_id' => $news_id, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'));
+		$text_english = array('news_id' => $news_id, 'language' => 'english', 'title' => $this->input->post('title_english'), 'description' => $this->input->post('description_english'));
 
 		$this->db->insert('news_text', $text_greek);
 		$this->db->insert('news_text', $text_german);
@@ -141,20 +141,20 @@ class News_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$newsID
+	 * @param	$news_id
 	 * @todo	loop through languages
 	 */
-	public function set_news_text($newsID)
+	public function set_news_text($news_id)
 	{
-		$text_greek = array('newsID' => $newsID, 'language' => 'greek', 'title' => $this->input->post('title_greek'), 'description' => $this->input->post('description_greek'));
-		$text_german = array('newsID' => $newsID, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'));
-		$text_english = array('newsID' => $newsID, 'language' => 'english', 'title' => $this->input->post('title_english'), 'description' => $this->input->post('description_english'));
+		$text_greek = array('news_id' => $news_id, 'language' => 'greek', 'title' => $this->input->post('title_greek'), 'description' => $this->input->post('description_greek'));
+		$text_german = array('news_id' => $news_id, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'));
+		$text_english = array('news_id' => $news_id, 'language' => 'english', 'title' => $this->input->post('title_english'), 'description' => $this->input->post('description_english'));
 
-		$this->db->where('news_textID', $this->input->post('news_textID_greek'));
+		$this->db->where('news_text_id', $this->input->post('news_text_id_greek'));
 		$this->db->update('news_text', $text_greek);
-		$this->db->where('news_textID', $this->input->post('news_textID_german'));
+		$this->db->where('news_text_id', $this->input->post('news_text_id_german'));
 		$this->db->update('news_text', $text_german);
-		$this->db->where('news_textID', $this->input->post('news_textID_english'));
+		$this->db->where('news_text_id', $this->input->post('news_text_id_english'));
 		$this->db->update('news_text', $text_english);
 	}
 }

@@ -1,7 +1,7 @@
 <p><?php echo anchor("user/view_user/add_user", '<img src="'. base_url() .'/theme/images/add2.png" alt="Προσθήκη Χρήστη" align="middle"> Προσθήκη Χρήστη', 'Προσθήκη Χρήστη'); ?></p>
 <?php
     echo form_open("user/".$action);
-    echo form_hidden('userID',@$userID);
+    echo form_hidden('user_id',@$user_id);
 ?>
 <table>
 <tr>

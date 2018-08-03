@@ -1,9 +1,9 @@
 <?php
     echo form_open_multipart("catalog/".$action);
-    echo form_hidden('productID',$productID);
-    echo form_hidden('product_textID_greek', @$product_textID_greek);
-    echo form_hidden('product_textID_german', @$product_textID_german);
-    echo form_hidden('product_textID_english', @$product_textID_english);
+    echo form_hidden('product_id',$product_id);
+    echo form_hidden('product_text_id_greek', @$product_text_id_greek);
+    echo form_hidden('product_text_id_german', @$product_text_id_german);
+    echo form_hidden('product_text_id_english', @$product_text_id_english);
     
     function printOptions($arr, $product_categories, $level=0) {
         $obj =& get_instance();
@@ -122,17 +122,17 @@ printOptions($categories_arr, $product_categories);
     $images="";
     if( ! empty($images_arr))
         foreach($images_arr as $current) :
-            $images .= $current['product_imageID'] . ",";
+            $images .= $current['product_image_id'] . ",";
 ?>
 <tr>
     <td class="general">
     <a href="<?php echo base_url().$current['big']; ?>"><img src="<?php echo base_url().$current['thumb']; ?>" alt="<?php echo $current['title']; ?>"><?php echo $current['title']; ?></a>
     </td>
     <td class="general">
-    <input type="checkbox" name="delete_image<?php echo $current['product_imageID']; ?>" id="delete_image<?php echo $current['product_imageID']; ?>" value="1">
+    <input type="checkbox" name="delete_image<?php echo $current['product_image_id']; ?>" id="delete_image<?php echo $current['product_image_id']; ?>" value="1">
     <?php echo $this->lang->line('main_delete'); ?>;
     <br />
-    <input type="checkbox" name="main_image<?php echo $current['product_imageID']; ?>" id="main_image<?php echo $current['product_imageID']; ?>" <?php echo $current['main'] === 1 ? "checked" : "" ?> value="1">
+    <input type="checkbox" name="main_image<?php echo $current['product_image_id']; ?>" id="main_image<?php echo $current['product_image_id']; ?>" <?php echo $current['main'] === 1 ? "checked" : "" ?> value="1">
     <?php echo $this->lang->line('main_main_image'); ?>;
     </td>
 </tr>

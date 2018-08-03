@@ -76,7 +76,7 @@ class Checkout extends CI_Controller {
 			echo "\$('user_zip').value='".$user_zip."';";
 			echo "\$('user_country').value='".$user_country."';";
 			echo "\$('user_phone').value='".$user_phone."';";
-			echo "\$('userID').value='".$userID."';";
+			echo "\$('user_id').value='".$user_id."';";
 			echo "\$('user_stars').value='".$user_stars."';";
 			echo "\$('stars').innerHTML='".$user_stars."';";
 			echo "\$('user_language').value='".$lang."';";
@@ -104,10 +104,10 @@ class Checkout extends CI_Controller {
 
 		$products = $this->cart_library->get_cart();
 
-		if ($this->input->post('userID'))
+		if ($this->input->post('user_id'))
 		{
-			$this->user_model->set_user($this->input->post('userID'));
-			$order_id = $this->order_model->add_order($this->input->post('userID'));
+			$this->user_model->set_user($this->input->post('user_id'));
+			$order_id = $this->order_model->add_order($this->input->post('user_id'));
 			$this->order_model->add_order_products($order_id, $products);
 		}
 		else

@@ -12,7 +12,7 @@ class User_model extends CI_Model {
 	}
 
 	/**
-	 * Returns an associative array with all userIDs
+	 * Returns an associative array with all user_ids
 	 *
 	 * @return mixed
 	 */
@@ -26,14 +26,14 @@ class User_model extends CI_Model {
 	}
 
 	/**
-	 * @param	null|int	$userID
+	 * @param	null|int	$user_id
 	 * @return	mixed
 	 */
-	public function get_user($userID = NULL)
+	public function get_user($user_id = NULL)
 	{
 		$this->db->select('*');
 		$this->db->from('user');
-		$this->db->where('user.userID', $userID);
+		$this->db->where('user.user_id', $user_id);
 
 		$query = $this->db->get();
 
@@ -82,7 +82,7 @@ class User_model extends CI_Model {
 			'user_language'		=> $this->input->post('user_language'),
 			'user_stars'		=> $this->input->post('user_stars')
 		);
-		$this->db->where('userID', $this->input->post('userID'));
+		$this->db->where('user_id', $this->input->post('user_id'));
 		$this->db->update('user', $user);
 	}
 
@@ -114,9 +114,9 @@ class User_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	public function delete_user($userID)
+	public function delete_user($user_id)
 	{
-		$this->db->delete('user', array('userID' => $userID));
+		$this->db->delete('user', array('user_id' => $user_id));
 	}
 
 	/**

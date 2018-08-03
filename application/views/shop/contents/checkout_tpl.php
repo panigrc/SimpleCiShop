@@ -5,7 +5,7 @@
 <?php 
     echo form_open('checkout/order', array('id'=>'checkout_form'));
 ?>
-					    <input type="hidden" name="userID" id="userID" value="" />
+					    <input type="hidden" name="user_id" id="user_id" value="" />
 					    <input type="hidden" name="affiliate" id="affiliate" value="<?php echo $affiliate; ?>" />
                         <input type="hidden" name="user_stars" id="user_stars" value="" />
                         <h2>

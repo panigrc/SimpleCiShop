@@ -1,31 +1,31 @@
 <p><?php echo anchor("category/view_category/add_category/", '<img src="'. base_url() .'/theme/images/add2.png" alt="Προσθήκη Κατηγορίας" align="middle"> Προσθήκη Κατηγορίας', 'Προσθήκη Κατηγορίας'); ?></p>
 <?php
     
-    function printOptions($arr, $categoryID, $level=0) {
+    function printOptions($arr, $category_id, $level=0) {
         $obj =& get_instance();
         foreach($arr as $item => $key){
 ?>
-    <option value="<?php echo $item;?>" <?php echo $item === $categoryID ? "selected" : ""; ?>><?php echo str_repeat("-", $level) ." ". $obj->category_model->get_category_name($item); ?></option>
+    <option value="<?php echo $item;?>" <?php echo $item === $category_id ? "selected" : ""; ?>><?php echo str_repeat("-", $level) ." ". $obj->category_model->get_category_name($item); ?></option>
 <?php
-            printOptions($key, $categoryID, $level+1);
+            printOptions($key, $category_id, $level+1);
         }
     }
 ?>
 <?php
     echo form_open("category/".$action);
-    echo form_hidden('categoryID',@$categoryID);
-    echo form_hidden('category_textID_greek', @$category_textID_greek);
-    echo form_hidden('category_textID_german', @$category_textID_german);
-    echo form_hidden('category_textID_english', @$category_textID_english);    
+    echo form_hidden('category_id',@$category_id);
+    echo form_hidden('category_text_id_greek', @$category_text_id_greek);
+    echo form_hidden('category_text_id_german', @$category_text_id_german);
+    echo form_hidden('category_text_id_english', @$category_text_id_english);    
 ?>
 <table>
 <tr>
     <td><?php echo $this->lang->line('main_category'); ?>:</td>
     <td>
-    <select name="parent_categoryID" id="parent_categoryID">
+    <select name="parent_category_id" id="parent_category_id">
         <option value="0"></option>
 <?php
-printOptions($categories_arr, @$parent_categoryID);
+printOptions($categories_arr, @$parent_category_id);
 ?>
     </select>
     </td>

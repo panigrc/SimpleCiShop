@@ -12,16 +12,16 @@
 					    <div class="item">
 						    <?php /*<h3><?php echo $this->lang->line('main_category'); ?>: 
                             <?php echo $product['category_name_'.$lang]; ?></h3> */?>
-                            <a href="<?php echo site_url('/shop/product/index/'.$product['nicename']) ?>"><img src="<?php echo empty($product['thumb']) === FALSE ? base_url().$product['thumb'] : base_url().'images/noimage.jpg' ; ?>" class="cart_product" id="product_<?php echo $product['productID']; ?>" alt="<?php echo $product['title_'.$lang]; ?>" /></a>
+                            <a href="<?php echo site_url('/shop/product/index/'.$product['nicename']) ?>"><img src="<?php echo empty($product['thumb']) === FALSE ? base_url().$product['thumb'] : base_url().'images/noimage.jpg' ; ?>" class="cart_product" id="product_<?php echo $product['product_id']; ?>" alt="<?php echo $product['title_'.$lang]; ?>" /></a>
                             <div class="item_title"><?php echo $product['title_'.$lang]; ?></div>
-                            <?php if($this->product_model->get_product_meta($product['productID'], "Size")) : ?><div class="item_size"><?php echo $this->product_model->get_product_meta($product['productID'], "Size"); ?></div><?php endif; ?>
-                            <?php if($this->product_model->get_product_meta($product['productID'], "Artist")) : ?><div class="item_artist"><?php echo $this->product_model->get_product_meta($product['productID'], "Artist"); ?></div><?php endif; ?>
-                            <?php //echo $this->ajax->dragable_element('product_'.$product['productID'], array('revert'=>'TRUE')); ?>
+                            <?php if($this->product_model->get_product_meta($product['product_id'], "Size")) : ?><div class="item_size"><?php echo $this->product_model->get_product_meta($product['product_id'], "Size"); ?></div><?php endif; ?>
+                            <?php if($this->product_model->get_product_meta($product['product_id'], "Artist")) : ?><div class="item_artist"><?php echo $this->product_model->get_product_meta($product['product_id'], "Artist"); ?></div><?php endif; ?>
+                            <?php //echo $this->ajax->dragable_element('product_'.$product['product_id'], array('revert'=>'TRUE')); ?>
                             <?php //echo $this->lang->line('main_description'); ?>
                             <?php //echo mb_substr(strip_tags($product['description_'.$lang]), 0, 350, 'UTF-8').'...'; ?>
                             <?php //echo $this->lang->line('main_price'); ?>
                              <span style="text-decoration: line-through;"><?php if($product['price_old_'.$lang]!=0) echo $product['price_old_'.$lang].' '.$this->lang->line('main_currency'); ?></span>&nbsp;<?php echo $product['price_'.$lang].' '.$this->lang->line('main_currency'); ?>&nbsp;
-                            <a href="#" onclick="javascript:<?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('shop/cart/cart_add'), 'hoverclass' => 'cart-active', 'loading' => "Element.show('indicator')", 'complete' => "Element.hide('indicator')", 'method' => 'post', 'with' => "'id="."product".$product['productID']."_".$product['productID']."'")); ?>; return FALSE;"><span class="cart_put"></span></a>
+                            <a href="#" onclick="javascript:<?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('shop/cart/cart_add'), 'hoverclass' => 'cart-active', 'loading' => "Element.show('indicator')", 'complete' => "Element.hide('indicator')", 'method' => 'post', 'with' => "'id="."product".$product['product_id']."_".$product['product_id']."'")); ?>; return FALSE;"><span class="cart_put"></span></a>
 					    </div>
 <?php endforeach; ?>
                     </div>

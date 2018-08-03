@@ -11,7 +11,7 @@ class Category extends CI_Controller {
 		parent::__construct();
 	}
 
-	function index($lang=NULL, $countryID=1)
+	function index($lang=NULL, $country_id=1)
 	{
 		if ($lang!="greek") redirect('shop/home/greek');
 
@@ -19,7 +19,7 @@ class Category extends CI_Controller {
 
 
 		$content_data['lang'] = $lang;
-		$content_data['countryID'] = $countryID;
+		$content_data['country_id'] = $country_id;
 		$data['contents'] = $this->load->view('shop/contents/map_tpl', $content_data, TRUE);
 
 		$rblock_data = array();
@@ -33,7 +33,7 @@ class Category extends CI_Controller {
 
 	}
 
-	function view_category($lang=NULL, $categoryID=NULL)
+	function view_category($lang=NULL, $category_id=NULL)
 	{
 		if ($lang!="greek") redirect('shop/home/greek');
 
@@ -41,7 +41,7 @@ class Category extends CI_Controller {
 
 
 		$content_data['lang'] = $lang;
-		$content_data['categoryID'] = $categoryID;
+		$content_data['category_id'] = $category_id;
 		//print_r($content_data['categories_arr']);
 		$data['contents'] = $this->load->view('shop/contents/category_tpl', $content_data, TRUE);
 

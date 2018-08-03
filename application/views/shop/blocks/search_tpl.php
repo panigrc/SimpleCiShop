@@ -1,6 +1,6 @@
 <?php
-    if(isset($countryID)) {
-        $categories_arr = ($this->search_model->getCategoriesWithRealties_rec($countryID));
+    if(isset($country_id)) {
+        $categories_arr = ($this->search_model->getCategoriesWithRealties_rec($country_id));
     }
     else {
         $categories_arr = ($this->search_model->getCategoriesWithRealties_rec());
@@ -11,13 +11,13 @@
     
     $order_by_arr = array('priceasc', 'pricedesc', 'dateasc', 'datedesc');
     
-    function printOptions($arr, $categoryID, $level=0) {
+    function printOptions($arr, $category_id, $level=0) {
         $obj =& get_instance();
         foreach($arr as $item => $key){
 ?>
-    <option value="<?php echo $item;?>" <?php echo $item === $categoryID ? "selected" : ""; ?> style="font-weight: <?php echo $level === 0 ? "bold" : "normal"; ?>;"><?php echo str_repeat("-", $level) ." ". $obj->category_model->get_category_name($item); ?></option>
+    <option value="<?php echo $item;?>" <?php echo $item === $category_id ? "selected" : ""; ?> style="font-weight: <?php echo $level === 0 ? "bold" : "normal"; ?>;"><?php echo str_repeat("-", $level) ." ". $obj->category_model->get_category_name($item); ?></option>
 <?php
-            printOptions($key, $categoryID, $level+1);
+            printOptions($key, $category_id, $level+1);
         }
     }
 ?>
@@ -25,14 +25,14 @@
 				<img src="<?php echo base_url(); ?>/theme/images/house.jpg" style="float:right; margin: 0 9px 3px 0;" />
 <?php echo form_open('shop/catalog/'.$this->uri->segment(2).'/0'); ?>
 					<p class="search">
-                        <label class="search" for="categoryID"><?php echo $this->lang->line('main_category'); ?>:</label>
-                        <select name="categoryID" id="categoryID" class="search">
-                            <option value="0"<?php echo empty($categoryID) === TRUE ? ' selected="selected"' : ""; ?>><?php echo $this->lang->line('all'); ?></option>
+                        <label class="search" for="category_id"><?php echo $this->lang->line('main_category'); ?>:</label>
+                        <select name="category_id" id="category_id" class="search">
+                            <option value="0"<?php echo empty($category_id) === TRUE ? ' selected="selected"' : ""; ?>><?php echo $this->lang->line('all'); ?></option>
 <?php
-printOptions($categories_arr, @$categoryID);
+printOptions($categories_arr, @$category_id);
 ?>
                         </select>
-                        <a href="<?php echo site_url('/shop/category/index/'.@$countryID) ?>"><?php echo $this->lang->line('main_map'); ?></a>
+                        <a href="<?php echo site_url('/shop/category/index/'.@$country_id) ?>"><?php echo $this->lang->line('main_map'); ?></a>
                     </p>
 					<p class="search"><label class="search" for="product_type">
                         <?php echo $this->lang->line('main_product_type'); ?>:</label>

@@ -4,25 +4,25 @@
 <?php 
 foreach($categories_arr as $category => $sub_categories) {
     foreach($sub_categories as $sub_category => $val) {
-        if($val === $categoryID) $parent_categoryID = $category;
+        if($val === $category_id) $parent_category_id = $category;
     }
 }
 ?>
                         <h2>
 <?php 
-    if(isset($parent_categoryID)) {
-        echo $this->category_model->get_category_name($parent_categoryID)."&nbsp;>>&nbsp;";
-        if($this->category_model->category_has_info($parent_categoryID)>0) { ?>
-                            <a href="<?php echo site_url('category/view_category/'.$parent_categoryID) ?>"><img src="<?php echo base_url(); ?>/theme/images/about.png" alt="<?php echo $this->lang->line('main_information'); ?>" title="<?php echo $this->lang->line('main_information'); ?>" /></a>
+    if(isset($parent_category_id)) {
+        echo $this->category_model->get_category_name($parent_category_id)."&nbsp;>>&nbsp;";
+        if($this->category_model->category_has_info($parent_category_id)>0) { ?>
+                            <a href="<?php echo site_url('category/view_category/'.$parent_category_id) ?>"><img src="<?php echo base_url(); ?>/theme/images/about.png" alt="<?php echo $this->lang->line('main_information'); ?>" title="<?php echo $this->lang->line('main_information'); ?>" /></a>
 <?php
         }
     }
-    echo $this->category_model->get_category_name($categoryID);
+    echo $this->category_model->get_category_name($category_id);
 ?>
                         </h2>
 					</div>
                     <div class="item">
-<?php $category_text = $this->category_model->get_category_text($categoryID); ?>
+<?php $category_text = $this->category_model->get_category_text($category_id); ?>
                     <?php echo $category_text['category_description_'.$lang]; ?>
                     </div>
                     <div style="clear:both;"></div>

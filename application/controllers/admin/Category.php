@@ -12,17 +12,17 @@ class Category extends CI_Controller {
 	}
 
 	function view_category() {
-		$categoryID = $this->uri->segment(4);
+		$category_id = $this->uri->segment(4);
 
 		$form_data = array();
-		$form_data['categoryID'] = $categoryID;
+		$form_data['category_id'] = $category_id;
 		$form_data['categories_arr'] = $this->category_model->get_all_category_ids_recursive();
 		//print_r($form_data['categories_arr']);
 
 		$form_data['action'] = $this->uri->segment(3, "add_category");
 		if($form_data['action'] === "edit_category") {
-			$form_data = array_merge($form_data, $this->category_model->get_category($categoryID));
-			$form_data = array_merge($form_data, $this->category_model->get_category_text($categoryID));
+			$form_data = array_merge($form_data, $this->category_model->get_category($category_id));
+			$form_data = array_merge($form_data, $this->category_model->get_category_text($category_id));
 			$form_data['action'] = 'set_category';
 		}
 		$data['contents'] = $this->load->view('category/category_tpl', $form_data, TRUE);

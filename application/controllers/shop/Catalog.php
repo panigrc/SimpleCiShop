@@ -42,17 +42,17 @@ class Catalog extends CI_Controller {
 			'current' => $category_id
 		);
 
-		//$data['rblock'] = $this->load->view('shop/blocks/product_type_num_tpl', array('countryID' => NULL), TRUE);
-		//$data['tblock'] = $this->load->view('shop/blocks/search_tpl', array('countryID' => NULL), TRUE);
-		//$data['categoryID'] = $this->search_model->getSearchData();
-		//$data['categoryID'] = $searchData['categoryID'];
+		//$data['rblock'] = $this->load->view('shop/blocks/product_type_num_tpl', array('country_id' => NULL), TRUE);
+		//$data['tblock'] = $this->load->view('shop/blocks/search_tpl', array('country_id' => NULL), TRUE);
+		//$data['category_id'] = $this->search_model->getSearchData();
+		//$data['category_id'] = $searchData['category_id'];
 
 		$data = array(
 			'contents' => $contents,
 			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
 			'pagename' => 'main_catalog',
 			'lang' => $this->language_library->get_language(),
-			'categoryID' => $category_id,
+			'category_id' => $category_id,
 			'title' => $this->category_model->get_category_name($category_id),
 		);
 
@@ -71,9 +71,9 @@ class Catalog extends CI_Controller {
 		
 		foreach ($products as $product => $value)
 		{
-			$products[$product] += $this->product_model->get_product_text($products[$product]['productID']);
-			$products[$product] += $this->category_model->get_category_text($products[$product]['categoryID']);
-			$products[$product] += $this->product_model->get_product_main_image($products[$product]['productID']);
+			$products[$product] += $this->product_model->get_product_text($products[$product]['product_id']);
+			$products[$product] += $this->category_model->get_category_text($products[$product]['category_id']);
+			$products[$product] += $this->product_model->get_product_main_image($products[$product]['product_id']);
 		}
 		//print_r($products);
 

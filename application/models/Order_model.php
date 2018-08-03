@@ -11,7 +11,7 @@ class Order_model extends CI_Model {
 	}
 
 	/**
-	 * Returns an associative array with all orderIDs
+	 * Returns an associative array with all order_ids
 	 *
 	 * @return	mixed
 	 * @todo	order by as parameter
@@ -27,14 +27,14 @@ class Order_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$orderID
+	 * @param	$order_id
 	 * @return	mixed
 	 */
-	public function get_order($orderID)
+	public function get_order($order_id)
 	{
 		$this->db->select('*');
 		$this->db->from('`order`');
-		$this->db->where('order.orderID', $orderID);
+		$this->db->where('order.order_id', $order_id);
 
 		$query = $this->db->get();
 
@@ -42,14 +42,14 @@ class Order_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$orderID
+	 * @param	$order_id
 	 * @return	mixed
 	 */
-	public function get_order_products($orderID)
+	public function get_order_products($order_id)
 	{
 		$this->db->select('*');
 		$this->db->from('order2product');
-		$this->db->where('orderID', $orderID);
+		$this->db->where('order_id', $order_id);
 		$query = $this->db->get();
 
 		return $query->result_array();
@@ -59,20 +59,20 @@ class Order_model extends CI_Model {
 	{
 		if ( ! $this->input->post('order_code')) $order_code = $this->generate_password();
 		$order = array('order_code' => $order_code, 'order_name' => $this->input->post('order_name'),  'order_surname' => $this->input->post('order_surname'), 'order_email' => $this->input->post('order_email'), 'order_url' => $this->input->post('order_url'), 'order_birthdate' => $this->input->post('order_birthdate'), 'order_address' => $this->input->post('order_address'), 'order_zip' => $this->input->post('order_zip'), 'order_country' => $this->input->post('order_country'), 'order_phone' => $this->input->post('order_phone'), 'order_language' => $this->input->post('order_language'), 'order_stars' => $this->input->post('order_stars'));
-		$this->db->where('orderID', $this->input->post('orderID'));
+		$this->db->where('order_id', $this->input->post('order_id'));
 		$this->db->update('order', $order);
 	}
 
 	/**
-	 * @param	$orderID
+	 * @param	$order_id
 	 * @param	$status
 	 * @return	bool
 	 */
-	public function set_order_status($orderID, $status)
+	public function set_order_status($order_id, $status)
 	{
-		if ($orderID)
+		if ($order_id)
 		{
-			$this->db->where('orderID', $orderID);
+			$this->db->where('order_id', $order_id);
 			$this->db->update('`order`', array('status' => $status));
 
 			return $status;
@@ -82,16 +82,16 @@ class Order_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$userID
+	 * @param	$user_id
 	 * @return	mixed
 	 */
-	public function add_order($userID)
+	public function add_order($user_id)
 	{
 		$shipment_express = 0 + @$this->input->post('shipment_express');
 		$shipment_to_door = 0 + @$this->input->post('shipment_to_door');
 		$shipment_cash_on_delivery = @$this->input->post('shipment_cash_on_delivery');
 
-		$order = array('userID' => $userID,
+		$order = array('user_id' => $user_id,
 									 'date_created' => time(),
 									 'shipment_express' => $shipment_express,
 									 'shipment_to_door' => $shipment_to_door,
@@ -106,14 +106,14 @@ class Order_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$orderID
+	 * @param	$order_id
 	 * @param	$products
 	 */
-	public function add_order_products($orderID, $products)
+	public function add_order_products($order_id, $products)
 	{
 		foreach ($products as $product => $value)
 		{
-			$relation = array('orderID' => $orderID, 'productID' => $product, 'quantity' => $value);
+			$relation = array('order_id' => $order_id, 'product_id' => $product, 'quantity' => $value);
 			$this->db->insert('order2product', $relation);
 		}
 	}
@@ -140,11 +140,11 @@ class Order_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$orderID
+	 * @param	$order_id
 	 */
-	public function delete_order($orderID)
+	public function delete_order($order_id)
 	{
-		$this->db->delete('`order`', array('orderID' => $orderID));
-		$this->db->delete('order2product', array('orderID' => $orderID));
+		$this->db->delete('`order`', array('order_id' => $order_id));
+		$this->db->delete('order2product', array('order_id' => $order_id));
 	}
 }
