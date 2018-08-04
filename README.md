@@ -55,7 +55,6 @@ See simplecishop.sql
 TODOs _Sorted by schedule_
 -----
 
-- [ ] Build a Language controller, to be able to change and set Language.
 - [ ] Separation between data and models. Models should not contain any $_REQUEST input.
 - [ ] Cleaning and rebuilding the multilingual system, so anything can be translated into any language.
 - [ ] Creating a block system (event listeners).
@@ -67,3 +66,4 @@ TODOs _Sorted by schedule_
 - [x] Merge the two applications - frontend/backend - into one so we can reuse the various functions of Models and Libraries
 - [x] Language setting should move into session and not in every URL.
 - [x] Rename all camelCase variables in templates & database to snake_case.
+- [x] Build a Language controller, to be able to change and set Language.
