@@ -7,42 +7,55 @@ class Catalog extends CI_Controller {
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
-		$this->list_product();
+		$this->list_products();
 	}
 
-	function list_product()
+	/**
+	 * Gets all products from database
+	 */
+	public function list_products()
 	{
-		// gets all products from database
-
-		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
-		$data['heading'] = "Λίστα Προϊόντων";
-
 		$products = $this->product_model->get_all_products();
-		foreach($products as $product => $value) {
+
+		foreach($products as $product => $value)
+		{
 			$products[$product] = array_merge($products[$product], $this->product_model->get_product_text($products[$product]['product_id']));
 			$products[$product]['category_text'] = $this->category_model->get_category_names($this->product_model->get_product_categories($products[$product]['product_id']));
 		}
-		$data['contents'] = $this->load->view('catalog/list_tpl', array('products' => $products), TRUE);
-		$this->load->view('container_tpl',$data);
+
+		$data = array(
+			'title' => "Διαχείριση Συστήματος Προϊόντων",
+			'heading' => "Λίστα Προϊόντων",
+			'contents' => $this->load->view('admin/catalog/list_tpl', array('products' => $products), TRUE),
+		);
+
+		$this->load->view('admin/container_tpl', $data);
 	}
 
-	function view_product()
+	/**
+	 * Displays a product form
+	 *
+	 * @param	string	$action
+	 * @param	int	$product_id
+	 */
+	public function view_product($action = 'add_product', $product_id)
 	{
-		// displays a product form
-		$form_data['product_id'] = "";
-		$form_data['nicename'] = "";
-		$form_data['published'] = "";
-		$form_data['action'] = $this->uri->segment(3, "add_product");
-		$form_data['categories_arr'] = $this->category_model->get_all_category_ids_recursive();
-		$form_data['product_categories'] = array();
-		$form_data['all_meta'] = $this->meta_model->get_all_meta();
-		$form_data['product_meta'] = array();
+		$form_data = array(
+			'product_id' => "",
+			'nicename' => "",
+			'published' => "",
+			'action' => $action,
+			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
+			'product_categories' => array(),
+			'all_meta' => $this->meta_model->get_all_meta(),
+			'product_meta' => array(),
+		);
 
-		if ($form_data['action'] === "edit_product")
+		if ($action === "edit_product")
 		{
-			$form_data['product_id'] = $this->uri->segment(4);
+			$form_data['product_id'] = $product_id;
 			$form_data = array_merge($form_data, $this->product_model->get_product($form_data['product_id']));
 			$form_data = array_merge($form_data, $this->product_model->get_product_text($form_data['product_id']));
 			$form_data['product_categories'] = $this->product_model->get_product_categories($form_data['product_id']);
@@ -50,39 +63,42 @@ class Catalog extends CI_Controller {
 			$form_data['images_arr'] = $this->product_model->get_product_image($form_data['product_id']);
 		}
 
-		$data['contents'] = $this->load->view('catalog/product_tpl', $form_data, TRUE);
+		$data = array(
+			'contents' => $this->load->view('admin/catalog/product_tpl', $form_data, TRUE),
+			'title' => "Διαχείριση Συστήματος Προϊόντων",
+			'heading' => "Προσθήκη/Προβολή Προϊόντος",
+		);
 
-		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
-		$data['heading'] = "Προσθήκη/Προβολή Προϊόντος";
-
-		$this->load->view('container_tpl',$data);
+		$this->load->view('admin/container_tpl', $data);
 	}
 
-	function add_product()
+	public function add_product()
 	{
-		// adds a product
-
-        	$this->product_model->add_product();
-		redirect('catalog');
+		$this->product_model->add_product();
+		redirect('admin/catalog');
 	}
 
-	function edit_product()
+	public function edit_product()
 	{
-		// updates a product
-
-        	$this->product_model->set_product();
-		redirect('catalog');
+		$this->product_model->set_product();
+		redirect('admin/catalog');
 	}
 
-	function delete_product()
+	/**
+	 * @param	int	$product_id
+	 */
+	public function delete_product($product_id)
 	{
-		// deletes a product
-
-        	$this->product_model->delete_product($this->uri->segment(3));
-		redirect('catalog');
+		$this->product_model->delete_product($product_id);
+		redirect('admin/catalog');
 	}
 
-	function ajaxset_stock($product_id, $stock) {
+	/**
+	 * @param	int	$product_id
+	 * @param	int	$stock
+	 */
+	public function ajax_set_stock($product_id, $stock)
+	{
 		echo $this->product_model->set_product_stock($product_id, $stock);
 	}
 }

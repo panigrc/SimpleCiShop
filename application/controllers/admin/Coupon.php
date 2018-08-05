@@ -2,53 +2,63 @@
 
 class Coupon extends CI_Controller {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
 		$this->list_coupon();
 	}
 
-	function list_coupon()
+	public function list_coupon()
 	{
-		// gets all products from database
-		$data['title'] = "Διαχείριση Συστήματος Ακινήτων";
-		$data['heading'] = "Λίστα Κουπονιών";
-
 		$coupons = $this->coupon_model->get_all_coupon();
-		$data['contents'] = $this->load->view('coupon/list_tpl', array('coupons' => $coupons), TRUE);
 
+		$data = array(
+			'title' => "Διαχείριση Συστήματος Ακινήτων",
+			'heading' => "Λίστα Κουπονιών",
+			'contents' => $this->load->view('admin/coupon/list_tpl', array('coupons' => $coupons), TRUE),
+		);
 
-		$this->load->view('container_tpl',$data);
+		$this->load->view('admin/container_tpl', $data);
 	}
 
-	function view_coupon()
+	/**
+	 * @param	string	$action
+	 */
+	public function view_coupon($action = 'add_coupon')
 	{
-		// displays a coupon form
-		$form_data['action'] = $this->uri->segment(3, "add_coupon");
-		$data['contents'] = $this->load->view('coupon/coupon_tpl', $form_data, TRUE);
+		$form_data = array(
+			'action' => $action,
+		);
 
-		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
-		$data['heading'] = "Προσθήκη/Προβολή Κουπονιού";
-		$this->load->view('container_tpl',$data);
+		$data = array(
+			'title' => "Διαχείριση Συστήματος Προϊόντων",
+			'heading' => "Προσθήκη/Προβολή Κουπονιού",
+			'contents' => $this->load->view('admin/coupon/coupon_tpl', $form_data, TRUE),
+		);
+
+		$this->load->view('admin/container_tpl', $data);
 	}
 
-	function add_coupon()
+	public function add_coupon()
 	{
-		// adds a coupon
 		for($i=0; $i<$this->input->post('generation_number'); $i++)
+		{
 			$this->coupon_model->add_coupon();
-		redirect('coupon');
+		}
+
+		redirect('admin/coupon');
 	}
 
-	function delete_coupon()
+	/**
+	 * @param	int	$coupon_id
+	 */
+	public function delete_coupon($coupon_id)
 	{
-		// deletes a coupon
-
-		$this->coupon_model->delete_coupon($this->uri->segment(3));
-		redirect('coupon');
+		$this->coupon_model->delete_coupon($coupon_id);
+		redirect('admin/coupon');
 	}
 }

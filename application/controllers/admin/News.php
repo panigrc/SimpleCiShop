@@ -2,72 +2,77 @@
 
 class News extends CI_Controller {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
 		$this->list_news();
 	}
 
-	function list_news()
+	public function list_news()
 	{
-		// gets all products from database
-		$data['title'] = "Διαχείριση Συστήματος Ακινήτων";
-		$data['heading'] = "Λίστα Νέων";
-
 		$news = $this->news_model->get_all_news();
-		foreach($news as $new => $value) {
+		foreach($news as $new => $value)
+		{
 			$news[$new] = array_merge($news[$new], $this->news_model->get_news_text($news[$new]['news_id']));
 		}
-		$data['contents'] = $this->load->view('news/list_tpl', array('news' => $news), TRUE);
-		$this->load->view('container_tpl',$data);
+
+		$data = array(
+			'title' => "Διαχείριση Συστήματος Ακινήτων",
+			'heading' => "Λίστα Νέων",
+			'contents' => $this->load->view('admin/news/list_tpl', array('news' => $news), TRUE),
+		);
+
+		$this->load->view('admin/container_tpl', $data);
 	}
 
-	function view_news()
+	/**
+	 * @param	string	$action
+	 * @param	int	$news_id
+	 */
+	public function view_news($action = 'add_news', $news_id)
 	{
-		// displays a product form
 		$form_data['news_id'] = "";
 		$form_data['published'] = "";
-		$form_data['action'] = $this->uri->segment(3, "add_news");
+		$form_data['action'] = $action;
+
 		if ($form_data['action'] === "edit_news")
 		{
-			$form_data['news_id'] = $this->uri->segment(4);
+			$form_data['news_id'] = $news_id;
 			$form_data = array_merge($form_data, $this->news_model->get_news($form_data['news_id']));
 			$form_data = array_merge($form_data, $this->news_model->get_news_text($form_data['news_id']));
 		}
 
-		$data['contents'] = $this->load->view('news/news_tpl', $form_data, TRUE);
+		$data = array(
+			'title' => "Διαχείριση Συστήματος Προϊόντων",
+			'heading' => "Προσθήκη/Προβολή Νέου",
+			'contents' => $this->load->view('admin/news/news_tpl', $form_data, TRUE),
+		);
 
-		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
-		$data['heading'] = "Προσθήκη/Προβολή Νέου";
-
-		$this->load->view('container_tpl',$data);
+		$this->load->view('admin/container_tpl', $data);
 	}
 
-	function add_news()
+	public function add_news()
 	{
-		// adds a product
-
-        	$this->news_model->add_news();
-		redirect('news');
+ 		$this->news_model->add_news();
+		redirect('admin/news');
 	}
 
-	function edit_news()
+	public function edit_news()
 	{
-		// updates a product
-
-        	$this->news_model->set_news();
-		redirect('news');
+		$this->news_model->set_news();
+		redirect('admin/news');
 	}
 
-	function delete_news()
+	/**
+	 * @param	int	$news_id
+	 */
+	public function delete_news($news_id)
 	{
-		// deletes a product
-
-        	$this->news_model->delete_news($this->uri->segment(3));
-		redirect('news');
+		$this->news_model->delete_news($news_id);
+		redirect('admin/news');
 	}
 }

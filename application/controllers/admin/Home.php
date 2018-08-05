@@ -5,27 +5,31 @@
  */
 class Home extends CI_Controller {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
 		$logged_in = $this->authentication->authenticate($this->input->post('username'), $this->input->post('password'));
-		if($logged_in === FALSE) $this->login_form();
-		else redirect('catalog');
+
+		if ($logged_in === TRUE)
+		{
+			redirect('admin/catalog');
+		}
+
+		$this->login_form();
 	}
 
-	function login_form()
+	public function login_form()
 	{
-		// gets all products from database
-		$data['title'] = "Είσοδος Στο Σύστημα Διαχείρισης";
-		$data['heading'] = "Είσοδος Στο Σύστημα Διαχείρισης";
+		$data = array(
+			'title' => "Είσοδος Στο Σύστημα Διαχείρισης",
+			'heading' => "Είσοδος Στο Σύστημα Διαχείρισης",
+			'contents' => $this->load->view('admin/login/login_tpl', array(), TRUE),
+		);
 
-		$data['contents'] = $this->load->view('login/login_tpl', array(), TRUE);
-
-
-		$this->load->view('login/container_tpl',$data);
+		$this->load->view('admin/login/container_tpl', $data);
 	}
 }

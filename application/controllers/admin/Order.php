@@ -1,29 +1,43 @@
 <?php
 class Order extends CI_Controller {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index() {
-		//$this->view_order();
+	public function index()
+	{
 		$this->list_orders();
 	}
 
-	function view_order($order_id, $user_id) {
-
-
+	/**
+	 * @param	int	$order_id
+	 * @param	int	$user_id
+	 */
+	public function view_order($order_id, $user_id)
+	{
 		$user = $this->user_model->get_user($user_id);
 		$order = $this->order_model->get_order($order_id);
 		$products = $this->order_model->get_order_products($order_id);
-		foreach($products as $product => $value) {
+
+		foreach($products as $product => $value)
+		{
 			$products[$product] = array_merge($products[$product], $this->product_model->get_product_text($products[$product]['product_id']));
 		}
 
-		$this->config->set_item('language', $user['user_language']);
+		/** @todo	this is not right */
+		$this->language_library->set_language($user['user_language']);
 
-		$data['lang'] = $user['user_language'];
+		$data = array(
+			'lang' => $user['user_language'],
+			'user' => $user,
+			'order' => $order,
+			'products' => $products,
+			'title' => "Διαχείριση Συστήματος Προϊόντων",
+			'heading' => "Επεξεργασία Παραγγελίας",
+			'contents' => "contents",
+		);
 
 		/*$form_data = array();
 		$form_data['order_id'] = $order_id;
@@ -33,66 +47,73 @@ class Order extends CI_Controller {
 			$form_data = array_merge($form_data, $this->order_model->get_order($order_id));
 			$form_data['action'] = 'set_order';
 		}
-		$data['contents'] = $this->load->view('order/print_tpl', $form_data, TRUE);*/
+		$data['contents'] = $this->load->view('admin/order/print_tpl', $form_data, TRUE);*/
 
-		$data['user'] = $user;
-		$data['order'] = $order;
-		$data['products'] = $products;
-
-
-		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
-		$data['heading'] = "Επεξεργασία Παραγγελίας";
-		$data['contents'] = "contents";
-
-		$this->load->view('order/print_tpl',$data);
+		$this->load->view('admin/order/print_tpl', $data);
 	}
 
-	function list_orders()
+	public function list_orders()
 	{
-		// gets all orders from database
-
-		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
-		$data['heading'] = "Λίστα Παραγγελιών";
-
 		$list_data['orders'] = $this->order_model->get_all_order_ids();
-		$data['contents'] = $this->load->view('order/list_tpl', $list_data, TRUE);
 
+		$data = array(
+			'title' => "Διαχείριση Συστήματος Προϊόντων",
+			'heading' => "Λίστα Παραγγελιών",
+			'contents' => $this->load->view('admin/order/list_tpl', $list_data, TRUE),
+		);
 
-		$this->load->view('container_tpl',$data);
+		$this->load->view('admin/container_tpl', $data);
 	}
 
-	function set_order() {
-		$this->order_model->set_order();
-		redirect('order');
-	}
-
-	function add_order() {
-		$this->order_model->add_order();
-		redirect('order');
-	}
-
-	function delete_order()
+	/**
+	 * @todo	this won't work :P
+	 * @see Order_model::set_order()
+	 */
+	public function set_order()
 	{
-		$this->order_model->delete_order($this->uri->segment(3));
-		redirect('order');
+		$this->order_model->set_order();
+		redirect('admin/order');
 	}
 
-	function ajaxget_user($user_id) {
+	/**
+	 * @todo	must be moved to user controller
+	 */
+	public function add_order()
+	{
+		$this->order_model->add_order();
+		redirect('admin/order');
+	}
+
+	/**
+	 * @param	int	$order_id
+	 */
+	public function delete_order($order_id)
+	{
+		$this->order_model->delete_order($order_id);
+		redirect('admin/order');
+	}
+
+	public function ajaxget_user($user_id)
+	{
 		$data = $this->user_model->get_user($user_id);
-		$this->load->view('order/user_tpl', $data);
+		$this->load->view('admin/order/user_tpl', $data);
 	}
 
-	function ajaxget_products($order_id, $user_id) {
+	public function ajaxget_products($order_id, $user_id)
+	{
 		$user = $this->user_model->get_user($user_id);
 		$products = $this->order_model->get_order_products($order_id);
 
-		foreach($products as $product => $value) {
+		foreach($products as $product => $value)
+		{
 			$products[$product] = array_merge($products[$product], $this->product_model->get_product_text($products[$product]['product_id']));
 		}
-		$this->load->view('order/products_tpl', array('products' => $products, 'user' => $user));
+
+		$this->load->view('admin/order/products_tpl', array('products' => $products, 'user' => $user));
 	}
 
-	function ajaxset_status($order_id, $status) {
+	public function ajaxset_status($order_id, $status)
+	{
 		echo $this->order_model->set_order_status($order_id, $status);
 	}
 }
