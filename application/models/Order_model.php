@@ -57,8 +57,24 @@ class Order_model extends CI_Model {
 
 	public function set_order()
 	{
-		if ( ! $this->input->post('order_code')) $order_code = $this->generate_password();
-		$order = array('order_code' => $order_code, 'order_name' => $this->input->post('order_name'),  'order_surname' => $this->input->post('order_surname'), 'order_email' => $this->input->post('order_email'), 'order_url' => $this->input->post('order_url'), 'order_birthdate' => $this->input->post('order_birthdate'), 'order_address' => $this->input->post('order_address'), 'order_zip' => $this->input->post('order_zip'), 'order_country' => $this->input->post('order_country'), 'order_phone' => $this->input->post('order_phone'), 'order_language' => $this->input->post('order_language'), 'order_stars' => $this->input->post('order_stars'));
+		if ( ! $this->input->post('order_code')) {
+			$order_code = $this->generate_password();
+		}
+
+		$order = array(
+			'order_code' => $order_code,
+			'order_name' => $this->input->post('order_name'),
+			'order_surname' => $this->input->post('order_surname'),
+			'order_email' => $this->input->post('order_email'),
+			'order_url' => $this->input->post('order_url'),
+			'order_birthdate' => $this->input->post('order_birthdate'),
+			'order_address' => $this->input->post('order_address'),
+			'order_zip' => $this->input->post('order_zip'),
+			'order_country' => $this->input->post('order_country'),
+			'order_phone' => $this->input->post('order_phone'),
+			'order_language' => $this->input->post('order_language'),
+			'order_stars' => $this->input->post('order_stars')
+		);
 		$this->db->where('order_id', $this->input->post('order_id'));
 		$this->db->update('order', $order);
 	}
@@ -91,16 +107,17 @@ class Order_model extends CI_Model {
 		$shipment_to_door = 0 + @$this->input->post('shipment_to_door');
 		$shipment_cash_on_delivery = @$this->input->post('shipment_cash_on_delivery');
 
-		$order = array('user_id' => $user_id,
-									 'date_created' => time(),
-									 'shipment_express' => $shipment_express,
-									 'shipment_to_door' => $shipment_to_door,
-									 'shipment_cash_on_delivery' => $shipment_cash_on_delivery,
-									 'status' => 0,
-									 'price' => $this->input->post('price'),
-									 'questionnaire' => $this->get_questionnaire($this->input->post('questionnaire'))
+		$order = array(
+			'user_id' => $user_id,
+			 'date_created' => time(),
+			 'shipment_express' => $shipment_express,
+			 'shipment_to_door' => $shipment_to_door,
+			 'shipment_cash_on_delivery' => $shipment_cash_on_delivery,
+			 'status' => 0,
+			 'price' => $this->input->post('price'),
+			 'questionnaire' => $this->get_questionnaire($this->input->post('questionnaire')),
 		);
-		$this->db->insert('`order`', $order);
+		$this->db->insert('order', $order);
 
 		return $this->db->insert_id();
 	}
@@ -125,7 +142,7 @@ class Order_model extends CI_Model {
 	 */
 	public function get_questionnaire($data)
 	{
-		$questionnaire= "";
+		$questionnaire = "";
 
 		foreach ($data as $key => $answer)
 		{
@@ -144,7 +161,7 @@ class Order_model extends CI_Model {
 	 */
 	public function delete_order($order_id)
 	{
-		$this->db->delete('`order`', array('order_id' => $order_id));
+		$this->db->delete('order', array('order_id' => $order_id));
 		$this->db->delete('order2product', array('order_id' => $order_id));
 	}
 }
