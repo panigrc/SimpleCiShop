@@ -120,12 +120,12 @@ color: #fff;
 <body>
 <div id="navcontainer">
     <ul id="navlist">
-        <li id="active"><?php echo anchor("catalog", 'Διαχείριση Προϊόντων'); ?></li>
-        <li><?php echo anchor("category", 'Διαχείριση Κατηγοριών'); ?></li>
-        <li><?php echo anchor("user", 'Διαχείριση Χρηστών'); ?></li>
-        <li><?php echo anchor("order", 'Διαχείριση Παραγγελιών'); ?></li>
-        <li><?php echo anchor("coupon", 'Διαχείριση Κουπονιών'); ?></li>
-        <li><?php echo anchor("news", 'Διαχείριση Νέων'); ?></li>
+        <li id="active"><?php echo anchor("admin/catalog", 'Διαχείριση Προϊόντων'); ?></li>
+        <li><?php echo anchor("admin/category", 'Διαχείριση Κατηγοριών'); ?></li>
+        <li><?php echo anchor("admin/user", 'Διαχείριση Χρηστών'); ?></li>
+        <li><?php echo anchor("admin/order", 'Διαχείριση Παραγγελιών'); ?></li>
+        <li><?php echo anchor("admin/coupon", 'Διαχείριση Κουπονιών'); ?></li>
+        <li><?php echo anchor("admin/news", 'Διαχείριση Νέων'); ?></li>
     </ul>
 </div>
 <div class="content">

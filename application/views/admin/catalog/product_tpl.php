@@ -1,5 +1,5 @@
 <?php
-    echo form_open_multipart("catalog/".$action);
+    echo form_open_multipart("admin/catalog/".$action);
     echo form_hidden('product_id',$product_id);
     echo form_hidden('product_text_id_greek', @$product_text_id_greek);
     echo form_hidden('product_text_id_german', @$product_text_id_german);
