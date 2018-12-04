@@ -21,8 +21,8 @@ class News extends CI_Controller {
 		}
 
 		$data = array(
-			'title' => "Διαχείριση Συστήματος Ακινήτων",
-			'heading' => "Λίστα Νέων",
+			'title' => $this->lang->line('main_manage_news'),
+			'heading' => $this->lang->line('main_news'),
 			'contents' => $this->load->view('admin/news/list_tpl', array('news' => $news), TRUE),
 		);
 
@@ -47,8 +47,8 @@ class News extends CI_Controller {
 		}
 
 		$data = array(
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Προσθήκη/Προβολή Νέου",
+			'title' => $this->lang->line('main_manage_news'),
+			'heading' => $this->lang->line('main_view_edit_news'),
 			'contents' => $this->load->view('admin/news/news_tpl', $form_data, TRUE),
 		);
 

@@ -26,8 +26,8 @@ class Catalog extends CI_Controller {
 		}
 
 		$data = array(
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Λίστα Προϊόντων",
+			'title' => $this->lang->line('main_manage_products'),
+			'heading' => $this->lang->line('main_products'),
 			'contents' => $this->load->view('admin/catalog/list_tpl', array('products' => $products), TRUE),
 		);
 
@@ -65,8 +65,8 @@ class Catalog extends CI_Controller {
 
 		$data = array(
 			'contents' => $this->load->view('admin/catalog/product_tpl', $form_data, TRUE),
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Προσθήκη/Προβολή Προϊόντος",
+			'title' => $this->lang->line('main_manage_products'),
+			'heading' => $this->lang->line('main_view_edit_product'),
 		);
 
 		$this->load->view('admin/container_tpl', $data);

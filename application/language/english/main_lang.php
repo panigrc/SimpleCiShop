@@ -18,6 +18,30 @@ $lang['main_english']								= 'English';
 
 $lang['main_greece']								= 'Greece';
 
+// admin
+$lang['main_admin_panel_login']						= 'Admin Panel Login';
+
+$lang['main_manage_products']						= 'Manage Products';
+$lang['main_manage_categories']						= 'Manage Categories';
+$lang['main_manage_users']							= 'Manage Users';
+$lang['main_manage_orders']							= 'Manage Orders';
+$lang['main_manage_coupons']						= 'Manage Coupons';
+$lang['main_manage_news']							= 'Manage News';
+
+$lang['main_products']								= 'Products';
+$lang['main_categories']							= 'Categories';
+$lang['main_users']									= 'Users';
+$lang['main_orders']								= 'Orders';
+$lang['main_coupons']								= 'Coupons';
+$lang['main_news']									= 'News';
+
+$lang['main_view_edit_products']					= 'View/Edit Products';
+$lang['main_view_edit_categories']					= 'View/Edit Categories';
+$lang['main_view_edit_users']						= 'View/Edit Users';
+$lang['main_view_edit_orders']						= 'View/Edit Orders';
+$lang['main_view_edit_coupons']						= 'View/Edit Coupons';
+$lang['main_view_edit_news']						= 'View/Edit News';
+
 // product
 
 $lang['main_title']									= 'Title';

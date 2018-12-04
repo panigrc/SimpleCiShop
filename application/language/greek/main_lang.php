@@ -18,6 +18,30 @@ $lang['main_english']								= 'Αγγλικά';
 
 $lang['main_greece']								= 'Ελλάδα';
 
+// admin
+$lang['main_admin_panel_login']						= 'Είσοδος στο Πάνελ Διαχείρισης';
+
+$lang['main_manage_products']						= 'Διαχείριση Προϊόντων';
+$lang['main_manage_categories']						= 'Διαχείριση Κατηγοριών';
+$lang['main_manage_users']							= 'Διαχείριση Χρηστών';
+$lang['main_manage_orders']							= 'Διαχείριση Παραγγελιών';
+$lang['main_manage_coupons']						= 'Διαχείριση Κουπονιών';
+$lang['main_manage_news']							= 'Διαχείριση Νέων';
+
+$lang['main_products']								= 'Προϊόντα';
+$lang['main_categories']							= 'Κατηγορίες';
+$lang['main_users']									= 'Χρήστες';
+$lang['main_orders']								= 'Παραγγελίες';
+$lang['main_coupons']								= 'Κουπόνια';
+$lang['main_news']									= 'Νέα';
+
+$lang['main_view_edit_products']					= 'Προβολή/Επεξεργασία Προϊόντων';
+$lang['main_view_edit_categories']					= 'Προβολή/Επεξεργασία Κατηγοριών';
+$lang['main_view_edit_users']						= 'Προβολή/Επεξεργασία Χρηστών';
+$lang['main_view_edit_orders']						= 'Προβολή/Επεξεργασία Παραγγελιών';
+$lang['main_view_edit_coupons']						= 'Προβολή/Επεξεργασία Κουπονιών';
+$lang['main_view_edit_news']						= 'Προβολή/Επεξεργασία Νέων';
+
 // product
 
 $lang['main_title']									= 'Τίτλος';

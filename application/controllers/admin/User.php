@@ -30,8 +30,8 @@ class User extends CI_Controller {
 
 		$data = array(
 			'contents' => $this->load->view('admin/user/user_tpl', $form_data, TRUE),
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Επεξεργασία Χρήστη",
+			'title' => $this->lang->line('main_manage_users'),
+			'heading' => $this->lang->line('main_view_edit_user'),
 		);
 
 		$this->load->view('admin/container_tpl', $data);
@@ -42,8 +42,8 @@ class User extends CI_Controller {
 		$list_data['users'] = $this->user_model->get_all_user_ids();
 
 		$data = array(
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Λίστα Χρηστών",
+			'title' => $this->lang->line('main_manage_users'),
+			'heading' => $this->lang->line('main_users'),
 			'contents' => $this->load->view('admin/user/list_tpl', $list_data, TRUE),
 		);
 

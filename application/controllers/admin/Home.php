@@ -25,8 +25,8 @@ class Home extends CI_Controller {
 	public function login_form()
 	{
 		$data = array(
-			'title' => "Είσοδος Στο Σύστημα Διαχείρισης",
-			'heading' => "Είσοδος Στο Σύστημα Διαχείρισης",
+			'title' => $this->lang->line('main_admin_panel_login'),
+			'heading' => $this->lang->line('main_admin_panel_login'),
 			'contents' => $this->load->view('admin/login/login_tpl', array(), TRUE),
 		);
 

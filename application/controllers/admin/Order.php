@@ -34,8 +34,8 @@ class Order extends CI_Controller {
 			'user' => $user,
 			'order' => $order,
 			'products' => $products,
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Επεξεργασία Παραγγελίας",
+			'title' => $this->lang->line('main_manage_orders'),
+			'heading' => $this->lang->line('main_view_edit_order'),
 			'contents' => "contents",
 		);
 
@@ -57,8 +57,8 @@ class Order extends CI_Controller {
 		$list_data['orders'] = $this->order_model->get_all_order_ids();
 
 		$data = array(
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Λίστα Παραγγελιών",
+			'title' => $this->lang->line('main_manage_orders'),
+			'heading' => $this->lang->line('main_orders'),
 			'contents' => $this->load->view('admin/order/list_tpl', $list_data, TRUE),
 		);
 

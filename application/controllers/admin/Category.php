@@ -36,8 +36,8 @@ class Category extends CI_Controller {
 
 		$data = array(
 			'contents' => $this->load->view('admin/category/category_tpl', $form_data, TRUE),
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Επεξεργασία Κατηγορίας",
+			'title' => $this->lang->line('main_manage_categories'),
+			'heading' => $this->lang->line('main_view_edit_category'),
 		);
 
 		$this->load->view('admin/container_tpl', $data);
@@ -51,8 +51,8 @@ class Category extends CI_Controller {
 		$list_data['categories_arr'] = $this->category_model->get_all_category_ids_recursive();
 
 		$data = array(
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Λίστα Κατηγοριών",
+			'title' => $this->lang->line('main_manage_categories'),
+			'heading' => $this->lang->line('main_manage_categories'),
 			'contents' => $this->load->view('admin/category/list_tpl', $list_data, TRUE),
 		);
 

@@ -17,8 +17,8 @@ class Coupon extends CI_Controller {
 		$coupons = $this->coupon_model->get_all_coupon();
 
 		$data = array(
-			'title' => "Διαχείριση Συστήματος Ακινήτων",
-			'heading' => "Λίστα Κουπονιών",
+			'title' => $this->lang->line('main_manage_coupons'),
+			'heading' => $this->lang->line('main_coupons'),
 			'contents' => $this->load->view('admin/coupon/list_tpl', array('coupons' => $coupons), TRUE),
 		);
 
@@ -35,8 +35,8 @@ class Coupon extends CI_Controller {
 		);
 
 		$data = array(
-			'title' => "Διαχείριση Συστήματος Προϊόντων",
-			'heading' => "Προσθήκη/Προβολή Κουπονιού",
+			'title' => $this->lang->line('main_manage_coupons'),
+			'heading' => $this->lang->line('main_view_edit_coupon'),
 			'contents' => $this->load->view('admin/coupon/coupon_tpl', $form_data, TRUE),
 		);
 
