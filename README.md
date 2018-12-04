@@ -57,6 +57,7 @@ TODOs _Sorted by schedule_
 
 - [ ] Separation between data and models. Models should not contain any $_REQUEST input.
 - [ ] Cleaning and rebuilding the multilingual system, so anything can be translated into any language.
+- [ ] Remove hard coded shipping costs from the language files.
 - [ ] Creating a block system (event listeners).
 - [ ] Use a template engine (either Twig or the Embedded one). And clean up views so they don't use any more Controller/Model functions. 
 - [ ] Building a more themeable website; all the images/styles and output should be themeable. Thinking about using a UI framework like Twitter Bootstrap.
