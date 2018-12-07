@@ -67,6 +67,7 @@ TODOs _Sorted by schedule_
 - [ ] Create Migrations and mock sql file.
 - [ ] Build an Affiliate controller; which will redirect to the page intended plus saving the affiliate id to session.
 - [ ] Better admin interface.
+- [ ] Better Checkout. Add a plugable payment method system. Now the only payment method is cash on delivery.
 - [x] Merge the two applications - frontend/backend - into one so we can reuse the various functions of Models and Libraries
 - [x] Language setting should move into session and not in every URL.
 - [x] Rename all camelCase variables in templates & database to snake_case.
