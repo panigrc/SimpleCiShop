@@ -55,17 +55,18 @@ See simplecishop.sql
 TODOs _Sorted by schedule_
 -----
 
+- [ ] Remove hard coded text/words from views.
+- [ ] Remove png/jpeg icons and replace with web font.
+- [ ] Translating the interface and the whole website into english
 - [ ] Separation between data and models. Models should not contain any $_REQUEST input.
 - [ ] Cleaning and rebuilding the multilingual system, so anything can be translated into any language.
 - [ ] Remove hard coded shipping costs from the language files.
-- [ ] Remove hard coded text/words from views.
 - [ ] Creating a block system (event listeners).
 - [ ] Use a template engine (either Twig or the Embedded one). And clean up views so they don't use any more Controller/Model functions. 
 - [ ] Building a more themeable website; all the images/styles and output should be themeable. Thinking about using a UI framework like Twitter Bootstrap.
-- [ ] Translating the interface and the whole website into english
+- [ ] Create Migrations and mock sql file.
 - [ ] Build an Affiliate controller; which will redirect to the page intended plus saving the affiliate id to session.
 - [ ] Better admin interface.
-- [ ] Create Migrations and a fake entry generator.
 - [x] Merge the two applications - frontend/backend - into one so we can reuse the various functions of Models and Libraries
 - [x] Language setting should move into session and not in every URL.
 - [x] Rename all camelCase variables in templates & database to snake_case.
