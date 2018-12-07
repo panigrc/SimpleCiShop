@@ -65,6 +65,7 @@ TODOs _Sorted by schedule_
 - [ ] Translating the interface and the whole website into english
 - [ ] Build an Affiliate controller; which will redirect to the page intended plus saving the affiliate id to session.
 - [ ] Better admin interface.
+- [ ] Create Migrations and a fake entry generator.
 - [x] Merge the two applications - frontend/backend - into one so we can reuse the various functions of Models and Libraries
 - [x] Language setting should move into session and not in every URL.
 - [x] Rename all camelCase variables in templates & database to snake_case.
