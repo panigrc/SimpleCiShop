@@ -19,7 +19,14 @@ $lang['main_english']								= 'English';
 $lang['main_greece']								= 'Greece';
 
 // admin
+
 $lang['main_admin_panel_login']						= 'Admin Panel Login';
+
+$lang['main_save']									= 'Αποθήκευση';
+$lang['main_cancel']								= 'Ακύρωση';
+$lang['main_delete']								= 'Διαγραφή';
+$lang['main_edit']									= 'Επεξεργασία';
+$lang['main_add_images']							= 'Προσθήκη Εικόνων';
 
 $lang['main_manage_products']						= 'Manage Products';
 $lang['main_manage_categories']						= 'Manage Categories';
@@ -57,13 +64,7 @@ $lang['main_main_image']							= 'Main image';
 $lang['main_price_old']								= 'Price before';
 $lang['main_product_news']							= 'Find out recent News and Reviews of this product';
 
-// admin
-
-$lang['main_save']									= 'Αποθήκευση';
-$lang['main_cancel']								= 'Ακύρωση';
-$lang['main_delete']								= 'Διαγραφή';
-$lang['main_edit']									= 'Επεξεργασία';
-$lang['main_add_images']							= 'Προσθήκη Εικόνων';
+$lang['main_create_product']						= 'Create Product';
 
 // navigation bar
 

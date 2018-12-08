@@ -19,7 +19,14 @@ $lang['main_english']								= 'Αγγλικά';
 $lang['main_greece']								= 'Ελλάδα';
 
 // admin
+
 $lang['main_admin_panel_login']						= 'Είσοδος στο Πάνελ Διαχείρισης';
+
+$lang['main_save']									= 'Αποθήκευση';
+$lang['main_cancel']								= 'Ακύρωση';
+$lang['main_delete']								= 'Διαγραφή';
+$lang['main_edit']									= 'Επεξεργασία';
+$lang['main_add_images']							= 'Προσθήκη Εικόνων';
 
 $lang['main_manage_products']						= 'Διαχείριση Προϊόντων';
 $lang['main_manage_categories']						= 'Διαχείριση Κατηγοριών';
@@ -42,6 +49,8 @@ $lang['main_view_edit_orders']						= 'Προβολή/Επεξεργασία Π�
 $lang['main_view_edit_coupons']						= 'Προβολή/Επεξεργασία Κουπονιών';
 $lang['main_view_edit_news']						= 'Προβολή/Επεξεργασία Νέων';
 
+$lang['main_create_product']						= 'Προσθήκη Προϊόντος';
+
 // product
 
 $lang['main_title']									= 'Τίτλος';
@@ -56,14 +65,6 @@ $lang['main_out_of_stock']							= 'Εξαντλήθηκε';
 $lang['main_main_image']							= 'Κύρια εικόνα';
 $lang['main_price_old']								= 'Προηγούμενη Τιμή';
 $lang['main_product_news']							= 'Δείτε πρόσφατα Νέα και Παρουσιάσεις του προϊόντος';
-
-// admin
-
-$lang['main_save']									= 'Αποθήκευση';
-$lang['main_cancel']								= 'Ακύρωση';
-$lang['main_delete']								= 'Διαγραφή';
-$lang['main_edit']									= 'Επεξεργασία';
-$lang['main_add_images']							= 'Προσθήκη Εικόνων';
 
 // navigation bar
 

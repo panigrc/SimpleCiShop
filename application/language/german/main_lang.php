@@ -19,7 +19,14 @@ $lang['main_english']								= 'Englisch';
 $lang['main_greece']								= 'Griechenland';
 
 // admin
+
 $lang['main_admin_panel_login']						= 'In der Administrationsoberfläche Einloggen';
+
+$lang['main_save']									= 'Speichern';
+$lang['main_cancel']								= 'Abbrechen';
+$lang['main_delete']								= 'Löschen';
+$lang['main_edit']									= 'Bearbeiten';
+$lang['main_add_images']							= 'Bilder Hochladen';
 
 $lang['main_manage_products']						= 'Produkte Verwalten';
 $lang['main_manage_categories']						= 'Kategorien Verwalten';
@@ -42,6 +49,8 @@ $lang['main_view_edit_orders']						= 'Bestellungen Sehen/Bearbeiten';
 $lang['main_view_edit_coupons']						= 'Gutscheine Sehen/Bearbeiten';
 $lang['main_view_edit_news']						= 'Nachrichten Sehen/Bearbeiten';
 
+$lang['main_create_product']						= 'Produkt Einfuegen';
+
 // product
 
 $lang['main_title']									= 'Titel';
@@ -56,14 +65,6 @@ $lang['main_out_of_stock']							= 'Ausverkauft';
 $lang['main_main_image']							= 'Hauptbild';
 $lang['main_price_old']								= 'Preis vorher';
 $lang['main_product_news']							= 'Erfahren Sie Nachrichten und Reviews über dieses Produkt';
-
-// admin
-
-$lang['main_save']									= 'Speichern';
-$lang['main_cancel']								= 'Abbrechen';
-$lang['main_delete']								= 'Löschen';
-$lang['main_edit']									= 'Bearbeiten';
-$lang['main_add_images']							= 'Bilder Hochladen';
 
 // navigation bar
 
