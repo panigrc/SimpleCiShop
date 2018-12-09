@@ -7,7 +7,7 @@
         <th><?php echo $this->lang->line('main_user_first_name'); ?></th>
         <th><?php echo $this->lang->line('main_user_last_name'); ?></th>
         <th><?php echo $this->lang->line('main_user_registered_at'); ?></th>
-        <th><?php echo $this->lang->line('main_user_rating'); ?></th>
+        <th><?php echo $this->lang->line('main_user_points'); ?></th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
     </tr>

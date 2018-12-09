@@ -166,28 +166,27 @@ tfoot tr
 <div class="content">
 
 <?php $sum=0; ?>
-<?php if($lang === "greek"): ?>
 
-<h1>Η παραγγελία σου</h1>
+<h1><?php echo $this->lang->line('main_invoice_title'); ?></h1>
 <p>
-http://www.cool-clean-quiet.com<br />
-info@cool-clean-quiet.com
+    <?php echo $this->lang->line('main_invoice_company_details'); ?>
 </p>
-<p>Προσωπικά Στοιχεία</p>
+<p>
+    <?php echo $this->lang->line('main_invoice_personal_details'); ?>
+</p>
 <div class="user_info">
 <?php echo @$user['user_name']; ?><br />
 <?php echo @$user['user_surname']; ?><br />
 <?php echo @$user['user_address']; ?><br />
 <?php echo @$user['user_zip']; ?><br />
-<?php echo @$user['user_city']; ?><br />
 <?php echo @$user['user_country']; ?><br />
 <?php echo @$user['user_phone']; ?>
 </div>
 <div class="user_code">
-Ο Κωδικός που μπορείς να χρησιμοποιήσεις στις επόμενες αγορές σου <strong><?php echo @$user['user_code']; ?></strong>
+	<?php echo $this->lang->line('main_invoice_password_for_future_shopping'); ?> <strong><?php echo @$user['user_code']; ?></strong>
 </div>
 <div class="user_stars">
-Τα Αστέρια σου είναι <strong><?php echo @$user['user_stars']; ?></strong>
+	<?php echo $this->lang->line('main_invoice_your_points'); ?> <strong><?php echo @$user['user_stars']; ?></strong>
 </div>
 
 <table>
@@ -196,7 +195,7 @@ info@cool-clean-quiet.com
 <col>
 <thead>
 
-	<tr><th>Προϊόν</th><th>Ποσότητα</th><th>Τιμή</th></tr>
+	<tr><th><?php echo $this->lang->line('main_invoice_product'); ?></th><th><?php echo $this->lang->line('main_invoice_quantity'); ?></th><th><?php echo $this->lang->line('main_invoice_price'); ?></th></tr>
 </thead>
 <tbody>
 <?php foreach($products as $product):?>
@@ -211,115 +210,9 @@ info@cool-clean-quiet.com
 <?php endforeach; ?>
 </tbody>
 <tfoot>
-    <tr><td>Σύνολο</td><td></td><td><?php echo $sum; ?> <?php echo $this->lang->line("main_currency"); ?></td></tr>
+    <tr><td><?php echo $this->lang->line('main_invoice_total'); ?></td><td></td><td><?php echo $sum; ?> <?php echo $this->lang->line("main_currency"); ?></td></tr>
 </tfoot>
 </table>
-
-<?php endif; ?>
-
-
-
-<?php if($lang === "english"): ?>
-<h1>Your order</h1>
-<p>
-http://www.cool-clean-quiet.com<br />
-info@cool-clean-quiet.com
-</p>
-<p>Personal Information</p>
-<div class="user_info">
-<?php echo @$user['user_name']; ?><br />
-<?php echo @$user['user_surname']; ?><br />
-<?php echo @$user['user_address']; ?><br />
-<?php echo @$user['user_zip']; ?><br />
-<?php echo @$user['user_country']; ?><br />
-<?php echo @$user['user_phone']; ?>
-</div>
-<div class="user_code">
-The code word which you can use for your future purchases <strong><?php echo @$user['user_code']; ?></strong>
-</div>
-<div class="user_stars">
-The number of your stars <strong><?php echo @$user['user_stars']; ?></strong>
-</div>
-
-<table>
-<col>
-<col id="middle">
-<col>
-<thead>
-
-	<tr><th>Product</th><th>Quantity</th><th>Price</th></tr>
-</thead>
-<tbody>
-<?php foreach($products as $product):?>
-    <tr>
-    <td><?php echo $product['title_'.$lang]; ?></td>
-    <td><?php echo $product['quantity']; ?></td>
-    <td><?php echo $product['price_'.$lang]*$product['quantity']; ?> <?php echo $this->lang->line("main_currency"); ?></td>
-
-    </tr>
-
-<?php $sum += $product['price_'.$lang]*$product['quantity']; ?>
-<?php endforeach; ?>
-</tbody>
-<tfoot>
-    <tr><td>Sum</td><td></td><td><?php echo $sum; ?> <?php echo $this->lang->line("main_currency"); ?></td></tr>
-</tfoot>
-</table>
-
-
-<?php endif; ?>
-
-
-<?php if($lang === "german"): ?>
-<h1>Ihre Bestellung</h1>
-<p>
-http://www.cool-clean-quiet.com<br />
-info@cool-clean-quiet.com
-</p>
-<p>Persönliche Informationen</p>
-<div class="user_info">
-<?php echo @$user['user_name']; ?><br />
-<?php echo @$user['user_surname']; ?><br />
-<?php echo @$user['user_address']; ?><br />
-<?php echo @$user['user_zip']; ?><br />
-<?php echo @$user['user_country']; ?><br />
-<?php echo @$user['user_phone']; ?>
-</div>
-<div class="user_code">
-Das Schlüsselwort, das Sie für Ihre zukünftigen Einkäufe verwenden können <strong><?php echo @$user['user_code']; ?></strong>
-</div>
-<div class="user_stars">
-Ihre Sterne <strong><?php echo @$user['user_stars']; ?></strong>
-</div>
-
-<table>
-<col>
-<col id="middle">
-<col>
-<thead>
-
-	<tr><th>Produkt</th><th>Menge</th><th>Preis</th></tr>
-</thead>
-<tbody>
-<?php foreach($products as $product):?>
-    <tr>
-    <td><?php echo $product['title_'.$lang]; ?></td>
-    <td><?php echo $product['quantity']; ?></td>
-    <td><?php echo $product['price_'.$lang]*$product['quantity']; ?> <?php echo $this->lang->line("main_currency"); ?></td>
-
-    </tr>
-
-<?php $sum += $product['price_'.$lang]*$product['quantity']; ?>
-<?php endforeach; ?>
-</tbody>
-<tfoot>
-    <tr><td>Summe</td><td></td><td><?php echo $sum; ?> <?php echo $this->lang->line("main_currency"); ?></td></tr>
-</tfoot>
-</table>
-
-
-
-<?php endif; ?>
 
 </div>
 </body>

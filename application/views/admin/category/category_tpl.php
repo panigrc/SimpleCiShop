@@ -1,4 +1,6 @@
-<p><?php echo anchor("category/view_category/add_category/", '<img src="'. base_url() .'/theme/images/add2.png" alt="Προσθήκη Κατηγορίας" align="middle"> Προσθήκη Κατηγορίας', 'Προσθήκη Κατηγορίας'); ?></p>
+<p>
+	<?php echo anchor('admin/category/view_category/add_category', sprintf('<img src="%s/theme/images/add2.png" align="middle"> %s', base_url(), $this->lang->line('main_create_category'))); ?>
+</p>
 <?php
     
     function printOptions($arr, $category_id, $level=0) {

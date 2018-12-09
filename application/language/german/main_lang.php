@@ -22,6 +22,11 @@ $lang['main_details']								= 'Details';
 $lang['main_modify']								= 'Ändern';
 $lang['main_print']									= 'Drucken';
 
+$lang['main_day']									= 'Tag';
+$lang['main_week']									= 'Woche';
+$lang['main_month']									= 'Monat';
+$lang['main_year']									= 'Jahr';
+
 // admin
 
 $lang['main_admin_panel_login']						= 'In der Administrationsoberfläche Einloggen';
@@ -71,6 +76,18 @@ $lang['main_order_created_at']						= 'Erstellungsdatum';
 $lang['main_order_status']							= 'Status';
 $lang['main_order_price']							= 'Preis';
 $lang['main_order_questionnaire']					= 'Fragebogen';
+
+// invoice
+
+$lang['main_invoice_your_order']					= 'Ihre Bestellung';
+$lang['main_invoice_company_details']				= 'Firma Details';
+$lang['main_invoice_personal_details']				= 'Persoenliche Details';
+$lang['main_invoice_password_for_future_shopping']	= 'Schlüsselwort für Ihre zukünftigen Einkäufe';
+$lang['main_invoice_your_points']					= 'Ihre Punkte sind';
+$lang['main_invoice_product']						= 'Produkt';
+$lang['main_invoice_quantity']						= 'Menge';
+$lang['main_invoice_price']							= 'Preis';
+$lang['main_invoice_total']							= 'Summe';
 
 // product
 
@@ -135,7 +152,7 @@ $lang['main_user_id']								= 'ID';
 $lang['main_user_first_name']						= 'Vorname';
 $lang['main_user_last_name']						= 'Nachname';
 $lang['main_user_registered_at']					= 'Registrierungs Datum';
-$lang['main_user_rating']							= 'Bewertung';
+$lang['main_user_points']							= 'Punkte';
 
 // coupon
 
@@ -144,7 +161,10 @@ $lang['main_coupon_uuid']							= 'UUID';
 $lang['main_coupon_expiration_date']				= 'Ablaufsdatum';
 $lang['main_coupon_discount']						= 'Ermäßigung';
 $lang['main_coupon_type']							= 'Typ';
+$lang['main_coupon_type_single_use']				= 'Einmal';
+$lang['main_coupon_type_reusable']					= 'Wiederverwendbar';
 $lang['main_coupon_redeemed']						= 'Abgelöst';
+$lang['main_coupon_generate_amount']				= 'Gutscheine Menge zum erzeugen';
 
 // cart
 

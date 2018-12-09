@@ -22,6 +22,11 @@ $lang['main_details']								= 'Λεπτομέρειες';
 $lang['main_modify']								= 'Αλλαγή';
 $lang['main_print']									= 'Εκτύπωση';
 
+$lang['main_day']									= 'Ημέρα';
+$lang['main_week']									= 'Εβδομάδα';
+$lang['main_month']									= 'Μήνας';
+$lang['main_year']									= 'Έτος';
+
 // admin
 
 $lang['main_admin_panel_login']						= 'Είσοδος στο Πάνελ Διαχείρισης';
@@ -61,6 +66,18 @@ $lang['main_create_user']							= 'Προσθήκη Χρήστη';
 $lang['main_create_order']							= 'Προσθήκη Παραγγελίας';
 $lang['main_create_coupon']							= 'Προσθήκη Κουπονιού';
 $lang['main_create_news']							= 'Προσθήκη Νέου';
+
+// invoice
+
+$lang['main_invoice_your_order']					= 'H Παραγγελία σας';
+$lang['main_invoice_company_details']				= 'Στοιχεία της εταιρείας';
+$lang['main_invoice_personal_details']				= 'Προσωπικά Στοιχεία';
+$lang['main_invoice_password_for_future_shopping']	= 'Κωδικός για τις επόμενες αγορές σου';
+$lang['main_invoice_your_points']					= 'Οι πόντοι σας είναι';
+$lang['main_invoice_product']						= 'Προϊόν';
+$lang['main_invoice_quantity']						= 'Ποσότητα';
+$lang['main_invoice_price']							= 'Τιμή';
+$lang['main_invoice_total']							= 'Σύνολο';
 
 // order
 
@@ -135,7 +152,7 @@ $lang['main_user_id']								= 'Αύξων Αριθμός';
 $lang['main_user_first_name']						= 'Όνομα';
 $lang['main_user_last_name']						= 'Επώνυμο';
 $lang['main_user_registered_at']					= 'Ημερομηνία Εγγραφής';
-$lang['main_user_rating']							= 'Βαθμολογία';
+$lang['main_user_points']							= 'Πόντοι';
 
 // coupon
 
@@ -144,7 +161,10 @@ $lang['main_coupon_uuid']							= 'Μοναδικός Αριθμός';
 $lang['main_coupon_expiration_date']				= 'Ημερομηνία Λήξης';
 $lang['main_coupon_discount']						= 'Έκπτωση';
 $lang['main_coupon_type']							= 'Τύπος';
+$lang['main_coupon_type_single_use']				= 'Μίας Χρήσης';
+$lang['main_coupon_type_multi_use']					= 'Επαναχρησιμοποιήσιμο';
 $lang['main_coupon_redeemed']						= 'Εξαργυρώθηκε';
+$lang['main_coupon_generate_amount']				= 'Ποσότητα κουπονιών προς παραγωγή';
 
 // cart
 
