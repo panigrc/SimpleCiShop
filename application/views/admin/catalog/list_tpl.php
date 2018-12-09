@@ -7,7 +7,7 @@
         <th><?php echo $this->lang->line('main_title'); ?></th>
         <th><?php echo $this->lang->line('main_category'); ?></th>
         <th><?php echo $this->lang->line('main_published'); ?></th>
-        <th>Stock</th>
+        <th><?php echo $this->lang->line('main_stock'); ?></th>
         <th><?php echo $this->lang->line('main_price'); ?> (Ελ/Γερμ/Αγγ)</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
@@ -27,13 +27,24 @@
             <td>
                 <span id="stock<?php echo $product['product_id']; ?>"><?php echo $product['stock']; ?></span>
                 <a href="#"
-                   onclick="<?php echo $this->ajax->remote_function(array('update' => 'stock' . $product['product_id'], 'url' => site_url("admin/catalog/ajax_set_stock/" . $product['product_id'] . "/" . (1)))); ?>; return FALSE;">+1</a>
+                   onclick="<?php echo $this->ajax->remote_function(array('update' => 'stock' . $product['product_id'], 'url' => site_url("admin/catalog/ajax_set_stock/" . $product['product_id'] . "/" . (1)))); ?>; return false;">+1</a>
                 <a href="#"
-                   onclick="<?php echo $this->ajax->remote_function(array('update' => 'stock' . $product['product_id'], 'url' => site_url("admin/catalog/ajax_set_stock/" . $product['product_id'] . "/" . (-1)))); ?>; return FALSE;">-1</a>
+                   onclick="<?php echo $this->ajax->remote_function(array('update' => 'stock' . $product['product_id'], 'url' => site_url("admin/catalog/ajax_set_stock/" . $product['product_id'] . "/" . (-1)))); ?>; return false;">-1</a>
             </td>
             <td><?php echo $product['price_greek'] . " / " . $product['price_german'] . " / " . $product['price_english']; ?></td>
             <td><?php echo anchor("admin/catalog/view_product/edit_product/" . $product['product_id'], '<img src="' . base_url() . '/theme/images/edit.png" alt="' . $this->lang->line('main_edit') . '">', $this->lang->line('main_edit')); ?></td>
-            <td><?php echo anchor("admin/catalog/delete_product/" . $product['product_id'], '<img src="' . base_url() . '/theme/images/delete2.png" alt="' . $this->lang->line('main_delete') . '">', array('title' => $this->lang->line('main_delete'), 'onclick' => 'if( ! confirm(\'Θελετε σίγουρα να διαγραφεί η εγγραφή;\')) return FALSE;')); ?></td>
+            <td>
+                <?php
+                    echo anchor(
+                            "admin/catalog/delete_product/" . $product['product_id'],
+                            sprintf("<img src='%s/theme/images/delete2.png' alt='%s'>",  base_url(), $this->lang->line('main_delete')),
+                            array(
+                                    'title' => $this->lang->line('main_delete'),
+                                    'onclick' => sprintf("if( ! confirm('%s')) return false;", $this->lang->line('main_assert_delete_entry'))
+                            )
+                    );
+                ?>
+            </td>
         </tr>
 	<?php endforeach; ?>
 </table>

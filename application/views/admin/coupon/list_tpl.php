@@ -1,14 +1,14 @@
 <p>
-    <?php echo anchor("coupon/view_coupon/add_coupon", '<img src="' . base_url() . '/theme/images/add2.png" alt="Προσθήκη Κουπονιών" align="middle"> Προσθήκη Κουπονιών', 'Προσθήκη Κουπονιών'); ?>
+	<?php echo anchor('admin/coupon/view_coupon/add_coupon', sprintf('<img src="%s/theme/images/add2.png" align="middle"> %s', base_url(), $this->lang->line('main_create_coupon'))); ?>
 </p>
 <table cellpadding=0 cellspacing=1>
     <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th>&nbsp;</th>
+        <th><?php echo $this->lang->line('main_coupon_id'); ?></th>
+        <th><?php echo $this->lang->line('main_coupon_uuid'); ?></th>
+        <th><?php echo $this->lang->line('main_coupon_expiration_date'); ?></th>
+        <th><?php echo $this->lang->line('main_coupon_discount'); ?></th>
+        <th><?php echo $this->lang->line('main_coupon_type'); ?></th>
+        <th><?php echo $this->lang->line('main_coupon_redeemed'); ?></th>
         <th>&nbsp;</th>
     </tr>
 	<?php foreach ($coupons as $coupon): ?>
@@ -26,7 +26,16 @@
             <td><?php echo $coupon['type']; ?></td>
             <td><?php echo $coupon['used']; ?></td>
             <td>
-                <?php echo anchor("coupon/delete_coupon/" . $coupon['coupon_id'], '<img src="' . base_url() . '/theme/images/delete2.png" alt="' . $this->lang->line('main_delete') . '">', array('title' => $this->lang->line('main_delete'), 'onclick' => 'if( ! confirm(\'Θελετε σίγουρα να διαγραφεί η εγγραφή;\')) return FALSE;')); ?>
+				<?php
+                    echo anchor(
+                        "admin/coupon/delete_coupon/" . $coupon['coupon_id'],
+                        sprintf("<img src='%s/theme/images/delete2.png' alt='%s'>",  base_url(), $this->lang->line('main_delete')),
+                        array(
+                                'title' => $this->lang->line('main_delete'),
+                                'onclick' => sprintf("if( ! confirm('%s')) return false;", $this->lang->line('main_assert_delete_entry'))
+                        )
+                    );
+				?>
             </td>
         </tr>
 	<?php endforeach; ?>
