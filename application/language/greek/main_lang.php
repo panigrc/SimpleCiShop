@@ -18,6 +18,10 @@ $lang['main_english']								= 'Αγγλικά';
 
 $lang['main_greece']								= 'Ελλάδα';
 
+$lang['main_details']								= 'Λεπτομέρειες';
+$lang['main_modify']								= 'Αλλαγή';
+$lang['main_print']									= 'Εκτύπωση';
+
 // admin
 
 $lang['main_admin_panel_login']						= 'Είσοδος στο Πάνελ Διαχείρισης';
@@ -49,7 +53,24 @@ $lang['main_view_edit_orders']						= 'Προβολή/Επεξεργασία Π�
 $lang['main_view_edit_coupons']						= 'Προβολή/Επεξεργασία Κουπονιών';
 $lang['main_view_edit_news']						= 'Προβολή/Επεξεργασία Νέων';
 
+$lang['main_assert_delete_entry']					= 'Θελετε σίγουρα να διαγραφεί η εγγραφή;';
+
 $lang['main_create_product']						= 'Προσθήκη Προϊόντος';
+$lang['main_create_category']						= 'Προσθήκη Κατηγορίας';
+$lang['main_create_user']							= 'Προσθήκη Χρήστη';
+$lang['main_create_order']							= 'Προσθήκη Παραγγελίας';
+$lang['main_create_coupon']							= 'Προσθήκη Κουπονιού';
+$lang['main_create_news']							= 'Προσθήκη Νέου';
+
+// order
+
+$lang['main_order_id']								= 'Αύξων Αριθμός';
+$lang['main_order_user']							= 'Χρήστης';
+$lang['main_order_products']						= 'Προϊόντα';
+$lang['main_order_created_at']						= 'Ημερομηνία Δημιουργίας';
+$lang['main_order_status']							= 'Κατάσταση';
+$lang['main_order_price']							= 'Τιμή';
+$lang['main_order_questionnaire']					= 'Ερωτηματολόγιο';
 
 // product
 
@@ -80,7 +101,7 @@ $lang['main_site_name']								= 'SimpleCiShop';
 $lang['main_meta_description']						= 'Φροντίζουμε για δροσερούς, καθαρούς και ήσυχους υπολογιστές.';
 $lang['main_meta_keywords']							= 'cool, clean, quiet, silent, heatspreader, cooler, vibration, heat, θορυβος, θορυβος ανεμιστηρα, ψυκτρα, ψηκτρα, ψήκτρα επεξεργαστή, ψύκτρα μνήμης, ανεμιστηρες, ηχομονωτικό, ηχομονωση, σκληρος δισκος, ήσυχος, ησυχος υπολογιστης, ήσυχο pc, αθόρυβο pc, αθορυβος υπολογιστής';
 
-$lang['main_slogan']								= '';
+$lang['main_slogan']								= 'Σλόγκαν';
 
 // search
 
@@ -107,6 +128,23 @@ $lang['main_suggestions']							= 'Προτάσεις';
 $lang['main_price']									= 'Τιμή';
 $lang['main_currency']								= '€';
 $lang['main_price_decleration']						= '(Οι τιμές περιλαμβάνουν Φ.Π.Α. 19%)';
+
+// user
+
+$lang['main_user_id']								= 'Αύξων Αριθμός';
+$lang['main_user_first_name']						= 'Όνομα';
+$lang['main_user_last_name']						= 'Επώνυμο';
+$lang['main_user_registered_at']					= 'Ημερομηνία Εγγραφής';
+$lang['main_user_rating']							= 'Βαθμολογία';
+
+// coupon
+
+$lang['main_coupon_id']								= 'Αύξων Αριθμός';
+$lang['main_coupon_uuid']							= 'Μοναδικός Αριθμός';
+$lang['main_coupon_expiration_date']				= 'Ημερομηνία Λήξης';
+$lang['main_coupon_discount']						= 'Έκπτωση';
+$lang['main_coupon_type']							= 'Τύπος';
+$lang['main_coupon_redeemed']						= 'Εξαργυρώθηκε';
 
 // cart
 
@@ -148,14 +186,20 @@ $lang['main_spam_protection']						= 'Επέλεξε το δεύτερο';
 $lang['main_spam']									= 'Ενοχλητική Αλληλογραφία';
 $lang['main_not_spam']								= 'Mη ενοχλητική αλληλογραφία';
 
+// payment
+
+$lang['main_payment_paypal']						= 'PayPal';
+$lang['main_payment_bank_transfer']					= 'Τραπεζική Κατάθεση';
+$lang['main_payment_none']							= 'Καμία';
+
 // shipment
 
 $lang['main_shipment']								= 'Τρόπος Πληρωμής';
 $lang['main_shipment_sum']							= 'Σύνολο εξόδων αποστολής';
 $lang['main_shipment_express']						= 'Εξπρες';
 $lang['main_shipment_to_door']						= 'Στην πόρτα σας';
-$lang['main_shipment_cash_on_delivery']			= 'Αντικαταβολή';
-$lang['main_shipment_cash_on_delivery_details']	= '(+4 € επιπλέον χρέωση, θα επικοινωνήσουμε πριν την εκτέλεση της παραγγελίας για επιβεβαίωση)';
+$lang['main_shipment_cash_on_delivery']				= 'Αντικαταβολή';
+$lang['main_shipment_cash_on_delivery_details']		= '(+4 € επιπλέον χρέωση, θα επικοινωνήσουμε πριν την εκτέλεση της παραγγελίας για επιβεβαίωση)';
 $lang['main_shipment_paypal']						= 'Ηλεκτρονική συναλλαγή μέσω Paypal';
 $lang['main_shipment_paypal_details']				= '(πληρωμη με πιστωτική, χρεωστική ή προπληρωμένη κάρτα)';
 $lang['main_shipment_bank_transfer']				= 'Κατάθεση σε τραπεζικό λογαριασμό';

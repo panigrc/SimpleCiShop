@@ -18,6 +18,10 @@ $lang['main_english']								= 'English';
 
 $lang['main_greece']								= 'Greece';
 
+$lang['main_details']								= 'Details';
+$lang['main_modify']								= 'Modify';
+$lang['main_print']									= 'Print';
+
 // admin
 
 $lang['main_admin_panel_login']						= 'Admin Panel Login';
@@ -48,6 +52,25 @@ $lang['main_view_edit_users']						= 'View/Edit Users';
 $lang['main_view_edit_orders']						= 'View/Edit Orders';
 $lang['main_view_edit_coupons']						= 'View/Edit Coupons';
 $lang['main_view_edit_news']						= 'View/Edit News';
+
+$lang['main_assert_delete_entry']					= 'Are you sure you want to delete this entry?';
+
+$lang['main_create_product']						= 'Create Product';
+$lang['main_create_category']						= 'Create Category';
+$lang['main_create_user']							= 'Create User';
+$lang['main_create_order']							= 'Create Order';
+$lang['main_create_coupon']							= 'Create Coupon';
+$lang['main_create_news']							= 'Create News';
+
+// order
+
+$lang['main_order_id']								= 'ID';
+$lang['main_order_user']							= 'User';
+$lang['main_order_products']						= 'Products';
+$lang['main_order_created_at']						= 'Creation Date';
+$lang['main_order_status']							= 'Status';
+$lang['main_order_price']							= 'Price';
+$lang['main_order_questionnaire']					= 'Questionnaire';
 
 // product
 
@@ -80,7 +103,7 @@ $lang['main_site_name']								= 'SimpleCiShop';
 $lang['main_meta_description']						= 'Best Posters here';
 $lang['main_meta_keywords']							= 'posters, movies, drama';
 
-$lang['main_slogan']								= '';
+$lang['main_slogan']								= 'Slogan';
 
 // search
 
@@ -107,6 +130,23 @@ $lang['main_suggestions']							= 'Suggestions';
 $lang['main_price']									= 'Price';
 $lang['main_currency']								= '€';
 $lang['main_price_decleration']						= '(Prices include VAT 19%)';
+
+// user
+
+$lang['main_user_id']								= 'ID';
+$lang['main_user_first_name']						= 'First Name';
+$lang['main_user_last_name']						= 'Last Name';
+$lang['main_user_registered_at']					= 'Registration Date';
+$lang['main_user_rating']							= 'Rating';
+
+// coupon
+
+$lang['main_coupon_id']								= 'ID';
+$lang['main_coupon_uuid']							= 'UUID';
+$lang['main_coupon_expiration_date']				= 'Expiration Date';
+$lang['main_coupon_discount']						= 'Discount';
+$lang['main_coupon_type']							= 'Type';
+$lang['main_coupon_redeemed']						= 'Redeemed';
 
 // cart
 
@@ -148,14 +188,20 @@ $lang['main_spam_protection']						= 'Select the second';
 $lang['main_spam']									= 'This is spam';
 $lang['main_not_spam']								= 'This is not spam';
 
+// payment
+
+$lang['main_payment_paypal']						= 'PayPal';
+$lang['main_payment_bank_transfer']					= 'Bank Transfer';
+$lang['main_payment_none']							= 'None';
+
 // shipment
 
 $lang['main_shipment']								= 'Shipment';
 $lang['main_shipment_sum']							= 'Shipment costs summary';
 $lang['main_shipment_express']						= 'Express';
 $lang['main_shipment_to_door']						= 'At your door';
-$lang['main_shipment_cash_on_delivery']			= 'Cash on delivery';
-$lang['main_shipment_cash_on_delivery_details']	= '(+4 € extra charge, we will contact you before shipping your order for confirmation)';
+$lang['main_shipment_cash_on_delivery']				= 'Cash on delivery';
+$lang['main_shipment_cash_on_delivery_details']		= '(+4 € extra charge, we will contact you before shipping your order for confirmation)';
 $lang['main_shipment_paypal']						= 'E-Payment with Paypal';
 $lang['main_shipment_paypal_details']				= '(pay with credit or debit card)';
 $lang['main_shipment_bank_transfer']				= 'Bank Transfer';

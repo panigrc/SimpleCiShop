@@ -18,6 +18,10 @@ $lang['main_english']								= 'Englisch';
 
 $lang['main_greece']								= 'Griechenland';
 
+$lang['main_details']								= 'Details';
+$lang['main_modify']								= 'Ändern';
+$lang['main_print']									= 'Drucken';
+
 // admin
 
 $lang['main_admin_panel_login']						= 'In der Administrationsoberfläche Einloggen';
@@ -49,7 +53,24 @@ $lang['main_view_edit_orders']						= 'Bestellungen Sehen/Bearbeiten';
 $lang['main_view_edit_coupons']						= 'Gutscheine Sehen/Bearbeiten';
 $lang['main_view_edit_news']						= 'Nachrichten Sehen/Bearbeiten';
 
-$lang['main_create_product']						= 'Produkt Einfuegen';
+$lang['main_assert_delete_entry']					= 'Sind Sie sicher dass der Eintrag gelöscht wird?';
+
+$lang['main_create_product']						= 'Produkt Einfügen';
+$lang['main_create_category']						= 'Kategorie Einfügen';
+$lang['main_create_user']							= 'Nutzer Einfügen';
+$lang['main_create_order']							= 'Bestellung Einfügen';
+$lang['main_create_coupon']							= 'Gutschein Einfügen';
+$lang['main_create_news']							= 'Nachricht Einfügen';
+
+// order
+
+$lang['main_order_id']								= 'ID';
+$lang['main_order_user']							= 'Nutzer';
+$lang['main_order_products']						= 'Produkte';
+$lang['main_order_created_at']						= 'Erstellungsdatum';
+$lang['main_order_status']							= 'Status';
+$lang['main_order_price']							= 'Preis';
+$lang['main_order_questionnaire']					= 'Fragebogen';
 
 // product
 
@@ -77,10 +98,10 @@ $lang['main_contact']								= 'Kontakt';
 
 $lang['main_site_name'] 							= 'SimpleCiShop';
 
-$lang['main_meta_description']						= '';
-$lang['main_meta_keywords']							= '';
+$lang['main_meta_description']						= 'Meta Beschreibung';
+$lang['main_meta_keywords']							= 'Meta Stichwörter';
 
-$lang['main_slogan']								= '';
+$lang['main_slogan']								= 'Motto';
 
 // search
 
@@ -107,6 +128,23 @@ $lang['main_suggestions']							= 'Vorschläge';
 $lang['main_price']									= 'Preis';
 $lang['main_currency']								= '€';
 $lang['main_price_decleration']						= '(Die Preise enthalten Mehrwertsteür 19%)';
+
+// user
+
+$lang['main_user_id']								= 'ID';
+$lang['main_user_first_name']						= 'Vorname';
+$lang['main_user_last_name']						= 'Nachname';
+$lang['main_user_registered_at']					= 'Registrierungs Datum';
+$lang['main_user_rating']							= 'Bewertung';
+
+// coupon
+
+$lang['main_coupon_id']								= 'ID';
+$lang['main_coupon_uuid']							= 'UUID';
+$lang['main_coupon_expiration_date']				= 'Ablaufsdatum';
+$lang['main_coupon_discount']						= 'Ermäßigung';
+$lang['main_coupon_type']							= 'Typ';
+$lang['main_coupon_redeemed']						= 'Abgelöst';
 
 // cart
 
@@ -148,17 +186,23 @@ $lang['main_spam_protection']						= 'Das Zweite Wählen';
 $lang['main_spam']									= 'Das ist Spam';
 $lang['main_not_spam']								= 'Das ist kein Spam';
 
+// payment
+
+$lang['main_payment_paypal']						= 'PayPal';
+$lang['main_payment_bank_transfer']					= 'Bank Überweisung';
+$lang['main_payment_none']							= 'Keine';
+
 // shipment
 
 $lang['main_shipment']								= 'Versand';
 $lang['main_shipment_sum']							= 'Versandkosten Summe';
 $lang['main_shipment_express']						= 'Express';
 $lang['main_shipment_to_door']						= 'An ihrer Tür';
-$lang['main_shipment_cash_on_delivery']			= 'Nachname Lieferung';
-$lang['main_shipment_cash_on_delivery_details']	= '(+4 € extra Gebühr, wir werden bevor den Versand mit Ihnen Kontakt aufnehmen, um den Auftrag zu bestätigen)';
+$lang['main_shipment_cash_on_delivery']				= 'Nachname';
+$lang['main_shipment_cash_on_delivery_details']		= '(+4 € extra Gebühr, wir werden bevor den Versand mit Ihnen Kontakt aufnehmen, um den Auftrag zu bestätigen)';
 $lang['main_shipment_paypal']						= 'Elektronische Überweisung durch Paypal';
 $lang['main_shipment_paypal_details']				= '(mit Karte zahlen)';
-$lang['main_shipment_bank_transfer']				= 'Überweisung';
+$lang['main_shipment_bank_transfer']				= 'Bank Überweisung';
 $lang['main_shipment_bank_transfer_details']		= '(bitte fügen Sie ihre E-mail Adresse ein, um die Versand Informationen Ihnen zu schicken)';
 
 $lang['main_shipment_costs']						= '25';
