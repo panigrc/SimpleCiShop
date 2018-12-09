@@ -214,10 +214,10 @@ $lang['main_shipment_cash_on_delivery_costs']		= '13';
 
 $lang['main_costs_sum']								= 'Summe';
 
-// qüstionnaire
+// questionnaire
 
-$lang['main_qüstionnaire']							= 'Fragezeichen';
-$lang['main_qüstion1']								= 'Was für Produkte wurden Sie gerne an unserem Shop sehen?';
-$lang['main_qüstion2']								= 'Woher haben Sie von uns gehört?';
+$lang['main_questionnaire']							= 'Fragezeichen';
+$lang['main_question1']								= 'Was für Produkte wurden Sie gerne an unserem Shop sehen?';
+$lang['main_question2']								= 'Woher haben Sie von uns gehört?';
 
 $lang['main_contact_subject']						= 'Webseite Kontakt';
