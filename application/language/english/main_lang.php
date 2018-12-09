@@ -129,7 +129,7 @@ $lang['main_suggestions']							= 'Suggestions';
 
 $lang['main_price']									= 'Price';
 $lang['main_currency']								= '€';
-$lang['main_price_decleration']						= '(Prices include VAT 19%)';
+$lang['main_price_declaration']						= '(Prices include VAT 19%)';
 
 // user
 

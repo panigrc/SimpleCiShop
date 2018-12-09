@@ -127,7 +127,7 @@ $lang['main_suggestions']							= 'Vorschläge';
 
 $lang['main_price']									= 'Preis';
 $lang['main_currency']								= '€';
-$lang['main_price_decleration']						= '(Die Preise enthalten Mehrwertsteür 19%)';
+$lang['main_price_declaration']						= '(Die Preise enthalten Mehrwertsteür 19%)';
 
 // user
 

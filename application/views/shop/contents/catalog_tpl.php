@@ -27,7 +27,7 @@
                     </div>
                     <div style="clear:both;"></div>
                     <div style="margin: 5px 0 5px 0; text-align: center;">
-                        <span class="small"><?php echo $this->lang->line('main_price_decleration'); ?></span>
+                        <span class="small"><?php echo $this->lang->line('main_price_declaration'); ?></span>
                         <br />
                         <?php if( ! empty($pagination)) echo $this->lang->line('main_page') .': '. @$pagination; ?>
                     </div>

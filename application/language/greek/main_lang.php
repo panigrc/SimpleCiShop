@@ -127,7 +127,7 @@ $lang['main_suggestions']							= 'Προτάσεις';
 
 $lang['main_price']									= 'Τιμή';
 $lang['main_currency']								= '€';
-$lang['main_price_decleration']						= '(Οι τιμές περιλαμβάνουν Φ.Π.Α. 19%)';
+$lang['main_price_declaration']						= '(Οι τιμές περιλαμβάνουν Φ.Π.Α. 19%)';
 
 // user
 
