@@ -196,21 +196,21 @@ $lang['main_payment_none']							= 'None';
 
 // shipment
 
-$lang['main_shipment']								= 'Shipment';
-$lang['main_shipment_sum']							= 'Shipment costs summary';
-$lang['main_shipment_express']						= 'Express';
-$lang['main_shipment_to_door']						= 'At your door';
-$lang['main_shipment_cash_on_delivery']				= 'Cash on delivery';
-$lang['main_shipment_cash_on_delivery_details']		= '(+4 € extra charge, we will contact you before shipping your order for confirmation)';
-$lang['main_shipment_paypal']						= 'E-Payment with Paypal';
-$lang['main_shipment_paypal_details']				= '(pay with credit or debit card)';
-$lang['main_shipment_bank_transfer']				= 'Bank Transfer';
-$lang['main_shipment_bank_transfer_details']		= '(please fill out your email address in order to send you the shipment details)';
+$lang['main_shipping']								= 'Shipment';
+$lang['main_shipping_sum']							= 'Shipment costs summary';
+$lang['main_shipping_express']						= 'Express';
+$lang['main_shipping_to_door']						= 'At your door';
+$lang['main_shipping_cash_on_delivery']				= 'Cash on delivery';
+$lang['main_shipping_cash_on_delivery_details']		= '(+4 € extra charge, we will contact you before shipping your order for confirmation)';
+$lang['main_shipping_paypal']						= 'E-Payment with Paypal';
+$lang['main_shipping_paypal_details']				= '(pay with credit or debit card)';
+$lang['main_shipping_bank_transfer']				= 'Bank Transfer';
+$lang['main_shipping_bank_transfer_details']		= '(please fill out your email address in order to send you the shipment details)';
 
-$lang['main_shipment_costs']						= '45';
-$lang['main_shipment_express_costs']				= '23';
-$lang['main_shipment_to_door_costs']				= '23';
-$lang['main_shipment_cash_on_delivery_costs']		= '23';
+$lang['main_shipping_costs']						= '45';
+$lang['main_shipping_express_costs']				= '23';
+$lang['main_shipping_to_door_costs']				= '23';
+$lang['main_shipping_cash_on_delivery_costs']		= '23';
 
 // costs
 

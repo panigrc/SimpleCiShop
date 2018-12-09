@@ -194,21 +194,21 @@ $lang['main_payment_none']							= 'Keine';
 
 // shipment
 
-$lang['main_shipment']								= 'Versand';
-$lang['main_shipment_sum']							= 'Versandkosten Summe';
-$lang['main_shipment_express']						= 'Express';
-$lang['main_shipment_to_door']						= 'An ihrer Tür';
-$lang['main_shipment_cash_on_delivery']				= 'Nachname';
-$lang['main_shipment_cash_on_delivery_details']		= '(+4 € extra Gebühr, wir werden bevor den Versand mit Ihnen Kontakt aufnehmen, um den Auftrag zu bestätigen)';
-$lang['main_shipment_paypal']						= 'Elektronische Überweisung durch Paypal';
-$lang['main_shipment_paypal_details']				= '(mit Karte zahlen)';
-$lang['main_shipment_bank_transfer']				= 'Bank Überweisung';
-$lang['main_shipment_bank_transfer_details']		= '(bitte fügen Sie ihre E-mail Adresse ein, um die Versand Informationen Ihnen zu schicken)';
+$lang['main_shipping']								= 'Versand';
+$lang['main_shipping_sum']							= 'Versandkosten Summe';
+$lang['main_shipping_express']						= 'Express';
+$lang['main_shipping_to_door']						= 'An ihrer Tür';
+$lang['main_shipping_cash_on_delivery']				= 'Nachname';
+$lang['main_shipping_cash_on_delivery_details']		= '(+4 € extra Gebühr, wir werden bevor den Versand mit Ihnen Kontakt aufnehmen, um den Auftrag zu bestätigen)';
+$lang['main_shipping_paypal']						= 'Elektronische Überweisung durch Paypal';
+$lang['main_shipping_paypal_details']				= '(mit Karte zahlen)';
+$lang['main_shipping_bank_transfer']				= 'Bank Überweisung';
+$lang['main_shipping_bank_transfer_details']		= '(bitte fügen Sie ihre E-mail Adresse ein, um die Versand Informationen Ihnen zu schicken)';
 
-$lang['main_shipment_costs']						= '25';
-$lang['main_shipment_express_costs']				= '13';
-$lang['main_shipment_to_door_costs']				= '13';
-$lang['main_shipment_cash_on_delivery_costs']		= '13';
+$lang['main_shipping_costs']						= '25';
+$lang['main_shipping_express_costs']				= '13';
+$lang['main_shipping_to_door_costs']				= '13';
+$lang['main_shipping_cash_on_delivery_costs']		= '13';
 
 // costs
 

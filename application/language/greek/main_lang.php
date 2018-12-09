@@ -194,21 +194,21 @@ $lang['main_payment_none']							= 'Καμία';
 
 // shipment
 
-$lang['main_shipment']								= 'Τρόπος Πληρωμής';
-$lang['main_shipment_sum']							= 'Σύνολο εξόδων αποστολής';
-$lang['main_shipment_express']						= 'Εξπρες';
-$lang['main_shipment_to_door']						= 'Στην πόρτα σας';
-$lang['main_shipment_cash_on_delivery']				= 'Αντικαταβολή';
-$lang['main_shipment_cash_on_delivery_details']		= '(+4 € επιπλέον χρέωση, θα επικοινωνήσουμε πριν την εκτέλεση της παραγγελίας για επιβεβαίωση)';
-$lang['main_shipment_paypal']						= 'Ηλεκτρονική συναλλαγή μέσω Paypal';
-$lang['main_shipment_paypal_details']				= '(πληρωμη με πιστωτική, χρεωστική ή προπληρωμένη κάρτα)';
-$lang['main_shipment_bank_transfer']				= 'Κατάθεση σε τραπεζικό λογαριασμό';
-$lang['main_shipment_bank_transfer_details']		= '(συμπλήρωσε το email σου για να σου στείλουμε τα στοιχεία)';
+$lang['main_shipping']								= 'Τρόπος Πληρωμής';
+$lang['main_shipping_sum']							= 'Σύνολο εξόδων αποστολής';
+$lang['main_shipping_express']						= 'Εξπρες';
+$lang['main_shipping_to_door']						= 'Στην πόρτα σας';
+$lang['main_shipping_cash_on_delivery']				= 'Αντικαταβολή';
+$lang['main_shipping_cash_on_delivery_details']		= '(+4 € επιπλέον χρέωση, θα επικοινωνήσουμε πριν την εκτέλεση της παραγγελίας για επιβεβαίωση)';
+$lang['main_shipping_paypal']						= 'Ηλεκτρονική συναλλαγή μέσω Paypal';
+$lang['main_shipping_paypal_details']				= '(πληρωμη με πιστωτική, χρεωστική ή προπληρωμένη κάρτα)';
+$lang['main_shipping_bank_transfer']				= 'Κατάθεση σε τραπεζικό λογαριασμό';
+$lang['main_shipping_bank_transfer_details']		= '(συμπλήρωσε το email σου για να σου στείλουμε τα στοιχεία)';
 
-$lang['main_shipment_costs']						= '4';
-$lang['main_shipment_express_costs']				= '3';
-$lang['main_shipment_to_door_costs']				= '3';
-$lang['main_shipment_cash_on_delivery_costs']		= '4';
+$lang['main_shipping_costs']						= '4';
+$lang['main_shipping_express_costs']				= '3';
+$lang['main_shipping_to_door_costs']				= '3';
+$lang['main_shipping_cash_on_delivery_costs']		= '4';
 
 // costs
 
