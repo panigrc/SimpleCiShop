@@ -53,7 +53,6 @@ See simplecishop.sql
 TODOs _Sorted by schedule_
 -----
 
-- [ ] Remove hard coded text/words from views.
 - [ ] Remove png/jpeg icons and replace with web font.
 - [ ] Translating the interface and the whole website into english
 - [ ] Separation between data and models. Models should not contain any $_REQUEST input.
@@ -66,6 +65,7 @@ TODOs _Sorted by schedule_
 - [ ] Build an Affiliate controller; which will redirect to the page intended plus saving the affiliate id to session.
 - [ ] Better admin interface.
 - [ ] Better Checkout. Add a plugable payment method system. Now the only payment method is cash on delivery.
+- [x] Remove hard coded text/words from views and controllers.
 - [x] Merge the two applications - frontend/backend - into one so we can reuse the various functions of Models and Libraries
 - [x] Language setting should move into session and not in every URL.
 - [x] Rename all camelCase variables in templates & database to snake_case.
