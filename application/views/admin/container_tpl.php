@@ -4,10 +4,10 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title><?php echo $title; ?></title>
 
-<script src="<?php echo base_url() ?>javascript/prototype.js" type="text/javascript"></script>
-<script src="<?php echo base_url() ?>javascript/effects.js" type="text/javascript"></script>
-<script src="<?php echo base_url() ?>javascript/dragdrop.js" type="text/javascript"></script>
-<script src="<?php echo base_url() ?>javascript/controls.js" type="text/javascript"></script>
+<script src="<?php echo base_url() ?>assets/scriptaculous/lib/prototype.js" type="text/javascript"></script>
+<script src="<?php echo base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
+<script src="<?php echo base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
+<script src="<?php echo base_url() ?>assets/scriptaculous/src/controls.js" type="text/javascript"></script>
 
 <style type="text/css">
 

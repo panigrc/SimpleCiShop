@@ -10,10 +10,10 @@
 	<meta name="robots" content="index,follow" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>theme/default/style.css" type="text/css" />
 	<title><?php if($this->lang->line($pagename)) echo $this->lang->line($pagename). ' - '; if( ! empty($title)) echo $title . ' - '; ?>SimpleCiShop</title>    
-    <script src="<?php echo base_url() ?>javascript/prototype.js" type="text/javascript"></script>
-    <script src="<?php echo base_url() ?>javascript/effects.js" type="text/javascript"></script>
-    <script src="<?php echo base_url() ?>javascript/dragdrop.js" type="text/javascript"></script>
-    <script src="<?php echo base_url() ?>javascript/controls.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ?>assets/scriptaculous/lib/prototype.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ?>assets/scriptaculous/src/controls.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>assets/validation/validation.js" type="text/javascript"></script>
     <?php echo @$scripts; ?>
 </head>

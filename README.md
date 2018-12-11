@@ -27,11 +27,9 @@ The directory structure is mainly the CodeIgniter structure. There are a few thi
 
 `/images` - Contains the images of the products
 
-`/javascript` - Contains also some javascript libraries (I don't know why I have two directories with javascripts; there has to be a reason)
+`/theme` - Contains the css and the images of the frontend website (notice that the website is not themeable yet)
 
-`/theme` - Contains the css and the images of the frontend website (notice that the website is not themable yet)
-
-`/uploads` - I don't remember what it does
+`/uploads` - Uploaded images that are used in the Product details/description
 
 `/application/controllers/admin` - The admin (backend) application controllers
 
