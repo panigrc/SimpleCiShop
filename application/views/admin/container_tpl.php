@@ -4,6 +4,8 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title><?php echo $title; ?></title>
 
+<link href="<?php echo base_url() ?>assets/fontawesome/css/all.css" rel="stylesheet">
+
 <script src="<?php echo base_url() ?>assets/scriptaculous/lib/prototype.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
