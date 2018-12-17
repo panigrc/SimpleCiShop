@@ -25,7 +25,7 @@
 			<?php
                 echo anchor(
                     "admin/user/delete_user/" . $user['user_id'],
-                    sprintf("<img src='%s/theme/images/delete2.png' alt='%s'>",  base_url(), $this->lang->line('main_delete')),
+                    '<i class="fas fa-trash"></i>',
                     array(
                         'title' => $this->lang->line('main_delete'),
                         'onclick' => sprintf("if( ! confirm('%s')) return false;", $this->lang->line('main_assert_delete_entry'))
