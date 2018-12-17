@@ -57,7 +57,7 @@
             <td>
             	<?php echo anchor(
             	        'admin/order/view_order/'. $order['order_id'] . "/" . $order['user_id'],
-                        sprintf('<img src="%s/theme/images/print.png" align="middle"> %s', base_url(), $this->lang->line('main_print'))
+                        '<i class="fas fa-print"></i>'
                 ); 
             	?>
             </td>
