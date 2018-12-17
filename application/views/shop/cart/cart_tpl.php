@@ -16,6 +16,6 @@ echo $this->ajax->drop_receiving_element('cart',
 <script type="text/javascript"> <?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('cart/cart_update'))); ?>;</script>
 <div style="height: 20px; padding-top: 5px;">
     <p id="indicator" style="display: none; margin-top: 0px; font-size: 0.6em;">
-<img src="<?php echo base_url(); ?>theme/images/ajax-loader.gif" alt="loading..." />
-<?php //echo $this->lang->line('main_cart_update'); ?></p>
+        <i class="fas fa-spinner fa-spin"></i>
+    <?php //echo $this->lang->line('main_cart_update'); ?></p>
 </div>
