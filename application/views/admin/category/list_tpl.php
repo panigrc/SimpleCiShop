@@ -14,7 +14,7 @@ function printCategories($arr, $level = 0, $style = 'odd')
 			$style = 'odd';
 		} ?>">
             <td><?php echo str_repeat("-", $level) . " " . $obj->category_model->get_category_name($item); ?></td>
-            <td><?php echo anchor("admin/category/view_category/edit_category/" . $item, '<img src="' . base_url() . '/theme/images/edit.png" alt="' . $obj->lang->line('main_edit') . '">', $obj->lang->line('main_edit')); ?></td>
+            <td><?php echo anchor("admin/category/view_category/edit_category/" . $item, '<i class="fas fa-edit"></i>'); ?></td>
         </tr>
 <?php
 		printCategories($key, $level + 1, $style);

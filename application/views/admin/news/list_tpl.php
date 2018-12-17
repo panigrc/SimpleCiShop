@@ -18,7 +18,7 @@
 		} ?>">
             <td><?php echo $new['title_greek']; ?></td>
             <td><?php echo date("d/m/y", $new['published']); ?></td>
-            <td><?php echo anchor("admin/news/view_news/edit_news/" . $new['news_id'], '<img src="' . base_url() . '/theme/images/edit.png" alt="' . $this->lang->line('main_edit') . '">', $this->lang->line('main_edit')); ?></td>
+            <td><?php echo anchor("admin/news/view_news/edit_news/" . $new['news_id'], '<i class="fas fa-edit"></i>'); ?></td>
             <td>
 				<?php
                     echo anchor(

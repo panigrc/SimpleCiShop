@@ -32,7 +32,7 @@
                    onclick="<?php echo $this->ajax->remote_function(array('update' => 'stock' . $product['product_id'], 'url' => site_url("admin/catalog/ajax_set_stock/" . $product['product_id'] . "/" . (-1)))); ?>; return false;">-1</a>
             </td>
             <td><?php echo $product['price_greek'] . " / " . $product['price_german'] . " / " . $product['price_english']; ?></td>
-            <td><?php echo anchor("admin/catalog/view_product/edit_product/" . $product['product_id'], '<img src="' . base_url() . '/theme/images/edit.png" alt="' . $this->lang->line('main_edit') . '">', $this->lang->line('main_edit')); ?></td>
+            <td><?php echo anchor("admin/catalog/view_product/edit_product/" . $product['product_id'], '<i class="fas fa-edit"></i>'); ?></td>
             <td>
                 <?php
                     echo anchor(

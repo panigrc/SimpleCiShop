@@ -19,7 +19,7 @@
         <td><?php echo date("d/m/y", $user['user_registered']); ?></td>
         <td><?php echo $user['user_stars']; ?></td>
         <td>
-            <?php echo anchor("admin/user/view_user/edit_user/".$user['user_id'], '<img src="'. base_url() .'/theme/images/edit.png" alt="'.$this->lang->line('main_edit').'">', $this->lang->line('main_edit')); ?>
+            <?php echo anchor("admin/user/view_user/edit_user/".$user['user_id'], '<i class="fas fa-edit"></i>'); ?>
         </td>
         <td>
 			<?php
