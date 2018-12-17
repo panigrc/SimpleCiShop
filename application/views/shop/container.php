@@ -56,7 +56,14 @@
                     <?php $this->load->view('shop/cart/cart_tpl'); ?>
 
                     <?php $this->load->view('shop/blocks/random_product_tpl'); ?>
-                    <div style="text-align:center;"><a href="<?php echo site_url(); ?>blog/"><img src="<?php echo base_url() ?>theme/default/images/blog.png" alt="Cool Clean Quiet - Blog" style="border: none; float:none" /></a></div>
+                    <div style="text-align:center;">
+                        <a href="https://nikospapagiannopoulos.com">
+                            <span class="fa-layers fa-fw">
+                                <i class="fas fa-certificate"></i>
+                                <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11.5 rotate--30" style="font-weight:900">Blog</span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
                 <div id="left">
                     <?php echo @$rblock; ?>
