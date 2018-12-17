@@ -31,7 +31,7 @@
             */ ?>
 		    <div style="clear: both;"></div>
 			<div class="sf_right">
-                <a href="<?php echo site_url(); ?>"><img src="<?php echo base_url() ?>theme/default/images/logo.png" alt="logo" style="border: none;" /></a>
+                <a href="<?php echo site_url(); ?>">SimpleCiShop</a>
                 <?php /*<div id="nav">
     			    <ul>
 <?php foreach($navigation as $tab => $url):?>
