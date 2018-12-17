@@ -1,5 +1,5 @@
 <p>
-	<?php echo anchor('admin/coupon/view_coupon/add_coupon', sprintf('<img src="%s/theme/images/add2.png" align="middle"> %s', base_url(), $this->lang->line('main_create_coupon'))); ?>
+	<?php echo anchor('admin/coupon/view_coupon/add_coupon', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_coupon'))); ?>
 </p>
 <table cellpadding=0 cellspacing=1>
     <tr>

@@ -1,5 +1,5 @@
 <p>
-	<?php echo anchor('admin/category/view_category/add_category', sprintf('<img src="%s/theme/images/add2.png" align="middle"> %s', base_url(), $this->lang->line('main_create_category'))); ?>
+	<?php echo anchor('admin/category/view_category/add_category', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_category'))); ?>
 </p>
 <?php
     

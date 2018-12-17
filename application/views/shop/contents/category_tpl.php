@@ -13,7 +13,7 @@ foreach($categories_arr as $category => $sub_categories) {
     if(isset($parent_category_id)) {
         echo $this->category_model->get_category_name($parent_category_id)."&nbsp;>>&nbsp;";
         if($this->category_model->category_has_info($parent_category_id)>0) { ?>
-                            <a href="<?php echo site_url('category/view_category/'.$parent_category_id) ?>"><img src="<?php echo base_url(); ?>/theme/images/about.png" alt="<?php echo $this->lang->line('main_information'); ?>" title="<?php echo $this->lang->line('main_information'); ?>" /></a>
+                            <a href="<?php echo site_url('category/view_category/'.$parent_category_id) ?>"><i class="fas fa-info-circle"></i></a>
 <?php
         }
     }

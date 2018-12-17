@@ -1,5 +1,5 @@
 <p>
-	<?php echo anchor('admin/user/view_user/add_user', sprintf('<img src="%s/theme/images/add2.png" align="middle"> %s', base_url(), $this->lang->line('main_create_user'))); ?>
+	<?php echo anchor('admin/user/view_user/add_user', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_user'))); ?>
 </p>
 <table cellpadding=0 cellspacing=1>
     <tr>

@@ -1,5 +1,5 @@
 <p>
-    <?php echo anchor('admin/catalog/view_product/add_product', sprintf('<img src="%s/theme/images/add2.png" align="middle"> %s', base_url(), $this->lang->line('main_create_product'))); ?>
+    <?php echo anchor('admin/catalog/view_product/add_product', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_product'))); ?>
 </p>
 <table cellspacing=1px cellpadding=0px>
     <tr>

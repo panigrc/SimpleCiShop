@@ -1,4 +1,6 @@
-<p><?php echo anchor("user/view_user/add_user", '<img src="'. base_url() .'/theme/images/add2.png" alt="Προσθήκη Χρήστη" align="middle"> Προσθήκη Χρήστη', 'Προσθήκη Χρήστη'); ?></p>
+<p>
+	<?php echo anchor('admin/user/view_user/add_user', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_user'))); ?>
+</p>
 <?php
     echo form_open("user/".$action);
     echo form_hidden('user_id',@$user_id);

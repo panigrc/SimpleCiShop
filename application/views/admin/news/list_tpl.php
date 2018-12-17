@@ -1,5 +1,5 @@
 <p>
-	<?php echo anchor('admin/news/view_news/add_news', sprintf('<img src="%s/theme/images/add2.png" align="middle"> %s', base_url(), $this->lang->line('main_create_news'))); ?>
+	<?php echo anchor('admin/news/view_news/add_news', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_news'))); ?>
 </p>
 <table cellpadding=0 cellspacing=1>
     <tr>
