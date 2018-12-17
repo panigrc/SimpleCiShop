@@ -53,7 +53,6 @@
                     </div>
                 </div>
                 <div id="right">
-                    <div style="text-align:center;">Αν θέλεις κάποιο προϊόν της Nexus το οποίο δεν έχουμε, μπορούμε να το παραγγείλουμε για σένα<br/><a href="http://www.nexustek.nl"><img src="<?php echo base_url() ?>theme/default/images/Nexus_badge.gif" alt="Nexus" style="border: none; float:none;" /></a></div>
                     <?php $this->load->view('shop/cart/cart_tpl'); ?>
 
                     <?php $this->load->view('shop/blocks/random_product_tpl'); ?>
@@ -68,7 +67,7 @@
 		</div>
 		<div class="header_bottom"></div>
 		<div class="footer">
-			<p>&copy; Copyright <?php echo date ("Y"); ?> www.cool-clean-quiet.com</p>
+			<p>&copy; Copyright <?php echo date ("Y"); ?> SimpleCiShop</p>
 		</div>
 	</div>
 </body>
