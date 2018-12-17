@@ -1,7 +1,7 @@
 					<div class="article">
 						<h1><?php echo $product['title_'.$lang]; ?></h1>
 			<p>
-                            <?php echo $this->lang->line('main_cart_add'); ?> <a href="#" onclick="javascript:<?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('cart/cart_add'), 'hoverclass' => 'cart-active', 'loading' => "Element.show('indicator')", 'complete' => "Element.hide('indicator')", 'method' => 'post', 'with' => "'id="."product".$product['product_id']."_".$product['product_id']."'")); ?>; return false;"><span class="cart_put"></span></a>
+                            <?php echo $this->lang->line('main_cart_add'); ?> <a href="#" onclick="javascript:<?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('cart/cart_add'), 'hoverclass' => 'cart-active', 'loading' => "Element.show('indicator')", 'complete' => "Element.hide('indicator')", 'method' => 'post', 'with' => "'id="."product".$product['product_id']."_".$product['product_id']."'")); ?>; return false;"><i class="fas fa-cart-arrow-down"></i></a>
                         </p>
 			<p>
 				<a href="http://www.cool-clean-quiet.com/blog/tag/<?php echo $product['nicename']; ?>" target="_blank"><?php echo $this->lang->line('main_product_news'); ?></a>
@@ -19,7 +19,7 @@
                             <?php if($this->product_model->get_product_meta($product['product_id'], "Artist")) : ?><p class="highlight"><?php echo $this->product_model->get_product_meta($product['product_id'], "Artist"); ?></p><?php endif; ?>
                         </div>
                         <p>
-                            <?php echo $this->lang->line('main_cart_add'); ?> <a href="#" onclick="javascript:<?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('cart/cart_add'), 'hoverclass' => 'cart-active', 'loading' => "Element.show('indicator')", 'complete' => "Element.hide('indicator')", 'method' => 'post', 'with' => "'id="."product".$product['product_id']."_".$product['product_id']."'")); ?>; return false;"><span class="cart_put"></span></a>
+                            <?php echo $this->lang->line('main_cart_add'); ?> <a href="#" onclick="javascript:<?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('cart/cart_add'), 'hoverclass' => 'cart-active', 'loading' => "Element.show('indicator')", 'complete' => "Element.hide('indicator')", 'method' => 'post', 'with' => "'id="."product".$product['product_id']."_".$product['product_id']."'")); ?>; return false;"><i class="fas fa-cart-arrow-down"></i></a>
                         </p>
                         
                         <?php if($this->product_model->get_product_meta($product['product_id'], "Τύπος")) echo $this->product_model->get_product_meta($product['product_id'], "Τύπος"); ?>
