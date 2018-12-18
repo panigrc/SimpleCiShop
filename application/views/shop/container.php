@@ -47,7 +47,7 @@
 		<div class="bottom">
 			<div style="clear: both;"></div>
             <div id="content-float-holder">
-                <div id="centerwrap">
+                <div id="center-wrap">
                     <div id="center">
                         <div id="center_contents"><div id="center_contents_leftbg"><?php echo @$contents; ?></div></div>
                     </div>
