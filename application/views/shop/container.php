@@ -58,9 +58,9 @@
                     <?php $this->load->view('shop/blocks/random_product_tpl'); ?>
                     <div style="text-align:center;">
                         <a href="https://nikospapagiannopoulos.com">
-                            <span class="fa-layers fa-fw">
-                                <i class="fas fa-certificate"></i>
-                                <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11.5 rotate--30" style="font-weight:900">Blog</span>
+                            <span class="fa-stack fa-2x">
+                                <i class="fas fa-certificate fa-stack-2x"></i>
+                                <span class="fas fa-stack-1x" style="color: white; font-size: .5em">Blog</span>
                             </span>
                         </a>
                     </div>
