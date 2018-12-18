@@ -31,7 +31,7 @@
             */ ?>
 		    <div style="clear: both;"></div>
 			<div class="sf_right">
-                <a href="<?php echo site_url(); ?>">SimpleCiShop</a>
+                <div id="logo"><a href="<?php echo site_url(); ?>">SimpleCiShop</a></div>
                 <?php /*<div id="nav">
     			    <ul>
 <?php foreach($navigation as $tab => $url):?>
@@ -40,13 +40,13 @@
 				    </ul>
                 </div>
                 */?>
-                <h1><?php echo $this->lang->line('main_slogan'); ?></h1>
+                <div id="slogan"><?php echo $this->lang->line('main_slogan'); ?></div>
 			</div>
 <?php //echo empty($tblock) === TRUE ? $this->load->view('shop/blocks/tblock_tpl') : $tblock; ?>
 		</div>
 		<div class="bottom">
 			<div style="clear: both;"></div>
-            <div id="contentfloatholder">
+            <div id="content-float-holder">
                 <div id="centerwrap">
                     <div id="center">
                         <div id="center_contents"><div id="center_contents_leftbg"><?php echo @$contents; ?></div></div>
