@@ -564,6 +564,16 @@ select.contact {
     position: relative;
 }
 
+.cart-remove {
+    font-size: 1em;
+}
+
+.cart-remove .fa-arrow-up {
+    font-size: .8em;
+    margin-left: .25em;
+    margin-top: -.15em;
+}
+
 div.cart-active {
     background-color: rgb(255, 244, 216);
 }
