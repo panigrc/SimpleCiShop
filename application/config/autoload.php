@@ -65,6 +65,7 @@ $autoload['libraries'] = array(
 	'pagination',
 	'session',
 	'upload',
+	'user_agent',
 	'ajax',
 	'authentication',
 	'calendar_library',
