@@ -95,6 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property Fckeditor $fckeditor
  * @property Myfckeditor $myfckeditor
  * @property Language_library $language_library
+ * @property Template_library $template_library
  *
  * @property Category_model $category_model
  * @property Coupon_model $coupon_model
