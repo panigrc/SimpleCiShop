@@ -72,6 +72,7 @@ $autoload['libraries'] = array(
 	'cart_library',
 	'language_library',
 	'myfckeditor',
+	'template_library',
 );
 
 /*
