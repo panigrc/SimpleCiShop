@@ -12,6 +12,9 @@ class Catalog extends CI_Controller {
 	 */
 	public function index($category_slug = NULL, $current_page = NULL)
 	{
+		/**
+		 * @todo	this must be removed in the future
+		 */
 		$affiliate = $this->uri->segment(6,"");
 		if ($affiliate) $this->_set_affiliate($affiliate);
 
