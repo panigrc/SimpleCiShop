@@ -20,9 +20,9 @@
                             <?php //echo $this->lang->line('main_description'); ?>
                             <?php //echo mb_substr(strip_tags($product['description_'.$lang]), 0, 350, 'UTF-8').'...'; ?>
                             <?php //echo $this->lang->line('main_price'); ?>
-                             <span style="text-decoration: line-through;"><?php if($product['price_old_'.$lang]!=0) echo $product['price_old_'.$lang].' '.$this->lang->line('main_currency'); ?></span>&nbsp;<?php echo $product['price_'.$lang].' '.$this->lang->line('main_currency'); ?>&nbsp;
-                            <a href="#" onclick="javascript:<?php echo $this->ajax->remote_function(array('update'=>'items','url'=>site_url('shop/cart/cart_add'), 'hoverclass' => 'cart-active', 'loading' => "Element.show('indicator')", 'complete' => "Element.hide('indicator')", 'method' => 'post', 'with' => "'id="."product".$product['product_id']."_".$product['product_id']."'")); ?>; return false;"><i class="fas fa-cart-arrow-down"></i></a>
-					    </div>
+                            <span style="text-decoration: line-through;"><?php if($product['price_old_'.$lang]!=0) echo $product['price_old_'.$lang].' '.$this->lang->line('main_currency'); ?></span>&nbsp;<?php echo $product['price_'.$lang].' '.$this->lang->line('main_currency'); ?>&nbsp;
+                            <a href="<?=site_url('shop/cart/cart_add/'.$product['product_id'])?>"><i class="fas fa-cart-arrow-down"></i></a>
+                    </div>
 <?php endforeach; ?>
                     </div>
                     <div style="clear:both;"></div>
