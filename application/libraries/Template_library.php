@@ -19,13 +19,50 @@ class Template_library {
 	}
 
 	/**
+	 * @param 	string	$name
+	 * @param 	string	$path
+	 * @param 	array	$data
+	 * @param 	array	$options
+	 */
+	public function set(string $name, string $path, array $data = [], array $options = [])
+	{
+		$this->templates[$name] = $this->CI->load->view(
+			$path,
+			array_merge($data, $options),
+			TRUE
+		);
+	}
+
+	/**
+	 * Prepends a template
+	 * If template doesn't exist, it creates one
+	 *
+	 * @param 	string	$name
+	 * @param 	string	$path
+	 * @param 	array	$data
+	 * @param 	array	$options
+	 */
+	public function prepend(string $name, string $path, array $data = [], array $options = [])
+	{
+		$existingTemplate = $this->templates[$name] ?? '';
+		$this->set($name, $path, $data, $options);
+		$this->templates[$name] = $this->templates[$name] . $existingTemplate;
+	}
+
+	/**
+	 * Appends a template
+	 * If template doesn't exist, it creates one
+	 *
 	 * @param	string	$name
-	 * @param	string	$content
+	 * @param	string	$path
+	 * @param	array	$data
 	 * @param	array	$options
 	 */
-	public function add(string $name, string $content, array $options)
+	public function append(string $name, string $path, array $data = [], array $options = [])
 	{
-		$this->templates[$name] = $this->CI->load->view($name, $content, TRUE);
+		$existingTemplate = $this->templates[$name] ?? '';
+		$this->set($name, $path, $data, $options);
+		$this->templates[$name] = $existingTemplate . $this->templates[$name];
 	}
 
 	/**
@@ -46,10 +83,16 @@ class Template_library {
 	}
 
 	/**
-	 * @param	string	$view
+	 * Render view with $path containing all $templates
+	 *
+	 * @param	string	$path
+	 * @param	array	$options
 	 */
-	public function view(string $view)
+	public function view(string $path, array $options = [])
 	{
-		$this->CI->load->view($view, $this->templates);
+		$this->CI->load->view(
+			$path,
+			array_merge($this->templates, $options)
+		);
 	}
 }
