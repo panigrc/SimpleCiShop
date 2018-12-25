@@ -12,7 +12,7 @@ class Cart extends CI_Controller {
 	public function cart_add($product_id)
 	{
 		$this->cart_library->cart_add($product_id);
-		redirect($this->agent->is_referral() ? $this->agent->referrer() : 'shop/catalog');
+		redirect(empty($this->agent->referrer()) ? 'shop/catalog' : $this->agent->referrer());
 	}
 
 	/**
@@ -21,6 +21,6 @@ class Cart extends CI_Controller {
 	public function cart_remove($product_id)
 	{
 		$this->cart_library->cart_remove($product_id);
-		redirect($this->agent->is_referral() ? $this->agent->referrer() : 'shop/catalog');
+		redirect(empty($this->agent->referrer()) ? 'shop/catalog' : $this->agent->referrer());
 	}
 }
