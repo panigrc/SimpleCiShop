@@ -22,27 +22,23 @@ class Catalog extends CI_Controller {
 
 		$category_id = $this->category_model->get_category_id($category_slug);
 
-		$content_data = array(
-			'lang' => $this->language_library->get_language(),
-			'products' => $this->_get_product_data($category_id, 6, $current_page ?: 0),
-			'pagination' => $this->_pagination($category_id),
-			'category_text' => $this->category_model->get_category_text($category_id),
-		);
-
-		$contents = '';
-
 		if ($category_id === 0)
 		{
-			$contents = $this->load->view('shop/contents/'.$this->language_library->get_language().'/home_tpl', $content_data, TRUE);
+			$this->template_library->set(
+				'contents',
+				'shop/contents/'.$this->language_library->get_language().'/home_tpl'
+			);
 		}
 
-		$contents .= $this->load->view('shop/contents/catalog_tpl', $content_data, TRUE);
-
-		$rblock_data = array(
-			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
-			'parent' => $this->category_model->get_category_parents($category_id),
-			'children' => $this->category_model->get_category_children($category_id),
-			'current' => $category_id
+		$this->template_library->append(
+			'contents',
+			'shop/contents/catalog_tpl',
+			[
+				'lang' => $this->language_library->get_language(),
+				'products' => $this->_get_product_data($category_id, 6, $current_page ?: 0),
+				'pagination' => $this->_pagination($category_id),
+				'category_text' => $this->category_model->get_category_text($category_id),
+			]
 		);
 
 		//$data['rblock'] = $this->load->view('shop/blocks/product_type_num_tpl', array('country_id' => NULL), TRUE);
@@ -50,16 +46,26 @@ class Catalog extends CI_Controller {
 		//$data['category_id'] = $this->search_model->getSearchData();
 		//$data['category_id'] = $searchData['category_id'];
 
-		$data = array(
-			'contents' => $contents,
-			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
-			'pagename' => 'main_catalog',
-			'lang' => $this->language_library->get_language(),
-			'category_id' => $category_id,
-			'title' => $this->category_model->get_category_name($category_id),
+		$this->template_library->set(
+			'rblock',
+			'shop/blocks/category_block_tpl',
+			[
+				'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
+				'parent' => $this->category_model->get_category_parents($category_id),
+				'children' => $this->category_model->get_category_children($category_id),
+				'current' => $category_id
+			]
 		);
 
-		$this->load->view('shop/container', $data);
+		$this->template_library->view(
+			'shop/container',
+			[
+				'pagename' => 'main_catalog',
+				'lang' => $this->language_library->get_language(),
+				'category_id' => $category_id,
+				'title' => $this->category_model->get_category_name($category_id),
+			]
+		);
 	}
 
 	/**
