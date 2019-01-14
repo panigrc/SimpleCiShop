@@ -42,7 +42,6 @@ class Product extends CI_Controller {
 			'contents' => $this->load->view('shop/contents/product_tpl', $content_data, TRUE),
 			'title' => $product['title_'.$this->language_library->get_language()],
 			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
-			'scripts' => '<script type="text/javascript" src="'. base_url() .'theme/overlib.js"><!-- overLIB (c) Erik Bosrup --></script>'
 		);
 
 		$this->load->view('shop/container', $data);
