@@ -1,5 +1,5 @@
 <p>
-	<?php echo anchor('admin/order/view_order/add_order', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_order'))); ?>
+    &nbsp;
 </p>
 <table cellpadding=0 cellspacing=1>
     <tr>
