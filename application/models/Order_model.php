@@ -109,13 +109,13 @@ class Order_model extends CI_Model {
 
 		$order = array(
 			'user_id' => $user_id,
-			 'date_created' => time(),
-			 'shipment_express' => $shipment_express,
-			 'shipment_to_door' => $shipment_to_door,
-			 'shipment_cash_on_delivery' => $shipment_cash_on_delivery,
-			 'status' => 0,
-			 'price' => $this->input->post('price'),
-			 'questionnaire' => $this->get_questionnaire($this->input->post('questionnaire')),
+			'date_created' => time(),
+			'shipment_express' => $shipment_express,
+			'shipment_to_door' => $shipment_to_door,
+			'shipment_cash_on_delivery' => $shipment_cash_on_delivery,
+			'status' => 0,
+			'price' => $this->input->post('price'),
+			'questionnaire' => $this->get_questionnaire($this->input->post('questionnaire')),
 		);
 		$this->db->insert('order', $order);
 
