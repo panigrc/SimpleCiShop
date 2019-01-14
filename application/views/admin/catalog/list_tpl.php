@@ -26,10 +26,18 @@
             <td><?php echo date("d/m/y", $product['published']); ?></td>
             <td>
                 <span id="stock<?php echo $product['product_id']; ?>"><?php echo $product['stock']; ?></span>
-                <a href="#"
-                   onclick="<?php echo $this->ajax->remote_function(array('update' => 'stock' . $product['product_id'], 'url' => site_url("admin/catalog/ajax_set_stock/" . $product['product_id'] . "/" . (1)))); ?>; return false;">+1</a>
-                <a href="#"
-                   onclick="<?php echo $this->ajax->remote_function(array('update' => 'stock' . $product['product_id'], 'url' => site_url("admin/catalog/ajax_set_stock/" . $product['product_id'] . "/" . (-1)))); ?>; return false;">-1</a>
+				<?php
+                    echo anchor(
+                            sprintf("admin/catalog/set_stock/%s/1", $product['product_id']),
+                            '<i class="fas fa-plus-square"></i>'
+                    );
+				?>
+				<?php
+                    echo anchor(
+                            sprintf("admin/catalog/set_stock/%s/-1", $product['product_id']),
+                            '<i class="fas fa-minus-square"></i>'
+                    );
+				?>
             </td>
             <td><?php echo $product['price_greek'] . " / " . $product['price_german'] . " / " . $product['price_english']; ?></td>
             <td><?php echo anchor("admin/catalog/view_product/edit_product/" . $product['product_id'], '<i class="fas fa-edit"></i>'); ?></td>

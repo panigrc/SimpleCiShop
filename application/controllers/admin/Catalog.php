@@ -97,8 +97,9 @@ class Catalog extends CI_Controller {
 	 * @param	int	$product_id
 	 * @param	int	$stock
 	 */
-	public function ajax_set_stock($product_id, $stock)
+	public function set_stock($product_id, $stock)
 	{
-		echo $this->product_model->set_product_stock($product_id, $stock);
+		$this->product_model->set_product_stock($product_id, $stock);
+		redirect('admin/catalog');
 	}
 }
