@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `nicename` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`category_id`),
   KEY `parent_category_id` (`parent_category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category`
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `category_text` (
   `description` text,
   PRIMARY KEY  (`category_text_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category_text`
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `coupon` (
   `expires` int(10) default NULL,
   PRIMARY KEY  (`coupon_id`),
   UNIQUE KEY `coupon_number` (`coupon_number`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `coupon`
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `news_id` int(11) NOT NULL auto_increment,
   `published` int(10) default NULL,
   PRIMARY KEY  (`news_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news`
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `news_text` (
   `description` text,
   PRIMARY KEY  (`news_text_id`),
   KEY `news_id` (`news_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news_text`
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `order` (
   `questionnaire` text,
   PRIMARY KEY  (`order_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `order`
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `order2product` (
   PRIMARY KEY  (`relation_id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `order2product`
@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `published` int(10) default NULL,
   PRIMARY KEY  (`product_id`),
   UNIQUE KEY `nicename` (`nicename`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
@@ -252,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `product2category` (
   `category_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`relation_id`),
   KEY `product_id` (`product_id`,`category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=230 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product2category`
@@ -317,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `product_image` (
   `main` int(1) default NULL,
   PRIMARY KEY  (`product_image_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product_image`
@@ -371,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `product_meta` (
   PRIMARY KEY  (`meta_id`),
   KEY `product_id` (`product_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=118 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product_meta`
@@ -417,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `product_text` (
   `price` decimal(11,2) default NULL,
   PRIMARY KEY  (`product_text_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product_text`
@@ -506,7 +506,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_stars` int(11) NOT NULL default '0',
   PRIMARY KEY  (`user_id`),
   KEY `user_email` (`user_email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
