@@ -33,8 +33,7 @@
 			echo 'odd';
 			$style = 'odd';
 		} ?>">
-            <td><a href="#"
-                   onclick="<?php echo $this->ajax->remote_function(array('update' => 'user_description' . $order['order_id'], 'url' => site_url("admin/order/ajaxget_user/" . $order['user_id']))); ?>; <?php echo $this->ajax->remote_function(array('update' => 'products' . $order['order_id'], 'url' => site_url("admin/order/ajaxget_products/" . $order['order_id'] . "/" . $order['user_id']))); ?>; <?php echo $this->ajax->visual_effect('toggle_blind', 'user_description' . $order['order_id']) ?>; <?php echo $this->ajax->visual_effect('toggle_blind', 'products' . $order['order_id']) ?>; return false;"><?php echo $this->lang->line('main_details'); ?></a>
+            <td>&nbsp;
             </td>
             <td><?php echo $order['order_id']; ?></td>
             <td><?php echo $order['user_id']; ?>
@@ -44,10 +43,21 @@
                 <div style="display: none;" id="products<?php echo $order['order_id']; ?>">
             </td>
             <td><?php echo date("H:i d/m/y", $order['date_created']); ?></td>
-            <td><span id="status<?php echo $order['order_id']; ?>"><?php echo $order['status']; ?></span> <a href="#"
-                                                                                                             onclick="<?php echo $this->ajax->remote_function(array('update' => 'status' . $order['order_id'], 'url' => site_url("admin/order/ajaxset_status/" . $order['order_id'] . "/" . 2))); ?>; return false;"><?php echo $this->lang->line('main_modify'); ?></a>
-                <a href="#"
-                   onclick="<?php echo $this->ajax->remote_function(array('update' => 'status' . $order['order_id'], 'url' => site_url("admin/order/ajaxset_status/" . $order['order_id'] . "/" . 1))); ?>; return false;"><?php echo $this->lang->line('main_modify'); ?></a>
+            <td>
+                <span id="status<?php echo $order['order_id']; ?>"><?php echo $order['status']; ?></span>
+                <?php
+                    echo anchor(
+                            sprintf("admin/order/set_status/%s/2", $order['order_id']),
+                            $this->lang->line('main_modify')
+                    );
+                ?>
+
+                <?php
+                    echo anchor(
+                            sprintf("admin/order/set_status/%s/1", $order['order_id']),
+                            $this->lang->line('main_modify')
+                    );
+                ?>
             </td>
             <td><?php echo $order['shipment_express']; ?></td>
             <td><?php echo $order['shipment_to_door']; ?></td>

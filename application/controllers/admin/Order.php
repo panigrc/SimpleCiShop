@@ -93,12 +93,21 @@ class Order extends CI_Controller {
 		redirect('admin/order');
 	}
 
+	/**
+	 * @param	$user_id
+	 * @deprecated
+	 */
 	public function ajaxget_user($user_id)
 	{
 		$data = $this->user_model->get_user($user_id);
 		$this->load->view('admin/order/user_tpl', $data);
 	}
 
+	/**
+	 * @param	$order_id
+	 * @param	$user_id
+	 * @deprecated
+	 */
 	public function ajaxget_products($order_id, $user_id)
 	{
 		$user = $this->user_model->get_user($user_id);
@@ -112,8 +121,13 @@ class Order extends CI_Controller {
 		$this->load->view('admin/order/products_tpl', array('products' => $products, 'user' => $user));
 	}
 
-	public function ajaxset_status($order_id, $status)
+	/**
+	 * @param	$order_id
+	 * @param	$status
+	 */
+	public function set_status($order_id, $status)
 	{
-		echo $this->order_model->set_order_status($order_id, $status);
+		$this->order_model->set_order_status($order_id, $status);
+		redirect('admin/order');
 	}
 }
