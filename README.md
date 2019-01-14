@@ -18,7 +18,6 @@ Features
 * Products with image upload (unlimited) and translatable html description
 * New price option - like a discount which strikes through the old price
 * Product variables - you can set as any variables as you like at any product which are also reusable but not yet very much implemented
-* Ajax cart - an updatable cart using Ajax
 * Discount Coupons - The system can generate discount coupons with a certain discount which can be used by the customers at an order to get a discount
 
 Directory Structure
