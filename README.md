@@ -11,15 +11,18 @@ I was not satisfied with the other open source ecommerce systems that were in th
 
 There is a lot of stuff to be done and a lot of stuff-junk to be removed. But ~~__Everything that has a Beginning..... has an end__~~ apparently not always :smile:.
 
-Structure
+Features
+--------
+
+* Nested Categories translatable with html description
+* Products with image upload (unlimited) and translatable html description
+* New price option - like a discount which strikes through the old price
+* Product variables - you can set as any variables as you like at any product which are also reusable but not yet very much implemented
+* Ajax cart - an updatable cart using Ajax
+* Discount Coupons - The system can generate discount coupons with a certain discount which can be used by the customers at an order to get a discount
+
+Directory Structure
 ---------
-
-There are two directories of controllers for:
-
-* The admin application (backend)
-* The shop application (frontend)
-
-### Directory Structure
 
 The directory structure is mainly the CodeIgniter structure. There are a few things that are outside of that.
 
@@ -35,15 +38,14 @@ The directory structure is mainly the CodeIgniter structure. There are a few thi
 
 `/application/controllers/shop` - The shop (frontend) application controllers
 
-Features
---------
+Installation
+------------
 
-* Nested Categories translatable with html description
-* Products with image upload (unlimited) and translatable html description
-* New price option - like a discount which strikes through the old price
-* Product variables - you can set as any variables as you like at any product which are also reusable but not yet very much implemented
-* Ajax cart - an updatable cart using Ajax
-* Discount Coupons - The system can generate discount coupons with a certain discount which can be used by the customers at an order to get a discount
+- Clone the project `git clone git@github.com:panigrc/SimpleCiShop.git` to your webserver root directory
+- Checkout to the _CodeIgniter-3.1.9-dev_ branch `git checkout CodeIgniter-3.1.9-dev`
+- Import the [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/CodeIgniter-3.1.9-dev/simplecishop.sql) to your MySQL/MariaDB
+- Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php`
+- To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/admin.php`
 
 Database structure
 ------------------
