@@ -3,22 +3,33 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Myfckeditor {
 
-	function __construct($params=NULL)
+	public function __construct()
 	{
-		// Do something with $params
-
 	}
 
+	/**
+	 * Creates an FckEditor instance
+	 * @param array $vars
+	 */
 	function create_editor($vars) {
-		$CI =& get_instance();
-		$CI->load->library('Fckeditor', empty($vars['name']) === TRUE ? "fckeditor" : $vars['name']);
 
-		$editor = new fckeditor(empty($vars['name']) === TRUE ? "fckeditor" : $vars['name']);
+		$vars = [
+			'name' => $vars['name'] ?? 'fckeditor',
+			'toolbar' => $vars['toolbar'] ?? 'Tool',
+			'width' => $vars['width'] ?? '600',
+			'height' => $vars['height'] ?? '600',
+			'value' => $vars['value'] ?? '',
+		];
+
+		$CI =& get_instance();
+		$CI->load->library('Fckeditor', [$vars['name']]);
+
+		$editor = new fckeditor($vars['name']);
 		$editor->BasePath = base_url().'assets/FCKeditor/';
-		$editor->ToolbarSet = empty($vars['toolbar']) === TRUE ? "Tool" : $vars['toolbar'];
-		$editor->Width = empty($vars['width']) === TRUE ? 600 : $vars['width'];
-		$editor->Height = empty($vars['height']) === TRUE ? 600 : $vars['height'];
-		$editor->Value = empty($vars['value']) === TRUE ? "" : $vars['value'];
+		$editor->ToolbarSet = $vars['toolbar'];
+		$editor->Width = $vars['width'];
+		$editor->Height = $vars['height'];
+		$editor->Value = $vars['value'];
 
 		return $editor->Create();
 	}
