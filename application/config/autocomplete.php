@@ -88,7 +88,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  load the model with Capital letter $this->load->model('People') ;
  *  $this->People-> will show all the methods in the People model
  *
- * @property Ajax $Ajax
  * @property Authentication $authentication
  * @property Calendar_library $calendar_library
  * @property Cart_library $cart_library
@@ -187,7 +186,6 @@ class CI_Controller
  *  load the model with Capital letter $this->load->model('People') ;
  *  $this->People-> will show all the methods in the People model
  *
- * @property Ajax $Ajax
  * @property Authentication $authentication
  * @property Calendar_library $calendar_library
  * @property Cart_library $cart_library
