@@ -18,7 +18,7 @@ class Category extends CI_Controller {
 	 *
 	 * @todo	Refactor, should not affect action
 	 */
-	public function view_category($action = 'add_category', $category_id)
+	public function view_category($action = 'add_category', $category_id = null)
 	{
 
 		$form_data = array(

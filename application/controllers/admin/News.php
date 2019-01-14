@@ -33,7 +33,7 @@ class News extends CI_Controller {
 	 * @param	string	$action
 	 * @param	int	$news_id
 	 */
-	public function view_news($action = 'add_news', $news_id)
+	public function view_news($action = 'add_news', $news_id = null)
 	{
 		$form_data['news_id'] = "";
 		$form_data['published'] = "";

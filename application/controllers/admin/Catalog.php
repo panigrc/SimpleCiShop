@@ -40,7 +40,7 @@ class Catalog extends CI_Controller {
 	 * @param	string	$action
 	 * @param	int	$product_id
 	 */
-	public function view_product($action = 'add_product', $product_id)
+	public function view_product($action = 'add_product', $product_id = null)
 	{
 		$form_data = array(
 			'product_id' => "",

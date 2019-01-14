@@ -15,7 +15,7 @@ class User extends CI_Controller {
 	 * @param	string	$action
 	 * @param	int	$user_id
 	 */
-	public function view_user($action = 'add_user', $user_id)
+	public function view_user($action = 'add_user', $user_id = null)
 	{
 		$form_data = array(
 			'user_id' => $user_id,
