@@ -16,7 +16,6 @@
                             <div class="item_title"><?php echo $product['title_'.$lang]; ?></div>
                             <?php if($this->product_model->get_product_meta($product['product_id'], "Size")) : ?><div class="item_size"><?php echo $this->product_model->get_product_meta($product['product_id'], "Size"); ?></div><?php endif; ?>
                             <?php if($this->product_model->get_product_meta($product['product_id'], "Artist")) : ?><div class="item_artist"><?php echo $this->product_model->get_product_meta($product['product_id'], "Artist"); ?></div><?php endif; ?>
-                            <?php //echo $this->ajax->dragable_element('product_'.$product['product_id'], array('revert'=>'TRUE')); ?>
                             <?php //echo $this->lang->line('main_description'); ?>
                             <?php //echo mb_substr(strip_tags($product['description_'.$lang]), 0, 350, 'UTF-8').'...'; ?>
                             <?php //echo $this->lang->line('main_price'); ?>

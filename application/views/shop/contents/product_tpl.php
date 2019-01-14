@@ -34,7 +34,6 @@
 
     <?php /*<a href="javascript:void(0);" onclick="return overlib('&lt;img src=\'<?php echo base_url().$current['big']; ?>\' style=\'border: 0px;<?php echo $w>600 ? " width: 600px;" : "" ?>\' onclick=\'return nd();\' /&gt;', WIDTH, 100, STICKY, CAPTION, '&nbsp;');"><img src="<?php echo base_url().$current['thumb']; ?>" alt="" id="<?php echo 'product_'.$product['product_id']; ?>" class="cart_product" /></a> */ ?>
     <img src="<?php echo base_url().$current['big']; ?>" alt="" id="<?php echo 'product_'.$product['product_id']; ?>" class="cart_product" />
-    <?php echo $this->ajax->dragable_element('product_'.$product['product_id'], array('revert'=>'TRUE')); ?>
 
 <?php
         endforeach;
