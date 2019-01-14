@@ -10,7 +10,7 @@
         <th><?php echo $this->lang->line('main_order_created_at'); ?></th>
         <th><?php echo $this->lang->line('main_order_status'); ?></th>
         <th><?php echo $this->lang->line('main_shipping_express'); ?></th>
-        <th><?php echo $this->lang->line('main_shipping_to_door'); ?>Στην </th>
+        <th><?php echo $this->lang->line('main_shipping_to_door'); ?></th>
         <th><?php echo $this->lang->line('main_shipping_cash_on_delivery'); ?></th>
         <th><?php echo $this->lang->line('main_order_price'); ?></th>
         <th><?php echo $this->lang->line('main_order_questionnaire'); ?></th>
