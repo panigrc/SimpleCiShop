@@ -26,12 +26,10 @@ class Migration_Create_category_texts_table extends CI_Migration
 			'language' => [
 				'type' => 'VARCHAR',
 				'constraint' => '20',
-				'default' => NULL,
 			],
 			'name' => [
 				'type' => 'VARCHAR',
 				'constraint' => '50',
-				'default' => NULL,
 			],
 			'description' => [
 				'type' => 'TEXT',

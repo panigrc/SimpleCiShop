@@ -22,7 +22,6 @@ class Migration_Create_categories_table extends CI_Migration
 				'type' => 'INT',
 				'constraint' => 11,
 				'unsigned' => TRUE,
-				'default' => '0',
 			],
 			'nicename' => [
 				'type' => 'VARCHAR',

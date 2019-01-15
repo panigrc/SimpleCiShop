@@ -26,7 +26,6 @@ class Migration_Create_categories_table extends CI_Migration
 			'stock' => [
 				'type' => 'INT',
 				'constraint' => 11,
-				'default' => '0',
 			],
 			'published' => [
 				'type' => 'INT',
