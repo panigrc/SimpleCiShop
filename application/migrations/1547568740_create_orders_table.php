@@ -26,7 +26,7 @@ class Migration_Create_orders_table extends CI_Migration
 			'status' => [
 				'type' => 'INT',
 				'constraint' => 11,
-				'default' => NULL,
+				'null' => TRUE,
 			],
 			'shipment_express' => [
 				'type' => 'INT',
@@ -49,16 +49,16 @@ class Migration_Create_orders_table extends CI_Migration
 					11,
 					2
 				],
-				'default' => NULL,
+				'null' => TRUE,
 			],
 			'coupon_id' => [
 				'type' => 'INT',
 				'constraint' => '11',
-				'default' => NULL,
+				'null' => TRUE,
 			],
 			'questionnaire' => [
 				'type' => 'TEXT',
-				'default' => NULL,
+				'null' => TRUE,
 			],
 		];
 		$this->dbforge->add_field($fields);

@@ -33,7 +33,7 @@ class Migration_Create_news_texts_table extends CI_Migration
 			],
 			'body' => [
 				'type' => 'TEXT',
-				'default' => NULL,
+				'null' => TRUE,
 			],
 		];
 		$this->dbforge->add_field($fields);

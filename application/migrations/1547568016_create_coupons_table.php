@@ -21,7 +21,7 @@ class Migration_Create_coupons_table extends CI_Migration
 			'coupon_number' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'default' => NULL,
+				'null' => TRUE,
 			],
 			'used' => [
 				'type' => 'INT',
@@ -41,7 +41,7 @@ class Migration_Create_coupons_table extends CI_Migration
 			'expires' => [
 				'type' => 'INT',
 				'constraint' => '10',
-				'default' => NULL,
+				'null' => TRUE,
 			],
 		];
 		$this->dbforge->add_field($fields);

@@ -33,7 +33,7 @@ class Migration_Create_category_texts_table extends CI_Migration
 			],
 			'description' => [
 				'type' => 'TEXT',
-				'default' => NULL,
+				'null' => TRUE,
 			],
 		];
 		$this->dbforge->add_field($fields);

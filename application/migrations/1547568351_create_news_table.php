@@ -21,12 +21,12 @@ class Migration_Create_categories_table extends CI_Migration
 			'published' => [
 				'type' => 'INT',
 				'constraint' => 10,
-				'default' => NULL,
+				'null' => TRUE,
 			],
 			'updated' => [
 				'type' => 'INT',
 				'constraint' => 10,
-				'default' => NULL,
+				'null' => TRUE,
 			],
 		];
 		$this->dbforge->add_field($fields);
