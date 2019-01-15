@@ -15,19 +15,19 @@ class Migration_Create_categories_table extends CI_Migration
 			'category_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
-				'unsigned' => true,
+				'unsigned' => TRUE,
 				'auto_increment' => TRUE,
 			],
 			'parent_category_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
-				'unsigned' => true,
+				'unsigned' => TRUE,
 				'default' => '0',
 			],
 			'nicename' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'default' => '',
+				'unique' => TRUE,
 			],
 		];
 		$this->dbforge->add_field($fields);

@@ -15,13 +15,12 @@ class Migration_Create_categories_table extends CI_Migration
 			'product_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
-				'unsigned' => true,
+				'unsigned' => TRUE,
 				'auto_increment' => TRUE,
 			],
 			'nicename' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'default' => '',
 				'unique' => TRUE,
 			],
 			'stock' => [
