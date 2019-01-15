@@ -12,32 +12,37 @@ class Migration_Create_categories_table extends CI_Migration
 	public function up()
 	{
 		$fields = [
-			'category_id' => [
+			'product_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
 				'unsigned' => true,
 				'auto_increment' => TRUE,
 			],
-			'parent_category_id' => [
-				'type' => 'INT',
-				'constraint' => 11,
-				'unsigned' => true,
-				'default' => '0',
-			],
 			'nicename' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 				'default' => '',
+				'unique' => TRUE,
+			],
+			'stock' => [
+				'type' => 'INT',
+				'constraint' => 11,
+				'default' => '0',
+			],
+			'published' => [
+				'type' => 'INT',
+				'constraint' => 10,
+				'null' => TRUE,
 			],
 		];
 		$this->dbforge->add_field($fields);
-		$this->dbforge->add_key('category_id', TRUE);
-		$this->dbforge->add_key('parent_category_id');
-		$this->dbforge->add_table('categories', TRUE);
+		$this->dbforge->add_key('product_id', TRUE);
+		$this->dbforge->add_key('nicename');
+		$this->dbforge->add_table('products', TRUE);
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('categories', TRUE);
+		$this->dbforge->drop_table('products', TRUE);
 	}
 }
