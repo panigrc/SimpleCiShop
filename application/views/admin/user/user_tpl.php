@@ -1,8 +1,5 @@
-<p>
-	<?php echo anchor('admin/user/view_user/add_user', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_user'))); ?>
-</p>
 <?php
-    echo form_open("user/".$action);
+    echo form_open("admin/user/".$action);
     echo form_hidden('user_id',@$user_id);
 ?>
 <table>

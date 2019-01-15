@@ -1,6 +1,3 @@
-<p>
-	<?php echo anchor('admin/category/view_category/add_category', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_category'))); ?>
-</p>
 <?php
     
     function printOptions($arr, $category_id, $level=0) {
@@ -14,7 +11,7 @@
     }
 ?>
 <?php
-    echo form_open("category/".$action);
+    echo form_open("admin/category/".$action);
     echo form_hidden('category_id',@$category_id);
     echo form_hidden('category_text_id_greek', @$category_text_id_greek);
     echo form_hidden('category_text_id_german', @$category_text_id_german);

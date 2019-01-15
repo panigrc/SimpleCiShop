@@ -1,5 +1,5 @@
 <?php
-    echo form_open("login");
+    echo form_open("admin/home/index");
 ?>
 <table cellspacing=1 cellpadding=0>
     <tr>

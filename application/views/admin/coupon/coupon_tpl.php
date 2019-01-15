@@ -1,5 +1,5 @@
 <?php
-    echo form_open("coupon/".$action);
+    echo form_open("admin/coupon/".$action);
 ?>
 <table cellspacing=1 cellpadding=0>
 <tr>

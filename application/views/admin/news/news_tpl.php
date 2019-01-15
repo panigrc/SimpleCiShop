@@ -1,5 +1,5 @@
 <?php
-    echo form_open("news/".$action);
+    echo form_open("admin/news/".$action);
     echo form_hidden('news_id',$news_id);
     echo form_hidden('news_text_id_greek', @$news_text_id_greek);
     echo form_hidden('news_text_id_german', @$news_text_id_german);
