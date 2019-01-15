@@ -6,6 +6,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['main_username']								= 'Όνομα Χρήστη';
 $lang['main_password']								= 'Κωδικός Πρόσβασης';
 
+$lang['main_name']									= 'Όνομα';
+
 $lang['main_code']									= 'Κωδικός';
 $lang['main_category']								= 'Κατηγορία';
 $lang['main_categories']							= 'Κατηγορίες';
@@ -187,8 +189,8 @@ $lang['main_receipt']								= 'Στοιχεία Παραλήπτη';
 // contact and user information
 
 $lang['main_full_name']								= 'Ονοματεπώνυμο';
-$lang['main_name']									= 'Όνομα';
-$lang['main_surname']								= 'Επώνυμο';
+$lang['main_first_name']							= 'Όνομα';
+$lang['main_last_name']								= 'Επώνυμο';
 $lang['main_email']									= 'Email';
 $lang['main_birthdate']								= 'Ημ. Γέννησης';
 $lang['main_address']								= 'Διεύθυνση';

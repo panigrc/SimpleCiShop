@@ -6,6 +6,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['main_username']								= 'Username';
 $lang['main_password']								= 'Kennwort';
 
+$lang['main_name']									= 'Name';
+
 $lang['main_code']									= 'Bezeichner';
 $lang['main_category']								= 'Kategorie';
 $lang['main_categories']							= 'Kategorien';
@@ -187,8 +189,8 @@ $lang['main_receipt']								= 'Empfänger Daten';
 // contact and user information
 
 $lang['main_full_name']								= 'Voller Name';
-$lang['main_name']									= 'Name';
-$lang['main_surname']								= 'Nachname';
+$lang['main_first_name']							= 'Vorname';
+$lang['main_last_name']								= 'Nachname';
 $lang['main_email']									= 'Email';
 $lang['main_birthdate']								= 'Geburtstag';
 $lang['main_address']								= 'Adresse';

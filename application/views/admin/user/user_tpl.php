@@ -8,11 +8,11 @@
     <td class="general"><input type="text" name="user_code" id="user_code" value="<?php echo @$user_code; ?>"></td>
 </tr>
 <tr>
-    <td class="general"><?php echo $this->lang->line('main_name'); ?>:</td>
+    <td class="general"><?php echo $this->lang->line('main_first_name'); ?>:</td>
     <td class="general"><input type="text" name="user_name" id="user_name" value="<?php echo @$user_name; ?>"></td>
 </tr>
 <tr>
-    <td class="general"><?php echo $this->lang->line('main_user_surname'); ?>:</td>
+    <td class="general"><?php echo $this->lang->line('main_last_name'); ?>:</td>
     <td class="general"><input type="text" name="user_surname" id="user_surname" value="<?php echo @$user_surname; ?>"></td>
 </tr>
 <tr>
