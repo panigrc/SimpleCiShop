@@ -1,4 +1,7 @@
 {
+	"config": {
+		"bin-dir": "bin"
+	},
 	"description": "The CodeIgniter framework",
 	"name": "codeigniter/framework",
 	"type": "project",
@@ -11,7 +14,8 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=7.2"
+		"php": ">=7.2",
+		"craftsman/cli": "^5.1"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
