@@ -31,7 +31,6 @@ class Migration_Create_order_products_table extends CI_Migration
 			'quantity' => [
 				'type' => 'INT',
 				'constraint' => 11,
-				'default' => NULL,
 			],
 		];
 		$this->dbforge->add_field($fields);
