@@ -15,11 +15,13 @@ class Authentication {
 		$logged_in = $obj->session->userdata('logged_in');
 		if ($logged_in === 1)
 		{
-
+			return;
 		}
-		elseif ($obj->uri->segment(1,0) != "login")
+
+		if ($obj->uri && $obj->uri->segment(1,0) != "login")
 		{
 			//redirect('login');
+			return;
 		}
 	}
 
