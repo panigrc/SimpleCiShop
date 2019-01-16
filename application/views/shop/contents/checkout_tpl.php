@@ -16,7 +16,7 @@
                             <input type="text" name="user_name" id="user_name" class="required-1" value="" />
                         </div>
 					    <div class="search">
-                            <label class="search" for="user_surname"><?php echo $this->lang->line('main_surname'); ?>:</label> 
+                            <label class="search" for="user_surname"><?php echo $this->lang->line('main_last_name'); ?>:</label>
                             <input type="text" name="user_surname" id="user_surname" class="required-1" value="" />
                         </div>
                         <div class="search">
