@@ -1,0 +1,3 @@
+BASEPATH="./system/"
+APPPATH="./application/"
+CI_FCPATH="./public/"
