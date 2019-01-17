@@ -38,7 +38,7 @@ class Migration_Create_order_products_table extends CI_Migration
 		$this->dbforge->add_key('relation_id', TRUE);
 		$this->dbforge->add_key('order_id');
 		$this->dbforge->add_key('product_id');
-		$this->dbforge->add_table('order_products', TRUE);
+		$this->dbforge->create_table('order_products', TRUE);
 	}
 
 	public function down()

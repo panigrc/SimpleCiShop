@@ -48,7 +48,7 @@ class Migration_Create_coupons_table extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('coupon_id', TRUE);
 		$this->dbforge->add_key('coupon_number');
-		$this->dbforge->add_table('coupons', TRUE);
+		$this->dbforge->create_table('coupons', TRUE);
 	}
 
 	public function down()

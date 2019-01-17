@@ -48,7 +48,7 @@ class Migration_Create_product_images_table extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('product_image_id', TRUE);
 		$this->dbforge->add_key('product_id');
-		$this->dbforge->add_table('product_images', TRUE);
+		$this->dbforge->create_table('product_images', TRUE);
 	}
 
 	public function down()

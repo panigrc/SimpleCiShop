@@ -65,7 +65,7 @@ class Migration_Create_orders_table extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('order_id', TRUE);
 		$this->dbforge->add_key('user_id');
-		$this->dbforge->add_table('orders', TRUE);
+		$this->dbforge->create_table('orders', TRUE);
 	}
 
 	public function down()

@@ -56,7 +56,7 @@ class Migration_Create_product_texts_table extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('product_text_id', TRUE);
 		$this->dbforge->add_key('product_id');
-		$this->dbforge->add_table('product_texts', TRUE);
+		$this->dbforge->create_table('product_texts', TRUE);
 	}
 
 	public function down()

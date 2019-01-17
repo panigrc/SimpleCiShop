@@ -40,7 +40,7 @@ class Migration_Create_category_texts_table extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('category_text_id', TRUE);
 		$this->dbforge->add_key('category_id');
-		$this->dbforge->add_table('category_texts', TRUE);
+		$this->dbforge->create_table('category_texts', TRUE);
 	}
 
 	public function down()

@@ -36,7 +36,7 @@ class Migration_Create_order_categories_table extends CI_Migration
 			'product_id',
 			'category_id',
 		]);
-		$this->dbforge->add_table('order_categories', TRUE);
+		$this->dbforge->create_table('order_categories', TRUE);
 	}
 
 	public function down()

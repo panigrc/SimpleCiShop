@@ -33,7 +33,7 @@ class Migration_Create_categories_table extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('category_id', TRUE);
 		$this->dbforge->add_key('parent_category_id');
-		$this->dbforge->add_table('categories', TRUE);
+		$this->dbforge->create_table('categories', TRUE);
 	}
 
 	public function down()

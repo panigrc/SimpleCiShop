@@ -32,7 +32,7 @@ class Migration_Create_news_table extends CI_Migration
 		];
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('news_id', TRUE);
-		$this->dbforge->add_table('news', TRUE);
+		$this->dbforge->create_table('news', TRUE);
 	}
 
 	public function down()

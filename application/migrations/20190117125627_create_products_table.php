@@ -37,7 +37,7 @@ class Migration_Create_products_table extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('product_id', TRUE);
 		$this->dbforge->add_key('nicename');
-		$this->dbforge->add_table('products', TRUE);
+		$this->dbforge->create_table('products', TRUE);
 	}
 
 	public function down()

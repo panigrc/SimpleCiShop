@@ -83,7 +83,7 @@ class Migration_Create_users_table extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('user_id', TRUE);
 		$this->dbforge->add_key('email');
-		$this->dbforge->add_table('users', TRUE);
+		$this->dbforge->create_table('users', TRUE);
 	}
 
 	public function down()
