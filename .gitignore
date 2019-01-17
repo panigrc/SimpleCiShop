@@ -17,6 +17,7 @@ user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 /bin/
+simplecishop.sqlite
 
 # IDE Files
 #-------------------------
