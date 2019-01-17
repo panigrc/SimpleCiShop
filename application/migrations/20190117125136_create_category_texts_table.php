@@ -1,24 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_news_texts_table extends CI_Migration
+class Migration_Create_category_texts_table extends CI_Migration
 {
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->dbforge();
+		$this->load->database();
 	}
 
 	public function up()
 	{
 		$fields = [
-			'news_text_id' => [
+			'category_text_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE,
 			],
-			'news_id' => [
+			'category_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
 				'unsigned' => TRUE,
@@ -27,23 +28,23 @@ class Migration_Create_news_texts_table extends CI_Migration
 				'type' => 'VARCHAR',
 				'constraint' => '20',
 			],
-			'title' => [
+			'name' => [
 				'type' => 'VARCHAR',
 				'constraint' => '50',
 			],
-			'body' => [
+			'description' => [
 				'type' => 'TEXT',
 				'null' => TRUE,
 			],
 		];
 		$this->dbforge->add_field($fields);
-		$this->dbforge->add_key('news_text_id', TRUE);
-		$this->dbforge->add_key('news_id');
-		$this->dbforge->add_table('news_texts', TRUE);
+		$this->dbforge->add_key('category_text_id', TRUE);
+		$this->dbforge->add_key('category_id');
+		$this->dbforge->add_table('category_texts', TRUE);
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('news_texts', TRUE);
+		$this->dbforge->drop_table('category_texts', TRUE);
 	}
 }

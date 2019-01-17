@@ -7,6 +7,7 @@ class Migration_Create_coupons_table extends CI_Migration
 	{
 		parent::__construct();
 		$this->load->dbforge();
+		$this->load->database();
 	}
 
 	public function up()
