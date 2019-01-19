@@ -43,8 +43,8 @@ Installation
 - Clone the project `git clone git@github.com:panigrc/SimpleCiShop.git` to your webserver root directory
 - Checkout to the _CodeIgniter-3.1.9-dev_ branch `git checkout CodeIgniter-3.1.9-dev`
 - Import the [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/CodeIgniter-3.1.9-dev/simplecishop.sql) to your MySQL/MariaDB
-- Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php`
-- To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/admin.php`
+- Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php/home`
+- To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/index.php/catalog`
 
 Database structure
 ------------------
