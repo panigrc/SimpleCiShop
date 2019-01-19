@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_order_categories_table extends CI_Migration
+class Migration_Create_product_categories_table extends CI_Migration
 {
 	public function __construct()
 	{
@@ -36,11 +36,11 @@ class Migration_Create_order_categories_table extends CI_Migration
 			'product_id',
 			'category_id',
 		]);
-		$this->dbforge->create_table('order_categories', TRUE);
+		$this->dbforge->create_table('product_categories', TRUE);
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('order_categories', TRUE);
+		$this->dbforge->drop_table('product_categories', TRUE);
 	}
 }
