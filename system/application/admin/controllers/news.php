@@ -1,7 +1,7 @@
 <?php
 
 class News extends Controller {
-    
+
 	function News()
 	{
 		parent::Controller();
@@ -13,12 +13,12 @@ class News extends Controller {
 		$this->db->query("SET CHARACTER SET utf8");
 		$this->db->query("SET NAMES 'utf8'");
 	}
-	
+
 	function index()
 	{
 		$this->list_news();
 	}
-	
+
 	function list_news()
 	{
 		// gets all products from database
@@ -32,7 +32,7 @@ class News extends Controller {
 		$data['contents'] = $this->load->view('news/list_tpl', array('news' => $news), true);
 		$this->load->view('container_tpl',$data);
 	}
-	
+
 	function view_news()
 	{
 		// displays a product form
@@ -45,37 +45,33 @@ class News extends Controller {
 			$form_data = array_merge($form_data, $this->News_model->getNews($form_data['newsID']));
 			$form_data = array_merge($form_data, $this->News_model->getNewsText($form_data['newsID']));
 		}
-		
+
 		$data['contents'] = $this->load->view('news/news_tpl', $form_data, true);
 		
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Προσθήκη/Προβολή Νέου";
-		
+
 		$this->load->view('container_tpl',$data);
 	}
-	
+
 	function add_news()
 	{
 		// adds a product
-		
-        	$this->News_model->addNews();
+		$this->News_model->addNews();
 		redirect('news');
 	}
 	
 	function edit_news()
 	{
 		// updates a product
-		
-        	$this->News_model->setNews();
+		$this->News_model->setNews();
 		redirect('news');
 	}
-	
+
 	function delete_news()
 	{
 		// deletes a product
-		
-        	$this->News_model->deleteNews($this->uri->segment(3));
+		$this->News_model->deleteNews($this->uri->segment(3));
 		redirect('news');
 	}
 }
-?>

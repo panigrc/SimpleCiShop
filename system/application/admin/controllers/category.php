@@ -21,7 +21,7 @@ class Category extends Controller {
 
 	function view_category() {
 		$categoryID = $this->uri->segment(4);
-		
+
 		$form_data = array();
 		$form_data['categoryID'] = $categoryID;
 		$form_data['categories_arr'] = $this->Category_model->getAllCategoryIDs_rec();
@@ -63,5 +63,4 @@ class Category extends Controller {
 		$this->Category_model->addCategory();
 		redirect('category');
 	}
-}  
-?>
+}
