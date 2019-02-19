@@ -21,7 +21,7 @@ class Catalog extends Controller {
 	{
 		$this->list_product();
 	}
-	
+
 	function list_product()
 	{
 		// gets all products from database
@@ -37,7 +37,7 @@ class Catalog extends Controller {
 		$data['contents'] = $this->load->view('catalog/list_tpl', array('products' => $products), true);
 		$this->load->view('container_tpl',$data);
 	}
-	
+
 	function view_product()
 	{
 		// displays a product form
@@ -49,7 +49,7 @@ class Catalog extends Controller {
 		$form_data['product_categories'] = array();
 		$form_data['all_meta'] = $this->Meta_model->getAllMeta();
 		$form_data['product_meta'] = array();
-		
+
 		if ($form_data['action'] == "edit_product")
 		{
 			$form_data['productID'] = $this->uri->segment(4);
@@ -59,41 +59,36 @@ class Catalog extends Controller {
 			$form_data['product_meta'] = $this->Product_model->getProductMeta($form_data['productID']);            
 			$form_data['images_arr'] = $this->Product_model->getProductImage($form_data['productID']);
 		}
-		
+
 		$data['contents'] = $this->load->view('catalog/product_tpl', $form_data, true);
-		
 		$data['title'] = "Διαχείριση Συστήματος Προϊόντων";
 		$data['heading'] = "Προσθήκη/Προβολή Προϊόντος";
-		
+
 		$this->load->view('container_tpl',$data);
 	}
-	
+
 	function add_product()
 	{
 		// adds a product
-		
-        	$this->Product_model->addProduct();
+		$this->Product_model->addProduct();
 		redirect('catalog');
 	}
-	
+
 	function edit_product()
 	{
 		// updates a product
-		
-        	$this->Product_model->setProduct();
+		$this->Product_model->setProduct();
 		redirect('catalog');
 	}
-	
+
 	function delete_product()
 	{
 		// deletes a product
-		
-        	$this->Product_model->deleteProduct($this->uri->segment(3));
+		$this->Product_model->deleteProduct($this->uri->segment(3));
 		redirect('catalog');
 	}
-	
+
 	function ajaxset_stock($productID, $stock) {
 		echo $this->Product_model->setProductStock($productID, $stock);
 	}
 }
-?>

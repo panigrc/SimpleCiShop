@@ -2,6 +2,7 @@
 
 class Checkout extends Controller {
 	var $lang;
+
 	function Checkout()
 	{
 		parent::Controller();	
@@ -18,26 +19,26 @@ class Checkout extends Controller {
 		$this->db->query("SET CHARACTER SET utf8");
 		$this->db->query("SET NAMES 'utf8'");
 	}
-	
+
 	function index($lang=null)
 	{
 		if($lang!="greek") redirect('catalog/index/greek');
-		
+
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
-		
+
 		$cart = $this->cart_library->getCart();
-		
+
 		$content_data = array();
-		
+
 		$content_data['lang'] = $lang;
 		$content_data['cart_costs'] = $this->_getPriceSum($cart, $lang);
 		$content_data['affiliate'] = $this->_getAffiliate();
-		
+
 		$data['contents'] = $this->load->view('contents/checkout_tpl', $content_data, true);
-		
+
 		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), true);
-		
+
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
 		$data['lang'] = $lang;
@@ -61,16 +62,16 @@ class Checkout extends Controller {
 					</script>';
 		$this->load->view('container', $data);
 	}
-	
+
 	function get_user($lang=null)
 	{
 	
 		$user = $this->User_model->searchUser($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
-		
+
 		echo "<script type='text/javascript'>";
 		if($user) {
 			extract($user);
-			
+
 			echo "\$('user_name').value='".$user_name."';";
 			echo "\$('user_surname').value='".$user_surname."';";
 			echo "\$('user_email').value='".$user_email."';";
@@ -90,26 +91,25 @@ class Checkout extends Controller {
 			//echo "Form.reset('checkout_form')";
 			//echo "alert('dffdfd+".$this->input->post('user_email')."');";
 		}
-		
+
 		echo "</script>";
-	
 	}
-	
+
 	function _getCoupon()
 	{
 		// loads the given coupon if exists
-		
+
 		$coupon = $this->Coupon_model->getCoupon($this->input->post('coupon'));
-		
+
 		if(count($coupon)>0) {
-		
+
 		}
 	}
-	
+
 	function _getAffiliate()
 	{
 		$cart = $this->session->userdata('cart');
-		
+
 		if(isset($cart['affiliate'])) return $cart['affiliate'];
 		return "";
 	}
@@ -120,14 +120,13 @@ class Checkout extends Controller {
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
 		$orderID = null;
-		
+
 		$products = $this->cart_library->getCart();
-		
+
 		if($this->input->post('userID')) {
 			$this->User_model->setUser($this->input->post('userID'));
 			$orderID = $this->Order_model->addOrder($this->input->post('userID'));
 			$this->Order_model->addOrderProducts($orderID, $products);
-			
 		}
 		else {
 			
@@ -136,12 +135,14 @@ class Checkout extends Controller {
 			$this->Order_model->addOrderProducts($orderID, $products);
 			
 		}
-		
-		if($this->input->post('shippment_cash_on_delivery')=="1" || $this->input->post('shippment_cash_on_delivery')=="3") redirect('checkout/thankyou/'.$lang);
+
+		if($this->input->post('shippment_cash_on_delivery')=="1" || $this->input->post('shippment_cash_on_delivery')=="3") {
+			redirect('checkout/thankyou/'.$lang);
+		}
 		else {
-			
+
 			// if it's paid with paypal post with redirect
-			
+
 			$form = '<form action="https://www.paypal.com/row/cgi-bin/webscr" method="post" name="paypal_form">
 				<input type="hidden" name="cmd" value="_xclick">
 				<input type="hidden" name="charset" value="utf-8">
@@ -167,36 +168,33 @@ class Checkout extends Controller {
 			echo $form;
 		}
 	}
-	
+
 	function thankyou($lang=null)
 	{
 		if($lang!="greek") redirect('catalog/index/greek');
 		
 		$this->config->set_item('language', $lang);
 		$this->lang->load('main');
-		
+
 		$cart = $this->cart_library->getCart();
-		
+
 		$content_data = array();
-		
+
 		$content_data['lang'] = $lang;
-		
+
 		$data['contents'] = $this->load->view('contents/'.$lang.'/thankyou_tpl', $content_data, true);
-		
+
 		$data['rblock'] = $this->load->view('blocks/category_block_tpl', array('categories_arr' => ($this->Category_model->getAllCategoryIDs_rec()), "parent" => array(), "childs" => array(), "current" => 0), true);
-		
+
 		$data['title'] = '';
 		$data['pagename'] = 'main_checkout';
 		$data['lang'] = $lang;
-		
 		$data['scripts'] = '';
 		$this->load->view('container', $data);
 	}
-	
-	
+
 	function _getPriceSum($cart, $lang)
 	{
-		
 		$products = array();
 		$sum=0;
 		foreach($cart as $product => $value) {
@@ -207,8 +205,7 @@ class Checkout extends Controller {
 				$sum += $products[$product]['price_'.$lang];
 			}
 		}
-		
+
 		return $sum;
 	}
 }
-?>
