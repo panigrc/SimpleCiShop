@@ -19,7 +19,7 @@ class Migration_Create_products_table extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE,
 			],
-			'nicename' => [
+			'slug' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 				'unique' => TRUE,
@@ -36,7 +36,7 @@ class Migration_Create_products_table extends CI_Migration
 		];
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('product_id', TRUE);
-		$this->dbforge->add_key('nicename');
+		$this->dbforge->add_key('slug');
 		$this->dbforge->create_table('products', TRUE);
 	}
 

@@ -24,7 +24,7 @@ class Migration_Create_categories_table extends CI_Migration
 				'constraint' => 11,
 				'unsigned' => TRUE,
 			],
-			'nicename' => [
+			'slug' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 				'unique' => TRUE,
