@@ -24,6 +24,11 @@ class Migration_Create_orders_table extends CI_Migration
 				'constraint' => 11,
 				'unsigned' => TRUE,
 			],
+			'created' => [
+				'type' => 'INT',
+				'constraint' => 10,
+				'null' => TRUE,
+			],
 			'status' => [
 				'type' => 'INT',
 				'constraint' => 11,
