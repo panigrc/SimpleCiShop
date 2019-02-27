@@ -51,6 +51,11 @@ class Migration_Create_users_table extends CI_Migration
 				'constraint' => '100',
 				'null' => TRUE,
 			],
+			'street' => [
+				'type' => 'VARCHAR',
+				'constraint' => '250',
+				'null' => TRUE,
+			],
 			'zip' => [
 				'type' => 'VARCHAR',
 				'constraint' => '20',
