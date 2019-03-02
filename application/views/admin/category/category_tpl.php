@@ -30,8 +30,8 @@ printOptions($categories_arr, @$parent_category_id);
     </td>
 </tr>
 <tr>
-    <td class="general">Nicename:</td>
-    <td class="general"><input type="text" name="nicename" id="nicename" value="<?php echo @$nicename; ?>"></td>
+    <td class="general">Slug:</td>
+    <td class="general"><input type="text" name="slug" id="slug" value="<?php echo @$slug; ?>"></td>
 </tr>
 <tr>
     <td class="greek">&nbsp;</td>

@@ -92,7 +92,7 @@ class Catalog extends CI_Controller {
 	private function _pagination($category_id, $method = 'index', $products_per_page = 6)
 	{
 		$config = array(
-			'base_url' => site_url('shop/catalog/'.$method.'/'.$this->category_model->get_category_nicename($category_id).'/'),
+			'base_url' => site_url('shop/catalog/'.$method.'/'.$this->category_model->get_category_slug($category_id).'/'),
 			'total_rows' => count($this->search_model->search_products_by_category_id($category_id)),
 			'per_page' => $products_per_page,
 			'uri_segment' => 5,

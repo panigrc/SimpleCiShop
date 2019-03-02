@@ -45,7 +45,7 @@ class Search_model extends CI_Model {
 			$category_children = $this->category_model->get_all_category_ids_recursive($category_id);
 		}
 
-		$this->db->select('product.product_id, product.nicename, product.published, product2category.category_id');
+		$this->db->select('product.product_id, product.slug, product.published, product2category.category_id');
 		$this->db->from('product, product_text, product2category');
 		if (!empty($category_id))
 		{
@@ -128,7 +128,7 @@ class Search_model extends CI_Model {
 			$category_children = $this->category_model->get_all_category_ids_recursive($category_id);
 		}
 
-		$this->db->select('product.product_id, product.nicename, product.published, product2category.category_id');
+		$this->db->select('product.product_id, product.slug, product.published, product2category.category_id');
 		$this->db->from('product, product_text, product2category');
 
 		if (!empty($category_id))

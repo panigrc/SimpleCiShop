@@ -4,7 +4,7 @@
                             <?php echo $this->lang->line('main_cart_add'); ?> <a href="<?=site_url('shop/cart/cart_add/'.$product['product_id'])?>"><i class="fas fa-cart-arrow-down"></i></a>
             </p>
 			<p>
-				<a href="http://www.cool-clean-quiet.com/blog/tag/<?php echo $product['nicename']; ?>" target="_blank"><?php echo $this->lang->line('main_product_news'); ?></a>
+				<a href="http://www.cool-clean-quiet.com/blog/tag/<?php echo $product['slug']; ?>" target="_blank"><?php echo $this->lang->line('main_product_news'); ?></a>
 			</p>
                         <img src="<?php echo base_url().$product['thumb']; ?>" alt="" style="float:right;" />
                         <?php echo $product['description_'.$lang] ?>

@@ -6,9 +6,9 @@ class Product extends CI_Controller {
 		parent::__construct();
 	}
 
-	public function index($product_nicename = NULL)
+	public function index($product_slug = NULL)
 	{
-		if (empty($product_nicename))
+		if (empty($product_slug))
 		{
 			show_404($page = $_SERVER['PHP_SELF']);
 		}
@@ -16,13 +16,13 @@ class Product extends CI_Controller {
 		/**
 		 * @todo	create a Product class that handles the following
 		 */
-		$product = $this->product_model->get_product_by_nicename($product_nicename);
+		$product = $this->product_model->get_product_by_slug($product_slug);
 		$product += $this->product_model->get_product_text($product['product_id']);
 		$product['category_text'] = $this->category_model->get_category_names($this->product_model->get_product_categories($product['product_id']));
 		$product += $this->product_model->get_product_main_image($product['product_id']);
 
 		$content_data = array(
-			'nicename' => $product_nicename,
+			'slug' => $product_slug,
 			'product' => $product,
 			'images_arr' => $this->product_model->get_product_image($product['product_id']),
 			'meta' => $this->product_model->get_product_meta($product['product_id']),

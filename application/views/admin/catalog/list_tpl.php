@@ -20,7 +20,7 @@
 			echo 'odd';
 			$style = 'odd';
 		} ?>">
-            <td><?php echo $product['nicename']; ?></td>
+            <td><?php echo $product['slug']; ?></td>
             <td><?php echo $product['title_greek']; ?></td>
             <td><?php echo $product['category_text']; ?></td>
             <td><?php echo date("d/m/y", $product['published']); ?></td>

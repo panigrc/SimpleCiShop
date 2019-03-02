@@ -15,7 +15,7 @@
         }
         
         foreach($arr as $item => $key){
-            $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($item));
+            $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_slug($item));
             $this_level .= "\" >". $obj->category_model->get_category_name($item) . "</a>\n";
             //$this_level .= printChildren($key, $level+1, $vars);
         }
@@ -46,24 +46,24 @@
             if(count($parent) > 0 && $parent[0] === $item) {
                 foreach($parent as $cur_parent) {
                     $this_level .= "                    <ul>\n";
-                    $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($cur_parent));
+                    $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_slug($cur_parent));
                     $this_level .= " \">".$obj->category_model->get_category_name($cur_parent) . "</a>\n";
                     $this_level .= "                    </li>\n";
                     $this_level .= "                    </ul>\n";
                 }
-                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($current));
+                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_slug($current));
                 $this_level .= " \">".$obj->category_model->get_category_name($current) . "</a>\n";
                 $this_level .= printChildren($children, 0, $vars);
                 $this_level .= "                    </li>\n";
             }
             elseif($current === $item) {
-                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($current));
+                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_slug($current));
                 $this_level .= " \">".$obj->category_model->get_category_name($current) . "</a>\n";
                 $this_level .= printChildren($children, 0, $vars);
                 $this_level .= "                    </li>\n";
             }
             else {
-                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_nicename($item));
+                $this_level .= "                    <li><a href=\"".site_url('shop/catalog/index/'. $obj->category_model->get_category_slug($item));
                 $this_level .= "\" >".$obj->category_model->get_category_name($item) . "</a>\n";
                 //$this_level .= printOptions($key, $item, $level+1, $vars);
             }

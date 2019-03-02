@@ -26,7 +26,7 @@ printOptions($categories_arr, $product_categories);
 </tr>
 <tr>
     <td class="general">Nice name:</td>
-    <td class="general"><input type="text" name="nicename" id="nicename" value="<?php echo @$nicename; ?>"></td>
+    <td class="general"><input type="text" name="slug" id="slug" value="<?php echo @$slug; ?>"></td>
 </tr>
 <tr>
     <td class="general">Stock:</td>

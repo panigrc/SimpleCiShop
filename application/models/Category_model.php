@@ -158,21 +158,21 @@ class Category_model extends CI_Model {
 
 	/**
 	 * Returns an associative array with all category_ids without 1st level
-	 * if $nicename is null or not found 0 is returned.
+	 * if $slug is null or not found 0 is returned.
 	 *
-	 * @param	string|null	$nicename
+	 * @param	string|null	$slug
 	 * @return	int
 	 */
-	public function get_category_id($nicename)
+	public function get_category_id($slug)
 	{
-		if (!$nicename)
+		if (!$slug)
 		{
 			return 0;
 		}
 
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->where('nicename', $nicename);
+		$this->db->where('slug', $slug);
 		$query = $this->db->get();
 		$row = $query->row_array();
 		if ($row != NULL)
@@ -187,12 +187,11 @@ class Category_model extends CI_Model {
 	 * Returns an associative array with all category_ids without 1st level
 	 * If $category_id is 0 then return 'all' for all categories
 	 *
-	 * @todo	Rename nicename into slug
 	 * @todo	make 'all' a constant in global scope
 	 * @param	int $category_id
 	 * @return	string
 	 */
-	public function get_category_nicename($category_id)
+	public function get_category_slug($category_id)
 	{
 		if ($category_id === 0)
 		{
@@ -205,7 +204,7 @@ class Category_model extends CI_Model {
 		$query = $this->db->get();
 		$row = $query->row_array();
 
-		return $row['nicename'];
+		return $row['slug'];
 	}
 
 	/**
@@ -299,7 +298,7 @@ class Category_model extends CI_Model {
 	 */
 	public function set_category()
 	{
-		$category = array('parent_category_id' => $this->input->post('parent_category_id'), 'nicename' => $this->input->post('nicename'));
+		$category = array('parent_category_id' => $this->input->post('parent_category_id'), 'slug' => $this->input->post('slug'));
 		$this->db->where('category_id', $this->input->post('category_id'));
 		$this->db->update('category', $category);
 
@@ -329,9 +328,9 @@ class Category_model extends CI_Model {
 	public function add_category()
 	{
 		$parent_category_id = $this->input->post('parent_category_id');
-		$nicename = $this->input->post('nicename');
+		$slug = $this->input->post('slug');
 		if ($parent_category_id === NULL) $parent_category_id=0;
-		$category = array('parent_category_id' => $parent_category_id, 'nicename' => $nicename);
+		$category = array('parent_category_id' => $parent_category_id, 'slug' => $slug);
 		$this->db->insert('category', $category);
 		$category_id = $this->db->insert_id();
 		$this->add_category_text($category_id);

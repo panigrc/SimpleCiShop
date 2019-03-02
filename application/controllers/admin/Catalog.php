@@ -44,7 +44,7 @@ class Catalog extends CI_Controller {
 	{
 		$form_data = array(
 			'product_id' => "",
-			'nicename' => "",
+			'slug' => "",
 			'published' => "",
 			'action' => $action,
 			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),

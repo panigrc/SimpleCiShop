@@ -67,15 +67,14 @@ class Product_model extends CI_Model {
 	/**
 	 * Returns an associative array with a single product
 	 *
-	 * @param	$productNicename
+	 * @param	$productSlug
 	 * @return	mixed
-	 * @todo	Rename nicename into slug
 	 */
-	public function get_product_by_nicename($productNicename)
+	public function get_product_by_slug($productSlug)
 	{
 		$this->db->select('*');
 		$this->db->from('product');
-		$this->db->where('product.nicename', $productNicename);
+		$this->db->where('product.slug', $productSlug);
 
 		$query = $this->db->get();
 
@@ -182,7 +181,7 @@ class Product_model extends CI_Model {
 	 */
 	public function add_product()
 	{
-		$arr = array('nicename' => $this->input->post('nicename'), 'stock' => $this->input->post('stock'), 'published' => time());
+		$arr = array('slug' => $this->input->post('slug'), 'stock' => $this->input->post('stock'), 'published' => time());
 
 		$this->db->insert('product', $arr);
 		$product_id = $this->db->insert_id();
@@ -208,7 +207,7 @@ class Product_model extends CI_Model {
 		$product_id = $this->input->post('product_id');
 		if (empty($product_id)) return;
 
-		$arr = array('nicename' => $this->input->post('nicename'), 'stock' => $this->input->post('stock'));
+		$arr = array('slug' => $this->input->post('slug'), 'stock' => $this->input->post('stock'));
 
 		$this->db->where('product_id', $product_id);
 		$this->db->update('product', $arr);
