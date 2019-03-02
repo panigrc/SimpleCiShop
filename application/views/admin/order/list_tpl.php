@@ -42,7 +42,7 @@
             <td>
                 <div style="display: none;" id="products<?php echo $order['order_id']; ?>">
             </td>
-            <td><?php echo date("H:i d/m/y", $order['date_created']); ?></td>
+            <td><?php echo date("H:i d/m/y", $order['created']); ?></td>
             <td>
                 <span id="status<?php echo $order['order_id']; ?>"><?php echo $order['status']; ?></span>
                 <?php

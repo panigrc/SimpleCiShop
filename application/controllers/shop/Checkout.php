@@ -79,7 +79,7 @@ class Checkout extends CI_Controller {
 			echo "\$('user_id').value='".$user_id."';";
 			echo "\$('user_stars').value='".$user_stars."';";
 			echo "\$('stars').innerHTML='".$user_stars."';";
-			echo "\$('user_language').value='".$lang."';";
+			echo "\$('language').value='".$lang."';";
 		}
 		else
 		{

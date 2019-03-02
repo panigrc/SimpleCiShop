@@ -19,7 +19,7 @@ class User_model extends CI_Model {
 	public function get_all_user_ids()
 	{
 		$this->db->select('*');
-		$this->db->from('user');
+		$this->db->from('users');
 		$query = $this->db->get();
 
 		return $query->result_array();
@@ -32,8 +32,8 @@ class User_model extends CI_Model {
 	public function get_user($user_id = NULL)
 	{
 		$this->db->select('*');
-		$this->db->from('user');
-		$this->db->where('user.user_id', $user_id);
+		$this->db->from('users');
+		$this->db->where('users.user_id', $user_id);
 
 		$query = $this->db->get();
 
@@ -41,18 +41,18 @@ class User_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$user_code
+	 * @param	$password
 	 * @param	mixed	$user_phone_or_email
 	 * @return array
 	 */
-	public function search_user($user_code, $user_phone_or_email = NULL)
+	public function search_user($password, $user_phone_or_email = NULL)
 	{
-		if ($user_code && $user_phone_or_email)
+		if ($password && $user_phone_or_email)
 		{
 			$this->db->select('*');
-			$this->db->from('user');
+			$this->db->from('users');
 
-			$where="user.user_code = '".$user_code."' && (user.user_phone = '".$user_phone_or_email."' OR user.user_email = '".$user_phone_or_email."')";
+			$where="users.password = '".$password."' && (users.phone = '".$user_phone_or_email."' OR users.email = '".$user_phone_or_email."')";
 			$this->db->where($where);
 
 			$query = $this->db->get();
@@ -65,10 +65,10 @@ class User_model extends CI_Model {
 
 	public function set_user()
 	{
-		if ( ! $this->input->post('user_code')) $user_code = $this->generate_password();
-		else $user_code = $this->input->post('user_code');
+		if ( ! $this->input->post('password')) $password = $this->generate_password();
+		else $password = $this->input->post('password');
 		$user = array(
-			'user_code'			=> $user_code,
+			'password'			=> $password,
 			'user_name'			=> $this->input->post('user_name'),
 			'user_surname'		=> $this->input->post('user_surname'),
 			'user_email'		=> $this->input->post('user_email'),
@@ -79,11 +79,11 @@ class User_model extends CI_Model {
 			'user_zip' 			=> $this->input->post('user_zip'),
 			'user_country' 		=> $this->input->post('user_country'),
 			'user_phone' 		=> $this->input->post('user_phone'),
-			'user_language'		=> $this->input->post('user_language'),
+			'language'		=> $this->input->post('language'),
 			'user_stars'		=> $this->input->post('user_stars')
 		);
 		$this->db->where('user_id', $this->input->post('user_id'));
-		$this->db->update('user', $user);
+		$this->db->update('users', $user);
 	}
 
 	/**
@@ -91,10 +91,10 @@ class User_model extends CI_Model {
 	 */
 	public function add_user()
 	{
-		if ( ! $this->input->post('user_code')) $user_code = $this->generate_password();
-		else $user_code = $this->input->post('user_code');
+		if ( ! $this->input->post('password')) $password = $this->generate_password();
+		else $password = $this->input->post('password');
 		$user = array(
-			'user_code'			=> $user_code,
+			'password'			=> $password,
 			'user_name'			=> $this->input->post('user_name'),
 			'user_surname'		=> $this->input->post('user_surname'),
 			'user_email'		=> $this->input->post('user_email'),
@@ -105,18 +105,18 @@ class User_model extends CI_Model {
 			'user_zip'			=> $this->input->post('user_zip'),
 			'user_country'		=> $this->input->post('user_country'),
 			'user_phone'		=> $this->input->post('user_phone'),
-			'user_language'		=> $this->input->post('user_language'),
+			'language'		=> $this->input->post('language'),
 			'user_registered'	=> time(),
 			'user_stars'		=> $this->input->post('user_stars')
 		);
-		$this->db->insert('user', $user);
+		$this->db->insert('users', $user);
 
 		return $this->db->insert_id();
 	}
 
 	public function delete_user($user_id)
 	{
-		$this->db->delete('user', array('user_id' => $user_id));
+		$this->db->delete('users', array('user_id' => $user_id));
 	}
 
 	/**
@@ -156,8 +156,8 @@ class User_model extends CI_Model {
 	public function password_exists($password)
 	{
 		$this->db->select('*');
-		$this->db->from('user');
-		$this->db->where('user.user_code', $password);
+		$this->db->from('users');
+		$this->db->where('users.password', $password);
 
 		$query = $this->db->get();
 		$row = $query->row_array();

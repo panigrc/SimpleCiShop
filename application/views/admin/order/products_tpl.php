@@ -2,7 +2,7 @@
 <?php
     $price = 0;
     foreach($products as $product) {
-        $price += $product['price_' . $user['user_language']] * $product['quantity'];
+        $price += $product['price_' . $user['language']] * $product['quantity'];
 ?>
 <li><?php echo $product['title_greek']; ?> x <?php echo $product['quantity']; ?></li>
 <?php

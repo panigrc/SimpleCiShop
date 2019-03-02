@@ -19,7 +19,7 @@ class Product_model extends CI_Model {
 	public function get_all_products()
 	{
 		$this->db->select('*');
-		$this->db->from('product');
+		$this->db->from('products');
 		$this->db->order_by("published", "desc");
 
 		$query = $this->db->get();
@@ -36,8 +36,8 @@ class Product_model extends CI_Model {
 	public function get_product($product_id)
 	{
 		$this->db->select('*');
-		$this->db->from('product');
-		$this->db->where('product.product_id', $product_id);
+		$this->db->from('products');
+		$this->db->where('products.product_id', $product_id);
 
 		$query = $this->db->get();
 
@@ -51,7 +51,7 @@ class Product_model extends CI_Model {
 	public function get_product_categories($product_id)
 	{
 		$this->db->select('category_id');
-		$this->db->from('product2category');
+		$this->db->from('product_categories');
 		$this->db->where('product_id', $product_id);
 
 		$query = $this->db->get();
@@ -73,8 +73,8 @@ class Product_model extends CI_Model {
 	public function get_product_by_slug($productSlug)
 	{
 		$this->db->select('*');
-		$this->db->from('product');
-		$this->db->where('product.slug', $productSlug);
+		$this->db->from('products');
+		$this->db->where('products.slug', $productSlug);
 
 		$query = $this->db->get();
 
@@ -88,8 +88,8 @@ class Product_model extends CI_Model {
 	public function get_product_text($product_id)
 	{
 		$this->db->select('*');
-		$this->db->from('product_text');
-		$this->db->where('product_text.product_id', $product_id);
+		$this->db->from('product_texts');
+		$this->db->where('product_texts.product_id', $product_id);
 
 		$query = $this->db->get();
 		$text = array();
@@ -112,9 +112,9 @@ class Product_model extends CI_Model {
 	public function get_product_main_image($product_id)
 	{
 		$this->db->select('*');
-		$this->db->from('product_image');
-		$this->db->where('product_image.product_id', $product_id);
-		$this->db->where('product_image.main', 1);
+		$this->db->from('product_images');
+		$this->db->where('product_images.product_id', $product_id);
+		$this->db->where('product_images.main', 1);
 
 		$query = $this->db->get();
 		if ($query->num_rows() > 0) return $query->row_array();
@@ -128,8 +128,8 @@ class Product_model extends CI_Model {
 	public function get_product_image($product_id)
 	{
 		$this->db->select('*');
-		$this->db->from('product_image');
-		$this->db->where('product_image.product_id', $product_id);
+		$this->db->from('product_images');
+		$this->db->where('product_images.product_id', $product_id);
 
 		$query = $this->db->get();
 
@@ -183,7 +183,7 @@ class Product_model extends CI_Model {
 	{
 		$arr = array('slug' => $this->input->post('slug'), 'stock' => $this->input->post('stock'), 'published' => time());
 
-		$this->db->insert('product', $arr);
+		$this->db->insert('products', $arr);
 		$product_id = $this->db->insert_id();
 
 		$this->add_product_categories($product_id);
@@ -210,7 +210,7 @@ class Product_model extends CI_Model {
 		$arr = array('slug' => $this->input->post('slug'), 'stock' => $this->input->post('stock'));
 
 		$this->db->where('product_id', $product_id);
-		$this->db->update('product', $arr);
+		$this->db->update('products', $arr);
 
 		$this->set_product_categories($product_id);
 
@@ -229,12 +229,12 @@ class Product_model extends CI_Model {
 	 */
 	public function delete_product($product_id)
 	{
-		$this->db->delete('product', array('product_id' => $product_id));
+		$this->db->delete('products', array('product_id' => $product_id));
 
 		$this->delete_product_categories($product_id);
 
-		$this->db->delete('product_text', array('product_id' => $product_id));
-		$this->db->delete('product_image', array('product_id' => $product_id));
+		$this->db->delete('product_texts', array('product_id' => $product_id));
+		$this->db->delete('product_images', array('product_id' => $product_id));
 		$this->delete_images($product_id);
 
 		$this->delete_product_meta($product_id);
@@ -248,7 +248,7 @@ class Product_model extends CI_Model {
 		$product_categories = $this->input->post('product_categories');
 		foreach ($product_categories as $category_id)
 		{
-			$this->db->insert('product2category', array('category_id' => $category_id, 'product_id' => $product_id));
+			$this->db->insert('product_categories', array('category_id' => $category_id, 'product_id' => $product_id));
 		}
 	}
 
@@ -266,7 +266,7 @@ class Product_model extends CI_Model {
 	 */
 	public function delete_product_categories($product_id)
 	{
-		$this->db->delete('product2category', array('product_id' => $product_id));
+		$this->db->delete('product_categories', array('product_id' => $product_id));
 	}
 
 	/**
@@ -279,9 +279,9 @@ class Product_model extends CI_Model {
 		$text_german = array('product_id' => $product_id, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'), 'price_old' => $this->input->post('price_old_german'), 'price' => $this->input->post('price_german'));
 		$text_english = array('product_id' => $product_id, 'language' => 'english', 'title' => $this->input->post('title_english'), 'description' => $this->input->post('description_english'), 'price_old' => $this->input->post('price_old_english'), 'price' => $this->input->post('price_english'));
 
-		$this->db->insert('product_text', $text_greek);
-		$this->db->insert('product_text', $text_german);
-		$this->db->insert('product_text', $text_english);
+		$this->db->insert('product_texts', $text_greek);
+		$this->db->insert('product_texts', $text_german);
+		$this->db->insert('product_texts', $text_english);
 	}
 
 	/**
@@ -297,11 +297,11 @@ class Product_model extends CI_Model {
 			'description' => $this->input->post('description_english'), 'price_old' => $this->input->post('price_old_english'), 'price' => $this->input->post('price_english'));
 
 		$this->db->where('product_text_id', $this->input->post('product_text_id_greek'));
-		$this->db->update('product_text', $text_greek);
+		$this->db->update('product_texts', $text_greek);
 		$this->db->where('product_text_id', $this->input->post('product_text_id_german'));
-		$this->db->update('product_text', $text_german);
+		$this->db->update('product_texts', $text_german);
 		$this->db->where('product_text_id', $this->input->post('product_text_id_english'));
-		$this->db->update('product_text', $text_english);
+		$this->db->update('product_texts', $text_english);
 	}
 
 	public function set_images()
@@ -312,20 +312,20 @@ class Product_model extends CI_Model {
 			if (isset($_POST['delete_image'.$current]))
 			{
 				$this->db->select('*');
-				$this->db->from('product_image');
-				$this->db->where('product_image.product_image_id', $current);
+				$this->db->from('product_images');
+				$this->db->where('product_images.product_image_id', $current);
 
 				$query = $this->db->get();
 				$image = $query->row_array();
 
 				unlink('./'.$image['thumb']);
 				unlink('./'.$image['big']);
-				$this->db->delete('product_image', array('product_image_id' => $current));
+				$this->db->delete('product_images', array('product_image_id' => $current));
 			}
 			if (isset($_POST['main_image'.$current]))
 			{
 				$this->db->where('product_image_id', $current);
-				$this->db->update('product_image', array('main' => @$_POST['main_image'.$current]));
+				$this->db->update('product_images', array('main' => @$_POST['main_image'.$current]));
 			}
 		}
 	}
@@ -368,7 +368,7 @@ class Product_model extends CI_Model {
 				else $main = 0;
 
 				$arr = array('product_id' => $product_id, 'title' => $upload_data['raw_name'], 'thumb' => $thumb_name, 'big' => $big_name, 'main' => $main);
-				$this->db->insert('product_image', $arr);
+				$this->db->insert('product_images', $arr);
 			}
 			else
 			{
@@ -383,8 +383,8 @@ class Product_model extends CI_Model {
 	public function delete_images($product_id)
 	{
 		$this->db->select('*');
-		$this->db->from('product_image');
-		$this->db->where('product_image.product_id', $product_id);
+		$this->db->from('product_images');
+		$this->db->where('product_images.product_id', $product_id);
 
 		$query = $this->db->get();
 		$images = $query->result_array();
@@ -393,7 +393,7 @@ class Product_model extends CI_Model {
 		{
 			unlink('./'.$image['thumb']);
 			unlink('./'.$image['big']);
-			$this->db->delete('product_image', array('product_image_id' => $image['product_image_id']));
+			$this->db->delete('product_images', array('product_image_id' => $image['product_image_id']));
 		}
 	}
 
@@ -440,7 +440,7 @@ class Product_model extends CI_Model {
 		{
 			$this->db->where('product_id', $product_id);
 			//$this->db->update('`product`', array('stock' => $stock));
-			$this->db->query('UPDATE product SET stock = stock + ('.$stock.') WHERE product_id = '.$product_id);
+			$this->db->query('UPDATE products SET stock = stock + ('.$stock.') WHERE product_id = '.$product_id);
 			$product = $this->get_product($product_id);
 
 			return $product['stock'];

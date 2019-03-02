@@ -19,8 +19,8 @@ class Order_model extends CI_Model {
 	public function get_all_order_ids()
 	{
 		$this->db->select('*');
-		$this->db->from('`order`');
-		$this->db->order_by('date_created','desc');
+		$this->db->from('orders');
+		$this->db->order_by('created','desc');
 		$query = $this->db->get();
 
 		return $query->result_array();
@@ -33,8 +33,8 @@ class Order_model extends CI_Model {
 	public function get_order($order_id)
 	{
 		$this->db->select('*');
-		$this->db->from('`order`');
-		$this->db->where('order.order_id', $order_id);
+		$this->db->from('orders');
+		$this->db->where('orders.order_id', $order_id);
 
 		$query = $this->db->get();
 
@@ -48,7 +48,7 @@ class Order_model extends CI_Model {
 	public function get_order_products($order_id)
 	{
 		$this->db->select('*');
-		$this->db->from('order2product');
+		$this->db->from('order_products');
 		$this->db->where('order_id', $order_id);
 		$query = $this->db->get();
 
@@ -76,7 +76,7 @@ class Order_model extends CI_Model {
 			'order_stars' => $this->input->post('order_stars')
 		);
 		$this->db->where('order_id', $this->input->post('order_id'));
-		$this->db->update('order', $order);
+		$this->db->update('orders', $order);
 	}
 
 	/**
@@ -89,7 +89,7 @@ class Order_model extends CI_Model {
 		if ($order_id)
 		{
 			$this->db->where('order_id', $order_id);
-			$this->db->update('`order`', array('status' => $status));
+			$this->db->update('orders', array('status' => $status));
 
 			return $status;
 		}
@@ -109,7 +109,7 @@ class Order_model extends CI_Model {
 
 		$order = array(
 			'user_id' => $user_id,
-			'date_created' => time(),
+			'created' => time(),
 			'shipment_express' => $shipment_express,
 			'shipment_to_door' => $shipment_to_door,
 			'shipment_cash_on_delivery' => $shipment_cash_on_delivery,
@@ -117,7 +117,7 @@ class Order_model extends CI_Model {
 			'price' => $this->input->post('price'),
 			'questionnaire' => $this->get_questionnaire($this->input->post('questionnaire')),
 		);
-		$this->db->insert('order', $order);
+		$this->db->insert('orders', $order);
 
 		return $this->db->insert_id();
 	}
@@ -131,7 +131,7 @@ class Order_model extends CI_Model {
 		foreach ($products as $product => $value)
 		{
 			$relation = array('order_id' => $order_id, 'product_id' => $product, 'quantity' => $value);
-			$this->db->insert('order2product', $relation);
+			$this->db->insert('order_products', $relation);
 		}
 	}
 
@@ -161,7 +161,7 @@ class Order_model extends CI_Model {
 	 */
 	public function delete_order($order_id)
 	{
-		$this->db->delete('order', array('order_id' => $order_id));
-		$this->db->delete('order2product', array('order_id' => $order_id));
+		$this->db->delete('orders', array('order_id' => $order_id));
+		$this->db->delete('order_products', array('order_id' => $order_id));
 	}
 }

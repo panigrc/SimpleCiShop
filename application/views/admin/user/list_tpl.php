@@ -14,10 +14,10 @@
 <?php foreach($users as $user): ?>
     <tr class="<?php if(@$style === 'odd'){ echo 'even'; $style='even';} else{ echo 'odd'; $style='odd'; } ?>">
         <td><?php echo $user['user_id']; ?></td>
-        <td><?php echo $user['user_name']; ?></td>
-        <td><?php echo $user['user_surname']; ?></td>
-        <td><?php echo date("d/m/y", $user['user_registered']); ?></td>
-        <td><?php echo $user['user_stars']; ?></td>
+        <td><?php echo $user['first_name']; ?></td>
+        <td><?php echo $user['last_name']; ?></td>
+        <td><?php echo $user['registered']; ?></td>
+        <td><?php echo $user['credits']; ?></td>
         <td>
             <?php echo anchor("admin/user/view_user/edit_user/".$user['user_id'], '<i class="fas fa-edit"></i>'); ?>
         </td>

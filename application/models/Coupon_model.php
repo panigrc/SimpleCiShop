@@ -18,7 +18,7 @@ class Coupon_model extends CI_Model {
 	public function get_all_coupon()
 	{
 		$this->db->select('*');
-		$this->db->from('coupon');
+		$this->db->from('coupons');
 
 		$query = $this->db->get();
 
@@ -32,8 +32,8 @@ class Coupon_model extends CI_Model {
 	public function get_coupon($coupon_id)
 	{
 		$this->db->select('*');
-		$this->db->from('coupon');
-		$this->db->where('coupon.coupon_id', $coupon_id);
+		$this->db->from('coupons');
+		$this->db->where('coupons.coupon_id', $coupon_id);
 
 		$query = $this->db->get();
 
@@ -59,7 +59,7 @@ class Coupon_model extends CI_Model {
 			'type' => $this->input->post('type')
 		);
 
-		$this->db->insert('coupon', $arr);
+		$this->db->insert('coupons', $arr);
 		$news_id = $this->db->insert_id();
 	}
 
@@ -101,6 +101,6 @@ class Coupon_model extends CI_Model {
 	 */
 	public function delete_coupon($coupon_id)
 	{
-		$this->db->delete('coupon', array('coupon_id' => $coupon_id));
+		$this->db->delete('coupons', array('coupon_id' => $coupon_id));
 	}
 }

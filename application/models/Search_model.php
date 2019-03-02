@@ -45,18 +45,18 @@ class Search_model extends CI_Model {
 			$category_children = $this->category_model->get_all_category_ids_recursive($category_id);
 		}
 
-		$this->db->select('product.product_id, product.slug, product.published, product2category.category_id');
-		$this->db->from('product, product_text, product2category');
+		$this->db->select('products.product_id, products.slug, products.published, product_categories.category_id');
+		$this->db->from('products, product_texts, product_categories');
 		if (!empty($category_id))
 		{
 			/*
-			$categories = "(product.category_id = $category_id";
+			$categories = "(products.category_id = $category_id";
 			foreach ($category_children as $child => $val)
 			{
-				$categories .= " OR product.category_id = $child";
+				$categories .= " OR products.category_id = $child";
 				foreach ($val as $subchild => $subval)
 				{
-				$categories .= " OR product.category_id = $subchild";
+				$categories .= " OR products.category_id = $subchild";
 				}
 			}
 			$categories .= ") ";*/
@@ -65,41 +65,41 @@ class Search_model extends CI_Model {
 			{
 				$category_children = ", " . $category_children;
 			}
-			$categories = "(product2category.category_id IN ($category_id".$category_children."))";
+			$categories = "(product_categories.category_id IN ($category_id".$category_children."))";
 			$this->db->where($categories);
 		}
-		$this->db->where('product.product_id = product2category.product_id');
+		$this->db->where('products.product_id = product_categories.product_id');
 		if (!empty($product_type))
 		{
-			$this->db->where('product.product_type', $product_type);
+			$this->db->where('products.product_type', $product_type);
 		}
 		if (!empty($price_from))
 		{
-			$this->db->where('product_text.price >', $price_from);
+			$this->db->where('product_texts.price >', $price_from);
 		}
 		if (!empty($price_to))
 		{
-			$this->db->where('product_text.price <', $price_to);
+			$this->db->where('product_texts.price <', $price_to);
 		}
-		$this->db->where('product.stock >', 0);
-		$this->db->where('product_text.language', $lang);
-		$this->db->where('product.product_id = product_text.product_id');
+		$this->db->where('products.stock >', 0);
+		$this->db->where('product_texts.language', $lang);
+		$this->db->where('products.product_id = product_texts.product_id');
 		
 		switch ($order_by) {
 			case "priceasc":
-				$this->db->order_by('product_text.price','asc');
+				$this->db->order_by('product_texts.price','asc');
 				break;
 			case "pricedesc":
-				$this->db->order_by('product_text.price','desc');
+				$this->db->order_by('product_texts.price','desc');
 				break;
 			case "dateasc":
-				$this->db->order_by('product.published','asc');
+				$this->db->order_by('products.published','asc');
 				break;
 			case "datedesc":
-				$this->db->order_by('product.published','desc');
+				$this->db->order_by('products.published','desc');
 				break;
 			case 0:
-				$this->db->order_by('product.published','desc');
+				$this->db->order_by('products.published','desc');
 				break;
 		}
 		if (!is_NULL($limit_num) && !is_NULL($limit_from))
@@ -128,19 +128,19 @@ class Search_model extends CI_Model {
 			$category_children = $this->category_model->get_all_category_ids_recursive($category_id);
 		}
 
-		$this->db->select('product.product_id, product.slug, product.published, product2category.category_id');
-		$this->db->from('product, product_text, product2category');
+		$this->db->select('products.product_id, products.slug, products.published, product_categories.category_id');
+		$this->db->from('products, product_texts, product_categories');
 
 		if (!empty($category_id))
 		{
 			/*
-			$categories = "(product.category_id = $category_id";
+			$categories = "(products.category_id = $category_id";
 			foreach ($category_children as $child => $val)
 			{
-				$categories .= " OR product.category_id = $child";
+				$categories .= " OR products.category_id = $child";
 				foreach ($val as $subchild => $subval)
 				{
-				$categories .= " OR product.category_id = $subchild";
+				$categories .= " OR products.category_id = $subchild";
 				}
 			}
 			$categories .= ") ";*/
@@ -151,27 +151,27 @@ class Search_model extends CI_Model {
 				$category_children = ", " . $category_children;
 			}
 			
-			$categories = "(product2category.category_id IN ($category_id".$category_children."))";
+			$categories = "(product_categories.category_id IN ($category_id".$category_children."))";
 			$this->db->where($categories);
 		}
-		$this->db->where('product.product_id = product2category.product_id');
+		$this->db->where('products.product_id = product_categories.product_id');
 		if (!empty($product_type)) 
 		{
-			$this->db->where('product.product_type', $product_type);
+			$this->db->where('products.product_type', $product_type);
 		}
 		if (!empty($price_from)) 
 		{
-			$this->db->where('product_text.price >', $price_from);
+			$this->db->where('product_texts.price >', $price_from);
 		}
 		if (!empty($price_to)) 
 		{
-			$this->db->where('product_text.price <', $price_to);
+			$this->db->where('product_texts.price <', $price_to);
 		}
-		$this->db->where('product.stock >', 0);
-		$this->db->where('product_text.language', $lang);
-		$this->db->where('product.product_id = product_text.product_id');
-		$this->db->group_by('product.product_id');
-		$this->db->order_by('product.published','asc');
+		$this->db->where('products.stock >', 0);
+		$this->db->where('product_texts.language', $lang);
+		$this->db->where('products.product_id = product_texts.product_id');
+		$this->db->group_by('products.product_id');
+		$this->db->order_by('products.published','asc');
 		if (!is_NULL($limit_num) && !is_NULL($limit_from))
 		{
 			$this->db->limit($limit_num, $limit_from);
@@ -199,18 +199,18 @@ class Search_model extends CI_Model {
 			$category_children = $this->category_model->get_all_category_ids_recursive($category_id);
 		}
 
-		$this->db->select('count(product.product_id) as count');
-		$this->db->from('product, product_text, product2category');
+		$this->db->select('count(products.product_id) as count');
+		$this->db->from('products, product_texts, product_categories');
 		if (!empty($category_id))
 		{
 			/*
-			$categories = "(product.category_id = $category_id";
+			$categories = "(products.category_id = $category_id";
 			foreach ($category_children as $child => $val)
 			{
-				$categories .= " OR product.category_id = $child";
+				$categories .= " OR products.category_id = $child";
 				foreach ($val as $subchild => $subval)
 				{
-				$categories .= " OR product.category_id = $subchild";
+				$categories .= " OR products.category_id = $subchild";
 				}
 			}
 			$categories .= ") ";*/
@@ -221,26 +221,26 @@ class Search_model extends CI_Model {
 				$category_children = ", " . $category_children;
 			}
 
-			$categories = "(product2category.category_id IN ($category_id".$category_children."))";
+			$categories = "(product_categories.category_id IN ($category_id".$category_children."))";
 
 			$this->db->where($categories);
-			$this->db->where('product.product_id = product2category.product_id');
+			$this->db->where('products.product_id = product_categories.product_id');
 		}
 
 		if (!empty($product_type))
 		{
-			$this->db->where('product.product_type', $product_type);
+			$this->db->where('products.product_type', $product_type);
 		}
 		if (!empty($price_from))
 		{
-			$this->db->where('product_text.price >', $price_from);
+			$this->db->where('product_texts.price >', $price_from);
 		}
 		if (!empty($price_to))
 		{
-			$this->db->where('product_text.price <', $price_to);
+			$this->db->where('product_texts.price <', $price_to);
 		}
-		$this->db->where('product_text.language', $lang);
-		$this->db->where('product.product_id = product_text.product_id');
+		$this->db->where('product_texts.language', $lang);
+		$this->db->where('products.product_id = product_texts.product_id');
 
 		$query = $this->db->get();
 		//echo $this->db->last_query();
@@ -266,17 +266,17 @@ class Search_model extends CI_Model {
 		}
 
 		$this->db->select('*');
-		$this->db->from('product, product_text');
+		$this->db->from('products, product_texts');
 		if (!empty($category_id))
 		{
 			/*
-			$categories = "(product.category_id = $category_id";
+			$categories = "(products.category_id = $category_id";
 			foreach ($category_children as $child => $val)
 			{
-				$categories .= " OR product.category_id = $child";
+				$categories .= " OR products.category_id = $child";
 				foreach ($val as $subchild => $subval)
 				{
-				$categories .= " OR product.category_id = $subchild";
+				$categories .= " OR products.category_id = $subchild";
 				}
 			}
 			$categories .= ") ";*/
@@ -286,24 +286,24 @@ class Search_model extends CI_Model {
 			{
 				$category_children = ", " . $category_children;
 			}
-			$categories = "(product.category_id IN ($category_id".$category_children."))";
+			$categories = "(products.category_id IN ($category_id".$category_children."))";
 			$this->db->where($categories);
 		}
 
 		if (!empty($product_type))
 		{
-			$this->db->where('product.product_type', $product_type);
+			$this->db->where('products.product_type', $product_type);
 		}
 		if (!empty($price_from))
 		{
-			$this->db->where('product_text.price >', $price_from);
+			$this->db->where('product_texts.price >', $price_from);
 		}
 		if (!empty($price_to))
 		{
-			$this->db->where('product_text.price <', $price_to);
+			$this->db->where('product_texts.price <', $price_to);
 		}
-		$this->db->where('product_text.language', $lang);
-		$this->db->where('product.product_id = product_text.product_id');
+		$this->db->where('product_texts.language', $lang);
+		$this->db->where('products.product_id = product_texts.product_id');
 		$this->db->order_by('rand()');
 		$this->db->limit(1);
 
@@ -359,7 +359,7 @@ class Search_model extends CI_Model {
 	{
 		// which categories exist from products recursive
 		$this->db->select('*');
-		$this->db->from('category');
+		$this->db->from('categories');
 		$this->db->where('parent_category_id', $parent);
 		$query = $this->db->get();
 		//echo $this->db->last_query();
@@ -368,11 +368,11 @@ class Search_model extends CI_Model {
 		foreach ($query->result_array() as $row)
 		{
 			$temp_arr = $this->getCategoriesWithRealties_rec($row['category_id']);
-			$this->db->select('product.category_id, category.parent_category_id');
-			$this->db->from('category, product');
-			$this->db->where('category.category_id = product.category_id');
-			$this->db->where('product.category_id', $row['category_id']);
-			$this->db->group_by('product.category_id');
+			$this->db->select('products.category_id, categories.parent_category_id');
+			$this->db->from('categories, products');
+			$this->db->where('categories.category_id = products.category_id');
+			$this->db->where('products.category_id', $row['category_id']);
+			$this->db->group_by('products.category_id');
 			$query2 = $this->db->get();
 			$row2 = $query2->row_array();
 
