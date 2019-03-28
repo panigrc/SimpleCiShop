@@ -13,7 +13,7 @@ trait Getter_setter_trait {
 		if (! is_callable([$this, "set_$name"])) {
 			throw new BadMethodCallException('Method '."set_$name".' was not found');
 		}
-		return call_user_func([$this, "set_$name"]);
+		return call_user_func([$this, "set_$name"], $value);
 	}
 
 	/**
