@@ -23,7 +23,7 @@ class Category_entity {
 	 * @param    int $category_id
 	 * @return    $this
 	 */
-	public function set_category_id($category_id)
+	public function set_category_id(int $category_id): Category_entity
 	{
 		$this->category_id = $category_id;
 		return $this;
@@ -32,7 +32,7 @@ class Category_entity {
 	/**
 	 * @return	int
 	 */
-	public function get_category_id()
+	public function get_category_id(): int
 	{
 		return $this->category_id;
 	}
@@ -41,7 +41,7 @@ class Category_entity {
 	 * @param	int	$parent_category_id
 	 * @return	$this
 	 */
-	public function set_parent_category_id($parent_category_id)
+	public function set_parent_category_id(int $parent_category_id): Category_entity
 	{
 		$this->parent_category_id = $parent_category_id;
 		return $this;
@@ -50,7 +50,7 @@ class Category_entity {
 	/**
 	 * @return	int
 	 */
-	public function get_parent_category_id()
+	public function get_parent_category_id(): int
 	{
 		return $this->parent_category_id;
 	}
@@ -59,7 +59,7 @@ class Category_entity {
 	 * @param	string	$slug
 	 * @return	$this
 	 */
-	public function set_slug($slug)
+	public function set_slug(string $slug): Category_entity
 	{
 		$this->slug = $slug;
 		return $this;
@@ -68,7 +68,7 @@ class Category_entity {
 	/**
 	 * @return	string
 	 */
-	public function get_slug()
+	public function get_slug(): string
 	{
 		return $this->slug;
 	}
