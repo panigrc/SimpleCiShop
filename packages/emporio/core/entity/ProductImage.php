@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product_image_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class ProductImage {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$product_image_id
@@ -46,7 +58,7 @@ class Product_image_entity {
 	 * @param	int	$product_image_id
 	 * @return	$this
 	 */
-	public function set_product_image_id(int $product_image_id): Product_image_entity
+	public function set_product_image_id(int $product_image_id): ProductImage
 	{
 		$this->product_image_id = $product_image_id;
 		return $this;
@@ -64,7 +76,7 @@ class Product_image_entity {
 	 * @param	int	$product_id
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): Product_image_entity
+	public function set_product_id(int $product_id): ProductImage
 	{
 		$this->product_id = $product_id;
 		return $this;
@@ -82,7 +94,7 @@ class Product_image_entity {
 	 * @param	string	$title
 	 * @return	$this
 	 */
-	public function set_title(string $title): Product_image_entity
+	public function set_title(string $title): ProductImage
 	{
 		$this->title = $title;
 		return $this;
@@ -100,7 +112,7 @@ class Product_image_entity {
 	 * @param	string	$thumb
 	 * @return	$this
 	 */
-	public function set_thumb(string $thumb): Product_image_entity
+	public function set_thumb(string $thumb): ProductImage
 	{
 		$this->thumb = $thumb;
 		return $this;
@@ -118,7 +130,7 @@ class Product_image_entity {
 	 * @param	string	$big
 	 * @return	$this
 	 */
-	public function set_big(string $big): Product_image_entity
+	public function set_big(string $big): ProductImage
 	{
 		$this->big = $big;
 		return $this;
@@ -136,7 +148,7 @@ class Product_image_entity {
 	 * @param	bool	$main
 	 * @return	$this
 	 */
-	public function set_main(bool $main): Product_image_entity
+	public function set_main(bool $main): ProductImage
 	{
 		$this->main = $main;
 		return $this;

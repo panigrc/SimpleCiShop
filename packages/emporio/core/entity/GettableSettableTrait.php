@@ -1,7 +1,21 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-trait Getter_setter_trait {
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+use BadMethodCallException;
+
+trait GettableSettableTrait {
 
 	/**
 	 * @param	string	$name

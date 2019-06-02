@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Coupon_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class Coupon {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$coupon_id
@@ -41,7 +53,7 @@ class Coupon_entity {
 	 * @param	int	$coupon_id
 	 * @return	$this
 	 */
-	public function set_coupon_id(int $coupon_id): Coupon_entity
+	public function set_coupon_id(int $coupon_id): Coupon
 	{
 		$this->coupon_id = $coupon_id;
 		return $this;
@@ -59,7 +71,7 @@ class Coupon_entity {
 	 * @param	string	$coupon_number
 	 * @return	$this
 	 */
-	public function set_coupon_number(string $coupon_number): Coupon_entity
+	public function set_coupon_number(string $coupon_number): Coupon
 	{
 		$this->coupon_number = $coupon_number;
 		return $this;
@@ -77,7 +89,7 @@ class Coupon_entity {
 	 * @param	int	$used
 	 * @return	$this
 	 */
-	public function set_used(int $used): Coupon_entity
+	public function set_used(int $used): Coupon
 	{
 		$this->used = $used;
 		return $this;
@@ -95,7 +107,7 @@ class Coupon_entity {
 	 * @param	int	$discount
 	 * @return	$this
 	 */
-	public function set_discount(int $discount): Coupon_entity
+	public function set_discount(int $discount): Coupon
 	{
 		$this->discount = $discount;
 		return $this;
@@ -113,7 +125,7 @@ class Coupon_entity {
 	 * @param	int	$expires
 	 * @return	$this
 	 */
-	public function set_expires(int $expires): Coupon_entity
+	public function set_expires(int $expires): Coupon
 	{
 		$this->expires = $expires;
 		return $this;

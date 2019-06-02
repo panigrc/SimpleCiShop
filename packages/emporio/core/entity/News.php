@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class News_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class News {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$news_id
@@ -31,7 +43,7 @@ class News_entity {
 	 * @param	int	$news_id
 	 * @return	$this
 	 */
-	public function setNewsId(int $news_id): News_entity
+	public function setNewsId(int $news_id): News
 	{
 		$this->news_id = $news_id;
 		return $this;
@@ -49,7 +61,7 @@ class News_entity {
 	 * @param	int	$published
 	 * @return	$this
 	 */
-	public function setPublished(int $published): News_entity
+	public function setPublished(int $published): News
 	{
 		$this->published = $published;
 		return $this;
@@ -67,7 +79,7 @@ class News_entity {
 	 * @param	int	$updated
 	 * @return	$this
 	 */
-	public function setUpdated(int $updated): News_entity
+	public function setUpdated(int $updated): News
 	{
 		$this->updated = $updated;
 		return $this;

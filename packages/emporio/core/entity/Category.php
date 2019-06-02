@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class Category {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$category_id
@@ -23,7 +35,7 @@ class Category_entity {
 	 * @param    int $category_id
 	 * @return    $this
 	 */
-	public function set_category_id(int $category_id): Category_entity
+	public function set_category_id(int $category_id): Category
 	{
 		$this->category_id = $category_id;
 		return $this;
@@ -41,7 +53,7 @@ class Category_entity {
 	 * @param	int	$parent_category_id
 	 * @return	$this
 	 */
-	public function set_parent_category_id(int $parent_category_id): Category_entity
+	public function set_parent_category_id(int $parent_category_id): Category
 	{
 		$this->parent_category_id = $parent_category_id;
 		return $this;
@@ -59,7 +71,7 @@ class Category_entity {
 	 * @param	string	$slug
 	 * @return	$this
 	 */
-	public function set_slug(string $slug): Category_entity
+	public function set_slug(string $slug): Category
 	{
 		$this->slug = $slug;
 		return $this;

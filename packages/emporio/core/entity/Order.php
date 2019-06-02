@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Order_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class Order {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$order_id
@@ -66,7 +78,7 @@ class Order_entity {
 	 * @param	int	$order_id
 	 * @return	$this
 	 */
-	public function set_order_id(int $order_id): Order_entity
+	public function set_order_id(int $order_id): Order
 	{
 		$this->order_id = $order_id;
 		return $this;
@@ -84,7 +96,7 @@ class Order_entity {
 	 * @param	int	$user_id
 	 * @return	$this
 	 */
-	public function set_user_id(int $user_id): Order_entity
+	public function set_user_id(int $user_id): Order
 	{
 		$this->user_id = $user_id;
 		return $this;
@@ -102,7 +114,7 @@ class Order_entity {
 	 * @param	int	$created
 	 * @return	$this
 	 */
-	public function set_created(int $created): Order_entity
+	public function set_created(int $created): Order
 	{
 		$this->created = $created;
 		return $this;
@@ -120,7 +132,7 @@ class Order_entity {
 	 * @param	int	$status
 	 * @return	$this
 	 */
-	public function set_status(int $status): Order_entity
+	public function set_status(int $status): Order
 	{
 		$this->status = $status;
 		return $this;
@@ -138,7 +150,7 @@ class Order_entity {
 	 * @param	bool	$shipment_express
 	 * @return	$this
 	 */
-	public function set_shipment_express(bool $shipment_express): Order_entity
+	public function set_shipment_express(bool $shipment_express): Order
 	{
 		$this->shipment_express = $shipment_express;
 		return $this;
@@ -156,7 +168,7 @@ class Order_entity {
 	 * @param	bool	$shipment_to_door
 	 * @return	$this
 	 */
-	public function set_shipment_to_door(bool $shipment_to_door): Order_entity
+	public function set_shipment_to_door(bool $shipment_to_door): Order
 	{
 		$this->shipment_to_door = $shipment_to_door;
 		return $this;
@@ -174,7 +186,7 @@ class Order_entity {
 	 * @param	bool	$shipment_cash_on_delivery
 	 * @return	$this
 	 */
-	public function set_shipment_cash_on_delivery(bool $shipment_cash_on_delivery): Order_entity
+	public function set_shipment_cash_on_delivery(bool $shipment_cash_on_delivery): Order
 	{
 		$this->shipment_cash_on_delivery = $shipment_cash_on_delivery;
 		return $this;
@@ -192,7 +204,7 @@ class Order_entity {
 	 * @param	float	$price
 	 * @return	$this
 	 */
-	public function set_price(float $price): Order_entity
+	public function set_price(float $price): Order
 	{
 		$this->price = $price;
 		return $this;
@@ -210,7 +222,7 @@ class Order_entity {
 	 * @param	int	$coupon_id
 	 * @return	$this
 	 */
-	public function set_coupon_id(int $coupon_id): Order_entity
+	public function set_coupon_id(int $coupon_id): Order
 	{
 		$this->coupon_id = $coupon_id;
 		return $this;
@@ -228,7 +240,7 @@ class Order_entity {
 	 * @param	string	$questionnaire
 	 * @return	$this
 	 */
-	public function set_questionnaire(string $questionnaire): Order_entity
+	public function set_questionnaire(string $questionnaire): Order
 	{
 		$this->questionnaire = $questionnaire;
 		return $this;

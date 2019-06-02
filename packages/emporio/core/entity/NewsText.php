@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class News_text_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class NewsText {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$news_text_id
@@ -41,7 +53,7 @@ class News_text_entity {
 	 * @param	int	$news_text_id
 	 * @return	$this
 	 */
-	public function set_news_text_id(int $news_text_id): News_text_entity
+	public function set_news_text_id(int $news_text_id): NewsText
 	{
 		$this->news_text_id = $news_text_id;
 		return $this;
@@ -59,7 +71,7 @@ class News_text_entity {
 	 * @param	int	$news_id
 	 * @return	$this
 	 */
-	public function set_news_id(int $news_id): News_text_entity
+	public function set_news_id(int $news_id): NewsText
 	{
 		$this->news_id = $news_id;
 		return $this;
@@ -77,7 +89,7 @@ class News_text_entity {
 	 * @param	string	$language
 	 * @return	$this
 	 */
-	public function set_language(string $language): News_text_entity
+	public function set_language(string $language): NewsText
 	{
 		$this->language = $language;
 		return $this;
@@ -95,7 +107,7 @@ class News_text_entity {
 	 * @param	string	$title
 	 * @return	$this
 	 */
-	public function set_title(string $title): News_text_entity
+	public function set_title(string $title): NewsText
 	{
 		$this->title = $title;
 		return $this;
@@ -113,7 +125,7 @@ class News_text_entity {
 	 * @param	string	$body
 	 * @return	$this
 	 */
-	public function set_body(string $body): News_text_entity
+	public function set_body(string $body): NewsText
 	{
 		$this->body = $body;
 		return $this;

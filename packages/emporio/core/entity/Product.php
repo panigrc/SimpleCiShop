@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class Product {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$product_id
@@ -36,7 +48,7 @@ class Product_entity {
 	 * @param	int	$product_id
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): Product_entity
+	public function set_product_id(int $product_id): Product
 	{
 		$this->product_id = $product_id;
 		return $this;
@@ -54,7 +66,7 @@ class Product_entity {
 	 * @param	string	$slug
 	 * @return	$this
 	 */
-	public function set_slug(string $slug): Product_entity
+	public function set_slug(string $slug): Product
 	{
 		$this->slug = $slug;
 		return $this;
@@ -72,7 +84,7 @@ class Product_entity {
 	 * @param	int	$stock
 	 * @return	$this
 	 */
-	public function set_stock(int $stock): Product_entity
+	public function set_stock(int $stock): Product
 	{
 		$this->stock = $stock;
 		return $this;
@@ -90,7 +102,7 @@ class Product_entity {
 	 * @param	int	$published
 	 * @return	$this
 	 */
-	public function set_published(int $published): Product_entity
+	public function set_published(int $published): Product
 	{
 		$this->published = $published;
 		return $this;

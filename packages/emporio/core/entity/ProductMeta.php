@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product_meta_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class ProductMeta {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$meta_id
@@ -36,7 +48,7 @@ class Product_meta_entity {
 	 * @param	int	$meta_id
 	 * @return	$this
 	 */
-	public function set_meta_id(int $meta_id): Product_meta_entity
+	public function set_meta_id(int $meta_id): ProductMeta
 	{
 		$this->meta_id = $meta_id;
 		return $this;
@@ -54,7 +66,7 @@ class Product_meta_entity {
 	 * @param	int	$product_id
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): Product_meta_entity
+	public function set_product_id(int $product_id): ProductMeta
 	{
 		$this->product_id = $product_id;
 		return $this;
@@ -72,7 +84,7 @@ class Product_meta_entity {
 	 * @param	string	$meta_key
 	 * @return	$this
 	 */
-	public function set_meta_key(string $meta_key): Product_meta_entity
+	public function set_meta_key(string $meta_key): ProductMeta
 	{
 		$this->meta_key = $meta_key;
 		return $this;
@@ -90,7 +102,7 @@ class Product_meta_entity {
 	 * @param	string	$meta_value
 	 * @return	$this
 	 */
-	public function set_meta_value(string $meta_value): Product_meta_entity
+	public function set_meta_value(string $meta_value): ProductMeta
 	{
 		$this->meta_value = $meta_value;
 		return $this;

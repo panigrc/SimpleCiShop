@@ -1,8 +1,22 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+use DateTime;
+
+class User {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$user_id
@@ -35,9 +49,9 @@ class User_entity {
 	protected $url;
 
 	/**
-	 * @var	DateTime	$birthdate
+	 * @var	DateTime	$birthDate
 	 */
-	protected $birthdate;
+	protected $birthDate;
 
 	/**
 	 * @var	string	$city
@@ -91,7 +105,7 @@ class User_entity {
 	 * @param	int	$user_id
 	 * @return	$this
 	 */
-	public function setUserId(int $user_id): User_entity
+	public function setUserId(int $user_id): User
 	{
 		$this->user_id = $user_id;
 		return $this;
@@ -109,7 +123,7 @@ class User_entity {
 	 * @param	string	$password
 	 * @return	$this
 	 */
-	public function setPassword(string $password): User_entity
+	public function setPassword(string $password): User
 	{
 		$this->password = $password;
 		return $this;
@@ -127,7 +141,7 @@ class User_entity {
 	 * @param	string	$first_name
 	 * @return	$this
 	 */
-	public function setFirstName(string $first_name): User_entity
+	public function setFirstName(string $first_name): User
 	{
 		$this->first_name = $first_name;
 		return $this;
@@ -145,7 +159,7 @@ class User_entity {
 	 * @param	string	$last_name
 	 * @return	$this
 	 */
-	public function setLastName(string $last_name): User_entity
+	public function setLastName(string $last_name): User
 	{
 		$this->last_name = $last_name;
 		return $this;
@@ -163,7 +177,7 @@ class User_entity {
 	 * @param	string	$email
 	 * @return	$this
 	 */
-	public function setEmail(string $email): User_entity
+	public function setEmail(string $email): User
 	{
 		$this->email = $email;
 		return $this;
@@ -181,7 +195,7 @@ class User_entity {
 	 * @param	string	$url
 	 * @return	$this
 	 */
-	public function setUrl(string $url): User_entity
+	public function setUrl(string $url): User
 	{
 		$this->url = $url;
 		return $this;
@@ -190,18 +204,18 @@ class User_entity {
 	/**
 	 * @return	DateTime
 	 */
-	public function getBirthdate(): DateTime
+	public function getBirthDate(): DateTime
 	{
-		return $this->birthdate;
+		return $this->birthDate;
 	}
 
 	/**
-	 * @param	DateTime $birthdate
+	 * @param	DateTime $birthDate
 	 * @return	$this
 	 */
-	public function setBirthdate(DateTime $birthdate): User_entity
+	public function setBirthDate(DateTime $birthDate): User
 	{
-		$this->birthdate = $birthdate;
+		$this->birthDate = $birthDate;
 		return $this;
 	}
 
@@ -217,7 +231,7 @@ class User_entity {
 	 * @param	string	$city
 	 * @return	$this
 	 */
-	public function setCity(string $city): User_entity
+	public function setCity(string $city): User
 	{
 		$this->city = $city;
 		return $this;
@@ -235,7 +249,7 @@ class User_entity {
 	 * @param	string	$street
 	 * @return	$this
 	 */
-	public function setStreet(string $street): User_entity
+	public function setStreet(string $street): User
 	{
 		$this->street = $street;
 		return $this;
@@ -253,7 +267,7 @@ class User_entity {
 	 * @param	string	$zip
 	 * @return	$this
 	 */
-	public function setZip(string $zip): User_entity
+	public function setZip(string $zip): User
 	{
 		$this->zip = $zip;
 		return $this;
@@ -271,7 +285,7 @@ class User_entity {
 	 * @param	string	$country
 	 * @return	$this
 	 */
-	public function setCountry(string $country): User_entity
+	public function setCountry(string $country): User
 	{
 		$this->country = $country;
 		return $this;
@@ -289,7 +303,7 @@ class User_entity {
 	 * @param	string	$phone
 	 * @return	$this
 	 */
-	public function setPhone(string $phone): User_entity
+	public function setPhone(string $phone): User
 	{
 		$this->phone = $phone;
 		return $this;
@@ -307,7 +321,7 @@ class User_entity {
 	 * @param	string	$language
 	 * @return	$this
 	 */
-	public function setLanguage(string $language): User_entity
+	public function setLanguage(string $language): User
 	{
 		$this->language = $language;
 		return $this;
@@ -325,7 +339,7 @@ class User_entity {
 	 * @param	DateTime $registered
 	 * @return	$this
 	 */
-	public function setRegistered(DateTime $registered): User_entity
+	public function setRegistered(DateTime $registered): User
 	{
 		$this->registered = $registered;
 		return $this;
@@ -343,7 +357,7 @@ class User_entity {
 	 * @param	int	$credits
 	 * @return	$this
 	 */
-	public function setCredits(int $credits): User_entity
+	public function setCredits(int $credits): User
 	{
 		$this->credits = $credits;
 		return $this;

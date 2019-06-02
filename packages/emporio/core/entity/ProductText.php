@@ -1,8 +1,19 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product_text_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class ProductText {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$product_text_id
@@ -51,7 +62,7 @@ class Product_text_entity {
 	 * @param	int	$product_text_id
 	 * @return	$this
 	 */
-	public function set_product_text_id(int $product_text_id): Product_text_entity
+	public function set_product_text_id(int $product_text_id): ProductText
 	{
 		$this->product_text_id = $product_text_id;
 		return $this;
@@ -69,7 +80,7 @@ class Product_text_entity {
 	 * @param	int	$product_id
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): Product_text_entity
+	public function set_product_id(int $product_id): ProductText
 	{
 		$this->product_id = $product_id;
 		return $this;
@@ -87,7 +98,7 @@ class Product_text_entity {
 	 * @param	string	$language
 	 * @return	$this
 	 */
-	public function set_language(string $language): Product_text_entity
+	public function set_language(string $language): ProductText
 	{
 		$this->language = $language;
 		return $this;
@@ -105,7 +116,7 @@ class Product_text_entity {
 	 * @param	string	$title
 	 * @return	$this
 	 */
-	public function set_title(string $title): Product_text_entity
+	public function set_title(string $title): ProductText
 	{
 		$this->title = $title;
 		return $this;
@@ -123,7 +134,7 @@ class Product_text_entity {
 	 * @param	string	$description
 	 * @return	$this
 	 */
-	public function set_description(string $description): Product_text_entity
+	public function set_description(string $description): ProductText
 	{
 		$this->description = $description;
 		return $this;
@@ -141,7 +152,7 @@ class Product_text_entity {
 	 * @param	float	$price
 	 * @return	$this
 	 */
-	public function set_price(float $price): Product_text_entity
+	public function set_price(float $price): ProductText
 	{
 		$this->price = $price;
 		return $this;
@@ -159,7 +170,7 @@ class Product_text_entity {
 	 * @param	float	$price_old
 	 * @return	$this
 	 */
-	public function set_price_old(float $price_old): Product_text_entity
+	public function set_price_old(float $price_old): ProductText
 	{
 		$this->price_old = $price_old;
 		return $this;

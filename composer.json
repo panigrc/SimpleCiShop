@@ -2,21 +2,22 @@
 	"config": {
 		"bin-dir": "bin"
 	},
-	"description": "The CodeIgniter framework",
-	"name": "codeigniter/framework",
+	"description": "SimpleCiShop",
+	"name": "panigrc/SimpleCiShop",
 	"type": "project",
-	"homepage": "https://codeigniter.com",
+	"homepage": "https://github.com/panigrc/SimpleCiShop/",
 	"license": "MIT",
 	"support": {
-		"forum": "http://forum.codeigniter.com/",
-		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
-		"slack": "https://codeigniterchat.slack.com",
-		"source": "https://github.com/bcit-ci/CodeIgniter"
+		"source": "https://github.com/panigrc/SimpleCiShop/"
 	},
 	"require": {
 		"php": ">=7.2",
-		"craftsman/cli": "^5.1"
+		"craftsman/cli": "^5.1",
+		"emporio/core": "@dev"
 	},
+	"repositories": [
+		{ "type": "path", "url": "packages/emporio/core" }
+	],
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
 	},

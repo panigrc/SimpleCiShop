@@ -1,8 +1,20 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category_text_entity {
-	use Getter_setter_trait;
+/*
+ * This file is part of the Emporio package.
+ *
+ * (c) Nikolaos Papagiannopoulos
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Emporio\Core\Entity;
+
+class CategoryText {
+	use GettableSettableTrait;
 
 	/**
 	 * @var	int	$category_text_id
@@ -41,7 +53,7 @@ class Category_text_entity {
 	 * @param	int	$category_text_id
 	 * @return	$this
 	 */
-	public function set_category_text_id(int $category_text_id): Category_text_entity
+	public function set_category_text_id(int $category_text_id): CategoryText
 	{
 		$this->category_text_id = $category_text_id;
 		return $this;
@@ -59,7 +71,7 @@ class Category_text_entity {
 	 * @param	int	$category_id
 	 * @return	$this
 	 */
-	public function set_category_id(int $category_id): Category_text_entity
+	public function set_category_id(int $category_id): CategoryText
 	{
 		$this->category_id = $category_id;
 		return $this;
@@ -77,7 +89,7 @@ class Category_text_entity {
 	 * @param	string	$language
 	 * @return	$this
 	 */
-	public function set_language(string $language): Category_text_entity
+	public function set_language(string $language): CategoryText
 	{
 		$this->language = $language;
 		return $this;
@@ -95,7 +107,7 @@ class Category_text_entity {
 	 * @param	string	$name
 	 * @return	$this
 	 */
-	public function set_name(string $name): Category_text_entity
+	public function set_name(string $name): CategoryText
 	{
 		$this->name = $name;
 		return $this;
@@ -113,7 +125,7 @@ class Category_text_entity {
 	 * @param	string	$description
 	 * @return	$this
 	 */
-	public function set_description(string $description): Category_text_entity
+	public function set_description(string $description): CategoryText
 	{
 		$this->description = $description;
 		return $this;
