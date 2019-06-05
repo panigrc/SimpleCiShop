@@ -19,14 +19,14 @@ class ProductText {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$product_text_id
+	 * @var	int	$productTextId
 	 */
-	protected $product_text_id;
+	protected $productTextId;
 
 	/**
-	 * @var	int	$product_id
+	 * @var	int	$productId
 	 */
-	protected $product_id;
+	protected $productId;
 
 	/**
 	 * @var	string	$language
@@ -49,50 +49,50 @@ class ProductText {
 	protected $price;
 
 	/**
-	 * @var	float	$price_old
+	 * @var	float	$priceOld
 	 */
-	protected $price_old;
+	protected $priceOld;
 
 	/**
 	 * @return	int
 	 */
-	public function get_product_text_id(): int
+	public function getProductTextId(): int
 	{
-		return $this->product_text_id;
+		return $this->productTextId;
 	}
 
 	/**
-	 * @param	int	$product_text_id
+	 * @param	int	$productTextId
 	 * @return	$this
 	 */
-	public function set_product_text_id(int $product_text_id): ProductText
+	public function setProductTextId(int $productTextId): ProductText
 	{
-		$this->product_text_id = $product_text_id;
+		$this->productTextId = $productTextId;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function get_product_id(): int
+	public function getProductId(): int
 	{
-		return $this->product_id;
+		return $this->productId;
 	}
 
 	/**
-	 * @param	int	$product_id
+	 * @param	int	$productId
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): ProductText
+	public function setProductId(int $productId): ProductText
 	{
-		$this->product_id = $product_id;
+		$this->productId = $productId;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function get_language(): string
+	public function getLanguage(): string
 	{
 		return $this->language;
 	}
@@ -101,7 +101,7 @@ class ProductText {
 	 * @param	string	$language
 	 * @return	$this
 	 */
-	public function set_language(string $language): ProductText
+	public function setLanguage(string $language): ProductText
 	{
 		$this->language = $language;
 		return $this;
@@ -110,7 +110,7 @@ class ProductText {
 	/**
 	 * @return	string
 	 */
-	public function get_title(): string
+	public function getTitle(): string
 	{
 		return $this->title;
 	}
@@ -119,7 +119,7 @@ class ProductText {
 	 * @param	string	$title
 	 * @return	$this
 	 */
-	public function set_title(string $title): ProductText
+	public function setTitle(string $title): ProductText
 	{
 		$this->title = $title;
 		return $this;
@@ -128,7 +128,7 @@ class ProductText {
 	/**
 	 * @return	string
 	 */
-	public function get_description(): string
+	public function getDescription(): string
 	{
 		return $this->description;
 	}
@@ -137,7 +137,7 @@ class ProductText {
 	 * @param	string	$description
 	 * @return	$this
 	 */
-	public function set_description(string $description): ProductText
+	public function setDescription(string $description): ProductText
 	{
 		$this->description = $description;
 		return $this;
@@ -146,7 +146,7 @@ class ProductText {
 	/**
 	 * @return	float
 	 */
-	public function get_price(): float
+	public function getPrice(): float
 	{
 		return $this->price;
 	}
@@ -155,7 +155,7 @@ class ProductText {
 	 * @param	float	$price
 	 * @return	$this
 	 */
-	public function set_price(float $price): ProductText
+	public function setPrice(float $price): ProductText
 	{
 		$this->price = $price;
 		return $this;
@@ -164,18 +164,18 @@ class ProductText {
 	/**
 	 * @return	float
 	 */
-	public function get_price_old(): float
+	public function getPriceOld(): float
 	{
-		return $this->price_old;
+		return $this->priceOld;
 	}
 
 	/**
-	 * @param	float	$price_old
+	 * @param	float	$priceOld
 	 * @return	$this
 	 */
-	public function set_price_old(float $price_old): ProductText
+	public function setPriceOld(float $priceOld): ProductText
 	{
-		$this->price_old = $price_old;
+		$this->priceOld = $priceOld;
 		return $this;
 	}
 }

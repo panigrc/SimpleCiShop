@@ -19,94 +19,94 @@ class ProductMeta {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$meta_id
+	 * @var	int	$metaId
 	 */
-	protected $meta_id;
+	protected $metaId;
 
 	/**
-	 * @var	int	$product_id
+	 * @var	int	$productId
 	 */
-	protected $product_id;
+	protected $productId;
 
 	/**
-	 * @var	string	$meta_key
+	 * @var	string	$metaKey
 	 */
-	protected $meta_key;
+	protected $metaKey;
 
 	/**
-	 * @var	string	$meta_value
+	 * @var	string	$metaValue
 	 */
-	protected $meta_value;
+	protected $metaValue;
 
 	/**
 	 * @return	int
 	 */
-	public function get_meta_id(): int
+	public function getMetaId(): int
 	{
-		return $this->meta_id;
+		return $this->metaId;
 	}
 
 	/**
-	 * @param	int	$meta_id
+	 * @param	int	$metaId
 	 * @return	$this
 	 */
-	public function set_meta_id(int $meta_id): ProductMeta
+	public function setMetaId(int $metaId): ProductMeta
 	{
-		$this->meta_id = $meta_id;
+		$this->metaId = $metaId;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function get_product_id(): int
+	public function getProductId(): int
 	{
-		return $this->product_id;
+		return $this->productId;
 	}
 
 	/**
-	 * @param	int	$product_id
+	 * @param	int	$productId
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): ProductMeta
+	public function setProductId(int $productId): ProductMeta
 	{
-		$this->product_id = $product_id;
+		$this->productId = $productId;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function get_meta_key(): string
+	public function getMetaKey(): string
 	{
-		return $this->meta_key;
+		return $this->metaKey;
 	}
 
 	/**
-	 * @param	string	$meta_key
+	 * @param	string	$metaKey
 	 * @return	$this
 	 */
-	public function set_meta_key(string $meta_key): ProductMeta
+	public function setMetaKey(string $metaKey): ProductMeta
 	{
-		$this->meta_key = $meta_key;
+		$this->metaKey = $metaKey;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function get_meta_value(): string
+	public function getMetaValue(): string
 	{
-		return $this->meta_value;
+		return $this->metaValue;
 	}
 
 	/**
-	 * @param	string	$meta_value
+	 * @param	string	$metaValue
 	 * @return	$this
 	 */
-	public function set_meta_value(string $meta_value): ProductMeta
+	public function setMetaValue(string $metaValue): ProductMeta
 	{
-		$this->meta_value = $meta_value;
+		$this->metaValue = $metaValue;
 		return $this;
 	}
 }

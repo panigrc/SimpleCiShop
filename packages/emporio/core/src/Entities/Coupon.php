@@ -19,14 +19,14 @@ class Coupon {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$coupon_id
+	 * @var	int	$couponId
 	 */
-	protected $coupon_id;
+	protected $couponId;
 
 	/**
-	 * @var	string	$coupon_number
+	 * @var	string	$couponNumber
 	 */
-	protected $coupon_number;
+	protected $couponNumber;
 
 	/**
 	 * @var	int	$used
@@ -46,43 +46,43 @@ class Coupon {
 	/**
 	 * @return	int
 	 */
-	public function get_coupon_id(): int
+	public function getCouponId(): int
 	{
-		return $this->coupon_id;
+		return $this->couponId;
 	}
 
 	/**
-	 * @param	int	$coupon_id
+	 * @param	int	$couponId
 	 * @return	$this
 	 */
-	public function set_coupon_id(int $coupon_id): Coupon
+	public function setCouponId(int $couponId): Coupon
 	{
-		$this->coupon_id = $coupon_id;
+		$this->couponId = $couponId;
 		return $this;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function get_coupon_number(): string
+	public function getCouponNumber(): string
 	{
-		return $this->coupon_number;
+		return $this->couponNumber;
 	}
 
 	/**
-	 * @param	string	$coupon_number
+	 * @param	string	$couponNumber
 	 * @return	$this
 	 */
-	public function set_coupon_number(string $coupon_number): Coupon
+	public function setCouponNumber(string $couponNumber): Coupon
 	{
-		$this->coupon_number = $coupon_number;
+		$this->couponNumber = $couponNumber;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function get_used(): int
+	public function getUsed(): int
 	{
 		return $this->used;
 	}
@@ -91,7 +91,7 @@ class Coupon {
 	 * @param	int	$used
 	 * @return	$this
 	 */
-	public function set_used(int $used): Coupon
+	public function setUsed(int $used): Coupon
 	{
 		$this->used = $used;
 		return $this;
@@ -100,7 +100,7 @@ class Coupon {
 	/**
 	 * @return	int
 	 */
-	public function get_discount(): int
+	public function getDiscount(): int
 	{
 		return $this->discount;
 	}
@@ -109,7 +109,7 @@ class Coupon {
 	 * @param	int	$discount
 	 * @return	$this
 	 */
-	public function set_discount(int $discount): Coupon
+	public function setDiscount(int $discount): Coupon
 	{
 		$this->discount = $discount;
 		return $this;
@@ -118,7 +118,7 @@ class Coupon {
 	/**
 	 * @return	int
 	 */
-	public function get_expires(): int
+	public function getExpires(): int
 	{
 		return $this->expires;
 	}
@@ -127,7 +127,7 @@ class Coupon {
 	 * @param	int	$expires
 	 * @return	$this
 	 */
-	public function set_expires(int $expires): Coupon
+	public function setExpires(int $expires): Coupon
 	{
 		$this->expires = $expires;
 		return $this;

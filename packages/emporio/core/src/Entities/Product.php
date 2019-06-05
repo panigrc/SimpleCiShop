@@ -19,9 +19,9 @@ class Product {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$product_id
+	 * @var	int	$productId
 	 */
-	protected $product_id;
+	protected $productId;
 
 	/**
 	 * @var	string	$slug
@@ -41,25 +41,25 @@ class Product {
 	/**
 	 * @return	int
 	 */
-	public function get_product_id(): int
+	public function getProductId(): int
 	{
-		return $this->product_id;
+		return $this->productId;
 	}
 
 	/**
-	 * @param	int	$product_id
+	 * @param	int	$productId
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): Product
+	public function setProductId(int $productId): Product
 	{
-		$this->product_id = $product_id;
+		$this->productId = $productId;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function get_slug(): string
+	public function getSlug(): string
 	{
 		return $this->slug;
 	}
@@ -68,7 +68,7 @@ class Product {
 	 * @param	string	$slug
 	 * @return	$this
 	 */
-	public function set_slug(string $slug): Product
+	public function setSlug(string $slug): Product
 	{
 		$this->slug = $slug;
 		return $this;
@@ -77,7 +77,7 @@ class Product {
 	/**
 	 * @return	int
 	 */
-	public function get_stock(): int
+	public function getStock(): int
 	{
 		return $this->stock;
 	}
@@ -86,7 +86,7 @@ class Product {
 	 * @param	int	$stock
 	 * @return	$this
 	 */
-	public function set_stock(int $stock): Product
+	public function setStock(int $stock): Product
 	{
 		$this->stock = $stock;
 		return $this;
@@ -95,7 +95,7 @@ class Product {
 	/**
 	 * @return	int
 	 */
-	public function get_published(): int
+	public function getPublished(): int
 	{
 		return $this->published;
 	}
@@ -104,7 +104,7 @@ class Product {
 	 * @param	int	$published
 	 * @return	$this
 	 */
-	public function set_published(int $published): Product
+	public function setPublished(int $published): Product
 	{
 		$this->published = $published;
 		return $this;

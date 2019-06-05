@@ -19,14 +19,14 @@ class CategoryText {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$category_text_id
+	 * @var	int	$categoryTextId
 	 */
-	private $category_text_id;
+	private $categoryTextId;
 
 	/**
-	 * @var	int	$category_id
+	 * @var	int	$categoryId
 	 */
-	private $category_id;
+	private $categoryId;
 
 	/**
 	 * @var	string	$language
@@ -46,43 +46,43 @@ class CategoryText {
 	/**
 	 * @return	int
 	 */
-	public function get_category_text_id(): int
+	public function getCategoryTextId(): int
 	{
-		return $this->category_text_id;
+		return $this->categoryTextId;
 	}
 
 	/**
-	 * @param	int	$category_text_id
+	 * @param	int	$categoryTextId
 	 * @return	$this
 	 */
-	public function set_category_text_id(int $category_text_id): CategoryText
+	public function setCategoryTextId(int $categoryTextId): CategoryText
 	{
-		$this->category_text_id = $category_text_id;
+		$this->categoryTextId = $categoryTextId;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function get_category_id(): int
+	public function getCategoryId(): int
 	{
-		return $this->category_id;
+		return $this->categoryId;
 	}
 
 	/**
-	 * @param	int	$category_id
+	 * @param	int	$categoryId
 	 * @return	$this
 	 */
-	public function set_category_id(int $category_id): CategoryText
+	public function setCategoryId(int $categoryId): CategoryText
 	{
-		$this->category_id = $category_id;
+		$this->categoryId = $categoryId;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function get_language(): string
+	public function getLanguage(): string
 	{
 		return $this->language;
 	}
@@ -91,7 +91,7 @@ class CategoryText {
 	 * @param	string	$language
 	 * @return	$this
 	 */
-	public function set_language(string $language): CategoryText
+	public function setLanguage(string $language): CategoryText
 	{
 		$this->language = $language;
 		return $this;
@@ -100,7 +100,7 @@ class CategoryText {
 	/**
 	 * @return	string
 	 */
-	public function get_name(): string
+	public function getName(): string
 	{
 		return $this->name;
 	}
@@ -109,7 +109,7 @@ class CategoryText {
 	 * @param	string	$name
 	 * @return	$this
 	 */
-	public function set_name(string $name): CategoryText
+	public function setName(string $name): CategoryText
 	{
 		$this->name = $name;
 		return $this;
@@ -118,7 +118,7 @@ class CategoryText {
 	/**
 	 * @return	string
 	 */
-	public function get_description(): string
+	public function getDescription(): string
 	{
 		return $this->description;
 	}
@@ -127,7 +127,7 @@ class CategoryText {
 	 * @param	string	$description
 	 * @return	$this
 	 */
-	public function set_description(string $description): CategoryText
+	public function setDescription(string $description): CategoryText
 	{
 		$this->description = $description;
 		return $this;
