@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Emporio\Core\Entity;
 
+use Emporio\Core\Traits\GettableSettableTrait;
+
 class Category {
 	use GettableSettableTrait;
 
