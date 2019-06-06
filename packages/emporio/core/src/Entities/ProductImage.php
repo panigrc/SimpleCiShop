@@ -19,14 +19,14 @@ class ProductImage {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$productImageId
+	 * @var	int	$product_image_id
 	 */
-	protected $productImageId;
+	protected $product_image_id;
 
 	/**
-	 * @var	int	$productId
+	 * @var	int	$product_id
 	 */
-	protected $productId;
+	protected $product_id;
 
 	/**
 	 * @var	string	$title
@@ -51,43 +51,43 @@ class ProductImage {
 	/**
 	 * @return	int
 	 */
-	public function getProductImageId(): int
+	public function get_product_image_id(): int
 	{
-		return $this->productImageId;
+		return $this->product_image_id;
 	}
 
 	/**
-	 * @param	int	$productImageId
+	 * @param	int	$product_image_id
 	 * @return	$this
 	 */
-	public function setProductImageId(int $productImageId): ProductImage
+	public function set_product_image_id(int $product_image_id): ProductImage
 	{
-		$this->productImageId = $productImageId;
+		$this->product_image_id = $product_image_id;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function getProductId(): int
+	public function get_product_id(): int
 	{
-		return $this->productId;
+		return $this->product_id;
 	}
 
 	/**
-	 * @param	int	$productId
+	 * @param	int	$product_id
 	 * @return	$this
 	 */
-	public function setProductId(int $productId): ProductImage
+	public function set_product_id(int $product_id): ProductImage
 	{
-		$this->productId = $productId;
+		$this->product_id = $product_id;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function getTitle(): string
+	public function get_title(): string
 	{
 		return $this->title;
 	}
@@ -96,7 +96,7 @@ class ProductImage {
 	 * @param	string	$title
 	 * @return	$this
 	 */
-	public function setTitle(string $title): ProductImage
+	public function set_title(string $title): ProductImage
 	{
 		$this->title = $title;
 		return $this;
@@ -105,7 +105,7 @@ class ProductImage {
 	/**
 	 * @return	string
 	 */
-	public function getThumb(): string
+	public function get_thumb(): string
 	{
 		return $this->thumb;
 	}
@@ -114,7 +114,7 @@ class ProductImage {
 	 * @param	string	$thumb
 	 * @return	$this
 	 */
-	public function setThumb(string $thumb): ProductImage
+	public function set_thumb(string $thumb): ProductImage
 	{
 		$this->thumb = $thumb;
 		return $this;
@@ -123,7 +123,7 @@ class ProductImage {
 	/**
 	 * @return	string
 	 */
-	public function getBig(): string
+	public function get_big(): string
 	{
 		return $this->big;
 	}
@@ -132,7 +132,7 @@ class ProductImage {
 	 * @param	string	$big
 	 * @return	$this
 	 */
-	public function setBig(string $big): ProductImage
+	public function set_big(string $big): ProductImage
 	{
 		$this->big = $big;
 		return $this;
@@ -141,7 +141,7 @@ class ProductImage {
 	/**
 	 * @return	bool
 	 */
-	public function isMain(): bool
+	public function is_main(): bool
 	{
 		return $this->main;
 	}
@@ -150,7 +150,7 @@ class ProductImage {
 	 * @param	bool	$main
 	 * @return	$this
 	 */
-	public function setMain(bool $main): ProductImage
+	public function set_main(bool $main): ProductImage
 	{
 		$this->main = $main;
 		return $this;

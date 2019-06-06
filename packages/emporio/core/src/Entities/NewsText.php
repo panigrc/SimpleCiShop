@@ -19,14 +19,14 @@ class NewsText {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$newsTextId
+	 * @var	int	$news_text_id
 	 */
-	protected $newsTextId;
+	protected $news_text_id;
 
 	/**
-	 * @var	int	$newsId
+	 * @var	int	$news_id
 	 */
-	protected $newsId;
+	protected $news_id;
 
 	/**
 	 * @var	string	$language
@@ -46,43 +46,43 @@ class NewsText {
 	/**
 	 * @return	int
 	 */
-	public function getNewsTextId(): int
+	public function get_news_text_id(): int
 	{
-		return $this->newsTextId;
+		return $this->news_text_id;
 	}
 
 	/**
-	 * @param	int	$newsTextId
+	 * @param	int	$news_text_id
 	 * @return	$this
 	 */
-	public function setNewsTextId(int $newsTextId): NewsText
+	public function set_news_text_id(int $news_text_id): NewsText
 	{
-		$this->newsTextId = $newsTextId;
+		$this->news_text_id = $news_text_id;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function getNewsId(): int
+	public function get_news_id(): int
 	{
-		return $this->newsId;
+		return $this->news_id;
 	}
 
 	/**
-	 * @param	int	$newsId
+	 * @param	int	$news_id
 	 * @return	$this
 	 */
-	public function setNewsId(int $newsId): NewsText
+	public function set_news_id(int $news_id): NewsText
 	{
-		$this->newsId = $newsId;
+		$this->news_id = $news_id;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function getLanguage(): string
+	public function get_language(): string
 	{
 		return $this->language;
 	}
@@ -91,7 +91,7 @@ class NewsText {
 	 * @param	string	$language
 	 * @return	$this
 	 */
-	public function setLanguage(string $language): NewsText
+	public function set_language(string $language): NewsText
 	{
 		$this->language = $language;
 		return $this;
@@ -100,7 +100,7 @@ class NewsText {
 	/**
 	 * @return	string
 	 */
-	public function getTitle(): string
+	public function get_title(): string
 	{
 		return $this->title;
 	}
@@ -109,7 +109,7 @@ class NewsText {
 	 * @param	string	$title
 	 * @return	$this
 	 */
-	public function setTitle(string $title): NewsText
+	public function set_title(string $title): NewsText
 	{
 		$this->title = $title;
 		return $this;
@@ -118,7 +118,7 @@ class NewsText {
 	/**
 	 * @return	string
 	 */
-	public function getBody(): string
+	public function get_body(): string
 	{
 		return $this->body;
 	}
@@ -127,7 +127,7 @@ class NewsText {
 	 * @param	string	$body
 	 * @return	$this
 	 */
-	public function setBody(string $body): NewsText
+	public function set_body(string $body): NewsText
 	{
 		$this->body = $body;
 		return $this;

@@ -21,9 +21,9 @@ class User {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$userId
+	 * @var	int	$user_id
 	 */
-	protected $userId;
+	protected $user_id;
 
 	/**
 	 * @var	string	$password
@@ -31,14 +31,14 @@ class User {
 	protected $password;
 
 	/**
-	 * @var	string	$firstName
+	 * @var	string	$first_name
 	 */
-	protected $firstName;
+	protected $first_name;
 
 	/**
-	 * @var	string	$lastName
+	 * @var	string	$last_name
 	 */
-	protected $lastName;
+	protected $last_name;
 
 	/**
 	 * @var	string	$email
@@ -100,16 +100,16 @@ class User {
 	 */
 	public function getUserId(): int
 	{
-		return $this->userId;
+		return $this->user_id;
 	}
 
 	/**
-	 * @param	int	$userId
+	 * @param	int	$user_id
 	 * @return	$this
 	 */
-	public function setUserId(int $userId): User
+	public function setUserId(int $user_id): User
 	{
-		$this->userId = $userId;
+		$this->user_id = $user_id;
 		return $this;
 	}
 
@@ -136,16 +136,16 @@ class User {
 	 */
 	public function getFirstName(): string
 	{
-		return $this->firstName;
+		return $this->first_name;
 	}
 
 	/**
-	 * @param	string	$firstName
+	 * @param	string	$first_name
 	 * @return	$this
 	 */
-	public function setFirstName(string $firstName): User
+	public function setFirstName(string $first_name): User
 	{
-		$this->firstName = $firstName;
+		$this->first_name = $first_name;
 		return $this;
 	}
 
@@ -154,16 +154,16 @@ class User {
 	 */
 	public function getLastName(): string
 	{
-		return $this->lastName;
+		return $this->last_name;
 	}
 
 	/**
-	 * @param	string	$lastName
+	 * @param	string	$last_name
 	 * @return	$this
 	 */
-	public function setLastName(string $lastName): User
+	public function setLastName(string $last_name): User
 	{
-		$this->lastName = $lastName;
+		$this->last_name = $last_name;
 		return $this;
 	}
 

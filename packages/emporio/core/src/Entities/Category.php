@@ -19,14 +19,14 @@ class Category {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$categoryId
+	 * @var	int	$category_id
 	 */
-	protected $categoryId;
+	protected $category_id;
 
 	/**
-	 * @var	int	$parentCategoryId
+	 * @var	int	$parent_category_id
 	 */
-	protected $parentCategoryId;
+	protected $parent_category_id;
 
 	/**
 	 * @var	string	$slug
@@ -34,46 +34,46 @@ class Category {
 	protected $slug;
 
 	/**
-	 * @param    int $categoryId
+	 * @param    int $category_id
 	 * @return    $this
 	 */
-	public function setCategoryId(int $categoryId): Category
+	public function set_category_id(int $category_id): Category
 	{
-		$this->categoryId = $categoryId;
+		$this->category_id = $category_id;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function getCategoryId(): int
+	public function get_category_id(): int
 	{
-		return $this->categoryId;
+		return $this->category_id;
 	}
 
 	/**
-	 * @param	int	$parentCategoryId
+	 * @param	int	$parent_category_id
 	 * @return	$this
 	 */
-	public function setParentCategoryId(int $parentCategoryId): Category
+	public function set_parent_category_id(int $parent_category_id): Category
 	{
-		$this->parentCategoryId = $parentCategoryId;
+		$this->parent_category_id = $parent_category_id;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function getParentCategoryId(): int
+	public function get_parent_category_id(): int
 	{
-		return $this->parentCategoryId;
+		return $this->parent_category_id;
 	}
 
 	/**
 	 * @param	string	$slug
 	 * @return	$this
 	 */
-	public function setSlug(string $slug): Category
+	public function set_slug(string $slug): Category
 	{
 		$this->slug = $slug;
 		return $this;
@@ -82,7 +82,7 @@ class Category {
 	/**
 	 * @return	string
 	 */
-	public function getSlug(): string
+	public function get_slug(): string
 	{
 		return $this->slug;
 	}

@@ -19,14 +19,14 @@ class Order {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$orderId
+	 * @var	int	$order_id
 	 */
-	protected $orderId;
+	protected $order_id;
 
 	/**
-	 * @var	int	$userId
+	 * @var	int	$user_id
 	 */
-	protected $userId;
+	protected $user_id;
 
 	/**
 	 * @var	int	$created
@@ -39,19 +39,19 @@ class Order {
 	protected $status;
 
 	/**
-	 * @var	bool	$shipmentExpress
+	 * @var	bool	$shipment_express
 	 */
-	protected $shipmentExpress;
+	protected $shipment_express;
 
 	/**
-	 * @var	bool	$shipmentToDoor
+	 * @var	bool	$shipment_to_door
 	 */
-	protected $shipmentToDoor;
+	protected $shipment_to_door;
 
 	/**
-	 * @var	bool	$shipmentCashOnDelivery
+	 * @var	bool	$shipment_cash_on_delivery
 	 */
-	protected $shipmentCashOnDelivery;
+	protected $shipment_cash_on_delivery;
 
 	/**
 	 * @var	float	$price
@@ -59,9 +59,9 @@ class Order {
 	protected $price;
 
 	/**
-	 * @var	int	$couponId
+	 * @var	int	$coupon_id
 	 */
-	protected $couponId;
+	protected $coupon_id;
 
 	/**
 	 * @var	string	$questionnaire
@@ -71,43 +71,43 @@ class Order {
 	/**
 	 * @return	int
 	 */
-	public function getOrderId(): int
+	public function get_order_id(): int
 	{
-		return $this->orderId;
+		return $this->order_id;
 	}
 
 	/**
-	 * @param	int	$orderId
+	 * @param	int	$order_id
 	 * @return	$this
 	 */
-	public function setOrderId(int $orderId): Order
+	public function set_order_id(int $order_id): Order
 	{
-		$this->orderId = $orderId;
+		$this->order_id = $order_id;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function getUserId(): int
+	public function get_user_id(): int
 	{
-		return $this->userId;
+		return $this->user_id;
 	}
 
 	/**
-	 * @param	int	$userId
+	 * @param	int	$user_id
 	 * @return	$this
 	 */
-	public function setUserId(int $userId): Order
+	public function set_user_id(int $user_id): Order
 	{
-		$this->userId = $userId;
+		$this->user_id = $user_id;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function getCreated(): int
+	public function get_created(): int
 	{
 		return $this->created;
 	}
@@ -116,7 +116,7 @@ class Order {
 	 * @param	int	$created
 	 * @return	$this
 	 */
-	public function setCreated(int $created): Order
+	public function set_created(int $created): Order
 	{
 		$this->created = $created;
 		return $this;
@@ -125,7 +125,7 @@ class Order {
 	/**
 	 * @return	int
 	 */
-	public function getStatus(): int
+	public function get_status(): int
 	{
 		return $this->status;
 	}
@@ -134,7 +134,7 @@ class Order {
 	 * @param	int	$status
 	 * @return	$this
 	 */
-	public function setStatus(int $status): Order
+	public function set_status(int $status): Order
 	{
 		$this->status = $status;
 		return $this;
@@ -143,18 +143,18 @@ class Order {
 	/**
 	 * @return	bool
 	 */
-	public function isShipmentExpress(): bool
+	public function is_shipment_express(): bool
 	{
-		return $this->shipmentExpress;
+		return $this->shipment_express;
 	}
 
 	/**
-	 * @param	bool	$shipmentExpress
+	 * @param	bool	$shipment_express
 	 * @return	$this
 	 */
-	public function setShipmentExpress(bool $shipmentExpress): Order
+	public function set_shipment_express(bool $shipment_express): Order
 	{
-		$this->shipmentExpress = $shipmentExpress;
+		$this->shipment_express = $shipment_express;
 		return $this;
 	}
 
@@ -163,16 +163,16 @@ class Order {
 	 */
 	public function is_shipment_to_door(): bool
 	{
-		return $this->shipmentToDoor;
+		return $this->shipment_to_door;
 	}
 
 	/**
-	 * @param	bool	$shipmentToDoor
+	 * @param	bool	$shipment_to_door
 	 * @return	$this
 	 */
-	public function set_shipment_to_door(bool $shipmentToDoor): Order
+	public function set_shipment_to_door(bool $shipment_to_door): Order
 	{
-		$this->shipmentToDoor = $shipmentToDoor;
+		$this->shipment_to_door = $shipment_to_door;
 		return $this;
 	}
 
@@ -181,23 +181,23 @@ class Order {
 	 */
 	public function is_shipment_cash_on_delivery(): bool
 	{
-		return $this->shipmentCashOnDelivery;
+		return $this->shipment_cash_on_delivery;
 	}
 
 	/**
-	 * @param	bool	$shipmentCashOnDelivery
+	 * @param	bool	$shipment_cash_on_delivery
 	 * @return	$this
 	 */
-	public function set_shipment_cash_on_delivery(bool $shipmentCashOnDelivery): Order
+	public function set_shipment_cash_on_delivery(bool $shipment_cash_on_delivery): Order
 	{
-		$this->shipmentCashOnDelivery = $shipmentCashOnDelivery;
+		$this->shipment_cash_on_delivery = $shipment_cash_on_delivery;
 		return $this;
 	}
 
 	/**
 	 * @return	float
 	 */
-	public function getPrice(): float
+	public function get_price(): float
 	{
 		return $this->price;
 	}
@@ -206,7 +206,7 @@ class Order {
 	 * @param	float	$price
 	 * @return	$this
 	 */
-	public function setPrice(float $price): Order
+	public function set_price(float $price): Order
 	{
 		$this->price = $price;
 		return $this;
@@ -215,25 +215,25 @@ class Order {
 	/**
 	 * @return	int
 	 */
-	public function getCouponId(): int
+	public function get_coupon_id(): int
 	{
-		return $this->couponId;
+		return $this->coupon_id;
 	}
 
 	/**
-	 * @param	int	$couponId
+	 * @param	int	$coupon_id
 	 * @return	$this
 	 */
-	public function setCouponId(int $couponId): Order
+	public function set_coupon_id(int $coupon_id): Order
 	{
-		$this->couponId = $couponId;
+		$this->coupon_id = $coupon_id;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function getQuestionnaire(): string
+	public function get_questionnaire(): string
 	{
 		return $this->questionnaire;
 	}
@@ -242,7 +242,7 @@ class Order {
 	 * @param	string	$questionnaire
 	 * @return	$this
 	 */
-	public function setQuestionnaire(string $questionnaire): Order
+	public function set_questionnaire(string $questionnaire): Order
 	{
 		$this->questionnaire = $questionnaire;
 		return $this;
