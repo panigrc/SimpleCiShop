@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Emporio\Core\Entities;
+namespace Emporio\Core\ORM\Entity;
 
 use Emporio\Core\Traits\GettableSettableTrait;
 
