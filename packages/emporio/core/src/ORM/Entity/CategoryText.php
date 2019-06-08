@@ -21,27 +21,27 @@ class CategoryText {
 	/**
 	 * @var	int	$category_text_id
 	 */
-	private $category_text_id;
+	protected $category_text_id;
 
 	/**
 	 * @var	int	$category_id
 	 */
-	private $category_id;
+	protected $category_id;
 
 	/**
 	 * @var	string	$language
 	 */
-	private $language;
+	protected $language;
 
 	/**
 	 * @var	string	$name
 	 */
-	private $name;
+	protected $name;
 
 	/**
 	 * @var	string	$description
 	 */
-	private $description;
+	protected $description;
 
 	/**
 	 * @return	int

@@ -21,17 +21,17 @@ class News {
 	/**
 	 * @var	int	$news_id
 	 */
-	private $news_id;
+	protected $news_id;
 
 	/**
 	 * @var	int	$published
 	 */
-	private $published;
+	protected $published;
 
 	/**
 	 * @var	int	$updated
 	 */
-	private $updated;
+	protected $updated;
 
 	/**
 	 * @return	int
