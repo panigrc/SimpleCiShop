@@ -14,7 +14,12 @@ declare(strict_types=1);
 namespace Emporio\Core\Model;
 
 use Emporio\Core\ORM\Entity\News as BaseNews;
+use Emporio\Core\ORM\Entity\NewsText;
 
 class News extends BaseNews
 {
+	/**
+	 * @var NewsText[]
+	 */
+	protected $texts;
 }
