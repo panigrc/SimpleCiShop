@@ -19,9 +19,9 @@ class ProductImage {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$product_image_id
+	 * @var	int	$id
 	 */
-	protected $product_image_id;
+	protected $id;
 
 	/**
 	 * @var	int	$product_id
@@ -51,18 +51,18 @@ class ProductImage {
 	/**
 	 * @return	int
 	 */
-	public function get_product_image_id(): int
+	public function get_id(): int
 	{
-		return $this->product_image_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$product_image_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_product_image_id(int $product_image_id): ProductImage
+	public function set_id(int $id): ProductImage
 	{
-		$this->product_image_id = $product_image_id;
+		$this->id = $id;
 		return $this;
 	}
 
