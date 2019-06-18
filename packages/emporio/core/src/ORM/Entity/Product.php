@@ -19,9 +19,9 @@ class Product {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$product_id
+	 * @var	int	$id
 	 */
-	protected $product_id;
+	protected $id;
 
 	/**
 	 * @var	string	$slug
@@ -41,18 +41,18 @@ class Product {
 	/**
 	 * @return	int
 	 */
-	public function get_product_id(): int
+	public function get_id(): int
 	{
-		return $this->product_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$product_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): Product
+	public function set_id(int $id): Product
 	{
-		$this->product_id = $product_id;
+		$this->id = $id;
 		return $this;
 	}
 
