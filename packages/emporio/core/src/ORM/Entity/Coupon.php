@@ -19,9 +19,9 @@ class Coupon {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$coupon_id
+	 * @var	int	$id
 	 */
-	protected $coupon_id;
+	protected $id;
 
 	/**
 	 * @var	string	$coupon_number
@@ -46,18 +46,18 @@ class Coupon {
 	/**
 	 * @return	int
 	 */
-	public function get_coupon_id(): int
+	public function get_id(): int
 	{
-		return $this->coupon_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$coupon_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_coupon_id(int $coupon_id): Coupon
+	public function set_id(int $id): Coupon
 	{
-		$this->coupon_id = $coupon_id;
+		$this->id = $id;
 		return $this;
 	}
 
