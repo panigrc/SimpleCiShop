@@ -19,9 +19,9 @@ class ProductCategory {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$relation_id
+	 * @var	int	$id
 	 */
-	protected $relation_id;
+	protected $id;
 
 	/**
 	 * @var	int	$product_id
@@ -36,18 +36,18 @@ class ProductCategory {
 	/**
 	 * @return	int
 	 */
-	public function get_relation_id(): int
+	public function get_id(): int
 	{
-		return $this->relation_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$relation_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_relation_id(int $relation_id): OrderProduct
+	public function set_id(int $id): ProductCategory
 	{
-		$this->relation_id = $relation_id;
+		$this->id = $id;
 		return $this;
 	}
 
@@ -63,7 +63,7 @@ class ProductCategory {
 	 * @param	int	$product_id
 	 * @return	$this
 	 */
-	public function set_product_id(int $product_id): OrderProduct
+	public function set_product_id(int $product_id): ProductCategory
 	{
 		$this->product_id = $product_id;
 		return $this;
@@ -81,7 +81,7 @@ class ProductCategory {
 	 * @param	int	$category_id
 	 * @return	$this
 	 */
-	public function set_category_id(int $category_id): OrderProduct
+	public function set_category_id(int $category_id): ProductCategory
 	{
 		$this->category_id = $category_id;
 		return $this;
