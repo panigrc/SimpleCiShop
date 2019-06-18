@@ -19,9 +19,9 @@ class CategoryText {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$category_text_id
+	 * @var	int	$id
 	 */
-	protected $category_text_id;
+	protected $id;
 
 	/**
 	 * @var	int	$category_id
@@ -46,18 +46,18 @@ class CategoryText {
 	/**
 	 * @return	int
 	 */
-	public function get_category_text_id(): int
+	public function get_id(): int
 	{
-		return $this->category_text_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$category_text_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_category_text_id(int $category_text_id): CategoryText
+	public function set_id(int $id): CategoryText
 	{
-		$this->category_text_id = $category_text_id;
+		$this->id = $id;
 		return $this;
 	}
 
