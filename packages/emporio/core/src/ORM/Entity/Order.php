@@ -19,9 +19,9 @@ class Order {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$order_id
+	 * @var	int	$id
 	 */
-	protected $order_id;
+	protected $id;
 
 	/**
 	 * @var	int	$user_id
@@ -71,18 +71,18 @@ class Order {
 	/**
 	 * @return	int
 	 */
-	public function get_order_id(): int
+	public function get_id(): int
 	{
-		return $this->order_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$order_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_order_id(int $order_id): Order
+	public function set_id(int $id): Order
 	{
-		$this->order_id = $order_id;
+		$this->id = $id;
 		return $this;
 	}
 
