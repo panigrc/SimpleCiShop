@@ -19,9 +19,9 @@ class Category {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$category_id
+	 * @var	int	$id
 	 */
-	protected $category_id;
+	protected $id;
 
 	/**
 	 * @var	int	$parent_category_id
@@ -34,21 +34,21 @@ class Category {
 	protected $slug;
 
 	/**
-	 * @param    int $category_id
-	 * @return    $this
+	 * @param	int	$id
+	 * @return	$this
 	 */
-	public function set_category_id(int $category_id): Category
+	public function set_id(int $id): Category
 	{
-		$this->category_id = $category_id;
+		$this->id = $id;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function get_category_id(): int
+	public function get_id(): int
 	{
-		return $this->category_id;
+		return $this->id;
 	}
 
 	/**
