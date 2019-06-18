@@ -19,9 +19,9 @@ class OrderProduct {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$relation_id
+	 * @var	int	$id
 	 */
-	protected $relation_id;
+	protected $id;
 
 	/**
 	 * @var	int	$order_id
@@ -41,18 +41,18 @@ class OrderProduct {
 	/**
 	 * @return	int
 	 */
-	public function get_relation_id(): int
+	public function get_id(): int
 	{
-		return $this->relation_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$relation_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_relation_id(int $relation_id): OrderProduct
+	public function set_id(int $id): OrderProduct
 	{
-		$this->relation_id = $relation_id;
+		$this->id = $id;
 		return $this;
 	}
 
