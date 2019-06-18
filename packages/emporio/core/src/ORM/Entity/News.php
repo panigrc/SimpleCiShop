@@ -19,9 +19,9 @@ class News {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$news_id
+	 * @var	int	$id
 	 */
-	protected $news_id;
+	protected $id;
 
 	/**
 	 * @var	int	$published
@@ -36,25 +36,25 @@ class News {
 	/**
 	 * @return	int
 	 */
-	public function getNewsId(): int
+	public function get_id(): int
 	{
-		return $this->news_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$news_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function setNewsId(int $news_id): News
+	public function set_id(int $id): News
 	{
-		$this->news_id = $news_id;
+		$this->id = $id;
 		return $this;
 	}
 
 	/**
 	 * @return	int
 	 */
-	public function getPublished(): int
+	public function get_published(): int
 	{
 		return $this->published;
 	}
@@ -63,7 +63,7 @@ class News {
 	 * @param	int	$published
 	 * @return	$this
 	 */
-	public function setPublished(int $published): News
+	public function set_published(int $published): News
 	{
 		$this->published = $published;
 		return $this;
@@ -72,7 +72,7 @@ class News {
 	/**
 	 * @return	int
 	 */
-	public function getUpdated(): int
+	public function get_updated(): int
 	{
 		return $this->updated;
 	}
@@ -81,7 +81,7 @@ class News {
 	 * @param	int	$updated
 	 * @return	$this
 	 */
-	public function setUpdated(int $updated): News
+	public function set_updated(int $updated): News
 	{
 		$this->updated = $updated;
 		return $this;
