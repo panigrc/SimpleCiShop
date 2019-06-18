@@ -14,8 +14,6 @@ declare(strict_types=1);
 namespace Emporio\Core\Model;
 
 use Emporio\Core\ORM\Entity\Category as BaseCategory;
-use Emporio\Core\ORM\Entity\CategoryText;
-use Emporio\Core\ORM\Entity\Product;
 
 class Category extends BaseCategory
 {
