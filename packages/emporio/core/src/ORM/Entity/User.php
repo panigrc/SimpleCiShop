@@ -21,9 +21,9 @@ class User {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$user_id
+	 * @var	int	$id
 	 */
-	protected $user_id;
+	protected $id;
 
 	/**
 	 * @var	string	$password
@@ -98,25 +98,25 @@ class User {
 	/**
 	 * @return	int
 	 */
-	public function getUserId(): int
+	public function get_id(): int
 	{
-		return $this->user_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$user_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function setUserId(int $user_id): User
+	public function set_id(int $id): User
 	{
-		$this->user_id = $user_id;
+		$this->id = $id;
 		return $this;
 	}
 
 	/**
 	 * @return	string
 	 */
-	public function getPassword(): string
+	public function get_password(): string
 	{
 		return $this->password;
 	}
@@ -125,7 +125,7 @@ class User {
 	 * @param	string	$password
 	 * @return	$this
 	 */
-	public function setPassword(string $password): User
+	public function set_password(string $password): User
 	{
 		$this->password = $password;
 		return $this;
@@ -134,7 +134,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getFirstName(): string
+	public function get_first_name(): string
 	{
 		return $this->first_name;
 	}
@@ -143,7 +143,7 @@ class User {
 	 * @param	string	$first_name
 	 * @return	$this
 	 */
-	public function setFirstName(string $first_name): User
+	public function set_first_name(string $first_name): User
 	{
 		$this->first_name = $first_name;
 		return $this;
@@ -152,7 +152,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getLastName(): string
+	public function get_last_name(): string
 	{
 		return $this->last_name;
 	}
@@ -161,7 +161,7 @@ class User {
 	 * @param	string	$last_name
 	 * @return	$this
 	 */
-	public function setLastName(string $last_name): User
+	public function set_last_name(string $last_name): User
 	{
 		$this->last_name = $last_name;
 		return $this;
@@ -170,7 +170,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getEmail(): string
+	public function get_email(): string
 	{
 		return $this->email;
 	}
@@ -179,7 +179,7 @@ class User {
 	 * @param	string	$email
 	 * @return	$this
 	 */
-	public function setEmail(string $email): User
+	public function set_email(string $email): User
 	{
 		$this->email = $email;
 		return $this;
@@ -188,7 +188,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getUrl(): string
+	public function get_url(): string
 	{
 		return $this->url;
 	}
@@ -197,7 +197,7 @@ class User {
 	 * @param	string	$url
 	 * @return	$this
 	 */
-	public function setUrl(string $url): User
+	public function set_url(string $url): User
 	{
 		$this->url = $url;
 		return $this;
@@ -206,7 +206,7 @@ class User {
 	/**
 	 * @return	DateTime
 	 */
-	public function getBirthDate(): DateTime
+	public function get_birth_date(): DateTime
 	{
 		return $this->birthDate;
 	}
@@ -215,7 +215,7 @@ class User {
 	 * @param	DateTime $birthDate
 	 * @return	$this
 	 */
-	public function setBirthDate(DateTime $birthDate): User
+	public function set_birth_date(DateTime $birthDate): User
 	{
 		$this->birthDate = $birthDate;
 		return $this;
@@ -224,7 +224,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getCity(): string
+	public function get_city(): string
 	{
 		return $this->city;
 	}
@@ -233,7 +233,7 @@ class User {
 	 * @param	string	$city
 	 * @return	$this
 	 */
-	public function setCity(string $city): User
+	public function set_city(string $city): User
 	{
 		$this->city = $city;
 		return $this;
@@ -242,7 +242,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getStreet(): string
+	public function get_street(): string
 	{
 		return $this->street;
 	}
@@ -251,7 +251,7 @@ class User {
 	 * @param	string	$street
 	 * @return	$this
 	 */
-	public function setStreet(string $street): User
+	public function set_street(string $street): User
 	{
 		$this->street = $street;
 		return $this;
@@ -260,7 +260,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getZip(): string
+	public function get_zip(): string
 	{
 		return $this->zip;
 	}
@@ -269,7 +269,7 @@ class User {
 	 * @param	string	$zip
 	 * @return	$this
 	 */
-	public function setZip(string $zip): User
+	public function set_zip(string $zip): User
 	{
 		$this->zip = $zip;
 		return $this;
@@ -278,7 +278,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getCountry(): string
+	public function get_country(): string
 	{
 		return $this->country;
 	}
@@ -287,7 +287,7 @@ class User {
 	 * @param	string	$country
 	 * @return	$this
 	 */
-	public function setCountry(string $country): User
+	public function set_country(string $country): User
 	{
 		$this->country = $country;
 		return $this;
@@ -296,7 +296,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getPhone(): string
+	public function get_phone(): string
 	{
 		return $this->phone;
 	}
@@ -305,7 +305,7 @@ class User {
 	 * @param	string	$phone
 	 * @return	$this
 	 */
-	public function setPhone(string $phone): User
+	public function set_phone(string $phone): User
 	{
 		$this->phone = $phone;
 		return $this;
@@ -314,7 +314,7 @@ class User {
 	/**
 	 * @return	string
 	 */
-	public function getLanguage(): string
+	public function get_language(): string
 	{
 		return $this->language;
 	}
@@ -323,7 +323,7 @@ class User {
 	 * @param	string	$language
 	 * @return	$this
 	 */
-	public function setLanguage(string $language): User
+	public function set_language(string $language): User
 	{
 		$this->language = $language;
 		return $this;
@@ -332,7 +332,7 @@ class User {
 	/**
 	 * @return	DateTime
 	 */
-	public function getRegistered(): DateTime
+	public function get_registered(): DateTime
 	{
 		return $this->registered;
 	}
@@ -341,7 +341,7 @@ class User {
 	 * @param	DateTime $registered
 	 * @return	$this
 	 */
-	public function setRegistered(DateTime $registered): User
+	public function set_registered(DateTime $registered): User
 	{
 		$this->registered = $registered;
 		return $this;
@@ -350,7 +350,7 @@ class User {
 	/**
 	 * @return	int
 	 */
-	public function getCredits(): int
+	public function get_credits(): int
 	{
 		return $this->credits;
 	}
@@ -359,7 +359,7 @@ class User {
 	 * @param	int	$credits
 	 * @return	$this
 	 */
-	public function setCredits(int $credits): User
+	public function set_credits(int $credits): User
 	{
 		$this->credits = $credits;
 		return $this;
