@@ -19,9 +19,9 @@ class NewsText {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$news_text_id
+	 * @var	int	$id
 	 */
-	protected $news_text_id;
+	protected $id;
 
 	/**
 	 * @var	int	$news_id
@@ -46,18 +46,18 @@ class NewsText {
 	/**
 	 * @return	int
 	 */
-	public function get_news_text_id(): int
+	public function get_id(): int
 	{
-		return $this->news_text_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$news_text_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_news_text_id(int $news_text_id): NewsText
+	public function set_id(int $id): NewsText
 	{
-		$this->news_text_id = $news_text_id;
+		$this->id = $id;
 		return $this;
 	}
 
