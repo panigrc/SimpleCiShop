@@ -19,9 +19,9 @@ class ProductMeta {
 	use GettableSettableTrait;
 
 	/**
-	 * @var	int	$meta_id
+	 * @var	int	$id
 	 */
-	protected $meta_id;
+	protected $id;
 
 	/**
 	 * @var	int	$product_id
@@ -41,18 +41,18 @@ class ProductMeta {
 	/**
 	 * @return	int
 	 */
-	public function get_meta_id(): int
+	public function get_id(): int
 	{
-		return $this->meta_id;
+		return $this->id;
 	}
 
 	/**
-	 * @param	int	$meta_id
+	 * @param	int	$id
 	 * @return	$this
 	 */
-	public function set_meta_id(int $meta_id): ProductMeta
+	public function set_id(int $id): ProductMeta
 	{
-		$this->meta_id = $meta_id;
+		$this->id = $id;
 		return $this;
 	}
 
