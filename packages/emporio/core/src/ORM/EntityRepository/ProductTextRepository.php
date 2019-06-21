@@ -11,8 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Emporio\Core\ORM\EntityManager;
+namespace Emporio\Core\ORM\EntityRepository;
 
-class CouponManager
+class ProductTextRepository
 {
 }
