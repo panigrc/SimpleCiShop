@@ -13,6 +13,6 @@ declare(strict_types=1);
 
 namespace Emporio\Core\ORM\EntityRepository;
 
-class NewsRepository
+class NewsRepository extends AbstractEntityRepository
 {
 }
