@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Emporio\Core\Model;
 
 use Emporio\Core\ORM\Entity\Order as BaseOrder;
+use Emporio\Core\ORM\Entity\OrderProduct;
 
 class Order extends BaseOrder
 {

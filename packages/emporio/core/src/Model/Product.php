@@ -14,6 +14,9 @@ declare(strict_types=1);
 namespace Emporio\Core\Model;
 
 use Emporio\Core\ORM\Entity\Product as BaseProduct;
+use Emporio\Core\ORM\Entity\ProductImage;
+use Emporio\Core\ORM\Entity\ProductMeta;
+use Emporio\Core\ORM\Entity\ProductText;
 
 class Product extends BaseProduct
 {
