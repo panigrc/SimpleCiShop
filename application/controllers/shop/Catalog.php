@@ -58,7 +58,7 @@ class Catalog extends CI_Controller {
 		);
 
 		$this->template_library->view(
-			'shop/container',
+			'shop/container_tpl',
 			[
 				'pagename' => 'main_catalog',
 				'lang' => $this->language_library->get_language(),
@@ -77,7 +77,7 @@ class Catalog extends CI_Controller {
 	private function _get_product_data($category_id, $products_per_page = 6, $current_page = 0)
 	{
 		$products = $this->search_model->search_products_by_category_id($category_id, $products_per_page, $current_page);
-		
+
 		foreach ($products as $product => $value)
 		{
 			$products[$product] += $this->product_model->get_product_text($products[$product]['product_id']);
@@ -101,7 +101,7 @@ class Catalog extends CI_Controller {
 			'last_link' => $this->lang->line('main_page_last'),
 		);
 		$this->pagination->initialize($config);
-		
+
 		return $this->pagination->create_links();
 	}
 

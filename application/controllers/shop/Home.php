@@ -34,7 +34,7 @@ class Home extends CI_Controller {
 
 		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 	}
 
 	public function transactions()
@@ -56,7 +56,7 @@ class Home extends CI_Controller {
 
 		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 	}
 
 	public function secure()
@@ -78,6 +78,6 @@ class Home extends CI_Controller {
 
 		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 	}
 }

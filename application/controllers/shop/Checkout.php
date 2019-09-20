@@ -53,7 +53,7 @@ class Checkout extends CI_Controller {
 					}
 					</script>';
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 	}
 
 	public function get_user()
@@ -158,7 +158,7 @@ class Checkout extends CI_Controller {
 	public function thankyou()
 	{
 		$cart = $this->cart_library->get_cart();
-		
+
 		$rblock_data = array(
 			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
 			'parent' => array(),
@@ -179,7 +179,7 @@ class Checkout extends CI_Controller {
 			'scripts' => '',
 		);
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 	}
 
 	private function _get_price_sum($cart)

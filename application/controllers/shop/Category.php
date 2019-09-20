@@ -29,7 +29,7 @@ class Category extends CI_Controller {
 		$data['lang'] = $lang;
 		$data['pagename'] = '';
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 
 	}
 
@@ -52,6 +52,6 @@ class Category extends CI_Controller {
 		$data['lang'] = $lang;
 		$data['pagename'] = '';
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 	}
 }

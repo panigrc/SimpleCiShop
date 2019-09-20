@@ -25,7 +25,7 @@ class News extends CI_Controller {
 			'lang' => $this->language_library->get_language(),
 		);
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 	}
 
 	/**

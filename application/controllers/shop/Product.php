@@ -44,6 +44,6 @@ class Product extends CI_Controller {
 			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
 		);
 
-		$this->load->view('shop/container', $data);
+		$this->load->view('shop/container_tpl', $data);
 	}
 }
