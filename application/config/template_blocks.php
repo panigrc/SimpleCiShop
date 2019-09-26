@@ -5,19 +5,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------
 |  Template Block Configuration
 | -------------------------------------------------------------------
-| section: The blocks are being appended to the sections in the
+| section [string]: The blocks are being appended to the sections in the
 | Template_library.
 |
-| rule: Regular expression in which sites should the block being
+| position [int]: The position in which the block should be placed.
+|
+| rule [sting]: Regular expression in which sites should the block being
 | displayed.
 |
-| callback: The callback must be a valid callable.
+| callback [array]: The callback must be a valid callable.
 |
 | Prototype:
 |
 |  $config['blocks'] = [
 |      [
 |          'section',
+|          'position',
 |          'rule',
 |          'callback',
 |      ],
@@ -27,7 +30,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['blocks'] = [
 	[
 		'section' => 'contents',
-		'rule' => '*',
-		'callback' => [],
+		'position' => 1,
+		'rule' => '/.*/',
+		'callback' => ['welcomeBlock', 'view'],
 	],
 ];

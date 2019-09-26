@@ -24,13 +24,13 @@ class Catalog extends CI_Controller {
 
 		if ($category_id === 0)
 		{
-			$this->template_library->set(
+			$this->template_library->setSection(
 				'contents',
 				'shop/contents/'.$this->language_library->get_language().'/home_tpl'
 			);
 		}
 
-		$this->template_library->append(
+		$this->template_library->appendToSection(
 			'contents',
 			'shop/contents/catalog_tpl',
 			[
@@ -46,7 +46,7 @@ class Catalog extends CI_Controller {
 		//$data['category_id'] = $this->search_model->getSearchData();
 		//$data['category_id'] = $searchData['category_id'];
 
-		$this->template_library->set(
+		$this->template_library->setSection(
 			'rblock',
 			'shop/blocks/category_block_tpl',
 			[
