@@ -1,4 +1,9 @@
 <?php
+
+use Emporio\Ui\Block\BlockInterface;
+use Emporio\Ui\Factory\BlockFactory;
+use Emporio\Ui\Factory\SectionFactory;
+
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Template_library {
@@ -29,21 +34,6 @@ class Template_library {
 	}
 
 	/**
-	 * Prepends a template
-	 * If template doesn't exist, it creates one
-	 *
-	 * @param	string	$section	The section of the template in which we should prepend to
-	 * @param	string	$view	View Name
-	 * @param	array	$vars	An associative array of data to be extracted for use in the view
-	 */
-	public function prependToSection(string $section, string $view, array $vars = [])
-	{
-		$existingTemplate = $this->templates[$section] ?? '';
-		$this->setSection($section, $view, $vars);
-		$this->templates[$section] = $this->templates[$section] . $existingTemplate;
-	}
-
-	/**
 	 * Appends a template
 	 * If template doesn't exist, it creates one
 	 *
@@ -56,27 +46,6 @@ class Template_library {
 		$existingTemplate = $this->templates[$section] ?? '';
 		$this->setSection($section, $view, $vars);
 		$this->templates[$section] = $existingTemplate . $this->templates[$section];
-	}
-
-	/**
-	 * Remove a template section.
-	 *
-	 * @param	string	$section
-	 */
-	public function removeSection(string $section)
-	{
-		unset($this->templates[$section]);
-	}
-
-	/**
-	 * Check if template section exists.
-	 *
-	 * @param	string	$section
-	 * @return	bool
-	 */
-	public function hasSection(string $section)
-	{
-		return isset($this->templates[$section]);
 	}
 
 	/**
@@ -102,32 +71,35 @@ class Template_library {
 	 */
 	private function initBlocks(array $vars = [])
 	{
-		foreach($this->CI->config->item('blocks') as $block) {
+		/** @var BlockInterface[] $blocks */
+		$blocks = [];
 
-			if (! $this->validateBlockConfiguration($block)) {
-				return;
+		foreach ($this->CI->config->item('blocks') as $block) {
+			$blocks[] = BlockFactory::create($block['section'], $block['position'], $block['callback']);
+		}
+
+		$sections = SectionFactory::createFromBlocks($blocks);
+
+		foreach ($sections as $section) {
+			foreach ($section->getBlocks() as $block) {
+				$renderedContents = call_user_func($block->getCallback(), $this->CI, $vars);
+				$this->addRenderedContents($section->getName(), $renderedContents ?? '');
 			}
-
-			$this->templates[$block['section']] = call_user_func($block['callback'], $this->CI, $vars);
 		}
 	}
 
 	/**
-	 * @param	array	$block
-	 * @return	bool
-	 * @throws	BadMethodCallException
+	 * Adds rendered view contents to a Template.
+	 *
+	 * @param string $sectionName
+	 * @param string $contents
 	 */
-	private function validateBlockConfiguration(array $block)
+	private function addRenderedContents(string $sectionName, string $contents)
 	{
-		if (! is_callable($block['callback'])) {
-			throw new BadMethodCallException(sprintf(
-					"Callback [%s] was not found",
-					implode(':', $block['callback'])
-				)
-			);
+		if (! $this->templates[$sectionName]) {
+			$this->templates[$sectionName] = '';
 		}
 
-		preg_match($block['rule'], current_url(), $matches);
-		return !empty($matches);
+		$this->templates[$sectionName] .= $contents;
 	}
 }

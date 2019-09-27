@@ -10,9 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | position [int]: The position in which the block should be placed.
 |
-| rule [sting]: Regular expression in which sites should the block being
-| displayed.
-|
 | callback [array]: The callback must be a valid callable.
 |
 | Prototype:
@@ -21,7 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |      [
 |          'section',
 |          'position',
-|          'rule',
 |          'callback',
 |      ],
 |  ];
@@ -31,7 +27,6 @@ $config['blocks'] = [
 	[
 		'section' => 'contents',
 		'position' => 1,
-		'rule' => '/.*/',
 		'callback' => ['welcomeBlock', 'view'],
 	],
 ];

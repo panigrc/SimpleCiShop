@@ -17,5 +17,7 @@ class welcomeBlock
 				TRUE
 			);
 		}
+
+		return '';
 	}
 }
