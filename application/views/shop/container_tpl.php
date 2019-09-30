@@ -10,7 +10,7 @@
 	<meta name="robots" content="index,follow" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>theme/default/style.css" type="text/css" />
     <link href="<?php echo base_url() ?>assets/fontawesome/css/all.css" rel="stylesheet">
-	<title><?php if($this->lang->line($pagename)) echo $this->lang->line($pagename). ' - '; if( ! empty($title)) echo $title . ' - '; ?>SimpleCiShop</title>    
+	<title><?php if($this->lang->line($pagename)) echo $this->lang->line($pagename). ' - '; if( ! empty($title)) echo $title . ' - '; ?>SimpleCiShop</title>
     <script src="<?php echo base_url() ?>assets/scriptaculous/lib/prototype.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
@@ -24,9 +24,9 @@
 		<div class="header">
             <?php /*<div id="select_language">
             <span><?php echo $this->lang->line('main_select_language'); ?>: &nbsp;</span>
-            <a href="<?php echo site_url(str_replace($lang, 'english', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/gb.gif" title="<?php echo $this->lang->line('main_english'); ?>" alt="<?php echo $this->lang->line('main_english'); ?>" /></a>
-            <a href="<?php echo site_url(str_replace($lang, 'greek', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/gr.gif" title="<?php echo $this->lang->line('main_greek'); ?>" alt="<?php echo $this->lang->line('main_greek'); ?>" /></a>
-            <a href="<?php echo site_url(str_replace($lang, 'german', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/de.gif" title="<?php echo $this->lang->line('main_german'); ?>" alt="<?php echo $this->lang->line('main_german'); ?>" /></a>
+            <a href="<?php echo site_url(str_replace($this->language_library->get_language(), 'english', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/gb.gif" title="<?php echo $this->lang->line('main_english'); ?>" alt="<?php echo $this->lang->line('main_english'); ?>" /></a>
+            <a href="<?php echo site_url(str_replace($this->language_library->get_language(), 'greek', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/gr.gif" title="<?php echo $this->lang->line('main_greek'); ?>" alt="<?php echo $this->lang->line('main_greek'); ?>" /></a>
+            <a href="<?php echo site_url(str_replace($this->language_library->get_language(), 'german', $this->uri->uri_string())); ?>"><img src="<?php echo base_url(); ?>/theme/default/images/de.gif" title="<?php echo $this->lang->line('main_german'); ?>" alt="<?php echo $this->lang->line('main_german'); ?>" /></a>
             </div>
             */ ?>
 		    <div style="clear: both;"></div>
@@ -67,7 +67,7 @@
                 </div>
                 <div id="left">
                     <?php echo @$rblock; ?>
-                    <?php $this->load->view('shop/blocks/'.$lang.'/home_tpl'); ?>
+                    <?php $this->load->view('shop/blocks/'.$this->language_library->get_language().'/home_tpl'); ?>
                 </div>
 			</div>
             <div style="clear: both;"></div>

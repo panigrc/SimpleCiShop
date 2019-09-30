@@ -18,34 +18,23 @@ class Template_library {
 	 */
 	private $templates = [];
 
+	/**
+	 * @var	BlockInterface[]	$blocks
+	 */
+	private $blocks = [];
+
 	public function __construct()
 	{
 		$this->CI =& get_instance();
+		$this->initBlocks();
 	}
 
 	/**
-	 * @param 	string	$section
-	 * @param 	string	$view
-	 * @param 	array	$vars
+	 * @param	BlockInterface	$block
 	 */
-	public function setSection(string $section, string $view, array $vars = [])
+	public function addBlock(BlockInterface $block)
 	{
-		$this->templates[$section] = $this->CI->load->view($view, $vars, TRUE);
-	}
-
-	/**
-	 * Appends a template
-	 * If template doesn't exist, it creates one
-	 *
-	 * @param	string	$section	The section of the template in which we should append to
-	 * @param	string	$view	View Name
-	 * @param	array	$vars	An associative array of data to be extracted for use in the view
-	 */
-	public function appendToSection(string $section, string $view, array $vars = [])
-	{
-		$existingTemplate = $this->templates[$section] ?? '';
-		$this->setSection($section, $view, $vars);
-		$this->templates[$section] = $existingTemplate . $this->templates[$section];
+		$this->blocks[] = $block;
 	}
 
 	/**
@@ -57,7 +46,7 @@ class Template_library {
 	 */
 	public function view(string $view, array $vars = [])
 	{
-		$this->initBlocks($vars);
+		$this->renderBlocks($vars);
 
 		$this->CI->load->view(
 			$view,
@@ -65,20 +54,20 @@ class Template_library {
 		);
 	}
 
+	private function initBlocks()
+	{
+		foreach ($this->CI->config->item('blocks') as $block) {
+			$this->blocks[] = BlockFactory::create($block['section'], $block['position'], $block['callback']);
+		}
+	}
+
 	/**
 	 * @param	array	$vars	An associative array of data to be extracted for use in the view
 	 * @throws	BadMethodCallException
 	 */
-	private function initBlocks(array $vars = [])
+	private function renderBlocks(array $vars = [])
 	{
-		/** @var BlockInterface[] $blocks */
-		$blocks = [];
-
-		foreach ($this->CI->config->item('blocks') as $block) {
-			$blocks[] = BlockFactory::create($block['section'], $block['position'], $block['callback']);
-		}
-
-		$sections = SectionFactory::createFromBlocks($blocks);
+		$sections = SectionFactory::createFromBlocks($this->blocks);
 
 		foreach ($sections as $section) {
 			foreach ($section->getBlocks() as $block) {
@@ -96,7 +85,7 @@ class Template_library {
 	 */
 	private function addRenderedContents(string $sectionName, string $contents)
 	{
-		if (! $this->templates[$sectionName]) {
+		if (! isset($this->templates[$sectionName])) {
 			$this->templates[$sectionName] = '';
 		}
 

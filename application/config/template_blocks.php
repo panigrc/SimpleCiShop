@@ -29,4 +29,10 @@ $config['blocks'] = [
 		'position' => 1,
 		'callback' => ['welcomeBlock', 'view'],
 	],
+	[
+		'section' => 'rblock',
+		'position' => 1,
+		'callback' => ['categoryBlock', 'view'],
+	],
+
 ];
