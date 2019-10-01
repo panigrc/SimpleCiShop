@@ -13,20 +13,12 @@ class Checkout extends CI_Controller {
 
 		$content_data = array(
 			'lang' => $this->language_library->get_language(),
-			'cart_costs' => $this->_get_price_sum($cart, $this->language_library->get_language()),
+			'cart_costs' => $this->_get_price_sum($cart),
 			'affiliate' => $this->_get_affiliate(),
-		);
-
-		$rblock_data = array(
-			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
-			'parent' => array(),
-			'children' => array(),
-			'current' => 0
 		);
 
 		$data = array(
 			'contents' => $this->load->view('shop/contents/checkout_tpl', $content_data, TRUE),
-			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
 			'title' => '',
 			'pagename' => 'main_checkout',
 			'lang' => $this->language_library->get_language(),
@@ -159,20 +151,12 @@ class Checkout extends CI_Controller {
 	{
 		$cart = $this->cart_library->get_cart();
 
-		$rblock_data = array(
-			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
-			'parent' => array(),
-			'children' => array(),
-			'current' => 0
-		);
-
 		$content_data = array(
 			'lang' => $this->language_library->get_language(),
 		);
 
 		$data = array(
 			'contents' => $this->load->view('shop/contents/'.$this->language_library->get_language().'/thankyou_tpl', $content_data, TRUE),
-			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
 			'title' => '',
 			'pagename' => 'main_checkout',
 			'lang' => $this->language_library->get_language(),

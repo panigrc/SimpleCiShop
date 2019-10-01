@@ -11,7 +11,7 @@ class categoryBlock
 	public static function view($CI, array $vars)
 	{
 		if (! isset($vars['category_id'])) {
-			return '';
+			$vars['category_id'] = 0;
 		}
 
 		return $CI->load->view(

@@ -29,19 +29,11 @@ class Product extends CI_Controller {
 			'lang' => $this->language_library->get_language(),
 		);
 
-		$rblock_data = array(
-			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
-			"parent" => array(),
-			"children" => array(),
-			"current" => 0,
-		);
-
 		$data = array(
 			'pagename' => 'main_slogan',
 			'lang' => $this->language_library->get_language(),
 			'contents' => $this->load->view('shop/contents/product_tpl', $content_data, TRUE),
 			'title' => $product['title_'.$this->language_library->get_language()],
-			'rblock' => $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE),
 		);
 
 		$this->load->view('shop/container_tpl', $data);
