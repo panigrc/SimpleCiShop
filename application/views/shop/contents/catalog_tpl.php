@@ -1,0 +1,32 @@
+<?php if($category_text) : ?>
+					<div>
+						<h1><?php echo $category_text['category_name_'.$lang]; ?></h1>
+						<p>
+                            <?php echo $category_text['category_description_'.$lang]; ?>
+                        </p>
+					</div>
+<?php endif;?>
+                    <div style="clear:both;"></div>
+                    <div style="width:100%; text-align: center;">
+<?php foreach($products as $product): ?>
+					    <div class="item">
+						    <?php /*<h3><?php echo $this->lang->line('main_category'); ?>: 
+                            <?php echo $product['category_name_'.$lang]; ?></h3> */?>
+                            <a href="<?php echo site_url('/shop/product/index/'.$product['slug']) ?>"><img src="<?php echo empty($product['thumb']) === FALSE ? base_url().$product['thumb'] : base_url().'images/noimage.jpg' ; ?>" class="cart_product" id="product_<?php echo $product['product_id']; ?>" alt="<?php echo $product['title_'.$lang]; ?>" /></a>
+                            <div class="item_title"><?php echo $product['title_'.$lang]; ?></div>
+                            <?php if($this->product_model->get_product_meta($product['product_id'], "Size")) : ?><div class="item_size"><?php echo $this->product_model->get_product_meta($product['product_id'], "Size"); ?></div><?php endif; ?>
+                            <?php if($this->product_model->get_product_meta($product['product_id'], "Artist")) : ?><div class="item_artist"><?php echo $this->product_model->get_product_meta($product['product_id'], "Artist"); ?></div><?php endif; ?>
+                            <?php //echo $this->lang->line('main_description'); ?>
+                            <?php //echo mb_substr(strip_tags($product['description_'.$lang]), 0, 350, 'UTF-8').'...'; ?>
+                            <?php //echo $this->lang->line('main_price'); ?>
+                            <span style="text-decoration: line-through;"><?php if($product['price_old_'.$lang]!=0) echo $product['price_old_'.$lang].' '.$this->lang->line('main_currency'); ?></span>&nbsp;<?php echo $product['price_'.$lang].' '.$this->lang->line('main_currency'); ?>&nbsp;
+                            <a href="<?=site_url('shop/cart/cart_add/'.$product['product_id'])?>"><i class="fas fa-cart-arrow-down"></i></a>
+                    </div>
+<?php endforeach; ?>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div style="margin: 5px 0 5px 0; text-align: center;">
+                        <span class="small"><?php echo $this->lang->line('main_price_declaration'); ?></span>
+                        <br />
+                        <?php if( ! empty($pagination)) echo $this->lang->line('main_page') .': '. @$pagination; ?>
+                    </div>

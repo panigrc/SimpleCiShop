@@ -1,0 +1,11 @@
+{
+  "name": "emporio/core",
+  "require": {
+    "php": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Emporio\\Core\\": "src"
+    }
+  }
+}
