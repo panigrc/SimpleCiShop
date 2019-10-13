@@ -211,6 +211,7 @@ $lang['main_not_spam']								= 'Mη ενοχλητική αλληλογραφί
 // payment
 
 $lang['main_payment_paypal']						= 'PayPal';
+$lang['main_redirecting_to_paypal']					= 'Ανακατεύθυνση στο PayPal';
 $lang['main_payment_bank_transfer']					= 'Τραπεζική Κατάθεση';
 $lang['main_payment_none']							= 'Καμία';
 

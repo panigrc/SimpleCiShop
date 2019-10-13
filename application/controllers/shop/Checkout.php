@@ -1,53 +1,39 @@
 <?php
 
-class Checkout extends CI_Controller {
+use Emporio\Ui\Factory\BlockFactory;
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+final class Checkout extends CI_Controller {
 
 	public function index()
 	{
 		$cart = $this->cart_library->get_cart();
 
-		$content_data = array(
-			'lang' => $this->language_library->get_language(),
-			'cart_costs' => $this->_get_price_sum($cart),
-			'affiliate' => $this->_get_affiliate(),
+		$mainBlock = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view('shop/contents/checkout/checkout_tpl', $vars, TRUE);
+		});
+
+		$this->template_library->addBlock($mainBlock);
+
+		$scripts = BlockFactory::create('scripts', 2, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view('shop/blocks/checkout/checkout_scripts_tpl', $vars, TRUE);
+		});
+
+		$this->template_library->addBlock($scripts);
+
+		$this->template_library->view(
+			'shop/container_tpl',
+			[
+				'pagename' => 'main_checkout',
+				'title' => '',
+				'cart_costs' => $this->_get_price_sum($cart),
+				'affiliate' => $this->_get_affiliate(),
+			]
 		);
-
-		$data = array(
-			'contents' => $this->load->view('shop/contents/checkout_tpl', $content_data, TRUE),
-			'title' => '',
-			'pagename' => 'main_checkout',
-			'lang' => $this->language_library->get_language(),
-		);
-
-		/** @todo	create a template for this */
-		$data['scripts'] = '<style type="text/css">@import url('.base_url().'assets/jscalendar/calendar-win2k-1.css);</style>
-					<script type="text/javascript" src="'.base_url().'assets/jscalendar/calendar.js"></script>
-					<script type="text/javascript" src="'.base_url().'assets/jscalendar/lang/calendar-en.js"></script>
-					<script type="text/javascript" src="'.base_url().'assets/jscalendar/calendar-setup.js"></script>';
-
-		/** @todo	create a template for this */
-		$data['scripts'] .= '<script type="text/javascript">function shipment_sum(){
-					var text="";
-					var cart_costs = parseFloat($("cart_costs").innerHTML);
-					var sum = parseFloat($("shipment_costs").innerHTML);
-
-
-					if ($("shipment_cash_on_delivery").checked) { text+=" + "; text+='.$this->lang->line('main_shipping_cash_on_delivery_costs').'; sum+=parseFloat('.$this->lang->line('main_shipping_cash_on_delivery_costs').');}
-					text+=" = " + sum;
-					$("shipment_sum").innerHTML = text;
-					$("costs_sum").innerHTML = sum + " = " + (cart_costs + sum);
-					$("price").value = (cart_costs + sum);
-					}
-					</script>';
-
-		$this->load->view('shop/container_tpl', $data);
 	}
 
+	/**
+	 * @deprecated It seems that this Action is never used
+	 */
 	public function get_user()
 	{
 		$user = $this->user_model->search_user($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
@@ -86,8 +72,10 @@ class Checkout extends CI_Controller {
 	{
 		$cart = $this->session->userdata('cart');
 
-		if (isset($cart['affiliate'])) return $cart['affiliate'];
-		return "";
+		if (! isset($cart['affiliate'])) {
+			return '';
+		}
+		return $cart['affiliate'];
 	}
 
 	public function order()
@@ -100,75 +88,76 @@ class Checkout extends CI_Controller {
 		{
 			$this->user_model->set_user($this->input->post('user_id'));
 			$order_id = $this->order_model->add_order($this->input->post('user_id'));
-			$this->order_model->add_order_products($order_id, $products);
 		}
 		else
 		{
 			$user_id = $this->user_model->add_user();
 			$order_id = $this->order_model->add_order($user_id);
-			$this->order_model->add_order_products($order_id, $products);
 		}
+		$this->order_model->add_order_products($order_id, $products);
 
-		if ($this->input->post('shipment_cash_on_delivery') === "1"
-			OR $this->input->post('shipment_cash_on_delivery') === "3")
+		if ('1' === $this->input->post('shipment_cash_on_delivery')
+			|| '3' === $this->input->post('shipment_cash_on_delivery'))
 		{
 			redirect('checkout/thankyou');
 		}
-		else
-		{
-			/**
-			 * @var	string $form if it's paid with paypal post with redirect
-			 * @todo	create a template for this and remove hardcoded info
-			 */
 
-			$form = '<form action="https://www.paypal.com/row/cgi-bin/webscr" method="post" name="paypal_form">
-				<input type="hidden" name="cmd" value="_xclick">
-				<input type="hidden" name="charset" value="utf-8">
-				<input type="hidden" name="business" value="orders@cool-clean-quiet.com">
-				<input type="hidden" name="item_name" value="Item Name">
-				<input type="hidden" name="currency_code" value="EUR">
-				<input type="hidden" name="amount" value="'.$this->input->post('price').'">
-				<input type="hidden" name="cancel_return" value="'.site_url('shop/home').'">
-				<input type="hidden" name="cancel_return" value="'.site_url('checkout/thankyou').'">
-				<input type="hidden" name="invoice" value="'. $order_id .'">
-				<input type="hidden" name="email" value="'.$this->input->post('user_email').'">
-				<input type="hidden" name="first_name" value="'.$this->input->post('user_name').'">
-				<input type="hidden" name="last_name" value="'.$this->input->post('user_surname').'">
-				<input type="hidden" name="address_override" value="1">
-				<input type="hidden" name="address1" value="'.$this->input->post('user_address').'">
-				<input type="hidden" name="city" value="'.$this->input->post('user_city').'">
-				<input type="hidden" name="zip" value="'.$this->input->post('user_zip').'">
+		$contents = BlockFactory::create('contents', 4, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view('shop/contents/checkout/order_tpl', $vars, TRUE);
+		});
 
-				<input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
-				</form>
-				<script type="text/javascript">document.paypal_form.submit()</script>';
+		$this->template_library->addBlock($contents);
 
-			echo $form;
-		}
+		$paypal_form = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view('shop/blocks/checkout/paypal_form_tpl', $vars, TRUE);
+		});
+
+		$this->template_library->addBlock($paypal_form);
+
+		$this->template_library->view(
+			'shop/container_tpl',
+			[
+				'pagename' => 'main_checkout',
+				'title' => '',
+				'order_id' => $order_id,
+				'price' => $this->input->post('price'),
+				'user_email' => $this->input->post('user_email'),
+				'user_name' => $this->input->post('user_name'),
+				'user_surname' => $this->input->post('user_surname'),
+				'user_address' => $this->input->post('user_address'),
+				'user_city' => $this->input->post('user_city'),
+				'user_zip' => $this->input->post('user_zip'),
+			]
+		);
+
 	}
 
 	public function thankyou()
 	{
 		$cart = $this->cart_library->get_cart();
 
-		$content_data = array(
-			'lang' => $this->language_library->get_language(),
-		);
+		$contents = BlockFactory::create('contents', 4, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view(
+				sprintf("shop/contents/%s/thankyou_tpl", $CI->language_library->get_language()),
+				$vars,
+				TRUE
+			);
+		});
 
-		$data = array(
-			'contents' => $this->load->view('shop/contents/'.$this->language_library->get_language().'/thankyou_tpl', $content_data, TRUE),
-			'title' => '',
-			'pagename' => 'main_checkout',
-			'lang' => $this->language_library->get_language(),
-			'scripts' => '',
-		);
+		$this->template_library->addBlock($contents);
 
-		$this->load->view('shop/container_tpl', $data);
+		$this->template_library->view(
+			'shop/container_tpl',
+			[
+				'pagename' => 'main_checkout',
+				'title' => '',
+			]
+		);
 	}
 
 	private function _get_price_sum($cart)
 	{
-		$products = array();
+		$products = [];
 		$sum=0;
 		foreach ($cart as $product => $value)
 		{
