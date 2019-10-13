@@ -1,14 +1,8 @@
 <?php
 
-/**
- * Class	Index
- */
-class Home extends CI_Controller {
+use Emporio\Ui\Factory\BlockFactory;
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+final class Home extends CI_Controller {
 
 	public function index()
 	{
@@ -17,37 +11,64 @@ class Home extends CI_Controller {
 
 	public function guide()
 	{
-		$data['title'] = '';
-		$data['pagename'] = '';
-		$data['lang'] = $this->language_library->get_language();
+		$mainBlock = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view(
+				sprintf("shop/contents/%s/guide_tpl", $CI->language_library->get_language()),
+				$vars,
+				TRUE
+			);
+		});
 
-		$content_data = array();
-		$data['contents'] = $this->load->view('shop/contents/'.$this->language_library->get_language().'/guide_tpl', $content_data, TRUE);
+		$this->template_library->addBlock($mainBlock);
 
-		$this->load->view('shop/container_tpl', $data);
+		$this->template_library->view(
+			'shop/container_tpl',
+			[
+				'pagename' => '',
+				'title' => '',
+			]
+		);
 	}
 
 	public function transactions()
 	{
-		$data['title'] = '';
-		$data['pagename'] = '';
-		$data['lang'] = $this->language_library->get_language();
+		$mainBlock = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view(
+				sprintf("shop/contents/%s/transactions_tpl", $CI->language_library->get_language()),
+				$vars,
+				TRUE
+			);
+		});
 
-		$content_data = array();
-		$data['contents'] = $this->load->view('shop/contents/'.$this->language_library->get_language().'/transactions_tpl', $content_data, TRUE);
+		$this->template_library->addBlock($mainBlock);
 
-		$this->load->view('shop/container_tpl', $data);
+		$this->template_library->view(
+			'shop/container_tpl',
+			[
+				'pagename' => '',
+				'title' => '',
+			]
+		);
 	}
 
 	public function secure()
 	{
-		$data['title'] = '';
-		$data['pagename'] = '';
-		$data['lang'] = $this->language_library->get_language();
+		$mainBlock = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view(
+				sprintf("shop/contents/%s/secure_tpl", $CI->language_library->get_language()),
+				$vars,
+				TRUE
+			);
+		});
 
-		$content_data = array();
-		$data['contents'] = $this->load->view('shop/contents/'.$this->language_library->get_language().'/secure_tpl', $content_data, TRUE);
+		$this->template_library->addBlock($mainBlock);
 
-		$this->load->view('shop/container_tpl', $data);
+		$this->template_library->view(
+			'shop/container_tpl',
+			[
+				'pagename' => '',
+				'title' => '',
+			]
+		);
 	}
 }
