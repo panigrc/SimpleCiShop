@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div id="right">
-                    <?php $this->load->view('shop/cart/cart_tpl'); ?>
+                    <?php $this->load->view('shop/blocks/cart/cart_tpl'); ?>
 
                     <?php $this->load->view('shop/blocks/random_product_tpl'); ?>
                     <div style="text-align:center;">

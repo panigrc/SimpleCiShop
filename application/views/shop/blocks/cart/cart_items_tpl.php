@@ -1,12 +1,12 @@
 <?php
-    
+
     $sum=0;
     foreach($cart as $product):
         for($i=0;$i<$product['quantity'];$i++) :
 ?>
                     <div class="cart_item">
                         <a href="<?php echo site_url('/shop/product/index/'.$product['slug']) ?>">
-                            <img src="<?php echo empty($product['thumb']) === FALSE ? base_url().$product['thumb'] : base_url().'images/noimage.jpg' ; ?>" class="cart_items" id="product<?php echo $i; ?>_<?php echo $product['product_id']; ?>" alt="<?php echo $product['title_'.$lang]; ?>" title="<?php echo $product['title_'.$lang]; ?>"/>
+                            <img src="<?php echo empty($product['thumb']) === FALSE ? base_url().$product['thumb'] : base_url().'images/noimage.jpg' ; ?>" class="cart_items" id="product<?php echo $i; ?>_<?php echo $product['product_id']; ?>" alt="<?php echo $product['title_'.$this->language_library->get_language()]; ?>" title="<?php echo $product['title_'.$this->language_library->get_language()]; ?>"/>
                         </a>
                         <br />
                         <a href="<?php site_url('shop/cart/cart_remove/'.$product['product_id']) ?>">
@@ -17,8 +17,8 @@
                             </span>
                         </a>
                     </div>
-<?php 
-            $sum += $product['price_'.$lang];
+<?php
+            $sum += $product['price_'.$this->language_library->get_language()];
         endfor;
     endforeach;
 ?>
