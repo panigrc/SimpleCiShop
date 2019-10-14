@@ -53,8 +53,7 @@
                     </div>
                 </div>
                 <div id="right">
-                    <?php $this->load->view('shop/blocks/cart/cart_tpl'); ?>
-
+                    <?php echo $blocks_right ?? ''; ?>
                     <?php $this->load->view('shop/blocks/random_product_tpl'); ?>
                     <div style="text-align:center;">
                         <a href="https://nikospapagiannopoulos.com">
@@ -66,7 +65,7 @@
                     </div>
                 </div>
                 <div id="left">
-                    <?php echo @$rblock; ?>
+                    <?php echo $blocks_left ?? ''; ?>
                     <?php $this->load->view('shop/blocks/'.$this->language_library->get_language().'/home_tpl'); ?>
                 </div>
 			</div>
