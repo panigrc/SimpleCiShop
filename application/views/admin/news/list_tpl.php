@@ -1,10 +1,10 @@
 <p>
-	<?php echo anchor('admin/news/view_news/add_news', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_news'))); ?>
+	<?= anchor('admin/news/view_news/add_news', sprintf('<i class="fas fa-plus-circle"></i> %s', $this->lang->line('main_create_news'))) ?>
 </p>
 <table cellpadding=0 cellspacing=1>
     <tr>
-        <th><?php echo $this->lang->line('main_title'); ?></th>
-        <th><?php echo $this->lang->line('main_published'); ?></th>
+        <th><?= $this->lang->line('main_title') ?></th>
+        <th><?= $this->lang->line('main_published') ?></th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
     </tr>
@@ -16,9 +16,9 @@
 			echo 'odd';
 			$style = 'odd';
 		} ?>">
-            <td><?php echo $new['title_greek']; ?></td>
-            <td><?php echo date("d/m/y", $new['published']); ?></td>
-            <td><?php echo anchor("admin/news/view_news/edit_news/" . $new['news_id'], '<i class="fas fa-edit"></i>'); ?></td>
+            <td><?= $new['title_greek'] ?></td>
+            <td><?= date("d/m/y", $new['published']) ?></td>
+            <td><?= anchor("admin/news/view_news/edit_news/" . $new['news_id'], '<i class="fas fa-edit"></i>') ?></td>
             <td>
 				<?php
                     echo anchor(

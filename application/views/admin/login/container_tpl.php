@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title><?php echo $title; ?></title>
+<title><?= $title ?></title>
 
 <style type="text/css">
 
@@ -114,8 +114,8 @@ color: #fff;
 </head>
 <body>
 <div class="content">
-<h2><?php echo $heading; ?></h2>
-<?php echo $contents; ?>
+<h2><?= $heading ?></h2>
+<?= $contents ?>
 </div>
 </body>
 </html>

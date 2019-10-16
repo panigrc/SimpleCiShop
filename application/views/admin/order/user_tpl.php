@@ -1,9 +1,9 @@
 <ul>
-    <li><?php echo $user_name ; ?></li>
-    <li><?php echo $user_surname ; ?></li>
-    <li><?php echo $user_phone ; ?></li>
-    <li><?php echo $user_address ; ?></li>
-    <li><?php echo $user_zip ; ?></li>
-    <li><?php echo $user_city ; ?></li>
-    <li><?php echo $user_country ; ?></li>
+    <li><?= $user_name  ?></li>
+    <li><?= $user_surname  ?></li>
+    <li><?= $user_phone  ?></li>
+    <li><?= $user_address  ?></li>
+    <li><?= $user_zip  ?></li>
+    <li><?= $user_city  ?></li>
+    <li><?= $user_country  ?></li>
 </ul>

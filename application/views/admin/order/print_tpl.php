@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title><?php echo $title; ?></title>
+<title><?= $title ?></title>
 
 <style type="text/css">
 body {
@@ -53,7 +53,7 @@ img {
 h1 {
  color: #000;
  border-bottom:5px solid #C3D9FF;
- 
+
  width:100%;
  padding:1em 0em .5em;
 }
@@ -105,7 +105,7 @@ td
 
 tbody tr.odd td
 {
-	background:transparent url('<?php echo base_url(); ?>theme/images/tr_bg.png') repeat top left;
+	background:transparent url('<?= base_url() ?>theme/images/tr_bg.png') repeat top left;
 }
 
 tfoot
@@ -128,7 +128,7 @@ tfoot tr
 * html tr.odd td
 {
 	background:#FFF;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?php echo base_url(); ?>theme/images/tr_bg.png', sizingMethod='scale');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?= base_url() ?>theme/images/tr_bg.png', sizingMethod='scale');
 }
 
 #middle
@@ -167,26 +167,26 @@ tfoot tr
 
 <?php $sum=0; ?>
 
-<h1><?php echo $this->lang->line('main_invoice_title'); ?></h1>
+<h1><?= $this->lang->line('main_invoice_title') ?></h1>
 <p>
-    <?php echo $this->lang->line('main_invoice_company_details'); ?>
+    <?= $this->lang->line('main_invoice_company_details') ?>
 </p>
 <p>
-    <?php echo $this->lang->line('main_invoice_personal_details'); ?>
+    <?= $this->lang->line('main_invoice_personal_details') ?>
 </p>
 <div class="user_info">
-<?php echo @$user['user_name']; ?><br />
-<?php echo @$user['user_surname']; ?><br />
-<?php echo @$user['user_address']; ?><br />
-<?php echo @$user['user_zip']; ?><br />
-<?php echo @$user['user_country']; ?><br />
-<?php echo @$user['user_phone']; ?>
+<?= @$user['user_name'] ?><br />
+<?= @$user['user_surname'] ?><br />
+<?= @$user['user_address'] ?><br />
+<?= @$user['user_zip'] ?><br />
+<?= @$user['user_country'] ?><br />
+<?= @$user['user_phone'] ?>
 </div>
 <div class="user_code">
-	<?php echo $this->lang->line('main_invoice_password_for_future_shopping'); ?> <strong><?php echo @$user['user_code']; ?></strong>
+	<?= $this->lang->line('main_invoice_password_for_future_shopping'); ?> <strong><?= @$user['user_code'] ?></strong>
 </div>
 <div class="user_stars">
-	<?php echo $this->lang->line('main_invoice_your_points'); ?> <strong><?php echo @$user['user_stars']; ?></strong>
+	<?= $this->lang->line('main_invoice_your_points'); ?> <strong><?= @$user['user_stars'] ?></strong>
 </div>
 
 <table>
@@ -195,14 +195,14 @@ tfoot tr
 <col>
 <thead>
 
-	<tr><th><?php echo $this->lang->line('main_invoice_product'); ?></th><th><?php echo $this->lang->line('main_invoice_quantity'); ?></th><th><?php echo $this->lang->line('main_invoice_price'); ?></th></tr>
+	<tr><th><?= $this->lang->line('main_invoice_product'); ?></th><th><?= $this->lang->line('main_invoice_quantity'); ?></th><th><?= $this->lang->line('main_invoice_price') ?></th></tr>
 </thead>
 <tbody>
 <?php foreach($products as $product):?>
     <tr>
-    <td><?php echo $product['title_'.$lang]; ?></td>
-    <td><?php echo $product['quantity']; ?></td>
-    <td><?php echo $product['price_'.$lang]*$product['quantity']; ?> <?php echo $this->lang->line("main_currency"); ?></td>
+    <td><?= $product['title_'.$lang] ?></td>
+    <td><?= $product['quantity'] ?></td>
+    <td><?= $product['price_'.$lang]*$product['quantity']; ?> <?= $this->lang->line("main_currency") ?></td>
 
     </tr>
 
@@ -210,7 +210,7 @@ tfoot tr
 <?php endforeach; ?>
 </tbody>
 <tfoot>
-    <tr><td><?php echo $this->lang->line('main_invoice_total'); ?></td><td></td><td><?php echo $sum; ?> <?php echo $this->lang->line("main_currency"); ?></td></tr>
+    <tr><td><?= $this->lang->line('main_invoice_total'); ?></td><td></td><td><?= $sum; ?> <?= $this->lang->line("main_currency") ?></td></tr>
 </tfoot>
 </table>
 

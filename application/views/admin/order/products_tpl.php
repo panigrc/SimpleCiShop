@@ -4,10 +4,10 @@
     foreach($products as $product) {
         $price += $product['price_' . $user['language']] * $product['quantity'];
 ?>
-<li><?php echo $product['title_greek']; ?> x <?php echo $product['quantity']; ?></li>
+<li><?= $product['title_greek']; ?> x <?= $product['quantity'] ?></li>
 <?php
     }
 ?>
 </ul>
 <br />
-<?php echo $price; ?>
+<?= $price ?>

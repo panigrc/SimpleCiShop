@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title><?php echo $title; ?></title>
+<title><?= $title ?></title>
 
-<link href="<?php echo base_url() ?>assets/fontawesome/css/all.css" rel="stylesheet">
+<link href="<?= base_url() ?>assets/fontawesome/css/all.css" rel="stylesheet">
 
-<script src="<?php echo base_url() ?>assets/scriptaculous/lib/prototype.js" type="text/javascript"></script>
-<script src="<?php echo base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
-<script src="<?php echo base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
-<script src="<?php echo base_url() ?>assets/scriptaculous/src/controls.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/scriptaculous/lib/prototype.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/scriptaculous/src/controls.js" type="text/javascript"></script>
 
 <style type="text/css">
 
@@ -122,17 +122,17 @@ color: #fff;
 <body>
 <div id="navcontainer">
     <ul id="navlist">
-        <li id="active"><?php echo anchor("admin/catalog", $this->lang->line('main_manage_products')); ?></li>
-        <li><?php echo anchor("admin/category", $this->lang->line('main_manage_categories')); ?></li>
-        <li><?php echo anchor("admin/user", $this->lang->line('main_manage_users')); ?></li>
-        <li><?php echo anchor("admin/order", $this->lang->line('main_manage_orders')); ?></li>
-        <li><?php echo anchor("admin/coupon", $this->lang->line('main_manage_coupons')); ?></li>
-        <li><?php echo anchor("admin/news", $this->lang->line('main_manage_news')); ?></li>
+        <li id="active"><?= anchor("admin/catalog", $this->lang->line('main_manage_products')) ?></li>
+        <li><?= anchor("admin/category", $this->lang->line('main_manage_categories')) ?></li>
+        <li><?= anchor("admin/user", $this->lang->line('main_manage_users')) ?></li>
+        <li><?= anchor("admin/order", $this->lang->line('main_manage_orders')) ?></li>
+        <li><?= anchor("admin/coupon", $this->lang->line('main_manage_coupons')) ?></li>
+        <li><?= anchor("admin/news", $this->lang->line('main_manage_news')) ?></li>
     </ul>
 </div>
 <div class="content">
-<h2><?php echo $heading; ?></h2>
-<?php echo $contents; ?>
+<h2><?= $heading ?></h2>
+<?= $contents ?>
 </div>
 </body>
 </html>
