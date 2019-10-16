@@ -42,25 +42,4 @@ class Cart_library {
 
 		return $cart;
 	}
-
-	public function cart_block()
-	{
-		/** @var array $cart contents */
-		$cart = $this->get_cart();
-		$products = array();
-		foreach ($cart as $product => $value)
-		{
-			$products[$product] = $this->CI->product_model->get_product($product)
-				+ $this->CI->product_model->get_product_text($product)
-				+ $this->CI->product_model->get_product_main_image($product)
-			;
-			$products[$product]['quantity'] = $value;
-		}
-
-		return $this->CI->load->view(
-			'shop/cart/cart_items_tpl',
-			array('cart' => $products, 'lang' => $this->CI->language_library->get_language()),
-			true
-		);
-	}
 }
