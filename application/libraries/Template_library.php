@@ -1,4 +1,9 @@
 <?php
+
+use Emporio\Ui\Block\BlockInterface;
+use Emporio\Ui\Factory\BlockFactory;
+use Emporio\Ui\Factory\SectionFactory;
+
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Template_library {
@@ -13,86 +18,77 @@ class Template_library {
 	 */
 	private $templates = [];
 
+	/**
+	 * @var	BlockInterface[]	$blocks
+	 */
+	private $blocks = [];
+
 	public function __construct()
 	{
 		$this->CI =& get_instance();
+		$this->initBlocks();
 	}
 
 	/**
-	 * @param 	string	$name
-	 * @param 	string	$path
-	 * @param 	array	$data
-	 * @param 	array	$options
+	 * @param	BlockInterface	$block
 	 */
-	public function set(string $name, string $path, array $data = [], array $options = [])
+	public function addBlock(BlockInterface $block)
 	{
-		$this->templates[$name] = $this->CI->load->view(
-			$path,
-			array_merge($data, $options),
-			TRUE
-		);
-	}
-
-	/**
-	 * Prepends a template
-	 * If template doesn't exist, it creates one
-	 *
-	 * @param 	string	$name
-	 * @param 	string	$path
-	 * @param 	array	$data
-	 * @param 	array	$options
-	 */
-	public function prepend(string $name, string $path, array $data = [], array $options = [])
-	{
-		$existingTemplate = $this->templates[$name] ?? '';
-		$this->set($name, $path, $data, $options);
-		$this->templates[$name] = $this->templates[$name] . $existingTemplate;
-	}
-
-	/**
-	 * Appends a template
-	 * If template doesn't exist, it creates one
-	 *
-	 * @param	string	$name
-	 * @param	string	$path
-	 * @param	array	$data
-	 * @param	array	$options
-	 */
-	public function append(string $name, string $path, array $data = [], array $options = [])
-	{
-		$existingTemplate = $this->templates[$name] ?? '';
-		$this->set($name, $path, $data, $options);
-		$this->templates[$name] = $existingTemplate . $this->templates[$name];
-	}
-
-	/**
-	 * @param	string	$name
-	 */
-	public function remove(string $name)
-	{
-		unset($this->templates[$name]);
-	}
-
-	/**
-	 * @param	string	$name
-	 * @return	bool
-	 */
-	public function has(string $name)
-	{
-		return isset($this->templates[$name]);
+		$this->blocks[] = $block;
 	}
 
 	/**
 	 * Render view with $path containing all $templates
 	 *
-	 * @param	string	$path
-	 * @param	array	$options
+	 * @param	string	$view	View Name
+	 * @param	array	$vars	An associative array of data to be extracted for use in the view
+	 * @throws	BadMethodCallException
 	 */
-	public function view(string $path, array $options = [])
+	public function view(string $view, array $vars = [])
 	{
+		$this->renderBlocks($vars);
+
 		$this->CI->load->view(
-			$path,
-			array_merge($this->templates, $options)
+			$view,
+			array_merge($this->templates, $vars)
 		);
+	}
+
+	private function initBlocks()
+	{
+		foreach ($this->CI->config->item('blocks') as $block) {
+			$this->blocks[] = BlockFactory::create($block['section'], $block['position'], $block['callback']);
+		}
+	}
+
+	/**
+	 * @param	array	$vars	An associative array of data to be extracted for use in the view
+	 * @throws	BadMethodCallException
+	 */
+	private function renderBlocks(array $vars = [])
+	{
+		$sections = SectionFactory::createFromBlocks($this->blocks);
+
+		foreach ($sections as $section) {
+			foreach ($section->getBlocks() as $block) {
+				$renderedContents = call_user_func($block->getCallback(), $this->CI, $vars);
+				$this->addRenderedContents($section->getName(), $renderedContents ?? '');
+			}
+		}
+	}
+
+	/**
+	 * Adds rendered view contents to a Template.
+	 *
+	 * @param string $sectionName
+	 * @param string $contents
+	 */
+	private function addRenderedContents(string $sectionName, string $contents)
+	{
+		if (! isset($this->templates[$sectionName])) {
+			$this->templates[$sectionName] = '';
+		}
+
+		$this->templates[$sectionName] .= $contents;
 	}
 }

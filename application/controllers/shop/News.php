@@ -1,31 +1,29 @@
 <?php
-class News extends CI_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+use Emporio\Ui\Factory\BlockFactory;
+
+final class News extends CI_Controller {
 
 	/**
 	 * @param int|null $current_page
 	 */
 	public function index($current_page = NULL)
 	{
-		$content_data = array(
-			'lang' => $this->language_library->get_language(),
-			'news' => $this->_get_news_data($current_page ?: 0),
-			'pagination' => $this->_pagination(),
-		);
+		$mainBlock = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view('shop/contents/news_tpl', $vars, TRUE);
+		});
 
-		$data = array(
-			'contents' => $this->load->view('shop/contents/news_tpl', $content_data, TRUE),
-			'rblock' => $this->load->view('shop/blocks/'.$this->language_library->get_language().'/home_tpl', array(), TRUE),
-			'title' => '',
-			'pagename' => 'main_news',
-			'lang' => $this->language_library->get_language(),
-		);
+		$this->template_library->addBlock($mainBlock);
 
-		$this->load->view('shop/container_tpl', $data);
+		$this->template_library->view(
+			'shop/container_tpl',
+			[
+				'pagename' => 'main_news',
+				'title' => '',
+				'news' => $this->_get_news_data($current_page ?: 0),
+				'pagination' => $this->_pagination(),
+			]
+		);
 	}
 
 	/**

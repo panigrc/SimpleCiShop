@@ -213,6 +213,7 @@ $lang['main_not_spam']								= 'This is not spam';
 // payment
 
 $lang['main_payment_paypal']						= 'PayPal';
+$lang['main_redirecting_to_paypal']					= 'Redirecting to PayPal';
 $lang['main_payment_bank_transfer']					= 'Bank Transfer';
 $lang['main_payment_none']							= 'None';
 

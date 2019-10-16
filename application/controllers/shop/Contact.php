@@ -1,32 +1,26 @@
 <?php
 
-class Contact extends CI_Controller {
+use Emporio\Ui\Factory\BlockFactory;
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+final class Contact extends CI_Controller {
 
 	public function index($status = NULL)
 	{
-		$data['title'] = '';
-		$data['pagename'] = 'main_contact';
-		$data['lang'] = $this->language_library->get_language();
+		$mainBlock = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
+			return $CI->load->view('shop/contents/contact_tpl', $vars, TRUE);
+		});
 
-		$content_data = array();
-		$content_data['pagename'] = 'main_contact';
-		$content_data['lang'] = $this->language_library->get_language();
-		$content_data['status'] = $status;
-		$data['contents'] = $this->load->view('shop/contents/contact_tpl', $content_data, TRUE);
+		$this->template_library->addBlock($mainBlock);
 
-		$rblock_data = array(
-			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
-			"parent" => array(),
-			"children" => array(),
-			"current" => 0
+		$this->template_library->view(
+			'shop/container_tpl',
+			[
+				'pagename' => 'main_contact',
+				'title' => '',
+				'status' => $status,
+
+			]
 		);
-		$data['rblock'] = $this->load->view('shop/blocks/category_block_tpl', $rblock_data, TRUE);
-		$this->load->view('shop/container_tpl', $data);
 	}
 
 	/**
@@ -48,7 +42,7 @@ class Contact extends CI_Controller {
 		//$message = str_replace('<br />',"\r\n",nl2br($message));
 		$this->email->message($message);
 
-		if ( ! $this->email->send())
+		if (! $this->email->send())
 		{
 			//if ($this->input->post('notspam')!="2" OR !$this->email->send()) {
 			redirect('contact/index/nok');

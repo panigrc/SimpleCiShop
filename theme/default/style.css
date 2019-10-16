@@ -1,7 +1,7 @@
 body {
     padding: 0;
     margin: 0;
-    font-family: "arial";
+	font-family: "Arial, Helvetica, sans-serif", sans-serif;
     background: #FFF;
     color: #454545;
     min-width: 800px;
@@ -10,6 +10,7 @@ body {
 a {
     color: #4782C3;
     background: inherit;
+    outline: 0;
 }
 
 a:hover {
@@ -536,12 +537,12 @@ select.contact {
     float: none;
 }
 
-.cart_top {
+.cart-top {
     color: #FFF;
     margin: 3px 0 10px;
 }
 
-.cart_top h2 {
+.cart-top h2 {
     color: #82BB41;
     background: inherit;
     margin: 0;
@@ -552,26 +553,47 @@ select.contact {
     padding: 5px 0 5px 5px;
 }
 
-.cart_items {
+img.cart-items {
     border: none;
     float: none;
-    width: 40px;
-    margin: 0 2px 0 2px;
-}
-
-.cart_item {
-    float: left;
-    position: relative;
-}
-
-.cart-remove {
-    font-size: 1em;
+    width: 100%;
 }
 
 .cart-remove .fa-arrow-up {
     font-size: .8em;
     margin-left: .25em;
     margin-top: -.15em;
+}
+
+.closable {
+	position: relative;
+	display: inline-block;
+}
+
+.close {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 26px;
+	height: 26px;
+	opacity: 0.3;
+}
+.close:hover {
+	opacity: 1;
+}
+.close:before, .close:after {
+	position: absolute;
+	left: 10px;
+	content: ' ';
+	height: 25px;
+	width: 2px;
+	background-color: #000;
+}
+.close:before {
+	transform: rotate(45deg);
+}
+.close:after {
+	transform: rotate(-45deg);
 }
 
 div.cart-active {
