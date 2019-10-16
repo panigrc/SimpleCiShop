@@ -1,7 +1,7 @@
+:warning: :warning: :warning: **This project is work in progress and should not be used in production !** :warning: :warning: :warning:
+
 SimpleCiShop
 ============
-
-__Currently under development in the [CodeIgniter-3.1.9-dev](../../tree/CodeIgniter-3.1.9-dev) branch.__
 
 The SimpleCiShop is an ecommerce web application based on the famous CodeIgniter framework.
 
