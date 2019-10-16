@@ -42,16 +42,15 @@ The directory structure is mainly the CodeIgniter structure. There are a few thi
 Installation
 ------------
 
-- Clone the project `git clone git@github.com:panigrc/SimpleCiShop.git` to your webserver root directory
-- Checkout to the _CodeIgniter-3.1.9-dev_ branch `git checkout CodeIgniter-3.1.9-dev`
-- Import the [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/CodeIgniter-3.1.9-dev/simplecishop.sql) to your MySQL/MariaDB
-- Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php/home`
-- To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/index.php/catalog`
+- Clone the project `git clone https://github.com/panigrc/SimpleCiShop.git` to your webserver root directory
+- Import the [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/master/simplecishop.sql) to your MySQL/MariaDB
+- Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php/shop/home`
+- To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/index.php/admin/catalog`
 
 Database structure
 ------------------
 
-See [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/CodeIgniter-3.1.9-dev/simplecishop.sql)
+See [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/master/simplecishop.sql)
 
 TODOs
 -----
