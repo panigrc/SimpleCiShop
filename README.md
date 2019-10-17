@@ -44,6 +44,7 @@ Installation
 
 - Clone the project `git clone https://github.com/panigrc/SimpleCiShop.git` to your webserver root directory
 - Import the [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/master/simplecishop.sql) to your MySQL/MariaDB
+- Change the 'database connectivity settings' in the `application/config/database.php` file according to your needs
 - Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php/shop/home`
 - To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/index.php/admin/catalog`
 
