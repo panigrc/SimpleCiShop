@@ -29,7 +29,6 @@
     if( ! empty($images_arr))
         foreach($images_arr as $current) :
             $images .= $current['product_image_id'] . ",";
-            //list($w, $h) = getimagesize(base_url().$current['big']);
 ?>
 
     <img src="<?= base_url().$current['big']; ?>" alt="" id="<?= 'product_'.$product['product_id'] ?>" class="cart_product" />
@@ -38,9 +37,6 @@
         endforeach;
 ?>
                         </div>
-<?php
-    //foreach($meta as $key => $value) echo "<p>". $key . " : " . $value ."</p>";
-?>
                         <p><a href="javascript:history.go(-1)">&lt;&lt; <?= $this->lang->line('main_go_back') ?></a></p>
                         <div style="clear: both;"></div>
 					</div>
