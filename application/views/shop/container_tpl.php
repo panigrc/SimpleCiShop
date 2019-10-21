@@ -22,27 +22,11 @@
     <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
 	<div class="content">
 		<div class="header">
-            <?php /*<div id="select_language">
-            <span><?= $this->lang->line('main_select_language') ?>: &nbsp;</span>
-            <a href="<?= site_url(str_replace($this->language_library->get_language(), 'english', $this->uri->uri_string())); ?>"><img src="<?= base_url(); ?>/theme/default/images/gb.gif" title="<?= $this->lang->line('main_english'); ?>" alt="<?= $this->lang->line('main_english') ?>" /></a>
-            <a href="<?= site_url(str_replace($this->language_library->get_language(), 'greek', $this->uri->uri_string())); ?>"><img src="<?= base_url(); ?>/theme/default/images/gr.gif" title="<?= $this->lang->line('main_greek'); ?>" alt="<?= $this->lang->line('main_greek') ?>" /></a>
-            <a href="<?= site_url(str_replace($this->language_library->get_language(), 'german', $this->uri->uri_string())); ?>"><img src="<?= base_url(); ?>/theme/default/images/de.gif" title="<?= $this->lang->line('main_german'); ?>" alt="<?= $this->lang->line('main_german') ?>" /></a>
-            </div>
-            */ ?>
 		    <div style="clear: both;"></div>
 			<div class="sf_right">
                 <div id="logo"><a href="<?= site_url() ?>">SimpleCiShop</a></div>
-                <?php /*<div id="nav">
-    			    <ul>
-<?php foreach($navigation as $tab => $url):?>
-                        <li <?= $tab === $pagename ? 'id="current"' : '' ?>><?= anchor($url, $this->lang->line($tab)) ?></li>
-<?php endforeach; ?>
-				    </ul>
-                </div>
-                */?>
                 <div id="slogan"><?= $this->lang->line('main_slogan') ?></div>
 			</div>
-<?php //echo empty($tblock) === TRUE ? $this->load->view('shop/blocks/tblock_tpl') : $tblock; ?>
 		</div>
 		<div class="bottom">
 			<div style="clear: both;"></div>
