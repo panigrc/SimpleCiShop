@@ -13,31 +13,31 @@
                         </h2>
 					    <div class="search">
                             <label class="search" for="user_name"><?= $this->lang->line('main_name') ?>:</label>
-                            <input type="text" name="user_name" id="user_name" class="required-1" value="" />
+                            <input type="text" name="user_name" id="user_name" required value="" />
                         </div>
 					    <div class="search">
                             <label class="search" for="user_surname"><?= $this->lang->line('main_last_name') ?>:</label>
-                            <input type="text" name="user_surname" id="user_surname" class="required-1" value="" />
+                            <input type="text" name="user_surname" id="user_surname" required value="" />
                         </div>
                         <div class="search">
                             <label class="search" for="user_phone"><?= $this->lang->line('main_phone') ?>:</label>
-                            <input type="text" name="user_phone" id="user_phone" class="required-1" value="" />
+                            <input type="text" name="user_phone" id="user_phone" required value="" />
                         </div>
                         <div class="search">
                             <label class="search" for="user_address"><?= $this->lang->line('main_address') ?>:</label>
-                            <input type="text" name="user_address" id="user_address" class="required-1" value="" />
+                            <input type="text" name="user_address" id="user_address" required value="" />
                         </div>
                         <div class="search">
                             <label class="search" for="user_city"><?= $this->lang->line('main_city') ?>:</label>
-                            <input type="text" name="user_city" id="user_city" class="required-1" value="" />
+                            <input type="text" name="user_city" id="user_city" required value="" />
                         </div>
                         <div class="search">
                             <label class="search" for="user_zip"><?= $this->lang->line('main_zip') ?>:</label>
-                            <input type="text" name="user_zip" id="user_zip" class="required-1" value="" />
+                            <input type="text" name="user_zip" id="user_zip" required value="" />
                         </div>
                         <div class="search">
                             <label class="search" for="user_country"><?= $this->lang->line('main_country') ?>:</label>
-                            <input type="text" name="user_country" id="user_country" class="required-1" value="<?= $this->lang->line('main_greece') ?>" />
+                            <input type="text" name="user_country" id="user_country" required value="<?= $this->lang->line('main_greece') ?>" />
                         </div>
                         <h2>
                             <?= $this->lang->line('main_more_data'); ?> - <?= $this->lang->line('main_questionnaire') ?>
@@ -93,14 +93,6 @@
                             <input type="submit" value="<?= $this->lang->line('main_submit') ?>" class="submit" />
                         </div>
 <div id="updateshere"></div>
-
-<script type="text/javascript">
-     new Validation('checkout_form'); // OR new Validation(document.forms[0]);
-
-     Validation.add('required-1', '<?= $this->lang->line("main_required_field") ?>', {
-        minLength : 1
-     });
-</script>
 
 <?= form_close() ?>
 				        <div style="clear: both"></div>

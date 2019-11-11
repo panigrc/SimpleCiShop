@@ -15,7 +15,6 @@
     <script src="<?= base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>assets/scriptaculous/src/controls.js" type="text/javascript"></script>
-    <script src="<?= base_url() ?>assets/validation/validation.js" type="text/javascript"></script>
     <?= @$scripts ?>
 </head>
 <body>
