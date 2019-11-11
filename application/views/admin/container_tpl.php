@@ -6,11 +6,6 @@
 
 <link href="<?= base_url() ?>assets/fontawesome/css/all.css" rel="stylesheet">
 
-<script src="<?= base_url() ?>assets/scriptaculous/lib/prototype.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/scriptaculous/src/controls.js" type="text/javascript"></script>
-
 <style type="text/css">
 
 body {

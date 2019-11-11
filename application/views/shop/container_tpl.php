@@ -11,10 +11,6 @@
 	<link rel="stylesheet" href="<?= base_url() ?>theme/default/style.css" type="text/css" />
     <link href="<?= base_url() ?>assets/fontawesome/css/all.css" rel="stylesheet">
 	<title><?php if($this->lang->line($pagename)) echo $this->lang->line($pagename). ' - '; if( ! empty($title)) echo $title . ' - '; ?>SimpleCiShop</title>
-    <script src="<?= base_url() ?>assets/scriptaculous/lib/prototype.js" type="text/javascript"></script>
-    <script src="<?= base_url() ?>assets/scriptaculous/src/effects.js" type="text/javascript"></script>
-    <script src="<?= base_url() ?>assets/scriptaculous/src/dragdrop.js" type="text/javascript"></script>
-    <script src="<?= base_url() ?>assets/scriptaculous/src/controls.js" type="text/javascript"></script>
     <?= @$scripts ?>
 </head>
 <body>
