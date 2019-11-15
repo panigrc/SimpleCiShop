@@ -19,7 +19,7 @@ class Language extends CI_Controller {
 	{
 		if ($language === null)
 		{
-			show_404($_SERVER['PHP_SELF']);
+			show_404($this->input->server('PHP_SELF'));
 		}
 
 		try
@@ -28,7 +28,7 @@ class Language extends CI_Controller {
 		}
 		catch (Exception $exception)
 		{
-			show_404($_SERVER['PHP_SELF']);
+			show_404($this->input->server('PHP_SELF'));
 		}
 
 		$this->load->library('user_agent');
