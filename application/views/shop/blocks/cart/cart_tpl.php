@@ -1,3 +1,4 @@
+<?php if (count($cart) > 0): ?>
 <div style="clear:both;"></div>
 <div class="cart-top"><h2><?= $this->lang->line('main_cart') ?></h2></div>
 <div id="cart" class="cart">
@@ -33,3 +34,4 @@
 	</div>
 	<div><a href="<?= site_url("shop/checkout") ?>"><?= $this->lang->line('main_checkout') ?></a></div>
 </div>
+<?php endif; ?>
