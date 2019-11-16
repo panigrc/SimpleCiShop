@@ -13,28 +13,50 @@ class Cart_library {
 		$this->CI =& get_instance();
 	}
 
+	/**
+	 * @param	int	$product_id
+	 */
 	public function cart_add($product_id)
 	{
 		$cart = $this->CI->session->userdata('cart');
-		$cart[$product_id] = (isset($cart[$product_id]))? $cart[$product_id]+1:1;
-		$this->CI->session->set_userdata(array('cart' => $cart));
+
+		$cart['products'][$product_id] = (isset($cart['products'][$product_id])) ? $cart['products'][$product_id] + 1 : 1;
+
+		$this->CI->session->set_userdata(['cart' => $cart]);
 	}
 
+	/**
+	 * @param	int	$product_id
+	 */
 	public function cart_remove($product_id)
 	{
 		$cart = $this->CI->session->userdata('cart');
-		$cart[$product_id] = ($cart[$product_id]-1)?$cart[$product_id]-1:0;
-			if ($cart[$product_id] === 0) unset($cart[$product_id]);
-		$this->CI->session->set_userdata(array('cart' => $cart));
+
+		if (! isset($cart['products'][$product_id])) {
+			return;
+		}
+
+		$cart['products'][$product_id]--;
+
+		if (0 === $cart['products'][$product_id]) {
+			unset($cart['products'][$product_id]);
+		}
+
+		$this->CI->session->set_userdata(['cart' => $cart]);
 	}
 
+	/**
+	 * @return	array
+	 */
 	public function get_cart()
 	{
 		$cart = $this->CI->session->userdata('cart');
+
 		if (empty($cart))
 		{
-			return array();
+			return [];
 		}
+
 		if (isset($cart['affiliate']))
 		{
 			unset($cart['affiliate']);

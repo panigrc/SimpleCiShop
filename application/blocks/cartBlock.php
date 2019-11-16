@@ -13,7 +13,7 @@ class cartBlock
 		/** @var array $cart contents */
 		$cart = $CI->cart_library->get_cart();
 		$products =[];
-		foreach ($cart as $product => $value)
+		foreach ($cart['products'] as $product => $value)
 		{
 			$products[$product] = $CI->product_model->get_product($product)
 				+ $CI->product_model->get_product_text($product)
@@ -24,7 +24,7 @@ class cartBlock
 
 		return $CI->load->view(
 			'shop/blocks/cart/cart_tpl',
-			array_merge(['cart' => $products], $vars),
+			array_merge(['cart_items' => $products], $vars),
 			TRUE
 		);
 	}

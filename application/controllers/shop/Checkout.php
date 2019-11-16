@@ -155,17 +155,21 @@ final class Checkout extends CI_Controller {
 		);
 	}
 
+	/**
+	 * @param	array	$cart
+	 * @return	float
+	 */
 	private function _get_price_sum($cart)
 	{
 		$products = [];
 		$sum=0;
-		foreach ($cart as $product => $value)
+		foreach ($cart['products'] as $product => $value)
 		{
 			$products[$product] = $this->product_model->get_product($product)
 								+ $this->product_model->get_product_text($product);
 			$products[$product]['quantity'] = $value;
 
-			for ($i=0;$i<$products[$product]['quantity'];$i++)
+			for ($i=0; $i<$products[$product]['quantity']; $i++)
 			{
 				$sum += $products[$product]['price_'.$this->language_library->get_language()];
 			}

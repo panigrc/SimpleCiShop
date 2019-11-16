@@ -1,4 +1,4 @@
-<?php if (count($cart) > 0): ?>
+<?php if (count($cart_items) > 0): ?>
 <div style="clear:both;"></div>
 <div class="cart-top"><h2><?= $this->lang->line('main_cart') ?></h2></div>
 <div id="cart" class="cart">
@@ -7,7 +7,7 @@
 		<?php
 
 		$sum = 0;
-		foreach ($cart as $product):
+		foreach ($cart_items as $product):
 			for ($i = 0; $i < $product['quantity']; $i++) :
 				?>
 				<div class="closable">
