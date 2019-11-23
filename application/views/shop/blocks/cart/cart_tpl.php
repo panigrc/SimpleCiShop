@@ -5,7 +5,6 @@
 	<div id="items">
 
 		<?php
-
 		$sum = 0;
 		foreach ($cart_items as $product):
 			for ($i = 0; $i < $product['quantity']; $i++) :

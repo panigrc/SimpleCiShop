@@ -12,7 +12,7 @@ class cartBlock
 	{
 		/** @var array $cart contents */
 		$cart = $CI->cart_library->get_cart();
-		$products =[];
+		$products = [];
 		foreach ($cart['products'] as $product => $value)
 		{
 			$products[$product] = $CI->product_model->get_product($product)
