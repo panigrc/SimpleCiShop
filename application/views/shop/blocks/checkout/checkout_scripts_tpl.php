@@ -6,9 +6,9 @@
 
 
 		if ($("shipment_cash_on_delivery").checked) {
-		    text+=" + ";
-		    text+="<?= $this->lang->line('main_shipping_cash_on_delivery_costs') ?>";
-		    sum+=parseFloat(<?= $this->lang->line('main_shipping_cash_on_delivery_costs') ?>);
+			text+=" + ";
+			text+="<?= $this->lang->line('main_shipping_cash_on_delivery_costs') ?>";
+			sum+=parseFloat(<?= $this->lang->line('main_shipping_cash_on_delivery_costs') ?>);
 		}
 		text+=" = " + sum;
 		$("shipment_sum").innerHTML = text;
