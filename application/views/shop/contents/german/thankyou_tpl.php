@@ -1,6 +1,6 @@
-				<div class="right_side">
-					<div class="article">
-						<h2>Ευχαριστούμε</h2>
-						<h3>για την παραγγελία σας</h3>
-					</div>
-				</div>
+<div class="right_side">
+	<div class="article">
+		<h2>Dankeschöen</h2>
+		<h3>für ihre Bestellung!</h3>
+	</div>
+</div>

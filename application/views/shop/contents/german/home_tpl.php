@@ -1,7 +1,7 @@
-				<div class="right_side">
-					<div class="article">
-						<h2>The Company</h2>
-						<h3>WELCOME</h3>
-                        <p>Some info about us.</p>
-					</div>
-				</div>
+<div class="right_side">
+	<div class="article">
+		<h2>Die Firma</h2>
+		<h3>WILKOMMEN</h3>
+		<p>Paar Informationen über uns.</p>
+	</div>
+</div>
