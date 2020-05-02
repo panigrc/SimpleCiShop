@@ -164,7 +164,7 @@ $lang['main_coupon_expiration_date']				= 'Ημερομηνία Λήξης';
 $lang['main_coupon_discount']						= 'Έκπτωση';
 $lang['main_coupon_type']							= 'Τύπος';
 $lang['main_coupon_type_single_use']				= 'Μίας Χρήσης';
-$lang['main_coupon_type_multi_use']					= 'Επαναχρησιμοποιήσιμο';
+$lang['main_coupon_type_reusable']					= 'Επαναχρησιμοποιήσιμο';
 $lang['main_coupon_redeemed']						= 'Εξαργυρώθηκε';
 $lang['main_coupon_generate_amount']				= 'Ποσότητα κουπονιών προς παραγωγή';
 
