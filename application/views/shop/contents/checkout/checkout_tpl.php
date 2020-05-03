@@ -3,7 +3,7 @@
 	<div class="article">
 		<h2><?= isset($pagename) ? $this->lang->line($pagename) : '' ?></h2>
 		<p style="display:none;"><span id="stars"></span></p>
-		<?= form_open('checkout/order', ['id' =>'checkout_form']) ?>
+		<?= form_open('shop/checkout/order', ['id' =>'checkout_form']) ?>
 			<input type="hidden" name="user_id" id="user_id" value="" />
 			<input type="hidden" name="affiliate" id="affiliate" value="<?= $affiliate ?? '' ?>" />
 			<input type="hidden" name="user_stars" id="user_stars" value="" />
@@ -68,17 +68,17 @@
 			</h2>
 			<div class="search">
 				<label class="search" for="shipment_cash_on_delivery"><?= $this->lang->line('main_shipping_cash_on_delivery') ?>:</label>
-				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_cash_on_delivery" value="1" onclick="shipment_sum();"/>
+				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_cash_on_delivery" value="<?= Order_model::PAYMENT_TYPE_CASH_ON_DELIVERY ?>" onclick="shipment_sum();"/>
 			</div>
 			<div class="small"><?= $this->lang->line('main_shipping_cash_on_delivery_details') ?></div>
 			<div class="search">
 				<label class="search" for="shipment_paypal"><?= $this->lang->line('main_shipping_paypal') ?>:</label>
-				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_paypal" value="2" onclick="shipment_sum();"/>
+				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_paypal" value="<?= Order_model::PAYMENT_TYPE_PAYPAL ?>" onclick="shipment_sum();"/>
 			</div>
 			<div class="small"><?= $this->lang->line('main_shipping_paypal_details') ?></div>
 			<div class="search">
 				<label class="search" for="shipment_bank_transfer"><?= $this->lang->line('main_shipping_bank_transfer') ?>:</label>
-				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_bank_transfer" value="3" onclick="shipment_sum();"/>
+				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_bank_transfer" value="<?= Order_model::PAYMENT_TYPE_BANK_TRANSFER?>" onclick="shipment_sum();"/>
 			</div>
 			<div class="small"><?= $this->lang->line('main_shipping_bank_transfer_details') ?></div>
 			<div class="search">

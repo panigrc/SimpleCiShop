@@ -39,22 +39,12 @@ class Order extends CI_Controller {
 			'contents' => "contents",
 		);
 
-		/*$form_data = array();
-		$form_data['order_id'] = $order_id;
-
-		$form_data['action'] = $this->uri->segment(3, "add_order");
-		if($form_data['action'] === "edit_order") {
-			$form_data = array_merge($form_data, $this->order_model->get_order($order_id));
-			$form_data['action'] = 'set_order';
-		}
-		$data['contents'] = $this->load->view('admin/order/print_tpl', $form_data, TRUE);*/
-
 		$this->load->view('admin/order/print_tpl', $data);
 	}
 
 	public function list_orders()
 	{
-		$list_data['orders'] = $this->order_model->get_all_order_ids();
+		$list_data['orders'] = $this->order_model->get_all_orders();
 
 		$data = array(
 			'title' => $this->lang->line('main_manage_orders'),
@@ -65,22 +55,15 @@ class Order extends CI_Controller {
 		$this->load->view('admin/container_tpl', $data);
 	}
 
-	/**
-	 * @todo	this won't work :P
-	 * @see Order_model::set_order()
-	 */
 	public function set_order()
 	{
-		$this->order_model->set_order();
+		$this->order_model->set_order($this->input->post('order_id'), $this->_build_order_data());
 		redirect('admin/order');
 	}
 
-	/**
-	 * @todo	must be moved to user controller
-	 */
 	public function add_order()
 	{
-		$this->order_model->add_order();
+		$this->order_model->add_order($this->_build_order_data());
 		redirect('admin/order');
 	}
 
@@ -129,5 +112,20 @@ class Order extends CI_Controller {
 	{
 		$this->order_model->set_order_status($order_id, $status);
 		redirect('admin/order');
+	}
+
+	private function _build_order_data(): array
+	{
+		return [
+			'user_id'                   => $this->input->post('user_id'),
+			'created'                   => $this->input->post('created'),
+			'status'                    => $this->input->post('status'),
+			'shipment_express'          => $this->input->post('shipment_express'),
+			'shipment_to_door'          => $this->input->post('shipment_to_door'),
+			'shipment_cash_on_delivery' => $this->input->post('shipment_cash_on_delivery'),
+			'price'                     => $this->input->post('price'),
+			'coupon_id'                 => $this->input->post('coupon_id'),
+			'questionnaire'             => $this->input->post('questionnaire'),
+		];
 	}
 }

@@ -82,24 +82,23 @@ final class Checkout extends CI_Controller {
 	{
 		$order_id = NULL;
 
-		$products = $this->cart_library->get_cart();
-
-		if ($this->input->post('user_id'))
+		if (NULL !== $user_id = $this->input->post('user_id'))
 		{
-			$this->user_model->set_user($this->input->post('user_id'));
-			$order_id = $this->order_model->add_order($this->input->post('user_id'));
+			$this->user_model->set_user($user_id);
 		}
 		else
 		{
 			$user_id = $this->user_model->add_user();
-			$order_id = $this->order_model->add_order($user_id);
 		}
-		$this->order_model->add_order_products($order_id, $products);
 
-		if ('1' === $this->input->post('shipment_cash_on_delivery')
-			|| '3' === $this->input->post('shipment_cash_on_delivery'))
+		$order_id = $this->order_model->add_order($this->_build_order_data($user_id));
+
+		$this->order_model->add_order_products($order_id, $this->cart_library->get_cart()['products'] ?? []);
+
+		if (Order_model::PAYMENT_TYPE_CASH_ON_DELIVERY === (int) $this->input->post('shipment_cash_on_delivery')
+			|| Order_model::PAYMENT_TYPE_BANK_TRANSFER  === (int) $this->input->post('shipment_cash_on_delivery'))
 		{
-			redirect('checkout/thankyou');
+			redirect('shop/checkout/thankyou');
 		}
 
 		$contents = BlockFactory::create('contents', 4, function (CI_Controller $CI, array $vars) {
@@ -117,19 +116,38 @@ final class Checkout extends CI_Controller {
 		$this->template_library->view(
 			'shop/container_tpl',
 			[
-				'pagename' => 'main_checkout',
-				'title' => '',
-				'order_id' => $order_id,
-				'price' => $this->input->post('price'),
-				'user_email' => $this->input->post('user_email'),
-				'user_name' => $this->input->post('user_name'),
+				'pagename'     => 'main_checkout',
+				'title'        => '',
+				'order_id'     => $order_id,
+				'price'        => $this->input->post('price'),
+				'user_email'   => $this->input->post('user_email'),
+				'user_name'    => $this->input->post('user_name'),
 				'user_surname' => $this->input->post('user_surname'),
 				'user_address' => $this->input->post('user_address'),
-				'user_city' => $this->input->post('user_city'),
-				'user_zip' => $this->input->post('user_zip'),
+				'user_city'    => $this->input->post('user_city'),
+				'user_zip'     => $this->input->post('user_zip'),
 			]
 		);
 
+	}
+
+	/**
+	 * @param int $user_id
+	 * @return array
+	 */
+	private function _build_order_data(int $user_id): array
+	{
+		return [
+			'user_id'                   => $user_id,
+			'created'                   => $this->input->post('created'),
+			'status'                    => $this->input->post('status'),
+			'shipment_express'          => $this->input->post('shipment_express'),
+			'shipment_to_door'          => $this->input->post('shipment_to_door'),
+			'shipment_cash_on_delivery' => $this->input->post('shipment_cash_on_delivery'),
+			'price'                     => $this->input->post('price'),
+			'coupon_id'                 => $this->input->post('coupon_id'),
+			'questionnaire'             => $this->input->post('questionnaire'),
+		];
 	}
 
 	public function thankyou()
