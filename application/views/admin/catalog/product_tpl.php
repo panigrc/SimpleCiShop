@@ -134,7 +134,6 @@ printOptions($categories_arr ?? [], $product_categories ?? []);
 <?php
 	$images = '';
 		foreach($images_arr ?? [] as $current) :
-			$images .= $current['product_image_id'] . ',';
 ?>
 <tr>
 	<td class="general">
@@ -147,11 +146,11 @@ printOptions($categories_arr ?? [], $product_categories ?? []);
 	<td class="general">
 		<div>
 			<label for="delete_image<?= $current['product_image_id'] ?>"><?= $this->lang->line('main_delete') ?>;</label>
-			<input type="checkbox" name="delete_image<?= $current['product_image_id'] ?>" id="delete_image<?= $current['product_image_id'] ?>" value="1">
+			<input type="checkbox" name="images[<?= $current['product_image_id'] ?>][delete]" id="delete_image<?= $current['product_image_id'] ?>" value="1">
 		</div>
 		<div>
 			<label for="main_image<?= $current['product_image_id'] ?>"><?= $this->lang->line('main_main_image') ?>;</label>
-			<input type="checkbox" name="main_image<?= $current['product_image_id'] ?>" id="main_image<?= $current['product_image_id'] ?>" <?= $current['main'] === 1 ? 'checked' : '' ?>value="1">
+			<input type="checkbox" name="images[<?= $current['product_image_id'] ?>][main]" id="main_image<?= $current['product_image_id'] ?>" <?= (int) $current['main'] === 1 ? 'checked' : '' ?> value="1">
 		</div>
 	</td>
 </tr>
@@ -161,21 +160,9 @@ printOptions($categories_arr ?? [], $product_categories ?? []);
 <tr>
 	<td class="general"><?= $this->lang->line('main_add_images') ?>:</td>
 	<td class="general">
-	<div id="add_images">
-	<input type="file" name="image_file1" size="20" />
-	</div>
-	<div id="add_images">
-	<input type="file" name="image_file2" size="20" />
-	</div>
-	<div id="add_images">
-	<input type="file" name="image_file3" size="20" />
-	</div>
-	<div id="add_images">
-	<input type="file" name="image_file4" size="20" />
-	</div>
-	<div id="add_images">
-	<input type="file" name="image_file5" size="20" />
-	</div>
+		<div id="add_images">
+			<input type="file" name="new_images[]" multiple size="20"/>
+		</div>
 	</td>
 </tr>
 <tr>
@@ -187,6 +174,5 @@ printOptions($categories_arr ?? [], $product_categories ?? []);
 </tr>
 </table>
 <?php
-	echo form_hidden('images', $images);
 	echo form_close();
 ?>

@@ -28,13 +28,13 @@
 			<span id="stock<?= $product['product_id'] ?>"><?= $product['stock'] ?></span>
 			<?php
 				echo anchor(
-						sprintf('admin/catalog/set_stock/%s/1', $product['product_id']),
+						sprintf('admin/catalog/set_stock/%s/%s', $product['product_id'], (int) $product['stock'] + 1),
 						'<i class="fas fa-plus-square"></i>'
 				);
 			?>
 			<?php
 				echo anchor(
-						sprintf('admin/catalog/set_stock/%s/-1', $product['product_id']),
+						sprintf('admin/catalog/set_stock/%s/%s', $product['product_id'], (int) $product['stock'] - 1),
 						'<i class="fas fa-minus-square"></i>'
 				);
 			?>

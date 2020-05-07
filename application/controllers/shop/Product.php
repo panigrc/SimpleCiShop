@@ -32,7 +32,7 @@ final class Product extends CI_Controller {
 				'title' => $product['title_'.$this->language_library->get_language()],
 				'slug' => $product_slug,
 				'product' => $product,
-				'images_arr' => $this->product_model->get_product_image($product['product_id']),
+				'images_arr' => $this->product_model->get_product_images($product['product_id']),
 				'meta' => $this->product_model->get_product_meta($product['product_id']),
 			]
 		);
