@@ -109,33 +109,15 @@ class Category_model extends CI_Model {
 	/**
 	 * Get root category ID of $id
 	 *
-	 * @param	int $id
-	 * @return	int|null
+	 * @return	array|null
 	 */
-	public function get_category_root(int $id): ?int
+	public function get_root_category(): ?int
 	{
-		$this->db->select('*');
+		$this->db->select('category_id');
 		$this->db->from('categories');
-		$this->db->where('category_id', $id);
+		$this->db->where('parent_category_id', 0);
 		$query = $this->db->get();
-		$root_id = 0;
-		foreach ($query->result_array() as $row)
-		{
-			if ($this->category_is_root($row['category_id']))
-			{
-				$root_id = $row['category_id'];
-			}
-			else
-			{
-				$root_id = $this->get_category_root($row['parent_category_id']);
-			}
-		}
-		if ($root_id > 0)
-		{
-			return $root_id;
-		}
-
-		return NULL;
+		return $query->row_array()['category_id'] ?? NULL;
 	}
 
 	/**

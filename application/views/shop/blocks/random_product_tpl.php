@@ -1,5 +1,15 @@
 <?php
-	$product = $this->search_model->get_random_product();
+	$products = $this->search_model->search_products(
+			$this->language_library->get_language(),
+			$this->category_model->get_root_category(),
+			TRUE,
+			1,
+			0,
+			'price',
+			'RANDOM'
+	);
+	$product = current($products);
+
 	$product['category_text'] = $this->category_model->get_category_names($this->product_model->get_product_categories($product['product_id']));
 	$product += $this->product_model->get_product_main_image($product['product_id']);
 ?>
