@@ -23,9 +23,9 @@ class Coupon_model extends CI_Model {
 
 	/**
 	 * @param	int		$id
-	 * @return	array
+	 * @return	null|array
 	 */
-	public function get_coupon(int $id): array
+	public function get_coupon(int $id): ?array
 	{
 		$this->db->select('*');
 		$this->db->from('coupons');

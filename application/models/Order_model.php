@@ -27,9 +27,9 @@ class Order_model extends CI_Model {
 
 	/**
 	 * @param	int $order_id
-	 * @return	array
+	 * @return	null|array
 	 */
-	public function get_order(int $order_id): array
+	public function get_order(int $order_id): ?array
 	{
 		$this->db->select('*');
 		$this->db->from('orders');

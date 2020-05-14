@@ -3,7 +3,7 @@
 class Category_model extends CI_Model {
 
 	/**
-	 * Get all category_ids
+	 * Get all category_ids for Parent
 	 *
 	 * @param	int	$parent_id Parent Category Id
 	 * @return	array
@@ -86,16 +86,16 @@ class Category_model extends CI_Model {
 		$query = $this->db->get();
 		$row = $query->row_array();
 
-		return empty($row['parent_category_id']) === TRUE;
+		return $row !== NULL && empty($row['parent_category_id']) === TRUE;
 	}
 
 	/**
 	 * Returns the category with $id
 	 *
 	 * @param	int $id Category Id
-	 * @return	mixed
+	 * @return	null|array
 	 */
-	public function get_category(int $id)
+	public function get_category(int $id): ?array
 	{
 		$this->db->select('*');
 		$this->db->from('categories');
@@ -125,26 +125,16 @@ class Category_model extends CI_Model {
 	 * if $slug is null or not found 0 is returned.
 	 *
 	 * @param	string|null	$slug
-	 * @return	int
+	 * @return	null|int
 	 */
-	public function get_category_id(?string $slug = NULL): int
+	public function get_category_id(string $slug): ?int
 	{
-		if ($slug === NULL)
-		{
-			return 0;
-		}
-
 		$this->db->select('*');
 		$this->db->from('categories');
 		$this->db->where('slug', $slug);
 		$query = $this->db->get();
 		$row = $query->row_array();
-		if ($row !== NULL)
-		{
-			return $row['category_id'];
-		}
-
-		return 0;
+		return $row['category_id'] ?? NULL;
 	}
 
 	/**
@@ -152,10 +142,10 @@ class Category_model extends CI_Model {
 	 * If $id is 0 then return 'all' for all categories
 	 *
 	 * @param	int $id Category Id
-	 * @return	string
+	 * @return	null|string
 	 * @todo	make 'all' a constant in global scope
 	 */
-	public function get_category_slug(int $id): string
+	public function get_category_slug(int $id): ?string
 	{
 		if ($id === 0)
 		{
@@ -168,7 +158,7 @@ class Category_model extends CI_Model {
 		$query = $this->db->get();
 		$row = $query->row_array();
 
-		return $row['slug'];
+		return $row['slug'] ?? NULL;
 	}
 
 	/**
@@ -231,28 +221,13 @@ class Category_model extends CI_Model {
 
 			$query = $this->db->get();
 			$row = $query->row_array();
-			$text .= $row['name'] . ', ';
+			if ($row !== NULL)
+			{
+				$text .= $row['name'] . ', ';
+			}
 		}
 
 		return trim($text, ', ');
-	}
-
-	/**
-	 * @param	int $category_id Category Id
-	 * @return	mixed
-	 */
-	public function category_has_info(int $category_id)
-	{
-		$this->db->select('COUNT(*) as count');
-		$this->db->from('category_texts');
-		$this->db->where('category_texts.category_id', $category_id);
-		$this->db->where('category_texts.language', $this->language_library->get_language());
-		$this->db->where('category_texts.description NOT LIKE \'\'');
-
-		$query = $this->db->get();
-		$row = $query->row_array();
-
-		return $row['count'];
 	}
 
 	/**

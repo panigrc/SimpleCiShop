@@ -24,9 +24,9 @@ class Product_model extends CI_Model {
 	 * Returns an associative array with a single product
 	 *
 	 * @param int $id
-	 * @return array
+	 * @return null|array
 	 */
-	public function get_product(int $id): array
+	public function get_product(int $id): ?array
 	{
 		$this->db->select('*');
 		$this->db->from('products');
@@ -61,9 +61,9 @@ class Product_model extends CI_Model {
 	 * Returns an associative array with a single product
 	 *
 	 * @param	string $product_slug
-	 * @return	array
+	 * @return	null|array
 	 */
-	public function get_product_by_slug(string $product_slug): array
+	public function get_product_by_slug(string $product_slug): ?array
 	{
 		$this->db->select('*');
 		$this->db->from('products');
