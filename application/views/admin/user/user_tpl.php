@@ -4,8 +4,8 @@
 ?>
 	<table>
 		<tr>
-			<td class="general"><label for="password"><?= $this->lang->line('main_user_id') ?>:</label></td>
-			<td class="general"><input type="text" name="user_code" id="password" value="<?= $password ?? '' ?>"></td>
+			<td class="general"><label for="password"><?= $this->lang->line('main_password') ?>:</label></td>
+			<td class="general"><input type="text" name="password" id="password" value="<?= $password ?? '' ?>"></td>
 		</tr>
 		<tr>
 			<td class="general"><label for="first_name"><?= $this->lang->line('main_first_name') ?>:</label></td>
@@ -28,8 +28,8 @@
 			<td class="general"><input type="text" name="birthdate" id="birthdate" value="<?= $birthdate ?? '' ?>"></td>
 		</tr>
 		<tr>
-			<td class="general"><label for="address"><?= $this->lang->line('main_address') ?>:</label></td>
-			<td class="general"><input type="text" name="address" id="address" value="<?= $address ?? '' ?>"></td>
+			<td class="general"><label for="street"><?= $this->lang->line('main_address') ?>:</label></td>
+			<td class="general"><input type="text" name="street" id="street" value="<?= $street ?? '' ?>"></td>
 		</tr>
 		<tr>
 			<td class="general"><label for="city"><?= $this->lang->line('main_city') ?>:</label></td>
@@ -52,8 +52,8 @@
 			<td class="general"><input type="text" name="language" id="language" value="<?= $language ?? '' ?>"></td>
 		</tr>
 		<tr>
-			<td class="general"><label for="registered"><?= $this->lang->line('main_registered_at') ?>:</label></td>
-			<td class="general"><input type="text" name="registered" id="registered" value="<?= date('d/m/y', $registered ?? '') ?>"></td>
+			<td class="general"><label for="registered"><?= $this->lang->line('main_user_registered_at') ?>:</label></td>
+			<td class="general"><input type="text" name="registered" id="registered" value="<?= $registered ?? '' ?>"></td>
 		</tr>
 		<tr>
 			<td class="general"><label for="credits"><?= $this->lang->line('main_user_points') ?>:</label></td>
