@@ -31,43 +31,6 @@ final class Checkout extends CI_Controller {
 		);
 	}
 
-	/**
-	 * @deprecated It seems that this Action is never used
-	 */
-	public function get_user()
-	{
-		$user = $this->user_model->search_user($this->input->post('user_code'), $this->input->post('user_phone_or_email'));
-
-		/** @todo	create a template for this */
-		echo "<script type='text/javascript'>";
-		if ($user)
-		{
-			extract($user);
-
-			echo "\$('user_name').value='".$user_name."';";
-			echo "\$('user_surname').value='".$user_surname."';";
-			echo "\$('user_email').value='".$user_email."';";
-			echo "\$('user_url').value='".$user_url."';";
-			echo "\$('user_birthdate').value='".date("d/m/Y", $user_birthdate)."';";
-			echo "\$('user_address').value='".$user_address."';";
-			echo "\$('user_city').value='".$user_city."';";
-			echo "\$('user_zip').value='".$user_zip."';";
-			echo "\$('user_country').value='".$user_country."';";
-			echo "\$('user_phone').value='".$user_phone."';";
-			echo "\$('user_id').value='".$user_id."';";
-			echo "\$('user_stars').value='".$user_stars."';";
-			echo "\$('stars').innerHTML='".$user_stars."';";
-			echo "\$('language').value='".$lang."';";
-		}
-		else
-		{
-			//echo "Form.reset('checkout_form')";
-			//echo "alert('dffdfd+".$this->input->post('user_email')."');";
-		}
-
-		echo "</script>";
-	}
-
 	private function _get_affiliate()
 	{
 		$cart = $this->session->userdata('cart');
@@ -82,24 +45,23 @@ final class Checkout extends CI_Controller {
 	{
 		$order_id = NULL;
 
-		$products = $this->cart_library->get_cart();
-
-		if ($this->input->post('user_id'))
+		if (FALSE === empty($user_id = $this->input->post('user_id')))
 		{
-			$this->user_model->set_user($this->input->post('user_id'));
-			$order_id = $this->order_model->add_order($this->input->post('user_id'));
+			$this->user_model->set_user((int) $user_id, $this->_build_user_data());
 		}
 		else
 		{
-			$user_id = $this->user_model->add_user();
-			$order_id = $this->order_model->add_order($user_id);
+			$user_id = $this->user_model->add_user($this->_build_user_data());
 		}
-		$this->order_model->add_order_products($order_id, $products);
 
-		if ('1' === $this->input->post('shipment_cash_on_delivery')
-			|| '3' === $this->input->post('shipment_cash_on_delivery'))
+		$order_id = $this->order_model->add_order($this->_build_order_data($user_id));
+
+		$this->order_model->add_order_products($order_id, $this->cart_library->get_cart()['products'] ?? []);
+
+		if (Order_model::PAYMENT_TYPE_CASH_ON_DELIVERY === (int) $this->input->post('shipment_cash_on_delivery')
+			|| Order_model::PAYMENT_TYPE_BANK_TRANSFER  === (int) $this->input->post('shipment_cash_on_delivery'))
 		{
-			redirect('checkout/thankyou');
+			redirect('shop/checkout/thankyou');
 		}
 
 		$contents = BlockFactory::create('contents', 4, function (CI_Controller $CI, array $vars) {
@@ -117,19 +79,55 @@ final class Checkout extends CI_Controller {
 		$this->template_library->view(
 			'shop/container_tpl',
 			[
-				'pagename' => 'main_checkout',
-				'title' => '',
-				'order_id' => $order_id,
-				'price' => $this->input->post('price'),
-				'user_email' => $this->input->post('user_email'),
-				'user_name' => $this->input->post('user_name'),
-				'user_surname' => $this->input->post('user_surname'),
-				'user_address' => $this->input->post('user_address'),
-				'user_city' => $this->input->post('user_city'),
-				'user_zip' => $this->input->post('user_zip'),
+				'pagename'		=> 'main_checkout',
+				'title'			=> '',
+				'order_id'		=> $order_id,
+				'price'			=> $this->input->post('price'),
+				'email'   		=> $this->input->post('email'),
+				'first_name'    => $this->input->post('first_name'),
+				'last_name'		=> $this->input->post('last_name'),
+				'street'		=> $this->input->post('street'),
+				'city'			=> $this->input->post('city'),
+				'zip'			=> $this->input->post('zip'),
 			]
 		);
 
+	}
+
+	/**
+	 * @param int $user_id
+	 * @return array
+	 */
+	private function _build_order_data(int $user_id): array
+	{
+		return [
+			'user_id'					=> $user_id,
+			'created'					=> $this->input->post('created'),
+			'status'					=> $this->input->post('status'),
+			'shipment_express'			=> $this->input->post('shipment_express'),
+			'shipment_to_door'			=> $this->input->post('shipment_to_door'),
+			'shipment_cash_on_delivery'	=> $this->input->post('shipment_cash_on_delivery'),
+			'price'						=> $this->input->post('price'),
+			'coupon_id'					=> $this->input->post('coupon_id'),
+			'questionnaire'				=> $this->input->post('questionnaire'),
+		];
+	}
+
+	private function _build_user_data(): array
+	{
+		return [
+			'email'			=> $this->input->post('email'),
+			'first_name'	=> $this->input->post('first_name'),
+			'last_name'		=> $this->input->post('last_name'),
+			'phone' 		=> $this->input->post('phone'),
+			'street' 		=> $this->input->post('street'),
+			'city' 			=> $this->input->post('city'),
+			'zip' 			=> $this->input->post('zip'),
+			'country' 		=> $this->input->post('country'),
+			'birthdate'		=> $this->input->post('birthdate'),
+			'url'			=> $this->input->post('url'),
+			'language'		=> $this->language_library->get_language(),
+		];
 	}
 
 	public function thankyou()

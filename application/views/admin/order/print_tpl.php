@@ -127,13 +127,13 @@
 				font-size: 120%;
 			}
 
-			.user_stars
+			.credits
 			{
 				font-size: 105%;
 				margin: 1em 0;
 			}
 
-			.user_stars strong
+			.credits strong
 			{
 				font-size: 200%;
 				color: #FF7400;
@@ -151,18 +151,18 @@
 				<?= $this->lang->line('main_invoice_personal_details') ?>
 			</p>
 			<div class="user_info">
-				<?= $user['user_name'] ?? '' ?><br />
-				<?= $user['user_surname'] ?? '' ?><br />
-				<?= $user['user_address'] ?? '' ?><br />
-				<?= $user['user_zip'] ?? '' ?><br />
-				<?= $user['user_country'] ?? '' ?><br />
-				<?= $user['user_phone'] ?? '' ?>
+				<?= $user['first_name'] ?? '' ?><br />
+				<?= $user['last_name'] ?? '' ?><br />
+				<?= $user['street'] ?? '' ?><br />
+				<?= $user['zip'] ?? '' ?><br />
+				<?= $user['country'] ?? '' ?><br />
+				<?= $user['phone'] ?? '' ?>
 			</div>
 			<div class="user_code">
 				<?= $this->lang->line('main_invoice_password_for_future_shopping') ?>: <strong><?= $user['user_code'] ?? '' ?></strong>
 			</div>
-			<div class="user_stars">
-				<?= $this->lang->line('main_invoice_your_points') ?>: <strong><?= $user['user_stars'] ?? '' ?></strong>
+			<div class="credits">
+				<?= $this->lang->line('main_invoice_your_points') ?>: <strong><?= $user['credits'] ?? '' ?></strong>
 			</div>
 
 			<table>

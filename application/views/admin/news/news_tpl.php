@@ -16,7 +16,7 @@
 		</tr>
 		<tr>
 			<td class="greek"><?= $this->lang->line('main_description') ?>:</td>
-			<td class="greek"><?= $this->myfckeditor->create_editor(array('name' => 'description_greek', 'value' => $description_greek ?? '')) ?></td>
+			<td class="greek"><?= $this->myfckeditor->create_editor(array('name' => 'body_greek', 'value' => $body_greek ?? '')) ?></td>
 		</tr>
 		<tr>
 			<td class="german">&nbsp;</td>
@@ -28,7 +28,7 @@
 		</tr>
 		<tr>
 			<td class="german"><?= $this->lang->line('main_description') ?>:</td>
-			<td class="german"><?= $this->myfckeditor->create_editor(array('name' => 'description_german', 'value' => $description_german ?? '')) ?></td>
+			<td class="german"><?= $this->myfckeditor->create_editor(array('name' => 'body_german', 'value' => $body_german ?? '')) ?></td>
 		</tr>
 		<tr>
 			<td class="english">&nbsp;</td>
@@ -40,7 +40,7 @@
 		</tr>
 		<tr>
 			<td class="english"><?= $this->lang->line('main_description') ?>:</td>
-			<td class="english"><?= $this->myfckeditor->create_editor(array('name' => 'description_english', 'value' => $description_english ?? '')) ?></td>
+			<td class="english"><?= $this->myfckeditor->create_editor(array('name' => 'body_english', 'value' => $body_english ?? '')) ?></td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>

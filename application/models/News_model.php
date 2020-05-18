@@ -1,62 +1,44 @@
 <?php
 
-/**
- * Class	News_model
- */
 class News_model extends CI_Model {
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	/**
 	 * Returns an associative array with all news
 	 *
-	 * @return	mixed
-	 * @todo	order by as parameter
+	 * @param string $order_by
+	 * @param string $direction ASC, DESC or RANDOM
+	 * @param int|null $limit
+	 * @param int|null $offset
+	 * @return array
 	 */
-	public function get_all_news()
+	public function get_all_news(
+		string $order_by = 'published',
+		string $direction = 'DESC',
+		?int $limit = NULL,
+		?int $offset = 0
+	): array
 	{
 		$this->db->select('*');
 		$this->db->from('news');
-		$this->db->order_by("published", "desc");
-
+		$this->db->order_by($order_by, $direction);
+		if ($limit !== null)
+		{
+			$this->db->limit($limit, $offset);
+		}
 		$query = $this->db->get();
 
 		return $query->result_array();
 	}
 
 	/**
-	 * Returns an associative array with all news
-	 *
-	 * @param	null|int	$limit_num
-	 * @param	null|int	$limit_from
-	 * @return	mixed
+	 * @param int $id
+	 * @return null|array
 	 */
-	public function get_last_news($limit_num = NULL, $limit_from = NULL)
+	public function get_article(int $id): ?array
 	{
 		$this->db->select('*');
 		$this->db->from('news');
-		$this->db->order_by("published", "desc");
-		if ( ! is_NULL($limit_num) && !is_NULL($limit_from)) $this->db->limit($limit_num, $limit_from);
-
-		$query = $this->db->get();
-
-		return $query->result_array();
-	}
-
-	/**
-	 * Returns recent news
-	 *
-	 * @return	mixed
-	 */
-	public function get_recent_news()
-	{
-		$this->db->select('*');
-		$this->db->from('news');
-		$this->db->order_by("published", "desc");
-		$this->db->limit(1);
+		$this->db->where('news.news_id', $id);
 
 		$query = $this->db->get();
 
@@ -64,97 +46,72 @@ class News_model extends CI_Model {
 	}
 
 	/**
-	 * Returns an associative array with a news item
-	 *
-	 * @param	$news_id
-	 * @return	mixed
+	 * @param int $article_id
+	 * @return array
 	 */
-	public function get_news($news_id)
+	public function get_article_text(int $article_id): array
 	{
 		$this->db->select('*');
-		$this->db->from('news');
-		$this->db->where('news.news_id', $news_id);
+		$this->db->from('news_texts');
+		$this->db->where('news_texts.news_id', $article_id);
 
 		$query = $this->db->get();
-
-		return $query->row_array();
-	}
-
-	/**
-	 * @param	$news_id
-	 * @return	array
-	 */
-	public function get_news_text($news_id)
-	{
-		$this->db->select('*');
-		$this->db->from('news_text');
-		$this->db->where('news_text.news_id', $news_id);
-
-		$query = $this->db->get();
-		$text = array();
+		$text = [];
 		foreach ($query->result_array() as $row)
 		{
 			$text['news_text_id_'.$row['language']] = $row['news_text_id'];
 			$text['title_'.$row['language']] = $row['title'];
-			$text['description_'.$row['language']] = $row['description'];
+			$text['body_'.$row['language']] = $row['body'];
 		}
 
 		return $text;
 	}
 
-	public function add_news()
+	/**
+	 * @return int Article Id
+	 */
+	public function add_article(): int
 	{
-		$arr = array('published' => time());
-		$this->db->insert('news', $arr);
-		$news_id = $this->db->insert_id();
-		$this->add_news_text($news_id);
-	}
-
-	public function set_news()
-	{
-		$news_id = $this->input->post('news_id');
-		$this->set_news_text($news_id);
+		$this->db->insert('news', ['published' => time()]);
+		return $this->db->insert_id();
 	}
 
 	/**
-	 * @param	$news_id
+	 * @param int $article_id
 	 */
-	public function delete_news($news_id)
+	public function delete_article(int $article_id): void
 	{
-		$this->db->delete('news', array('news_id' => $news_id));
-		$this->db->delete('news_text', array('news_id' => $news_id));
+		$this->db->delete('news', ['news_id' => $article_id]);
+		$this->db->delete('news_texts', ['news_id' => $article_id]);
 	}
 
 	/**
-	 * @param	$news_id
-	 * @todo	loop through languages
+	 * @param int $article_id
+	 * @param string $language
+	 * @param string $title
+	 * @param string $body
 	 */
-	public function add_news_text($news_id)
+	public function add_article_text(int $article_id, string $language, string $title, string $body): void
 	{
-		$text_greek = array('news_id' => $news_id, 'language' => 'greek', 'title' => $this->input->post('title_greek'), 'description' => $this->input->post('description_greek'));
-		$text_german = array('news_id' => $news_id, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'));
-		$text_english = array('news_id' => $news_id, 'language' => 'english', 'title' => $this->input->post('title_english'), 'description' => $this->input->post('description_english'));
-
-		$this->db->insert('news_text', $text_greek);
-		$this->db->insert('news_text', $text_german);
-		$this->db->insert('news_text', $text_english);
+		$this->db->insert('news_texts', [
+			'news_id'  => $article_id,
+			'language' => $language,
+			'title'    => $title,
+			'body'     => $body,
+		]);
 	}
 
 	/**
-	 * @param	$news_id
-	 * @todo	loop through languages
+	 * @param int $article_text_id
+	 * @param string $title
+	 * @param string $body
 	 */
-	public function set_news_text($news_id)
+	public function set_article_text(int $article_text_id, string $title, string $body): void
 	{
-		$text_greek = array('news_id' => $news_id, 'language' => 'greek', 'title' => $this->input->post('title_greek'), 'description' => $this->input->post('description_greek'));
-		$text_german = array('news_id' => $news_id, 'language' => 'german', 'title' => $this->input->post('title_german'), 'description' => $this->input->post('description_german'));
-		$text_english = array('news_id' => $news_id, 'language' => 'english', 'title' => $this->input->post('title_english'), 'description' => $this->input->post('description_english'));
-
-		$this->db->where('news_text_id', $this->input->post('news_text_id_greek'));
-		$this->db->update('news_text', $text_greek);
-		$this->db->where('news_text_id', $this->input->post('news_text_id_german'));
-		$this->db->update('news_text', $text_german);
-		$this->db->where('news_text_id', $this->input->post('news_text_id_english'));
-		$this->db->update('news_text', $text_english);
+		$this->db->where('news_text_id', $article_text_id);
+		$this->db->update('news_texts', [
+			'title'    => $title,
+			'body'     => $body,
+		]);
 	}
 }

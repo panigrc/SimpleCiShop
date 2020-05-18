@@ -1,36 +1,35 @@
 <?php
 
-/**
- * Class Order_model
- */
 class Order_model extends CI_Model {
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+	public const PAYMENT_TYPE_NONE = 0;
+
+	public const PAYMENT_TYPE_CASH_ON_DELIVERY = 1;
+
+	public const PAYMENT_TYPE_PAYPAL = 2;
+
+	public const PAYMENT_TYPE_BANK_TRANSFER = 3;
 
 	/**
-	 * Returns an associative array with all order_ids
-	 *
-	 * @return	mixed
-	 * @todo	order by as parameter
+	 * @param string $order_by
+	 * @param string $direction ASC, DESC or RANDOM
+	 * @return	array
 	 */
-	public function get_all_order_ids()
+	public function get_all_orders(string $order_by = 'created', string $direction = 'DESC'): array
 	{
 		$this->db->select('*');
 		$this->db->from('orders');
-		$this->db->order_by('created','desc');
+		$this->db->order_by($order_by, $direction);
 		$query = $this->db->get();
 
 		return $query->result_array();
 	}
 
 	/**
-	 * @param	$order_id
-	 * @return	mixed
+	 * @param	int $order_id
+	 * @return	null|array
 	 */
-	public function get_order($order_id)
+	public function get_order(int $order_id): ?array
 	{
 		$this->db->select('*');
 		$this->db->from('orders');
@@ -42,10 +41,10 @@ class Order_model extends CI_Model {
 	}
 
 	/**
-	 * @param	$order_id
-	 * @return	mixed
+	 * @param	int $order_id
+	 * @return	array
 	 */
-	public function get_order_products($order_id)
+	public function get_order_products(int $order_id): array
 	{
 		$this->db->select('*');
 		$this->db->from('order_products');
@@ -55,113 +54,80 @@ class Order_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function set_order()
+	/**
+	 * @param int $id
+	 * @param array $order_data
+	 */
+	public function set_order(int $id, array $order_data): void
 	{
-		if ( ! $this->input->post('order_code')) {
-			$order_code = $this->generate_password();
-		}
-
-		$order = array(
-			'order_code' => $order_code,
-			'order_name' => $this->input->post('order_name'),
-			'order_surname' => $this->input->post('order_surname'),
-			'order_email' => $this->input->post('order_email'),
-			'order_url' => $this->input->post('order_url'),
-			'order_birthdate' => $this->input->post('order_birthdate'),
-			'order_address' => $this->input->post('order_address'),
-			'order_zip' => $this->input->post('order_zip'),
-			'order_country' => $this->input->post('order_country'),
-			'order_phone' => $this->input->post('order_phone'),
-			'order_language' => $this->input->post('order_language'),
-			'order_stars' => $this->input->post('order_stars')
-		);
-		$this->db->where('order_id', $this->input->post('order_id'));
-		$this->db->update('orders', $order);
+		$this->db->where('order_id', $id);
+		$this->db->update('orders', $this->_process_order_data($order_data));
 	}
 
 	/**
-	 * @param	$order_id
-	 * @param	$status
-	 * @return	bool
+	 * @param	int $id
+	 * @param	int $status
 	 */
-	public function set_order_status($order_id, $status)
+	public function set_order_status(int $id, int $status): void
 	{
-		if ($order_id)
-		{
-			$this->db->where('order_id', $order_id);
-			$this->db->update('orders', array('status' => $status));
-
-			return $status;
-		}
-
-		return FALSE;
+		$this->db->where('order_id', $id);
+		$this->db->update('orders', ['status' => $status]);
 	}
 
 	/**
-	 * @param	$user_id
-	 * @return	mixed
+	 * @param	array $order_data
+	 * @return	int Order Id
 	 */
-	public function add_order($user_id)
+	public function add_order(array $order_data): int
 	{
-		$shipment_express = 0 + @$this->input->post('shipment_express');
-		$shipment_to_door = 0 + @$this->input->post('shipment_to_door');
-		$shipment_cash_on_delivery = @$this->input->post('shipment_cash_on_delivery');
-
-		$order = array(
-			'user_id' => $user_id,
-			'created' => time(),
-			'shipment_express' => $shipment_express,
-			'shipment_to_door' => $shipment_to_door,
-			'shipment_cash_on_delivery' => $shipment_cash_on_delivery,
-			'status' => 0,
-			'price' => $this->input->post('price'),
-			'questionnaire' => $this->get_questionnaire($this->input->post('questionnaire')),
-		);
-		$this->db->insert('orders', $order);
+		$this->db->insert('orders', $this->_process_order_data($order_data));
 
 		return $this->db->insert_id();
 	}
 
 	/**
-	 * @param	$order_id
-	 * @param	$products
+	 * Returns an order array ready for insertion or update.
+	 *
+	 * @param array $order_data
+	 * @return array
 	 */
-	public function add_order_products($order_id, $products)
+	private function _process_order_data(array $order_data): array
 	{
-		foreach ($products as $product => $value)
+		return [
+			'user_id' => $order_data['user_id'] ?? NULL,
+			'created' => $order_data['created'] ?? time(),
+			'status' => $order_data['status'] ?? 0,
+			'shipment_express' => $order_data['shipment_express'] ?? FALSE,
+			'shipment_to_door' => $order_data['shipment_to_door'] ?? FALSE,
+			'shipment_cash_on_delivery' => $order_data['shipment_cash_on_delivery'] ?? self::PAYMENT_TYPE_NONE,
+			'price' => $order_data['price'] ?? NULL,
+			'coupon_id' => $order_data['coupon_id'] ?? NULL,
+			'questionnaire' => false === isset($order_data['questionnaire']) ? NULL : serialize($order_data['questionnaire']),
+		];
+	}
+
+	/**
+	 * @param	int $order_id
+	 * @param	array $products
+	 */
+	public function add_order_products(int $order_id, array $products): void
+	{
+		foreach ($products as $product_id => $quantity)
 		{
-			$relation = array('order_id' => $order_id, 'product_id' => $product, 'quantity' => $value);
-			$this->db->insert('order_products', $relation);
+			$this->db->insert('order_products', [
+				'order_id'   => $order_id,
+				'product_id' => $product_id,
+				'quantity'   => $quantity,
+			]);
 		}
 	}
 
 	/**
-	 * @param	$data
-	 * @return	string
-	 * @todo	do not direct include html
+	 * @param	int $order_id
 	 */
-	public function get_questionnaire($data)
+	public function delete_order(int $order_id): void
 	{
-		$questionnaire = "";
-
-		foreach ($data as $key => $answer)
-		{
-			$questionnaire.= $this->lang->line('main_question'.($key+1));
-			$questionnaire.= "<br />\n";
-			$questionnaire.= $answer;
-		}
-		$questionnaire.= "<br />\n";
-		$questionnaire.= @$this->input->post('affiliate');
-
-		return $questionnaire;
-	}
-
-	/**
-	 * @param	$order_id
-	 */
-	public function delete_order($order_id)
-	{
-		$this->db->delete('orders', array('order_id' => $order_id));
-		$this->db->delete('order_products', array('order_id' => $order_id));
+		$this->db->delete('orders', ['order_id' => $order_id]);
+		$this->db->delete('order_products', ['order_id' => $order_id]);
 	}
 }

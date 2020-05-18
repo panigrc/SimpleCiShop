@@ -3,56 +3,54 @@
 	<div class="article">
 		<h2><?= isset($pagename) ? $this->lang->line($pagename) : '' ?></h2>
 		<p style="display:none;"><span id="stars"></span></p>
-		<?= form_open('checkout/order', ['id' =>'checkout_form']) ?>
-			<input type="hidden" name="user_id" id="user_id" value="" />
+		<?= form_open('shop/checkout/order', ['id' =>'checkout_form']) ?>
 			<input type="hidden" name="affiliate" id="affiliate" value="<?= $affiliate ?? '' ?>" />
-			<input type="hidden" name="user_stars" id="user_stars" value="" />
 			<h2>
 				<?= $this->lang->line('main_receipt') ?>
 			</h2>
 			<div class="search">
-				<label class="search" for="user_name"><?= $this->lang->line('main_name') ?>:</label>
-				<input type="text" name="user_name" id="user_name" required value="" />
+				<label class="search" for="email"><?= $this->lang->line('main_email') ?>:</label>
+				<input type="text" name="email" id="email" class="" required value="" />
 			</div>
 			<div class="search">
-				<label class="search" for="user_surname"><?= $this->lang->line('main_last_name') ?>:</label>
-				<input type="text" name="user_surname" id="user_surname" required value="" />
+				<label class="search" for="first_name"><?= $this->lang->line('main_name') ?>:</label>
+				<input type="text" name="first_name" id="first_name" required value="" />
 			</div>
 			<div class="search">
-				<label class="search" for="user_phone"><?= $this->lang->line('main_phone') ?>:</label>
-				<input type="text" name="user_phone" id="user_phone" required value="" />
+				<label class="search" for="last_name"><?= $this->lang->line('main_last_name') ?>:</label>
+				<input type="text" name="last_name" id="last_name" required value="" />
 			</div>
 			<div class="search">
-				<label class="search" for="user_address"><?= $this->lang->line('main_address') ?>:</label>
-				<input type="text" name="user_address" id="user_address" required value="" />
+				<label class="search" for="phone"><?= $this->lang->line('main_phone') ?>:</label>
+				<input type="text" name="phone" id="phone" required value="" />
 			</div>
 			<div class="search">
-				<label class="search" for="user_city"><?= $this->lang->line('main_city') ?>:</label>
-				<input type="text" name="user_city" id="user_city" required value="" />
+				<label class="search" for="street"><?= $this->lang->line('main_address') ?>:</label>
+				<input type="text" name="street" id="street" required value="" />
 			</div>
 			<div class="search">
-				<label class="search" for="user_zip"><?= $this->lang->line('main_zip') ?>:</label>
-				<input type="text" name="user_zip" id="user_zip" required value="" />
+				<label class="search" for="city"><?= $this->lang->line('main_city') ?>:</label>
+				<input type="text" name="city" id="city" required value="" />
 			</div>
 			<div class="search">
-				<label class="search" for="user_country"><?= $this->lang->line('main_country') ?>:</label>
-				<input type="text" name="user_country" id="user_country" required value="<?= $this->lang->line('main_greece') ?>" />
+				<label class="search" for="zip"><?= $this->lang->line('main_zip') ?>:</label>
+				<input type="text" name="zip" id="zip" required value="" />
+			</div>
+			<div class="search">
+				<label class="search" for="country"><?= $this->lang->line('main_country') ?>:</label>
+				<input type="text" name="country" id="country" required value="<?= $this->lang->line('main_greece') ?>" />
 			</div>
 			<h2>
 				<?= $this->lang->line('main_more_data') ?> - <?= $this->lang->line('main_questionnaire') ?>
 			</h2>
 			<div class="small">(<?= $this->lang->line('main_optional_data') ?>)</div>
 			<div class="search">
-				<label class="search" for="user_email"><?= $this->lang->line('main_email') ?>:</label>
-				<input type="text" name="user_email" id="user_email" class="" value="" />
+				<label class="search" for="birthdate"><?= $this->lang->line('main_birthdate') ?>:</label>
+				<input type="text" name="birthdate" id="birthdate" class="contact" value=""/>
 			</div>
 			<div class="search">
-				<label class="search" for="user_birthdate"><?= $this->lang->line('main_birthdate') ?>:</label>
-				<input type="text" name="user_birthdate" id="user_birthdate" class="contact" value=""/>
-			</div>
-			<div class="search">
-				<label class="search" for="user_url"><?= $this->lang->line('main_website') ?>:</label>
-				<input type="text" name="user_url" id="user_url" class="contact" value="http://" />
+				<label class="search" for="url"><?= $this->lang->line('main_website') ?>:</label>
+				<input type="text" name="url" id="url" class="contact" value="http://" />
 			</div>
 			<div class="search">
 				<label class="search" for="question1"><?= $this->lang->line('main_question1') ?>:</label>
@@ -68,17 +66,17 @@
 			</h2>
 			<div class="search">
 				<label class="search" for="shipment_cash_on_delivery"><?= $this->lang->line('main_shipping_cash_on_delivery') ?>:</label>
-				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_cash_on_delivery" value="1" onclick="shipment_sum();"/>
+				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_cash_on_delivery" value="<?= Order_model::PAYMENT_TYPE_CASH_ON_DELIVERY ?>" onclick="shipment_sum();"/>
 			</div>
 			<div class="small"><?= $this->lang->line('main_shipping_cash_on_delivery_details') ?></div>
 			<div class="search">
 				<label class="search" for="shipment_paypal"><?= $this->lang->line('main_shipping_paypal') ?>:</label>
-				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_paypal" value="2" onclick="shipment_sum();"/>
+				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_paypal" value="<?= Order_model::PAYMENT_TYPE_PAYPAL ?>" onclick="shipment_sum();"/>
 			</div>
 			<div class="small"><?= $this->lang->line('main_shipping_paypal_details') ?></div>
 			<div class="search">
 				<label class="search" for="shipment_bank_transfer"><?= $this->lang->line('main_shipping_bank_transfer') ?>:</label>
-				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_bank_transfer" value="3" onclick="shipment_sum();"/>
+				<input type="radio" class="check" name="shipment_cash_on_delivery" id="shipment_bank_transfer" value="<?= Order_model::PAYMENT_TYPE_BANK_TRANSFER?>" onclick="shipment_sum();"/>
 			</div>
 			<div class="small"><?= $this->lang->line('main_shipping_bank_transfer_details') ?></div>
 			<div class="search">

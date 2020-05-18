@@ -52,13 +52,13 @@ class User extends CI_Controller {
 
 	public function set_user()
 	{
-		$this->user_model->set_user();
+		$this->user_model->set_user($this->input->post('user_id'), $this->_build_user_data());
 		redirect('admin/user');
 	}
 
 	public function add_user()
 	{
-		$this->user_model->add_user();
+		$this->user_model->add_user($this->_build_user_data());
 		redirect('admin/user');
 	}
 
@@ -69,5 +69,25 @@ class User extends CI_Controller {
 	{
 		$this->user_model->delete_user($user_id);
 		redirect('admin/user');
+	}
+
+	private function _build_user_data(): array
+	{
+		return [
+			'password'		=> $this->input->post('password'),
+			'first_name'	=> $this->input->post('first_name'),
+			'last_name'		=> $this->input->post('last_name'),
+			'email'			=> $this->input->post('email'),
+			'url'			=> $this->input->post('url'),
+			'birthdate'		=> $this->input->post('birthdate'),
+			'street' 		=> $this->input->post('street'),
+			'city' 			=> $this->input->post('city'),
+			'zip' 			=> $this->input->post('zip'),
+			'country' 		=> $this->input->post('country'),
+			'phone' 		=> $this->input->post('phone'),
+			'language'		=> $this->input->post('language'),
+			'credits'		=> $this->input->post('credits'),
+			'registered'	=> $this->input->post('registered'),
+		];
 	}
 }

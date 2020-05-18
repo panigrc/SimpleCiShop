@@ -19,10 +19,10 @@
 	</tr>
 	<?php
 		$order_type = [
-			$this->lang->line('main_payment_none'),
-			$this->lang->line('main_shipping_cash_on_delivery'),
-			$this->lang->line('main_payment_paypal'),
-			$this->lang->line('main_payment_bank_transfer'),
+			Order_model::PAYMENT_TYPE_NONE             => $this->lang->line('main_payment_none'),
+			Order_model::PAYMENT_TYPE_CASH_ON_DELIVERY => $this->lang->line('main_shipping_cash_on_delivery'),
+			Order_model::PAYMENT_TYPE_PAYPAL           => $this->lang->line('main_payment_paypal'),
+			Order_model::PAYMENT_TYPE_BANK_TRANSFER    => $this->lang->line('main_payment_bank_transfer'),
 		];
 	?>
 	<?php foreach ($orders ?? [] as $order): ?>

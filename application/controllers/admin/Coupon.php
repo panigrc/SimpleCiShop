@@ -14,7 +14,7 @@ class Coupon extends CI_Controller {
 
 	public function list_coupon()
 	{
-		$coupons = $this->coupon_model->get_all_coupon();
+		$coupons = $this->coupon_model->get_all_coupons();
 
 		$data = array(
 			'title' => $this->lang->line('main_manage_coupons'),
@@ -45,9 +45,21 @@ class Coupon extends CI_Controller {
 
 	public function add_coupon()
 	{
-		for($i=0; $i<$this->input->post('generation_number'); $i++)
+		for($i = 0; $i < $this->input->post('amount'); $i++)
 		{
-			$this->coupon_model->add_coupon();
+			try
+			{
+				$uuid = $this->input->post('uuid') . random_int(0, 9999);
+			} catch (Exception $e)
+			{
+			}
+
+			$this->coupon_model->add_coupon(
+				$uuid ?? $this->input->post('uuid'),
+				$this->input->post('type'),
+				$this->input->post('discount'),
+				$this->input->post('expires')
+			);
 		}
 
 		redirect('admin/coupon');

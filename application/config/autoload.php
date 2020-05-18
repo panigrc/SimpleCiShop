@@ -103,7 +103,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('form', 'url');
+$autoload['helper'] = array('form', 'url', 'string');
 
 /*
 | -------------------------------------------------------------------
@@ -117,7 +117,7 @@ $autoload['helper'] = array('form', 'url');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('template_blocks', 'upload');
+$autoload['config'] = array('template_blocks');
 
 /*
 | -------------------------------------------------------------------
