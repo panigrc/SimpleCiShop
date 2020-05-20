@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2011-08-08
+
+### Added
+
+- Details of the project in the README.
+
+### Changed
+
+- Moved the files in the `/theme` directory under `default` subdirectory to support more themes in the future.
+
 ## [0.1.0] - 2011-08-04
 
 ### Added
@@ -34,6 +44,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Catalog (frontend) application in `/system/application/catalog`
   - Common theme under `/theme`
   - Blog images under `/uploads/Image/products`
+  - `/.htaccess`
+  - `/admin.php`
+  - `/index.php`
+  - `/licence.txt`
+  - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/panigrc/SimpleCiShop/releases/tag/v0.1.0
