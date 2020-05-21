@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2018-07-15
+
+### Changed
+
+- Refactor English, German and Greek Language Translation in order to match with CodeIgniter v3.1.9 translations.
+- Refactor methods `orderby` and `groupby` in `application/admin/models` and `application/catalog/models`
+  to `order_by` and `group_by` to match with CodeIgniter v3.1.9 Query Builder methods.
+- Add `sess_save_path` in `application/admin/config.php` and `application/catalog/config.php`.
+- Remove database password from `application/admin/database.php` and `application/catalog/database.php`.
+- Refactor PHP 4 Constructors to `__construct` method in following classes:
+  - `application/admin/libraries`
+  - `application/admin/controllers`
+  - `application/admin/models`
+  - `application/catalog/models`
+  - `application/catalog/libraries`
+  - `application/catalog/controllers`
+- **Change the required PHP version in `composer.json` from `>=5.3.7` to `>=7.2`**.
+- Update the README with the new minimum required PHP version.
+- Change system and application paths in `admin.php` and `index.php` in order to have
+  them as symlinks in a subdirectory like `htdocs` or `public_html`
+
+### Deleted
+
+- PHP 4 Style Constructor from `application/catalog/libraries/Ajax.php`.
+
 ## [0.5.0] - 2018-07-14
 
 ### Changed
@@ -92,7 +117,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.5.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.2.0...v0.3.0
