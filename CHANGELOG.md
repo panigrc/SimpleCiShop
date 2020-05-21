@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2018-07-14
+
+### Changed
+
+- All classes in `application/admin/controllers`, `application/admin/models`, 
+  `application/admin/catalog` and `application/catalog/models` start with upper case letter
+  to be CodeIgniter Style conform.
+- Removed closing PHP tag `?>` from all classes in `application/admin/controllers`, `application/admin/libraries`,
+  `application/admin/models`, `application/catalog/controllers`, `application/catalog/libraries` and
+  `application/catalog/models`.
+- Ignored `.idea/` and `htdocs/` in `.gitignore`.
+- README.
+- Change base url and database configuration of admin and catalog application to be able to develop locally
+  using [devilbox](https://github.com/cytopia/devilbox).
+- **Updated to CodeIgniter v3.1.9**.
+  - Application config updated.
+  - Errors moved to views.
+  - Missing directories added.
+  - `index.php` and `admin.php` adapted.
+  - Converted Files to LF format.
+- Application directory (`system/application`) moved to root of the project.
+
+### Deleted
+
+- Removed unneeded `_img` and `_css` directories and all their contents.
+
 ## [0.4.0] - 2017-02-23
 
 ### Added
@@ -66,7 +92,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.4.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.1.0...v0.2.0
