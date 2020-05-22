@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2018-07-17
+
+### Added
+
+- Add upload configuration in `application/config/upload.php`.
+
+### Changed
+
+- Rename `shop/Home.php` to `shop/Index.php` and replaced all `'catalog'` references in shop controllers views
+  with `'shop'`.
+- Moved error views from `views/admin` to `views` directory.
+- Updated the README with the details of the new structure.
+- Refactor TODOs to PHPDocumentor tags `@todo`.
+- Refactor methods in following models to match the
+  [CI style guide](https://codeigniter.com/userguide3/general/styleguide.html#class-and-method-naming),
+  all references to these methods were updated to:
+  - `application/models/Category_model.php`
+  - `application/models/Coupon_model.php`
+  - `application/models/Meta_model.php`
+  - `application/models/News_model.php`
+  - `application/models/Order_model.php`
+  - `application/models/Product_model.php`
+  - `application/models/Search_model.php`
+  - `application/models/User_model.php`
+- Merged the application Models.
+- Merged the to applications `admin` and `catalog` into one.
+
+### Removed
+
+- Remove unnecessary `admin.php` as now only one application exists.
+- Remove duplicate error views from `views/shop` directory.
+- Remove already merged models.
+- Remove duplicate application files such as inside `config`, `language`, `libraries` and `views`.
+
 ## [0.6.0] - 2018-07-15
 
 ### Changed
@@ -117,7 +151,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.6.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.3.0...v0.4.0
