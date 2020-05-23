@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2018-07-25
+
+### Added
+
+- Add `application/config/autocomplete.php` to aid to the PHPStorm autocomplete.
+
+### Changed
+
+- Rename every usage of `$this->{library}` and `$this->{model}` to snake case to match
+  the definitions in the `application/config/autoload.php` config file.
+- Autoload every library, model, helper which was manually loaded in each class.
+- Update README.
+- Disable redirecting in `application/libraries/Authentication.php` 
+  to the login page because it makes debugging difficult.
+
+### Fixed
+
+- Rename again the `shop/Index.php` to `shop/Home.php` and `admin/Index.php` to `admin/Home.php`,
+  because the name `Index` as Controller Name is a reserved word from CodeIgniter.
+- Fix shop routes in the views of `application/views/shop`, because after the application merger,
+  the routes to the shop controllers the prefix `/shop` was added.
+
 ## [0.7.0] - 2018-07-17
 
 ### Added
@@ -151,7 +173,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.7.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.4.0...v0.5.0
