@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2018-08-02
+
+### Added
+
+- Language library, which gets/sets the language from/to the session.
+
+### Changed
+
+- Space the arrays in the language files evenly.
+- Add method visibility to controllers/models/libraries.
+- Change default language to 'greek' in the `application/config/config.php`
+  until everything is translated to english.
+- Remove the language parameter from Controller methods. Until now the language was passed
+  in the Controllers every time. By using the language library (see above), the current language is
+  set once in the session.
+- Remove the language parameter from URL paths in Views. Until now the language was passed
+  in the URL every time. By using the language library (see above), the current language is
+  set once in the session. 
+- Update README todo list.
+
+### Removed
+
+- Remove Google Analytics script from `application/views/shop/container.php`.
+
+### Fixed
+
+- Replace everywhere 'shippment' with 'shipment'.
+- Add missing translations.
+
 ## [0.8.0] - 2018-07-25
 
 ### Added
@@ -173,7 +202,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.8.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.5.0...v0.6.0
