@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2018-12-09
+
+### Added
+
+- Add translation for missing admin keys.
+- Add Language Controller, which sets the language to the session according to a GET parameter and
+  redirects to the referrer.
+- VS Code settings to `.gitignore`.
+
+### Changed
+
+- Reformat indentation of admin templates.
+- Add missing keys to the languages, so all language files have the same keys.
+- Replace hard coded texts in `application/controllers/admin` and `application/views/admin` with language keys.
+- Update README todo list.
+- Refactor admin controllers:
+  - Add visibility to methods
+  - Remove unnecessary comments
+  - Use array short type `[]`
+  - Add docblocks
+  - Remove inline fetching of GET parameters with `$this->uri->segment()` and add them to method parameters
+- Rename all variables in classes and views to snake case to match the CodeIgniter style guide.
+- Rename all table fields to snake case to match the CodeIgniter style guide. 
+
+### Fixed
+
+- Replace everywhere 'main_user_rating' with 'main_user_points'.
+- Replace everywhere 'main_shipment' with 'main_shipping'.
+- Fix admin routes in the views of `application/views/admin`, because after the application merger,
+  the routes to the admin controllers the prefix `/admin` was added.
+
 ## [0.9.0] - 2018-08-02
 
 ### Added
@@ -202,7 +233,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.9.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.6.0...v0.7.0
