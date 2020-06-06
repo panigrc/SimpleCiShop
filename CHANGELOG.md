@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.0] - 2018-12-25
+
+### Added
+
+- Add method `cart_block` to the Cart Library.
+- Add Template library which handles nested views for making it easier to inject
+  the views for example in the container view.
+- Load Font Awesome in container views of admin and shop.
+- Font Awesome v5.6.1 in `assets` directory.
+
+### Changed
+
+- Refactor Catalog (shop) controller in order to use the Template library.
+- Autoload the `template_library`.
+- Autoload the `user_agent` library.
+- Clean up css.
+- Replace To Do items in README with a Project in GitHub.
+- Replace all icons with their respective font awesome icon.
+- Update README todo.
+- Update views to include script.aculo.us from the new path.
+- Delete script.aculo.us libraries from `javascripts/` directory and
+  the existing script.aculo.us library from `assets/validation/scriptaculous` to
+  `assets/scriptaculous` directory. 
+
+### Removed
+
+- Remove Ajax functionality when adding or removing items in/from cart.
+- Remove Logo.
+- Unused images from `theme/default/images`.
+- Remove empty `javascripts/` directory.
+
+### Fixed
+
+- Checkout link in `application/views/shop/cart/cart_tpl.php` view.
+
 ## [0.10.0] - 2018-12-09
 
 ### Added
@@ -233,7 +268,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.10.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.11.0...HEAD
+[0.11.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.7.0...v0.8.0
