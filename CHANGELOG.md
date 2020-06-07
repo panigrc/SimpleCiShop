@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.0] - 2019-19-01
+
+### Added
+
+- Exclude `simplecishop.sqlite` from git with `.gitignore`.
+- Add latest migration to `aplication/config/migration.php`.
+- Exclude `bin` directory from git with `.gitignore`.
+- Create sqlite database `simplecishop.sqlite`.
+- Add `craftsman/cli` configuration file `.craftsman`.
+- Require `craftsman/cli` in Composer.
+- Add migrations for all database tables.
+- Enable migrations.
+- Add installation instructions in README.
+
+### Changed
+
+- Update authentication library to not cause problems as it doesn't being used right now.
+- Change `main_name` to `main_firstname` and `main_surname` to `main_lastname`
+  in language translations and change all usages.
+- Refactor ajax methods of setting status of orders and stock of products,
+  in admin and rename them without the ajax part and instead of returning,
+  contents they redirect to the order and to products respectively.
+
+### Removed
+
+- Remove create order functionality from admin.
+- Remove `overlib.js`.
+- Remove the ajax library and the draggable elements from views.
+- Remove `AUTO_INCREMENT` directive from the queries in `simplecishop.sql`.
+
+### Fixed
+
+- Fix installation instructions in README.
+- Fix authentication library to work with cli.
+- Fix #1 Form action URLs in admin form views.
+- Fix loading problems of FCKEditor in `Myfckeditor` library.
+- Fix view methods in admin controllers by making the last parameter optional (default = null).
+
 ## [0.11.0] - 2018-12-25
 
 ### Added
@@ -268,7 +306,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.11.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.8.0...v0.9.0
