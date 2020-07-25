@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.14.0] - 2019-09-20
+
+### Added
+
+- Create `Emporio_orm_library`.
+- Add Emporio core & ui Packages in `packages/emporio`.
+- Add "street" field in users migration.
+- Add `product_meta` table migration.
+- Add missing "created" field in orders migration.
+
+### Changed
+
+- Rename `application/views/shop/container.php` to `application/views/shop/container_tpl.php`
+  and update all usages. 
+- Activate Composer in `application/config/config.php`.
+- Replace everywhere "nicename" fields with "slug" ones.
+- Remove slug key as it conflicts with unique constraint in migration
+  `20190117125627_create_products_table`.
+- Replace "nicename" with "slug" in categories & products migrations.
+
+### Removed
+
+- Remove sqlite example `simplecishop.sqlite.example`.
+
+### Fixed
+
+- Rename table names and field names:
+  - Table "category" to "categories"
+  - Table "category_text" to "category_texts"
+  - Table "coupon" to "coupons"
+  - Table "order" to "orders"
+  - Field "date_created" to "created"
+  - Table "order2product" to "order_products"
+  - Table "product" to "products"
+  - Table "product_text" to "products_texts"
+  - Table "product_image" to "products_images"
+  - Table "product2category" to "product_categories"
+  - Table "user" to "users"
+  - Field "user_code" to "password"
+  - Field "user_language" to "language"
+  - Field "user_name" to "first_name"
+  - Field "user_surname" to "last_name"
+  - Field "user_registered" to "registered"
+  - Field "user_stars" to "credits"
+  - Field "user_email" to "email"
+  - Field "user_url" to "url"
+  - Field "user_birthdate" to "birthdate"
+  - Field "user_address" to "address"
+  - Field "user_city" to "city"
+  - Field "user_zip" to "zip"
+  - Field "user_country" to "country"
+  - Field "user_phone" to "phone"
+
 ## [0.13.0] - 2019-01-19
 
 ### Fixed
@@ -312,7 +365,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.13.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.14.0...HEAD
+[0.14.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.10.0...v0.11.0
