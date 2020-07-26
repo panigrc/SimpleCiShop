@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.16.0] - 2020-05-18
+
+### Added
+
+- Create a `public` directory. See #36.
+- Add method `Cart_library::initialize_cart` which creates an empty cart in the session if none exists.
+- Add 'products' key in the cart array in the checkout, so it doesn't collide with 'affiliate' key.
+
+### Changed
+
+- Hide cart block when cart is empty.
+- Use input class instead of $_SERVER in Language controller.
+
+### Removed
+
+- Remove unnecessary files and directories from `application`.
+- Remove Validation & Scriptaculous javascript library. See #28.
+- Remove comments from templates. See #33.
+
+### Fixed
+
+- Fix #14 separation between data and models. See merge request #45.
+- Fix admin/shop views. See merge request #39.
+
 ## [0.15.0] - 2019-10-17
 
 ### Added
@@ -403,7 +427,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.15.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.16.0...HEAD
+[0.16.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.15.0...v0.16.0
 [0.15.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.12.0...v0.13.0
