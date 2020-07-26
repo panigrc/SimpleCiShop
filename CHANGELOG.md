@@ -7,12 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.0] - 2019-10-17
+
+### Added
+
+- Add :warning: notice in `README.md`.
+- Add cartBlock. See #25.
+- Add `main_redirecting_to_paypal` translation.
+- Add categoryBlock.
+- Add Emporio Ui Package in `packages/emporio/ui`.
+- Autoload "application/blocks" classmap in `composer.json`.
+- Add welcomeBlock.
+- Add #3 Template block system.
+
+### Changed
+
+- Convert Controllers to use the new Block system. See #24.
+- Refactor following methods in `Template_library`:
+  - Rename `set` to `setSection`
+  - Rename `prepend` to `prependToSection`
+  - Rename `apend` to `appendToSection`
+- Rename project in `composer.json` from "panigrc/SimpleCiShop" to "panigrc/simplecishop".
+
+### Removed
+
+- Remove Category Shop controller & template. See #26.
+- Clean up the templates from comments. See #33.
+- Remove "What it needs to be done" section from `README.md` and convert it to github project.
+- Remove blocks from controllers as they are injected by the Template_library.
+
+### Fixed
+
+- Fix Installation instructions in `README.md`.
+- Use `$this->language_library->get_language()` to get current language in
+  - `application/views/shop/container_tpl.php`
+  - `application/views/shop/contents/catalog_tpl.php`
+  
+
 ## [0.14.0] - 2019-09-20
 
 ### Added
 
 - Create `Emporio_orm_library`.
-- Add Emporio core & ui Packages in `packages/emporio`.
+- Add Emporio Core Package in `packages/emporio/core`.
 - Add "street" field in users migration.
 - Add `product_meta` table migration.
 - Add missing "created" field in orders migration.
@@ -76,7 +113,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Create sqlite database `simplecishop.sqlite`.
 - Add `craftsman/cli` configuration file `.craftsman`.
 - Require `craftsman/cli` in Composer.
-- Add migrations for all database tables.
+- Add #4 migrations for all database tables.
 - Enable migrations.
 - Add installation instructions in README.
 
@@ -121,7 +158,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Autoload the `user_agent` library.
 - Clean up css.
 - Replace To Do items in README with a Project in GitHub.
-- Replace all icons with their respective font awesome icon.
+- Replace all icons with their respective font awesome icon. See #7.
 - Update README todo.
 - Update views to include script.aculo.us from the new path.
 - Delete script.aculo.us libraries from `javascripts/` directory and
@@ -130,9 +167,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Remove Ajax functionality when adding or removing items in/from cart.
+- Remove Ajax functionality when adding or removing items in/from cart. See #5.
 - Remove Logo.
-- Unused images from `theme/default/images`.
+- Remove unused images from `theme/default/images`.
 - Remove empty `javascripts/` directory.
 
 ### Fixed
@@ -143,8 +180,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add translation for missing admin keys.
-- Add Language Controller, which sets the language to the session according to a GET parameter and
+- Add translation for missing admin keys. See #8.
+- Add #13 Language Controller, which sets the language to the session according to a GET parameter and
   redirects to the referrer.
 - VS Code settings to `.gitignore`.
 
@@ -153,6 +190,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reformat indentation of admin templates.
 - Add missing keys to the languages, so all language files have the same keys.
 - Replace hard coded texts in `application/controllers/admin` and `application/views/admin` with language keys.
+  See #9.
 - Update README todo list.
 - Refactor admin controllers:
   - Add visibility to methods
@@ -161,7 +199,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Add docblocks
   - Remove inline fetching of GET parameters with `$this->uri->segment()` and add them to method parameters
 - Rename all variables in classes and views to snake case to match the CodeIgniter style guide.
-- Rename all table fields to snake case to match the CodeIgniter style guide. 
+- Rename all table fields to snake case to match the CodeIgniter style guide. See #12.
 
 ### Fixed
 
@@ -174,7 +212,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Language library, which gets/sets the language from/to the session.
+- Add #11 Language library, which gets/sets the language from/to the session.
 
 ### Changed
 
@@ -231,8 +269,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Rename `shop/Home.php` to `shop/Index.php` and replaced all `'catalog'` references in shop controllers views
   with `'shop'`.
-- Moved error views from `views/admin` to `views` directory.
-- Updated the README with the details of the new structure.
+- Move error views from `views/admin` to `views` directory.
+- Update the README with the details of the new structure.
 - Refactor TODOs to PHPDocumentor tags `@todo`.
 - Refactor methods in following models to match the
   [CI style guide](https://codeigniter.com/userguide3/general/styleguide.html#class-and-method-naming),
@@ -245,8 +283,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `application/models/Product_model.php`
   - `application/models/Search_model.php`
   - `application/models/User_model.php`
-- Merged the application Models.
-- Merged the to applications `admin` and `catalog` into one.
+- Merge the application Models.
+- Merge the two applications `admin` and `catalog` into one. See #10.
 
 ### Removed
 
@@ -287,24 +325,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - All classes in `application/admin/controllers`, `application/admin/models`, 
   `application/admin/catalog` and `application/catalog/models` start with upper case letter
   to be CodeIgniter Style conform.
-- Removed closing PHP tag `?>` from all classes in `application/admin/controllers`, `application/admin/libraries`,
+- Remove closing PHP tag `?>` from all classes in `application/admin/controllers`, `application/admin/libraries`,
   `application/admin/models`, `application/catalog/controllers`, `application/catalog/libraries` and
   `application/catalog/models`.
-- Ignored `.idea/` and `htdocs/` in `.gitignore`.
+- Ignore `.idea/` and `htdocs/` in `.gitignore`.
 - README.
 - Change base url and database configuration of admin and catalog application to be able to develop locally
   using [devilbox](https://github.com/cytopia/devilbox).
-- **Updated to CodeIgniter v3.1.9**.
+- **Update to CodeIgniter v3.1.9**.
   - Application config updated.
   - Errors moved to views.
   - Missing directories added.
   - `index.php` and `admin.php` adapted.
-  - Converted Files to LF format.
+  - Convert Files to LF format.
 - Application directory (`system/application`) moved to root of the project.
 
 ### Deleted
 
-- Removed unneeded `_img` and `_css` directories and all their contents.
+- Remove unneeded `_img` and `_css` directories and all their contents.
 
 ## [0.4.0] - 2017-02-23
 
@@ -320,7 +358,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgraded CodeIgniter to v1.7.2
+- Upgrade CodeIgniter to v1.7.2
 
 ## [0.2.0] - 2011-08-08
 
@@ -330,7 +368,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Moved the files in the `/theme` directory under `default` subdirectory to support more themes in the future.
+- Move the files in the `/theme` directory under `default` subdirectory to support more themes in the future.
 
 ## [0.1.0] - 2011-08-04
 
@@ -365,7 +403,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.14.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.15.0...HEAD
+[0.15.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.11.0...v0.12.0
