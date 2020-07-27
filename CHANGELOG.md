@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.0] - 2020-07-27
+
+### Added
+
+- Add tags and change logs retroactively from the beginning of the project.
+
 ## [0.16.0] - 2020-05-18
 
 ### Added
@@ -46,6 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Replace <?php echo with <?= short open tag. See #31.
 - Convert Controllers to use the new Block system. See #24.
 - Refactor following methods in `Template_library`:
   - Rename `set` to `setSection`
@@ -427,7 +434,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/licence.txt`
   - `/README.md`
 
-[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.16.0...HEAD
+[unreleased]: https://github.com/panigrc/SimpleCiShop/compare/v0.17.0...HEAD
+[0.17.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.16.0...v0.17.0
 [0.16.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.15.0...v0.16.0
 [0.15.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/panigrc/SimpleCiShop/compare/v0.13.0...v0.14.0
