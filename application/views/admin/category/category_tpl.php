@@ -41,8 +41,8 @@
 		<td class="greek"><input type="text" name="category_name_greek" id="category_name_greek" value="<?= $category_name_greek ?? '' ?>"></td>
 	</tr>
 	<tr>
-		<td class="greek"><?= $this->lang->line('main_description') ?>:</td>
-		<td class="greek"><?= $this->myfckeditor->create_editor(array('name' => 'category_description_greek', 'value' => $category_description_greek ?? '')) ?></td>
+		<td class="greek"><label for="category_description_greek"><?= $this->lang->line('main_description') ?>:</label></td>
+		<td class="greek"><textarea name="category_description_greek" id="category_description_greek"><?= $category_description_greek ?? '' ?></textarea></td>
 	</tr>
 	<tr>
 		<td class="german">&nbsp;</td>
@@ -53,8 +53,8 @@
 		<td class="german"><input type="text" name="category_name_german" id="category_name_german" value="<?= $category_name_german ?? '' ?>"></td>
 	</tr>
 	<tr>
-		<td class="german"><?= $this->lang->line('main_description') ?>:</td>
-		<td class="german"><?= $this->myfckeditor->create_editor(array('name' => 'category_description_german', 'value' => $category_description_german ?? '')) ?></td>
+		<td class="german"><label for="category_description_german"><?= $this->lang->line('main_description') ?>:</label></td>
+		<td class="german"><textarea name="category_description_german" id="category_description_german"><?= $category_description_german ?? '' ?></textarea></td>
 	</tr>
 	<tr>
 		<td class="english">&nbsp;</td>
@@ -65,8 +65,8 @@
 		<td class="english"><input type="text" name="category_name_english" id="category_name_english" value="<?= $category_name_english ?? '' ?>"></td>
 	</tr>
 	<tr>
-		<td class="english"><?= $this->lang->line('main_description') ?>:</td>
-		<td class="english"><?= $this->myfckeditor->create_editor(array('name' => 'category_description_english', 'value' => $category_description_english ?? '')) ?></td>
+		<td class="english"><label for="category_description_english"><?= $this->lang->line('main_description') ?>:</label></td>
+		<td class="english"><textarea name="category_description_english" id="category_description_english"><?= $category_description_english ?? '' ?></textarea></td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>

@@ -90,8 +90,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @property Authentication $authentication
  * @property Cart_library $cart_library
- * @property Fckeditor $fckeditor
- * @property Myfckeditor $myfckeditor
  * @property Language_library $language_library
  * @property Template_library $template_library
  *
@@ -187,8 +185,6 @@ class CI_Controller
  *
  * @property Authentication $authentication
  * @property Cart_library $cart_library
- * @property Fckeditor $fckeditor
- * @property Myfckeditor $myfckeditor
  * @property Language_library $language_library
  *
  * @property Category_model $category_model
