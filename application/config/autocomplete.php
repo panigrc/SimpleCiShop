@@ -89,10 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  $this->People-> will show all the methods in the People model
  *
  * @property Authentication $authentication
- * @property Calendar_library $calendar_library
  * @property Cart_library $cart_library
- * @property Fckeditor $fckeditor
- * @property Myfckeditor $myfckeditor
  * @property Language_library $language_library
  * @property Template_library $template_library
  *
@@ -187,10 +184,7 @@ class CI_Controller
  *  $this->People-> will show all the methods in the People model
  *
  * @property Authentication $authentication
- * @property Calendar_library $calendar_library
  * @property Cart_library $cart_library
- * @property Fckeditor $fckeditor
- * @property Myfckeditor $myfckeditor
  * @property Language_library $language_library
  *
  * @property Category_model $category_model

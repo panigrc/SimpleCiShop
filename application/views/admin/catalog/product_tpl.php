@@ -80,8 +80,8 @@ printOptions($categories_arr ?? [], $product_categories ?? []);
 	<td class="greek"><input type="text" name="title_greek" id="title_greek" value="<?= $title_greek ?? '' ?>"></td>
 </tr>
 <tr>
-	<td class="greek"><?= $this->lang->line('main_description') ?>:</td>
-	<td class="greek"><?= $this->myfckeditor->create_editor(array('name' => 'description_greek', 'value' => $description_greek ?? '')) ?></td>
+	<td class="greek"><label for="description_greek"><?= $this->lang->line('main_description') ?>:</label></td>
+	<td class="greek"><textarea name="description_greek" id="description_greek"><?= $description_greek ?? '' ?></textarea></td>
 </tr>
 <tr>
 	<td class="greek"><label for="price_old_greek"><?= $this->lang->line('main_price_old') ?>:</label></td>
@@ -100,8 +100,8 @@ printOptions($categories_arr ?? [], $product_categories ?? []);
 	<td class="german"><input type="text" name="title_german" id="title_german" value="<?= $title_german ?? '' ?>"></td>
 </tr>
 <tr>
-	<td class="german"><label for=""><?= $this->lang->line('main_description') ?>:</label></td>
-	<td class="german"><?= $this->myfckeditor->create_editor(array('name' => 'description_german', 'value' => $description_german ?? '')) ?></td>
+	<td class="german"><label for="description_german"><?= $this->lang->line('main_description') ?>:</label></td>
+	<td class="german"><textarea name="description_german" id="description_german"><?= $description_german ?? '' ?></textarea></td>
 </tr>
 <tr>
 	<td class="german"><label for="price_old_german"><?= $this->lang->line('main_price_old') ?>:</label></td>
@@ -120,8 +120,8 @@ printOptions($categories_arr ?? [], $product_categories ?? []);
 	<td class="english"><input type="text" name="title_english" id="title_english" value="<?= $title_english ?? '' ?>"></td>
 </tr>
 <tr>
-	<td class="english"><label for=""><?= $this->lang->line('main_description') ?>:</label></td>
-	<td class="english"><?= $this->myfckeditor->create_editor(array('name' => 'description_english', 'value' => $description_english ?? '')) ?></td>
+	<td class="english"><label for="description_english"><?= $this->lang->line('main_description') ?>:</label></td>
+	<td class="english"><textarea name="description_english" id="description_english"><?= $description_english ?? '' ?></textarea></td>
 </tr>
 <tr>
 	<td class="english"><label for="price_old_english"><?= $this->lang->line('main_price_old') ?>:</label></td>

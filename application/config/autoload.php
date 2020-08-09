@@ -67,10 +67,8 @@ $autoload['libraries'] = array(
 	'upload',
 	'user_agent',
 	'authentication',
-	'calendar_library',
 	'cart_library',
 	'language_library',
-	'myfckeditor',
 	'template_library',
 );
 

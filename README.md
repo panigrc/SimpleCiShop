@@ -27,7 +27,7 @@ Directory Structure
 
 The directory structure is mainly the CodeIgniter structure. There are a few things that are outside of that.
 
-`/assets` - Contains some javascript plugins like Fckeditor
+`/assets` - Contains js / fonts
 
 `/images` - Contains the images of the products
 
