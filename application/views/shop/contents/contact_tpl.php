@@ -1,8 +1,8 @@
 <div class="right_side">
 	<div class="article">
-		<div style="text-align:center; font-weight: bold; background-color:#FFFABF"><?= isset($status) && $status === 'ok' ? $this->lang->line('main_message_sent') : '' ?><?= isset($status) && $status === 'ok' ? $this->lang->line('main_message_not_sent') : '' ?></div>
+		<div style="text-align:center; font-weight: bold; background-color:#FFFABF"><?= isset($status) && $status === 'ok' ? $this->lang->line('main_message_sent') : '' ?><?= isset($status) && $status !== 'ok' ? $this->lang->line('main_message_not_sent') : '' ?></div>
 		<h2><?= isset($pagename) ? $this->lang->line($pagename) : '' ?></h2>
-		<?= form_open('contact/submit/'.$this->language_library->get_language()) ?>
+		<?= form_open('shop/contact/submit/'.$this->language_library->get_language()) ?>
 			<p class="search">
 				<label class="search" for="full_name"><?= $this->lang->line('main_full_name') ?>:</label>
 				<input type="text" name="full_name" id="full_name" class="contact" value="" />

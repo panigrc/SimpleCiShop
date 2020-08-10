@@ -4,9 +4,6 @@
 	<p>
 		<?= $this->lang->line('main_cart_add') ?> <a href="<?=site_url('shop/cart/cart_add/'.$product['product_id'])?>"><i class="fas fa-cart-arrow-down"></i></a>
 	</p>
-	<p>
-		<a href="http://www.cool-clean-quiet.com/blog/tag/<?= $product['slug'] ?>" target="_blank"><?= $this->lang->line('main_product_news') ?></a>
-	</p>
 	<img src="<?= base_url().$product['thumb'] ?>" alt="" style="float:right;" />
 	<?= $product['description_'.$this->language_library->get_language()] ?>
 

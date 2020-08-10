@@ -23,13 +23,10 @@ final class Contact extends CI_Controller {
 		);
 	}
 
-	/**
-	 * @todo	remove hardcoded info
-	 */
 	public function submit()
 	{
-		$this->email->from('info@cool-clean-quiet.com', $this->lang->line('main_contact'));
-		$this->email->to('info@cool-clean-quiet.com');
+		$this->email->from($this->config->item('contact')['from'], $this->lang->line('main_contact'));
+		$this->email->to($this->config->item('contact')['to']);
 
 		$this->email->subject($this->lang->line('main_contact_subject'));
 		$message = $this->lang->line('main_full_name') . ': ' .$this->input->post('full_name') ."\n";
@@ -45,10 +42,10 @@ final class Contact extends CI_Controller {
 		if (! $this->email->send())
 		{
 			//if ($this->input->post('notspam')!="2" OR !$this->email->send()) {
-			redirect('contact/index/nok');
+			redirect('shop/contact/index/nok');
 		}
 		//echo $this->email->print_debugger();
 
-		redirect('contact/index/ok');
+		redirect('shop/contact/index/ok');
 	}
 }
