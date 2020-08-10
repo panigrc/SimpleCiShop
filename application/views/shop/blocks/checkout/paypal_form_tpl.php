@@ -1,14 +1,7 @@
-<?php
-/**
-* @var	string $form if it's paid with PayPal post with redirect
-* @todo	remove hardcoded info
-*/
-?>
-
 <form action="https://www.paypal.com/row/cgi-bin/webscr" method="post" name="paypal_form">
 	<input type="hidden" name="cmd" value="_xclick">
 	<input type="hidden" name="charset" value="utf-8">
-	<input type="hidden" name="business" value="orders@cool-clean-quiet.com">
+	<input type="hidden" name="business" value="<?= $paypal_business_email ?? '' ?>">
 	<input type="hidden" name="item_name" value="Item Name">
 	<input type="hidden" name="currency_code" value="EUR">
 	<input type="hidden" name="amount" value="<?= $price ?? '' ?>">

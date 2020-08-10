@@ -79,16 +79,17 @@ final class Checkout extends CI_Controller {
 		$this->template_library->view(
 			'shop/container_tpl',
 			[
-				'pagename'		=> 'main_checkout',
-				'title'			=> '',
-				'order_id'		=> $order_id,
-				'price'			=> $this->input->post('price'),
-				'email'   		=> $this->input->post('email'),
-				'first_name'    => $this->input->post('first_name'),
-				'last_name'		=> $this->input->post('last_name'),
-				'street'		=> $this->input->post('street'),
-				'city'			=> $this->input->post('city'),
-				'zip'			=> $this->input->post('zip'),
+				'pagename'				=> 'main_checkout',
+				'title'					=> '',
+				'order_id'				=> $order_id,
+				'price'					=> $this->input->post('price'),
+				'email'   				=> $this->input->post('email'),
+				'first_name'    		=> $this->input->post('first_name'),
+				'last_name'				=> $this->input->post('last_name'),
+				'street'				=> $this->input->post('street'),
+				'city'					=> $this->input->post('city'),
+				'zip'					=> $this->input->post('zip'),
+				'paypal_business_email' => $this->config->item('payment_methods')['paypal']['email'],
 			]
 		);
 

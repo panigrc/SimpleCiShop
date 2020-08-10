@@ -115,7 +115,7 @@ $autoload['helper'] = array('form', 'url', 'string');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('template_blocks');
+$autoload['config'] = array('contact', 'payment_methods', 'template_blocks');
 
 /*
 | -------------------------------------------------------------------
