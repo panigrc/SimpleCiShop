@@ -25,28 +25,6 @@ class Category_model extends CI_Model {
 	}
 
 	/**
-	 * Get all children categories of $id
-	 *
-	 * @param	int $id Category Id
-	 * @return	array
-	 */
-	public function get_category_children(int $id): array
-	{
-		$this->db->select('*');
-		$this->db->from('categories');
-		$this->db->where('parent_category_id', $id);
-		$query = $this->db->get();
-		$ids = [];
-		foreach ($query->result_array() as $row)
-		{
-			$temp = $this->get_category_children($row['category_id']);
-			$ids[$row['category_id']] = $temp;
-		}
-
-		return $ids;
-	}
-
-	/**
 	 * Gets all parent categories of $id
 	 *
 	 * @param	int $id Category Id

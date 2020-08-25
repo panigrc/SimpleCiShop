@@ -19,7 +19,7 @@ class categoryBlock
 			[
 				'categories_arr' => $CI->category_model->get_all_category_ids_recursive(),
 				'parent' => $CI->category_model->get_category_parents($vars['category_id']),
-				'children' => $CI->category_model->get_category_children($vars['category_id']),
+				'children' => $CI->category_model->get_all_category_ids_recursive($vars['category_id']),
 				'current' => $vars['category_id']
 			],
 			TRUE
