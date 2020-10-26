@@ -1,20 +1,19 @@
 :warning: :warning: :warning: **This project is work in progress and should not be used in production !** :warning: :warning: :warning:
 
-SimpleCiShop
-============
+# SimpleCiShop
+
 
 The SimpleCiShop is an ecommerce web application based on the famous CodeIgniter framework.
 
-It's being currently refactored to run with PHP 7.2 and CodeIgniter 3.1.9
+It's being currently refactored to run with PHP >=7.2 and CodeIgniter ^3.1.
 
-The shop was fully functional since I have used it to sell myself products; actually the products you see in the demo site are real and I use to sell them.
+The shop was fully functional since I have used it to sell myself products; actually the products you see in the demo site are real, and I used to sell them.
 
 I was not satisfied with the other open source ecommerce systems that were in the market that time - neither am I now - so I decided to build my own simple shopping cart.
 
-There is a lot of stuff to be done and a lot of stuff-junk to be removed. But ~~__Everything that has a Beginning..... has an end__~~ apparently not always :smile:.
+There is a lot of stuff to be done.
 
-Features
---------
+## Features
 
 * Nested Categories translatable with html description
 * Products with image upload (unlimited) and translatable html description
@@ -22,38 +21,37 @@ Features
 * Product variables - you can set as any variables as you like at any product which are also reusable but not yet very much implemented
 * Discount Coupons - The system can generate discount coupons with a certain discount which can be used by the customers at an order to get a discount
 
-Directory Structure
----------
+## Directory Structure
 
 The directory structure is mainly the CodeIgniter structure. There are a few things that are outside of that.
 
-`/assets` - Contains js / fonts
+`public/assets` - Contains js / fonts
 
-`/images` - Contains the images of the products
+`public/images` - Contains the images of the products
 
-`/theme` - Contains the css and the images of the frontend website (notice that the website is not themeable yet)
+`public/theme` - Contains the css and the images of the frontend website (notice that the website is not themeable yet)
 
-`/uploads` - Uploaded images that are used in the Product details/description
+`public/uploads` - Uploaded images that are used in the Product details/description
 
-`/application/controllers/admin` - The admin (backend) application controllers
+`application/controllers/admin` - The admin (backend) application controllers
 
-`/application/controllers/shop` - The shop (frontend) application controllers
+`application/controllers/shop` - The shop (frontend) application controllers
 
-Installation
-------------
+## Installation
 
-- Clone the project `git clone https://github.com/panigrc/SimpleCiShop.git` to your webserver root directory
-- Import the [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/master/simplecishop.sql) to your MySQL/MariaDB
+- Clone the project `git clone https://github.com/panigrc/SimpleCiShop.git`
+- Import the [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/master/simplecishop.sql) to your MySQL/MariaDB server
 - Change the 'database connectivity settings' in the `application/config/database.php` file according to your needs
+- Change into the project directory and run `composer install`
+- Your Docroot directory should be the `public` directory. If you have another Docroot configuration i.e. `public_html` you could create a symlink like this:
+`ln -s public public_html`.
 - Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php/shop/home`
 - To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/index.php/admin/catalog`
 
-Database structure
-------------------
+## Database structure
 
 See [simplecishop.sql](https://github.com/panigrc/SimpleCiShop/blob/master/simplecishop.sql)
 
-TODOs
------
+## TODOs
 
 See [Project](https://github.com/panigrc/SimpleCiShop/projects/1)
