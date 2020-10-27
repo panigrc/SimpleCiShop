@@ -58,6 +58,8 @@ final class Checkout extends CI_Controller {
 
 		$this->order_model->add_order_products($order_id, $this->cart_library->get_cart()['products'] ?? []);
 
+		$this->cart_library->reset_cart();
+
 		if (Order_model::PAYMENT_TYPE_CASH_ON_DELIVERY === (int) $this->input->post('shipment_cash_on_delivery')
 			|| Order_model::PAYMENT_TYPE_BANK_TRANSFER  === (int) $this->input->post('shipment_cash_on_delivery'))
 		{

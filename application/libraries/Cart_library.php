@@ -61,6 +61,18 @@ class Cart_library {
 	}
 
 	/**
+	 * Removes products from cart
+	 */
+	public function reset_cart()
+	{
+		$cart = $this->initialize_cart();
+
+		$cart['products'] = [];
+
+		$this->CI->session->set_userdata(['cart' => $cart]);
+	}
+
+	/**
 	 * @return	array
 	 * @todo	cart should be converted to a class
 	 */
