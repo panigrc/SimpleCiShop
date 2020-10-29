@@ -26,9 +26,6 @@ class Order extends CI_Controller {
 			$products[$product] = array_merge($products[$product], $this->product_model->get_product_text($products[$product]['product_id']));
 		}
 
-		/** @todo	this is not right */
-		$this->language_library->set_language($user['language']);
-
 		$data = array(
 			'lang' => $user['language'],
 			'user' => $user,

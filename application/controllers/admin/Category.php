@@ -8,15 +8,12 @@ class Category extends CI_Controller {
 
 	public function index()
 	{
-		//$this->view_category();
 		$this->list_categories();
 	}
 
 	/**
-	 * @param	string	$action
-	 * @param	int	$category_id
-	 *
-	 * @todo	Refactor, should not affect action
+	 * @param	string		$action
+	 * @param	int|null	$category_id
 	 */
 	public function view_category($action = 'add_category', $category_id = null)
 	{
