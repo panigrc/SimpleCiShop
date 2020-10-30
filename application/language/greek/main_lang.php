@@ -175,6 +175,7 @@ $lang['main_cart_cost']								= 'Μερικό σύνολο';
 $lang['main_checkout']								= 'Ταμείο';
 $lang['main_cart']									= 'Το καλάθι σου';
 $lang['main_cart_add']								= 'Προσθήκη στο καλάθι';
+$lang['main_cart_empty']							= 'Το καλάθι είναι άδειο.';
 
 // checkout
 

@@ -8,6 +8,24 @@ final class Checkout extends CI_Controller {
 	{
 		$cart = $this->cart_library->get_cart();
 
+		if (empty($cart['products'] ?? [])) {
+			$mainBlock = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
+				return $CI->load->view('shop/contents/checkout/cart_empty', $vars, TRUE);
+			});
+
+			$this->template_library->addBlock($mainBlock);
+
+			$this->template_library->view(
+				'shop/container_tpl',
+				[
+					'pagename' => 'main_checkout',
+					'title' => '',
+				]
+			);
+
+			return;
+		}
+
 		$mainBlock = BlockFactory::create('contents', 5, function (CI_Controller $CI, array $vars) {
 			return $CI->load->view('shop/contents/checkout/checkout_tpl', $vars, TRUE);
 		});

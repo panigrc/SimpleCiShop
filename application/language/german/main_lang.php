@@ -175,6 +175,7 @@ $lang['main_cart_cost']								= 'Zwischensumme';
 $lang['main_checkout']								= 'Zur Kasse';
 $lang['main_cart']									= 'Ιhr Korb';
 $lang['main_cart_add']								= 'In den Einkaufswagen';
+$lang['main_cart_empty']							= 'Ihr Einkaufswagen ist leer.';
 
 // checkout
 
