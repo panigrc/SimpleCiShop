@@ -177,6 +177,7 @@ $lang['main_cart_cost']								= 'Subtotal';
 $lang['main_checkout']								= 'Checkout';
 $lang['main_cart']									= 'Your cart';
 $lang['main_cart_add']								= 'Add to cart';
+$lang['main_cart_empty']							= 'Your cart is empty.';
 
 // checkout
 
