@@ -17,3 +17,7 @@ $config = array(
 		'weight'   => '1',
 	),
 );
+
+$configFile = include CONFIGFILE;
+$config = array_merge($config, $configFile['memcached'] ?? []);
+unset($configFile);
