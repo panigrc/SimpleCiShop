@@ -45,8 +45,9 @@ The directory structure is mainly the CodeIgniter structure. There are a few thi
 - Change into the project directory and run `composer install`
 - Your Docroot directory should be the `public` directory. If you have another Docroot configuration i.e. `public_html` you could create a symlink like this:
 `ln -s public public_html`.
-- Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php/shop/home`
-- To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/index.php/admin/catalog`
+- Copy the `config.example.php` to `config.php` and edit it according to your setup. 
+- Browse to `http://localhost/your/webserver/path/SimpleCiShop/index.php/shop/home`.
+- To access the administration visit `http://localhost/your/webserver/path/SimpleCiShop/index.php/admin/catalog`.
 
 ## Database structure
 

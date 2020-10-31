@@ -94,3 +94,7 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$configFile = include CONFIGFILE;
+$db['default'] = array_merge($db['default'], $configFile['database'] ?? []);
+unset($configFile);

@@ -38,6 +38,24 @@
 
 /*
  *---------------------------------------------------------------
+ * APPLICATION CONFIG
+ *---------------------------------------------------------------
+ *
+ * Load configuration file.
+ */
+	define('CONFIGFILE', '../config.php');
+
+	if (file_exists(CONFIGFILE) === FALSE)
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your configuration file (config.php) does not appear to be set correctly. Please copy the config.example.php to config.php and change it to your needs.';
+		exit(3); // EXIT_CONFIG
+	}
+
+	$config = include CONFIGFILE . '';
+
+/*
+ *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
  *---------------------------------------------------------------
  *
@@ -53,7 +71,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	define('ENVIRONMENT', $_SERVER['CI_ENV'] ?? $config['environment']);
 
 /*
  *---------------------------------------------------------------
@@ -73,7 +91,7 @@ switch (ENVIRONMENT)
 	case 'testing':
 	case 'production':
 		ini_set('display_errors', 0);
-		if (version_compare(PHP_VERSION, '5.3', '>='))
+		if (PHP_VERSION_ID >= 50300)
 		{
 			error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
 		}
@@ -178,6 +196,7 @@ switch (ENVIRONMENT)
  */
 	// $assign_to_config['name_of_config_item'] = 'value of config item';
 
+	$assign_to_config = $config['config'];
 
 
 // --------------------------------------------------------------------
@@ -193,7 +212,7 @@ switch (ENVIRONMENT)
 	// Set the current directory correctly for CLI requests
 	if (defined('STDIN'))
 	{
-		chdir(dirname(__FILE__));
+		chdir(__DIR__);
 	}
 
 	if (($_temp = realpath($system_path)) !== FALSE)
@@ -230,7 +249,7 @@ switch (ENVIRONMENT)
 	define('BASEPATH', $system_path);
 
 	// Path to the front controller (this file) directory
-	define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+	define('FCPATH', __DIR__ .DIRECTORY_SEPARATOR);
 
 	// Name of the "system" directory
 	define('SYSDIR', basename(BASEPATH));
@@ -304,6 +323,16 @@ switch (ENVIRONMENT)
 	}
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+
+/*
+ * --------------------------------------------------------------------
+ * UNLOAD APPLICATION CONFIG
+ * --------------------------------------------------------------------
+ *
+ * Configuration is unloaded to ensure possible conflicts as the $config
+ * Variable is defined in global scope.
+ */
+unset($config);
 
 /*
  * --------------------------------------------------------------------

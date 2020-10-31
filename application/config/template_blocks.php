@@ -24,20 +24,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['blocks'] = [
-	[
+	'welcomeBlock_view' => [
 		'section' => 'contents',
 		'position' => 1,
 		'callback' => ['welcomeBlock', 'view'],
 	],
-	[
+	'categoryBlock_view' => [
 		'section' => 'blocks_left',
 		'position' => 1,
 		'callback' => ['categoryBlock', 'view'],
 	],
-	[
+	'cartBlock_view' => [
 		'section' => 'blocks_right',
 		'position' => 1,
 		'callback' => ['cartBlock', 'view'],
 	],
-
 ];
+
+$configFile = include CONFIGFILE;
+$config['blocks'] = array_merge($config['blocks'], $configFile['template_blocks'] ?? []);
+unset($configFile);
