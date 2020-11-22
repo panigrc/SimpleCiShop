@@ -12,9 +12,6 @@
 <?php
 	echo form_open(sprintf('admin/category/%s', $action ?? ''));
 	echo form_hidden('category_id', $category_id ?? '');
-	echo form_hidden('category_text_id_greek', $category_text_id_greek ?? '');
-	echo form_hidden('category_text_id_german', $category_text_id_german ?? '');
-	echo form_hidden('category_text_id_english', $category_text_id_english ?? '');
 ?>
 	<table>
 	<tr>
@@ -32,42 +29,29 @@
 		<td class="general"><label for="slug">Slug:</label></td>
 		<td class="general"><input type="text" name="slug" id="slug" value="<?= $slug ?? '' ?>"></td>
 	</tr>
+
+<?php
+	foreach ($this->config->item('supported_languages') as $supported_language)
+	{
+
+		echo form_hidden("category_text_id_{$supported_language}", ${"category_text_id_$supported_language"} ?? '');
+?>
+
 	<tr>
-		<td class="greek">&nbsp;</td>
-		<td class="greek"><?= $this->lang->line('main_greek') ?></td>
+		<td class="<?= $supported_language ?>">&nbsp;</td>
+		<td class="<?= $supported_language ?>"><?= $this->lang->line("main_{$supported_language}") ?></td>
 	</tr>
 	<tr>
-		<td class="greek"><label for="category_name_greek"><?= $this->lang->line('main_name') ?>:</label></td>
-		<td class="greek"><input type="text" name="category_name_greek" id="category_name_greek" value="<?= $category_name_greek ?? '' ?>"></td>
+		<td class="<?= $supported_language ?>"><label for="category_name_<?= $supported_language ?>"><?= $this->lang->line('main_name') ?>:</label></td>
+		<td class="<?= $supported_language ?>"><input type="text" name="category_name_<?= $supported_language ?>" id="category_name_<?= $supported_language ?>" value="<?= ${"category_name_$supported_language"} ?? '' ?>"></td>
 	</tr>
 	<tr>
-		<td class="greek"><label for="category_description_greek"><?= $this->lang->line('main_description') ?>:</label></td>
-		<td class="greek"><textarea name="category_description_greek" id="category_description_greek"><?= $category_description_greek ?? '' ?></textarea></td>
+		<td class="<?= $supported_language ?>"><label for="category_description_<?= $supported_language ?>"><?= $this->lang->line('main_description') ?>:</label></td>
+		<td class="<?= $supported_language ?>"><textarea name="category_description_<?= $supported_language ?>" id="category_description_<?= $supported_language ?>"><?= ${"category_description_$supported_language"} ?? '' ?></textarea></td>
 	</tr>
-	<tr>
-		<td class="german">&nbsp;</td>
-		<td class="german"><?= $this->lang->line('main_german') ?></td>
-	</tr>
-	<tr>
-		<td class="german"><label for="category_name_german"><?= $this->lang->line('main_name') ?>:</label></td>
-		<td class="german"><input type="text" name="category_name_german" id="category_name_german" value="<?= $category_name_german ?? '' ?>"></td>
-	</tr>
-	<tr>
-		<td class="german"><label for="category_description_german"><?= $this->lang->line('main_description') ?>:</label></td>
-		<td class="german"><textarea name="category_description_german" id="category_description_german"><?= $category_description_german ?? '' ?></textarea></td>
-	</tr>
-	<tr>
-		<td class="english">&nbsp;</td>
-		<td class="english"><?= $this->lang->line('main_english') ?></td>
-	</tr>
-	<tr>
-		<td class="english"><label for="category_name_english"><?= $this->lang->line('main_name') ?>:</label></td>
-		<td class="english"><input type="text" name="category_name_english" id="category_name_english" value="<?= $category_name_english ?? '' ?>"></td>
-	</tr>
-	<tr>
-		<td class="english"><label for="category_description_english"><?= $this->lang->line('main_description') ?>:</label></td>
-		<td class="english"><textarea name="category_description_english" id="category_description_english"><?= $category_description_english ?? '' ?></textarea></td>
-	</tr>
+
+<?php } ?>
+
 	<tr>
 		<td>&nbsp;</td>
 		<td>

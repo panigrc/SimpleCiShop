@@ -81,30 +81,8 @@ class Catalog extends CI_Controller {
 		);
 
 		$this->product_model->add_product_categories($product_id, $this->input->post('product_categories'));
-		$this->product_model->add_product_text(
-			$product_id,
-			'greek',
-			$this->input->post('title_greek'),
-			$this->input->post('description_greek'),
-			$this->input->post('price_greek'),
-			$this->input->post('price_old_greek')
-		);
-		$this->product_model->add_product_text(
-			$product_id,
-			'german',
-			$this->input->post('title_german'),
-			$this->input->post('description_german'),
-			$this->input->post('price_german'),
-			$this->input->post('price_old_german')
-		);
-		$this->product_model->add_product_text(
-			$product_id,
-			'english',
-			$this->input->post('title_english'),
-			$this->input->post('description_english'),
-			$this->input->post('price_english'),
-			$this->input->post('price_old_english')
-		);
+
+		$this->_process_texts($product_id);
 
 		$this->product_model->add_images($product_id, $this->_upload_multiple_images('new_images'));
 		$this->product_model->add_product_meta(
@@ -126,27 +104,9 @@ class Catalog extends CI_Controller {
 			$this->input->post('stock')
 		);
 		$this->product_model->set_product_categories($product_id, $this->input->post('product_categories') ?? []);
-		$this->product_model->set_product_text(
-			$this->input->post('product_text_id_greek'),
-			$this->input->post('title_greek'),
-			$this->input->post('description_greek'),
-			$this->input->post('price_greek'),
-			$this->input->post('price_old_greek')
-		);
-		$this->product_model->set_product_text(
-			$this->input->post('product_text_id_german'),
-			$this->input->post('title_german'),
-			$this->input->post('description_german'),
-			$this->input->post('price_german'),
-			$this->input->post('price_old_german')
-		);
-		$this->product_model->set_product_text(
-			$this->input->post('product_text_id_english'),
-			$this->input->post('title_english'),
-			$this->input->post('description_english'),
-			$this->input->post('price_english'),
-			$this->input->post('price_old_english')
-		);
+
+		$this->_process_texts($product_id);
+
 		if (($images = $this->input->post('images')) !== NULL)
 		{
 			$this->product_model->set_images($product_id, $images);
@@ -163,6 +123,25 @@ class Catalog extends CI_Controller {
 			$this->input->post('product_meta_values')
 		);
 
+		redirect('admin/catalog');
+	}
+
+	/**
+	 * @param	int	$product_id
+	 */
+	public function delete_product($product_id)
+	{
+		$this->product_model->delete_product($product_id);
+		redirect('admin/catalog');
+	}
+
+	/**
+	 * @param	int	$product_id
+	 * @param	int	$stock
+	 */
+	public function set_stock($product_id, $stock)
+	{
+		$this->product_model->set_product_stock($product_id, $stock);
 		redirect('admin/catalog');
 	}
 
@@ -260,19 +239,31 @@ class Catalog extends CI_Controller {
 	/**
 	 * @param	int	$product_id
 	 */
-	public function delete_product($product_id)
+	private function _process_texts(int $product_id)
 	{
-		$this->product_model->delete_product($product_id);
-		redirect('admin/catalog');
-	}
+		foreach ($this->config->item('supported_languages') as $supported_language)
+		{
+			if (empty($this->input->post("product_text_id_{$supported_language}")))
+			{
+				$this->product_model->add_product_text(
+					$product_id,
+					$supported_language,
+					$this->input->post("title_{$supported_language}"),
+					$this->input->post("description_{$supported_language}"),
+					$this->input->post("price_{$supported_language}"),
+					$this->input->post("price_old_{$supported_language}")
+				);
 
-	/**
-	 * @param	int	$product_id
-	 * @param	int	$stock
-	 */
-	public function set_stock($product_id, $stock)
-	{
-		$this->product_model->set_product_stock($product_id, $stock);
-		redirect('admin/catalog');
+				continue;
+			}
+
+			$this->product_model->set_product_text(
+				$this->input->post("product_text_id_{$supported_language}"),
+				$this->input->post("title_{$supported_language}"),
+				$this->input->post("description_{$supported_language}"),
+				$this->input->post("price_{$supported_language}"),
+				$this->input->post("price_old_{$supported_language}")
+			);
+		}
 	}
 }

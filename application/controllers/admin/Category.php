@@ -17,7 +17,6 @@ class Category extends CI_Controller {
 	 */
 	public function view_category($action = 'add_category', $category_id = null)
 	{
-
 		$form_data = array(
 			'category_id' => $category_id,
 			'categories_arr' => $this->category_model->get_all_category_ids_recursive(),
@@ -63,21 +62,9 @@ class Category extends CI_Controller {
 			$this->input->post('slug'),
 			$this->input->post('parent_category_id')
 		);
-		$this->category_model->set_category_text(
-			$this->input->post('category_text_id_greek'),
-			$this->input->post('category_name_greek'),
-			$this->input->post('category_description_greek')
-		);
-		$this->category_model->set_category_text(
-			$this->input->post('category_text_id_german'),
-			$this->input->post('category_name_german'),
-			$this->input->post('category_description_german')
-		);
-		$this->category_model->set_category_text(
-			$this->input->post('category_text_id_english'),
-			$this->input->post('category_name_english'),
-			$this->input->post('category_description_english')
-		);
+
+		$this->_process_texts($this->input->post('category_id'));
+
 		redirect('admin/category');
 	}
 
@@ -87,25 +74,37 @@ class Category extends CI_Controller {
 			$this->input->post('slug'),
 			$this->input->post('parent_category_id')
 		);
-		$this->category_model->add_category_text(
-			$category_id,
-			'greek',
-			$this->input->post('category_name_greek'),
-			$this->input->post('category_description_greek')
-		);
-		$this->category_model->add_category_text(
-			$category_id,
-			'german',
-			$this->input->post('category_name_german'),
-			$this->input->post('category_description_german')
-		);
-		$this->category_model->add_category_text(
-			$category_id,
-			'english',
-			$this->input->post('category_name_english'),
-			$this->input->post('category_description_english')
-		);
+
+		$this->_process_texts($category_id);
 
 		redirect('admin/category');
+	}
+
+	/**
+	 * @param	int	$category_id
+	 */
+	private function _process_texts(int $category_id)
+	{
+		foreach ($this->config->item('supported_languages') as $supported_language)
+		{
+			if (empty($this->input->post("category_text_id_{$supported_language}")))
+			{
+				$this->category_model->add_category_text(
+					$category_id,
+					$supported_language,
+					$this->input->post("category_name_{$supported_language}"),
+					$this->input->post("category_description_{$supported_language}")
+				);
+
+				continue;
+			}
+
+			$this->category_model->set_category_text(
+				$this->input->post("category_text_id_{$supported_language}"),
+				$this->input->post("category_name_{$supported_language}"),
+				$this->input->post("category_description_{$supported_language}")
+			);
+		}
+
 	}
 }

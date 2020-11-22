@@ -44,6 +44,9 @@ return [
 		'bcc_batch_mode' => FALSE,
 		'bcc_batch_size' => 200,
 		'dsn' => FALSE,
+
+		// If the website is translatable, define the available languages here
+		'supported_languages' => ['english'],
 	],
 
 	// Database configuration see application/config/database.php
