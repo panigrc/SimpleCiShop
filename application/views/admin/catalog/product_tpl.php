@@ -1,9 +1,6 @@
 <?php
 	echo form_open_multipart(sprintf('admin/catalog/%s', $action ?? ''));
 	echo form_hidden('product_id', $product_id ?? '');
-	echo form_hidden('product_text_id_greek', $product_text_id_greek ?? '');
-	echo form_hidden('product_text_id_german', $product_text_id_german ?? '');
-	echo form_hidden('product_text_id_english', $product_text_id_english ?? '');
 
 	function printOptions($arr, $product_categories, $level=0) {
 		$obj =& get_instance();
@@ -11,7 +8,7 @@
 ?>
 	<span style="padding-left:<?= $level+5 ?>px;">
 		<label for="category-<?= $item ?>">
-			<input type="checkbox" value="<?= $item ?>" <?= in_array($item, $product_categories, TRUE) ? " checked='checked'" : '' ?> name="product_categories[]" id="category-<?= $item ?>"/>
+			<input type="checkbox" value="<?= $item ?>" <?= in_array((string) $item, $product_categories, TRUE) ? " checked='checked'" : '' ?> name="product_categories[]" id="category-<?= $item ?>"/>
 			<?= $obj->category_model->get_category_name($item) ?>
 		</label>
 	</span>
@@ -71,69 +68,36 @@ printOptions($categories_arr ?? [], $product_categories ?? []);
 		<input type="text" name="product_meta_values[]" id="product_meta_value_new" />
 	</td>
 </tr>
+
+<?php
+	foreach ($this->config->item('supported_languages') as $supported_language)
+	{
+		echo form_hidden("product_text_id_{$supported_language}", ${"product_text_id_$supported_language"} ?? '');
+?>
 <tr>
-	<td class="greek">&nbsp;</td>
-	<td class="greek"><?= $this->lang->line('main_greek') ?></td>
+	<td class="<?= $supported_language ?>">&nbsp;</td>
+	<td class="<?= $supported_language ?>"><?= $this->lang->line("main_{$supported_language}") ?></td>
 </tr>
 <tr>
-	<td class="greek"><label for="title_greek"><?= $this->lang->line('main_title') ?>:</label></td>
-	<td class="greek"><input type="text" name="title_greek" id="title_greek" value="<?= $title_greek ?? '' ?>"></td>
+	<td class="<?= $supported_language ?>"><label for="title_<?= $supported_language ?>"><?= $this->lang->line('main_title') ?>:</label></td>
+	<td class="<?= $supported_language ?>"><input type="text" name="title_<?= $supported_language ?>" id="title_<?= $supported_language ?>" value="<?= ${"title_$supported_language"} ?? '' ?>"></td>
 </tr>
 <tr>
-	<td class="greek"><label for="description_greek"><?= $this->lang->line('main_description') ?>:</label></td>
-	<td class="greek"><textarea name="description_greek" id="description_greek"><?= $description_greek ?? '' ?></textarea></td>
+	<td class="<?= $supported_language ?>"><label for="description_<?= $supported_language ?>"><?= $this->lang->line('main_description') ?>:</label></td>
+	<td class="<?= $supported_language ?>"><textarea name="description_<?= $supported_language ?>" id="description_<?= $supported_language ?>"><?= ${"description_$supported_language"} ?? '' ?></textarea></td>
 </tr>
 <tr>
-	<td class="greek"><label for="price_old_greek"><?= $this->lang->line('main_price_old') ?>:</label></td>
-	<td class="greek"><input type="text" name="price_old_greek" id="price_old_greek" value="<?= $price_old_greek ?? '' ?>"></td>
+	<td class="<?= $supported_language ?>"><label for="price_old_<?= $supported_language ?>"><?= $this->lang->line('main_price_old') ?>:</label></td>
+	<td class="<?= $supported_language ?>"><input type="text" name="price_old_<?= $supported_language ?>" id="price_old_<?= $supported_language ?>" value="<?= ${"price_old_$supported_language"} ?? '' ?>"></td>
 </tr>
 <tr>
-	<td class="greek"><label for="price_greek"><?= $this->lang->line('main_price') ?>:</label></td>
-	<td class="greek"><input type="text" name="price_greek" id="price_greek" value="<?= $price_greek ?? '' ?>"></td>
+	<td class="<?= $supported_language ?>"><label for="price_<?= $supported_language ?>"><?= $this->lang->line('main_price') ?>:</label></td>
+	<td class="<?= $supported_language ?>"><input type="text" name="price_<?= $supported_language ?>" id="price_<?= $supported_language ?>" value="<?= ${"price_$supported_language"} ?? '' ?>"></td>
 </tr>
-<tr>
-	<td class="german">&nbsp;</td>
-	<td class="german"><?= $this->lang->line('main_german') ?></td>
-</tr>
-<tr>
-	<td class="german"><label for="title_german"><?= $this->lang->line('main_title') ?>:</label></td>
-	<td class="german"><input type="text" name="title_german" id="title_german" value="<?= $title_german ?? '' ?>"></td>
-</tr>
-<tr>
-	<td class="german"><label for="description_german"><?= $this->lang->line('main_description') ?>:</label></td>
-	<td class="german"><textarea name="description_german" id="description_german"><?= $description_german ?? '' ?></textarea></td>
-</tr>
-<tr>
-	<td class="german"><label for="price_old_german"><?= $this->lang->line('main_price_old') ?>:</label></td>
-	<td class="german"><input type="text" name="price_old_german" id="price_old_german" value="<?= $price_old_german ?? '' ?>"></td>
-</tr>
-<tr>
-	<td class="german"><label for="price_german"><?= $this->lang->line('main_price') ?>:</label></td>
-	<td class="german"><input type="text" name="price_german" id="price_german" value="<?= $price_german ?? '' ?>"></td>
-</tr>
-<tr>
-	<td class="english">&nbsp;</td>
-	<td class="english"><?= $this->lang->line('main_english') ?></td>
-</tr>
-<tr>
-	<td class="english"><label for="title_english"><?= $this->lang->line('main_title') ?>:</label></td>
-	<td class="english"><input type="text" name="title_english" id="title_english" value="<?= $title_english ?? '' ?>"></td>
-</tr>
-<tr>
-	<td class="english"><label for="description_english"><?= $this->lang->line('main_description') ?>:</label></td>
-	<td class="english"><textarea name="description_english" id="description_english"><?= $description_english ?? '' ?></textarea></td>
-</tr>
-<tr>
-	<td class="english"><label for="price_old_english"><?= $this->lang->line('main_price_old') ?>:</label></td>
-	<td class="english"><input type="text" name="price_old_english" id="price_old_english" value="<?= $price_old_greek ?? '' ?>"></td>
-</tr>
-<tr>
-	<td class="english"><label for="price_english"><?= $this->lang->line('main_price') ?>:</label></td>
-	<td class="english"><input type="text" name="price_english" id="price_english" value="<?= $price_english ?? '' ?>"></td>
-</tr>
+<?php } ?>
 <?php
 	$images = '';
-		foreach($images_arr ?? [] as $current) :
+	foreach($images_arr ?? [] as $current) :
 ?>
 <tr>
 	<td class="general">

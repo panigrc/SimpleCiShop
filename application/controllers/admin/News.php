@@ -58,44 +58,16 @@ class News extends CI_Controller {
 	public function add_news()
 	{
  		$article_id = $this->news_model->add_article();
- 		$this->news_model->add_article_text(
- 			$article_id,
-			'greek',
-			$this->input->post('title_greek'),
-			$this->input->post('body_greek')
-		);
- 		$this->news_model->add_article_text(
- 			$article_id,
-			'german',
-			$this->input->post('title_german'),
-			$this->input->post('body_german')
-		);
- 		$this->news_model->add_article_text(
- 			$article_id,
-			'english',
-			$this->input->post('title_english'),
-			$this->input->post('body_english')
-		);
+
+		$this->_process_texts($article_id);
+
 		redirect('admin/news');
 	}
 
 	public function edit_news()
 	{
-		$this->news_model->set_article_text(
-			$this->input->post('news_text_id_greek'),
-			$this->input->post('title_greek'),
-			$this->input->post('body_greek')
-		);
-		$this->news_model->set_article_text(
-			$this->input->post('news_text_id_german'),
-			$this->input->post('title_german'),
-			$this->input->post('body_german')
-		);
-		$this->news_model->set_article_text(
-			$this->input->post('news_text_id_english'),
-			$this->input->post('title_english'),
-			$this->input->post('body_english')
-		);
+		$this->_process_texts($this->input->post('news_id'));
+
 		redirect('admin/news');
 	}
 
@@ -106,5 +78,32 @@ class News extends CI_Controller {
 	{
 		$this->news_model->delete_article($news_id);
 		redirect('admin/news');
+	}
+
+	/**
+	 * @param	int	$article_id
+	 */
+	private function _process_texts(int $article_id)
+	{
+		foreach ($this->config->item('supported_languages') as $supported_language)
+		{
+			if (empty($this->input->post("news_text_id_{$supported_language}")))
+			{
+				$this->news_model->add_article_text(
+					$article_id,
+					$supported_language,
+					$this->input->post("title_{$supported_language}"),
+					$this->input->post("body_{$supported_language}")
+				);
+
+				continue;
+			}
+
+			$this->news_model->set_article_text(
+				$this->input->post("news_text_id_{$supported_language}"),
+				$this->input->post("title_{$supported_language}"),
+				$this->input->post("body_{$supported_language}")
+			);
+		}
 	}
 }
