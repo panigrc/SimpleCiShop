@@ -1,43 +1,40 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
--- http://www.phpmyadmin.net
+-- version 5.0.0
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 03, 2011 at 11:52 PM
--- Server version: 5.0.91
--- PHP Version: 5.2.9
+-- Host: mysql
+-- Generation Time: Nov 27, 2020 at 08:09 AM
+-- Server version: 10.1.44-MariaDB-1~bionic
+-- PHP Version: 7.3.16
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 --
--- Database: `csi_simplecishop`
+-- Database: `simplecishop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Table structure for table `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) NOT NULL auto_increment,
   `parent_category_id` int(11) NOT NULL default '0',
-  `nicename` varchar(100) NOT NULL default '',
+  `slug` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`category_id`),
   KEY `parent_category_id` (`parent_category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `category`
+-- Dumping data for table `categories`
 --
 
-INSERT INTO `category` (`category_id`, `parent_category_id`, `nicename`) VALUES
+INSERT INTO `categories` (`category_id`, `parent_category_id`, `slug`) VALUES
 (1, 0, 'cooling'),
 (2, 0, 'clean'),
 (3, 0, 'quiet'),
@@ -49,10 +46,10 @@ INSERT INTO `category` (`category_id`, `parent_category_id`, `nicename`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_text`
+-- Table structure for table `category_texts`
 --
 
-CREATE TABLE IF NOT EXISTS `category_text` (
+CREATE TABLE IF NOT EXISTS `category_texts` (
   `category_text_id` int(11) NOT NULL auto_increment,
   `category_id` int(11) NOT NULL default '0',
   `language` varchar(20) default NULL,
@@ -60,13 +57,13 @@ CREATE TABLE IF NOT EXISTS `category_text` (
   `description` text,
   PRIMARY KEY  (`category_text_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `category_text`
+-- Dumping data for table `category_texts`
 --
 
-INSERT INTO `category_text` (`category_text_id`, `category_id`, `language`, `name`, `description`) VALUES
+INSERT INTO `category_texts` (`category_text_id`, `category_id`, `language`, `name`, `description`) VALUES
 (1, 1, 'greek', 'Δροσιστικό', ''),
 (2, 1, 'german', 'Kühl', ''),
 (3, 1, 'english', 'Cooling', ''),
@@ -92,10 +89,10 @@ INSERT INTO `category_text` (`category_text_id`, `category_id`, `language`, `nam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coupon`
+-- Table structure for table `coupons`
 --
 
-CREATE TABLE IF NOT EXISTS `coupon` (
+CREATE TABLE IF NOT EXISTS `coupons` (
   `coupon_id` int(11) NOT NULL auto_increment,
   `coupon_number` varchar(100) NOT NULL default '',
   `used` int(1) NOT NULL default '0',
@@ -104,10 +101,10 @@ CREATE TABLE IF NOT EXISTS `coupon` (
   `expires` int(10) default NULL,
   PRIMARY KEY  (`coupon_id`),
   UNIQUE KEY `coupon_number` (`coupon_number`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `coupon`
+-- Dumping data for table `coupons`
 --
 
 
@@ -120,45 +117,36 @@ CREATE TABLE IF NOT EXISTS `coupon` (
 CREATE TABLE IF NOT EXISTS `news` (
   `news_id` int(11) NOT NULL auto_increment,
   `published` int(10) default NULL,
+  `updated` int(10) default NULL,
   PRIMARY KEY  (`news_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `news`
---
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news_text`
+-- Table structure for table `news_texts`
 --
 
-CREATE TABLE IF NOT EXISTS `news_text` (
+CREATE TABLE IF NOT EXISTS `news_texts` (
   `news_text_id` int(11) NOT NULL auto_increment,
   `news_id` int(11) NOT NULL default '0',
   `language` varchar(20) default NULL,
   `title` varchar(50) default NULL,
-  `description` text,
+  `body` text,
   PRIMARY KEY  (`news_text_id`),
   KEY `news_id` (`news_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `news_text`
---
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `order` (
-  `order_id` bigint(20) unsigned NOT NULL auto_increment,
-  `user_id` bigint(20) NOT NULL default '0',
-  `date_created` int(11) NOT NULL default '0',
+CREATE TABLE IF NOT EXISTS `orders` (
+  `order_id` int(11) unsigned NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL default '0',
+  `created` int(11) NOT NULL default '0',
   `status` int(11) NOT NULL default '0',
   `shipment_express` int(1) NOT NULL default '0',
   `shipment_to_door` int(1) NOT NULL default '0',
@@ -168,58 +156,58 @@ CREATE TABLE IF NOT EXISTS `order` (
   `questionnaire` text,
   PRIMARY KEY  (`order_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `order`
+-- Dumping data for table `orders`
 --
 
-INSERT INTO `order` (`order_id`, `user_id`, `date_created`, `status`, `shipment_express`, `shipment_to_door`, `shipment_cash_on_delivery`, `price`, `coupon_id`, `questionnaire`) VALUES
+INSERT INTO `orders` (`order_id`, `user_id`, `created`, `status`, `shipment_express`, `shipment_to_door`, `shipment_cash_on_delivery`, `price`, `coupon_id`, `questionnaire`) VALUES
 (7, 7, 1181491136, 2, 0, 0, 1, 14.00, 0, 'Σχόλια<br />\nΑπο που μας βρήκες<br />\n<br />\n');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order2product`
+-- Table structure for table `order_products`
 --
 
-CREATE TABLE IF NOT EXISTS `order2product` (
-  `relation_id` bigint(20) NOT NULL auto_increment,
-  `order_id` bigint(20) NOT NULL default '0',
-  `product_id` bigint(20) NOT NULL default '0',
+CREATE TABLE IF NOT EXISTS `order_products` (
+  `relation_id` int(11) NOT NULL auto_increment,
+  `order_id` int(11) NOT NULL default '0',
+  `product_id` int(11) NOT NULL default '0',
   `quantity` int(11) NOT NULL default '0',
   PRIMARY KEY  (`relation_id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `order2product`
+-- Dumping data for table `order_products`
 --
 
-INSERT INTO `order2product` (`relation_id`, `order_id`, `product_id`, `quantity`) VALUES
+INSERT INTO `order_products` (`relation_id`, `order_id`, `product_id`, `quantity`) VALUES
 (7, 7, 13, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Table structure for table `products`
 --
 
-CREATE TABLE IF NOT EXISTS `product` (
+CREATE TABLE IF NOT EXISTS `products` (
   `product_id` int(11) NOT NULL auto_increment,
-  `nicename` varchar(100) NOT NULL default '',
+  `slug` varchar(100) NOT NULL default '',
   `stock` int(11) NOT NULL default '0',
   `published` int(10) default NULL,
   PRIMARY KEY  (`product_id`),
-  UNIQUE KEY `nicename` (`nicename`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+  UNIQUE KEY `slug` (`slug`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `product` (`product_id`, `nicename`, `stock`, `published`) VALUES
+INSERT INTO `products` (`product_id`, `slug`, `stock`, `published`) VALUES
 (2, 'intel-cpu-cooler-lga775', 0, 1177401770),
 (3, 'real-silent-case-fan-80mm', 0, 1177403210),
 (4, 'real-silent-case-fan-92mm', 0, 1177404749),
@@ -243,22 +231,22 @@ INSERT INTO `product` (`product_id`, `nicename`, `stock`, `published`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product2category`
+-- Table structure for table `product_categories`
 --
 
-CREATE TABLE IF NOT EXISTS `product2category` (
-  `relation_id` bigint(20) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `product_categories` (
+  `relation_id` int(11) NOT NULL auto_increment,
   `product_id` int(11) NOT NULL default '0',
   `category_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`relation_id`),
   KEY `product_id` (`product_id`,`category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product2category`
+-- Dumping data for table `product_categories`
 --
 
-INSERT INTO `product2category` (`relation_id`, `product_id`, `category_id`) VALUES
+INSERT INTO `product_categories` (`relation_id`, `product_id`, `category_id`) VALUES
 (190, 2, 1),
 (191, 2, 3),
 (192, 2, 4),
@@ -305,10 +293,10 @@ INSERT INTO `product2category` (`relation_id`, `product_id`, `category_id`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_image`
+-- Table structure for table `product_images`
 --
 
-CREATE TABLE IF NOT EXISTS `product_image` (
+CREATE TABLE IF NOT EXISTS `product_images` (
   `product_image_id` int(11) NOT NULL auto_increment,
   `product_id` int(11) NOT NULL default '0',
   `title` varchar(50) default NULL,
@@ -317,13 +305,13 @@ CREATE TABLE IF NOT EXISTS `product_image` (
   `main` int(1) default NULL,
   PRIMARY KEY  (`product_image_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product_image`
+-- Dumping data for table `product_images`
 --
 
-INSERT INTO `product_image` (`product_image_id`, `product_id`, `title`, `thumb`, `big`, `main`) VALUES
+INSERT INTO `product_images` (`product_image_id`, `product_id`, `title`, `thumb`, `big`, `main`) VALUES
 (10, 2, 'pht7750_illustration', 'images/11774017715_thumb.jpg', 'images/11774017715.jpg', 0),
 (9, 2, 'pht7750_top2', 'images/11774017714_thumb.gif', 'images/11774017714.gif', 0),
 (8, 2, 'pht7750_b', 'images/11774017713_thumb.gif', 'images/11774017713.gif', 0),
@@ -364,14 +352,14 @@ INSERT INTO `product_image` (`product_image_id`, `product_id`, `title`, `thumb`,
 --
 
 CREATE TABLE IF NOT EXISTS `product_meta` (
-  `meta_id` bigint(20) NOT NULL auto_increment,
-  `product_id` bigint(20) NOT NULL default '0',
+  `meta_id` int(11) NOT NULL auto_increment,
+  `product_id` int(11) NOT NULL default '0',
   `meta_key` varchar(255) default NULL,
   `meta_value` longtext,
   PRIMARY KEY  (`meta_id`),
   KEY `product_id` (`product_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product_meta`
@@ -404,26 +392,26 @@ INSERT INTO `product_meta` (`meta_id`, `product_id`, `meta_key`, `meta_value`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_text`
+-- Table structure for table `product_texts`
 --
 
-CREATE TABLE IF NOT EXISTS `product_text` (
+CREATE TABLE IF NOT EXISTS `product_texts` (
   `product_text_id` int(11) NOT NULL auto_increment,
   `product_id` int(11) NOT NULL default '0',
   `language` varchar(20) default NULL,
   `title` varchar(150) default NULL,
   `description` text,
-  `price_old` decimal(11,2) default NULL,
   `price` decimal(11,2) default NULL,
+  `price_old` decimal(11,2) default NULL,
   PRIMARY KEY  (`product_text_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product_text`
+-- Dumping data for table `product_texts`
 --
 
-INSERT INTO `product_text` (`product_text_id`, `product_id`, `language`, `title`, `description`, `price_old`, `price`) VALUES
+INSERT INTO `product_texts` (`product_text_id`, `product_id`, `language`, `title`, `description`, `price_old`, `price`) VALUES
 (4, 2, 'greek', 'Ψύκτρα για επεξεργαστές Intel - LGA775', '<h3>Intel CPU Cooler - Ψύκτρα για επεξεργαστές Intel </h3>\n<p>Η ψύκτρα PHT-7750 SkiveTek&#160; Radial της Nexus είναι όλη από <strong>χαλκό</strong>, με την τεχνολογία SkiveTek και πυρήνα επίσης από <strong>χαλκό</strong>. </p>\n<p> Η ψύκτρα παράγεται χρησιμοποιώντας την τεχνολογία <strong>SkiveTek </strong> για να επιτευχθεί η <strong>καλύτερη δυνατή ψύξη</strong>. Η βάση του SkiveTek είναι λυγισμένη γύρω από τον χάλκινο πυρήνα για να δημιουργεί το Ακτινωτό αποτέλεσμα και να βελτιστοποιεί την επιφάνεια ψύξης.</p>\n<p>Ο ανεμιστήρας της PHT-7750 είναι πραγματικά αθόρυβος 4-καλωδίων ελεγχόμενος από PWM (pulse width modulation). Η ταχύτητα του μπορεί να ρυθμιστεί μέσω της μητρικής πλακέτας και μπορεί να κυμανθεί ανάμεσα στις <strong>800 και 2600 στροφές ανα λεπτό </strong>. </p>\n<p> Λόγω της εξαιρετικά καλής επίδοσης της ψύκτρας ο ανεμιστήρας χρειάζεται πολύ λιγότερη ροή αέρα/ταχύτητα για να ψύξει επαρκώς τον επεξεργαστή. Ως αποτέλεσμα <strong>πολύ ήσυχη λειτουργία</strong>.</p>\n<h4>Χαρακτηριστικα:</h4>\n<p>Κατάλληλη για  Intel Socket T LGA775 Ο ανεμιστήρας της PHT-7750 είναι πραγματικά αθόρυβος, μετριέται ανάμεσα στα 17 dB(A) και 28db(A). Η ροή αέρα (airflow) κυμαίνεται ανάμεσα σε 8.29 CFM - 43.15 CFM</p>\n<h4>Προδιαγραφές ανεμστήρα:</h4>\n<p> Ο ανεμιστήρας που είναι ενσωματωμένος στην PHT-7750 είναι 4-καλωδίων με μεταβλητή ταχύτητα. Ο ανεμιστήρας ελέγχεται από τη μητρική του υπολογιστή σου και γυρνά με 30% περίπου της μέγιστης ταχύτητας στην εκκίνηση του συστήματος. Αυτές οι στροφές/λεπτό συνεχίζουν για περίπου 2 δεύτερα και μετά η μητρική αναλαμβάνει τον έλεγχο.</p>\n<h4> Βελτιωμένη έκδοση Intel 1.2</h4>\n<p>Ο ανεμιστήρας φτιάχνεται σύμφωνα με τις προδιαγραφές της Intel σχετικά με τους 4-καλωδίων PWM ελεγχόμενων ανεμιστήρων έκδοσης 1.2. Η βελτιωμένη έκδοση σημαίνει πως αν ο ανεμιστήρας δεν λάβει καμία πληροφορία σχετικά με τον έλεγχο των στροφών, τότε θα γυρίζει με τη μέγιστη ταχύτητα για λόγους ασφαλείας.</p>\n<h4>Προδιαγραφές:</h4>\n<p>- Μοντέλο: PHT-7750<br />\n- Socket: LGA775 <br />\n- Βάρος: 850 γραμμάρια<br />\n</p>\n<h4>Ανεμιστήρας:</h4>\n<p> - Διαστάσεις: 80x80x25 mm <br />\n- Ταχύτητα περιστροφής: 800~2600 στροφές/λεπτό (+/-10%) <br />\n- Επίπεδο θορύβου: 17~28 dB(A) <br />\n- Ροή αέρα: 8.29~43.15CFM <br />\n- Εγγύηση:                    <strong>3 Χρόνια</strong><strong></strong></p>', 50.00, 35.00),
 (5, 2, 'german', '', '', 0.00, 0.00),
 (6, 2, 'english', '', '', 0.00, 0.00),
@@ -485,32 +473,32 @@ INSERT INTO `product_text` (`product_text_id`, `product_id`, `language`, `title`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` bigint(20) unsigned NOT NULL auto_increment,
-  `user_code` varchar(60) NOT NULL default '',
-  `user_name` varchar(50) NOT NULL default '',
-  `user_surname` varchar(50) NOT NULL default '',
-  `user_email` varchar(100) default NULL,
-  `user_url` varchar(100) default NULL,
-  `user_birthdate` int(11) default '0',
-  `user_address` varchar(250) NOT NULL default '',
-  `user_city` varchar(100) NOT NULL default '',
-  `user_zip` int(11) NOT NULL default '0',
-  `user_country` varchar(20) NOT NULL default '',
-  `user_phone` varchar(20) NOT NULL default '',
-  `user_language` varchar(20) NOT NULL default '',
-  `user_registered` int(11) NOT NULL default '0',
-  `user_stars` int(11) NOT NULL default '0',
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) unsigned NOT NULL auto_increment,
+  `password` varchar(60) NOT NULL default '',
+  `first_name` varchar(50) NOT NULL default '',
+  `last_name` varchar(50) NOT NULL default '',
+  `email` varchar(100) default NULL,
+  `url` varchar(100) default NULL,
+  `birthdate` int(11) default '0',
+  `city` varchar(100) NOT NULL default '',
+  `street` varchar(250) NOT NULL default '',
+  `zip` int(11) NOT NULL default '0',
+  `country` varchar(20) NOT NULL default '',
+  `phone` varchar(20) NOT NULL default '',
+  `language` varchar(20) NOT NULL default '',
+  `registered` int(11) NOT NULL default '0',
+  `credits` int(11) NOT NULL default '0',
   PRIMARY KEY  (`user_id`),
-  KEY `user_email` (`user_email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+  KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `user` (`user_id`, `user_code`, `user_name`, `user_surname`, `user_email`, `user_url`, `user_birthdate`, `user_address`, `user_city`, `user_zip`, `user_country`, `user_phone`, `user_language`, `user_registered`, `user_stars`) VALUES
-(7, 'gm102', 'John', 'Doe', '', 'http://', 1181491136, 'Some Address', 'Some City', 123456, 'Ελλάδα', '6940000000', 'greek', 1181491136, 15);
+INSERT INTO `users` (`user_id`, `password`, `first_name`, `last_name`, `email`, `url`, `birthdate`, `city`, `street`, `zip`, `country`, `phone`, `language`, `registered`, `credits`) VALUES
+(1, 'RSZKjBc7a5kblUh9', 'John', 'Doe', 'john@doe', 'http://', '1970-01-01', 'Some City', 'Address', '1234567', 'Greece', '694', 'greek', '2011-11-11 11:11:11', 14);
